@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>parables & platters</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="icon" href="image2.png" type="image/x-icon">
+
+    <style>
+
+        body {
+
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1c1c1c;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            animation: glow 1.5s infinite alternate;
+
+        }
+
+        header {
+
+            background: rgba(0, 0, 0, 0.8);
+            width: 100%;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        h1 {
+
+            font-size: 45px;
+
+        }
+
+        footer {
+
+            background: rgba(0, 0, 0, 0.8);
+            width: 80%;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            left: 0;
+            box-shadow: 0 -1px 20px rgba(255, 255, 255, 0.3);
+
+        }
+
+        .aboutus {
+
+            background: rgba(0, 0, 0, 0.8);
+            width: 10%;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            margin-right: 1180px;
+            margin-bottom: 30px;
+            box-shadow: 0 -1px 20px rgba(255, 255, 255, 0.3);
+            color: #ffcbc288;
+            font-size: 15px;
+
+        }
+
+        .aboutus:hover {
+
+            background: #ff815423;
+
+        }
+
+        .menu {
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 170px;
+            margin-bottom: 70px;
+            font-size: 20px;
+
+        }
+
+        .menu-item {
+
+            background: #2c2c2c;
+            border-radius: 10px;
+            margin: 25px;
+            padding: 20px;
+            width: 270px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s;
+
+        }
+
+        .menu-item:hover {
+
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+
+        }
+
+        img {
+
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+
+        }
+
+        button {
+
+            background: #ffcbc2;
+            color: green;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 22px;
+
+        }
+
+        button:hover {
+
+            background: #ff7b4b;
+
+        }
+
+        .extra {
+
+            background: rgba(0, 0, 0, 0.8);
+            width: 10%;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            margin-right: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 -1px 20px rgba(255, 255, 255, 0.3);
+            color: #ffcbc288;
+            font-size: 15px;
+
+        }
+
+        .extra:hover {
+
+            background: #ff815423;
+
+        }
+
+        .popup {
+
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9);
+            color: #000;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            text-align: left;
+
+        }
+
+        .popup input,
+        .popup textarea {
+
+            width: 70%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+
+        }
+
+        .popup button {
+
+            color: black;
+            background: #28a745;
+
+        }
+
+        .popup.failure {
+
+            background: #f8d7da;
+
+        }
+
+        .popup.success {
+
+            background: #d4edda;
+
+        }
+
+        .a1 { 
+
+            margin-right: 700px;
+            
+        }
+
+        .slideshow-container {
+
+            width: 20%;
+            max-width: 500px;
+            overflow: hidden;
+            border-radius: 10px; /* Optional: add rounded corners */
+            margin-right: 1000px;
+            margin-bottom: 2400px;
+            position: fixed;
+
+        }
+
+        /* The slideshow itself (this will contain all the slides) */
+
+        .slideshow {
+
+            display: flex;
+            width: 100%;
+            animation: slideAnimation 20s infinite;
+
+        }
+
+        /* Each individual slide */
+
+        .slide {
+
+            min-width: 100%;
+            transition: transform 0.5s ease;
+
+        }
+
+        .slide img {
+
+            width: 250px;
+            height: 170px;
+            display: block;
+
+        }
+
+        /* Keyframes for the sliding effect */
+
+        @keyframes slideAnimation {
+
+            0% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(-200%);
+            }
+            150% {
+                transform: translateX(-300%);
+            }
+            200% {
+                transform: translateX(0);
+            }
+
+        }
+
+        @keyframes glow {
+
+            0% {
+                text-shadow: 0 0 5px #ff6347, 0 0 10px #ff6347;
+            }
+
+            100% {
+                text-shadow: 0 0 20px #ff6347, 0 0 30px #ff6347;
+            }
+
+        }
+
+        @media (max-width: 768px) {
+
+            body {
+
+                font-family: 'Arial', sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #1c1c1c;
+                color: #fff;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                text-align: center;
+                animation: glow 1.5s infinite alternate;
+
+            }
+
+            header {
+
+                background: rgba(0, 0, 0, 0.8);
+                width: 100%;
+                padding: 20px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 1000;
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+
+            }
+
+            h1 {
+
+                font-size: 35px;
+
+            }
+
+            footer {
+
+                background: rgba(0, 0, 0, 0.8);
+                width: 80%;
+                padding: 10px;
+                position: relative;
+                bottom: 0;
+                left: 0;
+                box-shadow: 0 -1px 20px rgba(255, 255, 255, 0.3);
+
+            }
+
+            .aboutus {
+
+                background: rgba(0, 0, 0, 0.8);
+                width: 12%;
+                padding: 10px;
+                position: fixed;
+                bottom: 0;
+                right: 0;
+                margin-right: 20px;
+                margin-bottom: 100px;
+                box-shadow: 0 -1px 20px rgba(255, 255, 255, 0.3);
+                color: #ffcbc288;
+                font-size: 15px;
+
+            }
+
+            .aboutus:hover {
+
+                background: #ff815423;
+
+            }
+
+            .menu {
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 170px;
+                margin-bottom: 70px;
+                font-size: 20px;
+
+            }
+
+            .menu-item {
+
+                background: #2c2c2c;
+                border-radius: 10px;
+                margin: 25px;
+                padding: 20px;
+                width: 200px;
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+                transition: transform 0.3s;
+
+            }
+
+            .menu-item:hover {
+
+                transform: scale(1.05);
+                box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+
+            }
+
+            img {
+
+                width: 100%;
+                height: 200px;
+                border-radius: 10px;
+
+            }
+
+            button {
+
+                background: #ffcbc2;
+                color: green;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background 0.3s;
+                font-size: 17px;
+
+            }
+
+            button:hover {
+
+                background: #ff7b4b;
+
+            }
+
+            .extra {
+
+                background: rgba(0, 0, 0, 0.8);
+                width: 12%;
+                padding: 10px;
+                position: fixed;
+                bottom: 0;
+                right: 0;
+                margin-right: 20px;
+                margin-bottom: 30px;
+                box-shadow: 0 -1px 20px rgba(255, 255, 255, 0.3);
+                color: #ffcbc288;
+                font-size: 15px;
+
+            }
+
+            .extra:hover {
+
+                background: #ff815423;
+
+            }
+
+            .popup {
+
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(255, 255, 255, 0.9);
+                color: #000;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+                z-index: 1001;
+                text-align: left;
+
+            }
+
+            .popup input,
+            .popup textarea {
+
+                width: 70%;
+                padding: 10px;
+                margin: 5px 0;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+
+            }
+
+            .popup button {
+
+                color: black;
+                background: #28a745;
+
+            }
+
+            .popup.failure {
+
+                background: #f8d7da;
+
+            }
+
+            .popup.success {
+
+                background: #d4edda;
+
+            }
+
+            .a1 { 
+
+                margin-right: 700px;
+
+            }
+
+            .slideshow-container {
+
+                width: 55%;
+                max-width: 500px;
+                overflow: hidden;
+                border-radius: 10px; /* Optional: add rounded corners */
+                margin-right: 100px;
+                margin-bottom: 50px;
+                position: relative;
+
+            }
+
+            /* The slideshow itself (this will contain all the slides) */
+
+            .slideshow {
+
+                display: flex;
+                width: 100%;
+                animation: slideAnimation 20s infinite;
+
+            }
+
+            /* Each individual slide */
+
+            .slide {
+
+                min-width: 100%;
+                transition: transform 0.5s ease;
+
+            }
+
+            .slide img {
+
+                width: 250px;
+                height: 170px;
+                display: block;
+
+            }
+
+        }
+
+        @media (max-width: 480px) {
+
+            body {
+
+                font-family: 'Arial', sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #1c1c1c;
+                color: #fff;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                text-align: center;
+                animation: glow 1.5s infinite alternate;
+
+            }
+
+            header {
+
+                background: rgba(0, 0, 0, 0.8);
+                width: 100%;
+                padding: 20px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 1000;
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+
+            }
+
+            h1 {
+
+                font-size: 35px;
+
+            }
+
+            footer {
+
+                background: rgba(0, 0, 0, 0.8);
+                width: 80%;
+                padding: 10px;
+                position: relative;
+                bottom: 0;
+                left: 0;
+                box-shadow: 0 -1px 20px rgba(255, 255, 255, 0.3);
+
+            }
+
+            .aboutus {
+
+                background: rgba(0, 0, 0, 0.8);
+                width: 12%;
+                padding: 10px;
+                position: fixed;
+                bottom: 0;
+                right: 0;
+                margin-right: 20px;
+                margin-bottom: 100px;
+                box-shadow: 0 -1px 20px rgba(255, 255, 255, 0.3);
+                color: #ffcbc288;
+                font-size: 15px;
+
+            }
+
+            .aboutus:hover {
+
+                background: #ff815423;
+
+            }
+
+            .menu {
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 170px;
+                margin-bottom: 70px;
+                font-size: 20px;
+
+            }
+
+            .menu-item {
+
+                background: #2c2c2c;
+                border-radius: 10px;
+                margin: 25px;
+                padding: 20px;
+                width: 200px;
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+                transition: transform 0.3s;
+
+            }
+
+            .menu-item:hover {
+
+                transform: scale(1.05);
+                box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+
+            }
+
+            img {
+
+                width: 100%;
+                height: 200px;
+                border-radius: 10px;
+
+            }
+
+            button {
+
+                background: #ffcbc2;
+                color: green;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background 0.3s;
+                font-size: 17px;
+
+            }
+
+            button:hover {
+
+                background: #ff7b4b;
+
+            }
+
+            .extra {
+
+                background: rgba(0, 0, 0, 0.8);
+                width: 12%;
+                padding: 10px;
+                position: fixed;
+                bottom: 0;
+                right: 0;
+                margin-right: 20px;
+                margin-bottom: 30px;
+                box-shadow: 0 -1px 20px rgba(255, 255, 255, 0.3);
+                color: #ffcbc288;
+                font-size: 15px;
+
+            }
+
+            .extra:hover {
+
+                background: #ff815423;
+
+            }
+
+            .popup {
+
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(255, 255, 255, 0.9);
+                color: #000;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+                z-index: 1001;
+                text-align: left;
+
+            }
+
+            .popup input,
+            .popup textarea {
+
+                width: 70%;
+                padding: 10px;
+                margin: 5px 0;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+
+            }
+
+            .popup button {
+
+                color: black;
+                background: #28a745;
+
+            }
+
+            .popup.failure {
+
+                background: #f8d7da;
+
+            }
+
+            .popup.success {
+
+                background: #d4edda;
+
+            }
+
+            .a1 { 
+
+                margin-right: 700px;
+
+            }
+
+            .slideshow-container {
+
+                width: 55%;
+                max-width: 500px;
+                overflow: hidden;
+                border-radius: 10px; /* Optional: add rounded corners */
+                margin-right: 100px;
+                margin-bottom: 50px;
+                position: relative;
+
+            }
+
+            /* The slideshow itself (this will contain all the slides) */
+
+            .slideshow {
+
+                display: flex;
+                width: 100%;
+                animation: slideAnimation 20s infinite;
+
+            }
+
+            /* Each individual slide */
+
+            .slide {
+
+                min-width: 100%;
+                transition: transform 0.5s ease;
+
+            }
+
+            .slide img {
+
+                width: 250px;
+                height: 170px;
+                display: block;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+    
+    <header>
+
+        <h1>parables & platters</h1>
+
+    </header>
+
+    <div class="menu">
+
+        <div class="menu-item">
+
+            <img src="images/pastamac.jpg" alt="pasta mac">
+            <h2>pasta mac</h2>
+            <p>price: R50.00</p>
+            <p>details: macaroni or spaghetti, wors, sambles, coleslaw, and grape coo-ee</p>
+            <button onclick="showOrderForm('pasta mac', 'R50.00', 'macaroni or spaghetti, wors, sambles, coleslaw, and grape coo-ee.', 'pastamac.jpg')" id="ordernow">order now</button>
+
+        </div>
+
+        <div class="menu-item">
+
+            <img src="images/munchycrunch.jpg" alt="munchy crunch">
+            <h2>munchy crunch</h2>
+            <p>price: R35.00</p>
+            <p>details: 2 burgers w/ fresh buns, wors, lettuce, tomatoes, mayonaisse, fried chips, fried chips on the side as well, and grape coo-ee</p>
+            <button onclick="showOrderForm('munchy crunch', 'R35.00', '2 burgers w/ fresh buns, wors, lettuce, tomatoes, mayonaisse, and fried chips, and fried chips on the side as well.', 'munchycrunch.jpg')">order now</button>
+
+        </div>
+
+        <div class="menu-item">
+
+            <img src="images/worsroll.jpg" alt="wors roll">
+            <h2>wors roll</h2>
+            <p>price: R35.00</p>
+            <p>details: 2 wors rolls w/ fried chips, and grape coo-ee</p>
+            <button onclick="showOrderForm('wors roll', 'R30.00', '2 wors rolls w/ fried chips, and grape coo-ee.', 'worsroll.jpg')">order now</button>
+
+        </div>
+
+        <div class="menu-item">
+
+            <img src="images/itsawrap.jpg" alt="wors roll">
+            <h2>it's a wrap</h2>
+            <p>price: R20.00</p>
+            <p>details: roti wrap w/ mayonaisse, fried chips, tomatoes, lettuce, wors, and grape coo-ee</p>
+            <button onclick="showOrderForm('it\'s a wrap', 'R20.00', 'roti wrap w/ mayonaisse, fried chips, tomatoes, lettuce, wors, and grape coo-ee.', 'itsawrap.jpg')">order now</button>
+
+        </div>
+
+        <div class="menu-item">
+
+            <img src="images/sliceanddice.jpg" alt="wors roll">
+            <h2>slice & dice</h2>
+            <p>price: R20.00</p>
+            <p>details: 4 toasted slices of brown or white bread w/ wors, lettuce, tomatoes, fried chips, mayonaisse, cucumbers, fried chips on the side as well, and grape coo-ee</p>
+            <button onclick="showOrderForm('slice & dice', 'R20.00', '4 toasted slices of brown or white bread w/ wors, lettuce, tomatoes, fried chips, mayonaisse, cucumbers, fried chips on the side as well, and grape coo-ee.', 'sliceanddice.jpg')">order now</button>
+
+        </div>
+
+    </div>
+
+    <div class="popup" id="orderForm">
+
+        <h2>order details</h2>
+
+        <form id="orderDetails" action="https://formspree.io/YOUR_FORM_ID" method="POST">
+
+            <input type="hidden" name="item" id="item">
+            <input type="hidden" name="price" id="price">
+            <input type="hidden" name="details" id="details">
+            <label for="name">your name:</label>
+            <input type="text" name="name" required>
+            <br>
+            <label for="phone">your phone number:</label>
+            <input type="number" name="phone" required>
+            <br>
+            <label for="email">your email:</label>
+            <input type="email" name="email" required>
+            <br>
+            <label for="address">your address:</label>
+            <input type="address" name="address" required>
+            <br>
+            <label for="details">anything else?:</label>
+            <input type="text" name="details" required>
+            <br>
+            <button type="submit">submit order</button>
+            <button type="button" onclick="closeForm()">cancel</button>
+
+        </form>
+
+    </div>
+
+    <div class="popup" id="popupMessage" style="display:none;"></div>
+
+    <div class="slideshow-container">
+        <div class="slideshow">
+
+           <div class="slide"><a href="https://mkhulumbhelefacilities.co.za/"><img src="ads/mkhulumbhelefacilities.png" alt="mkhulumbhelefacilities"></a></div>
+
+           <div class="slide"><a href="https://johnstuckshop.co.za/"><img src="ads/johnstuckshop.png" alt="johnstuckshop"></a></div>
+
+           <div class="slide"><a href="https://mkhulumbhelefacilities.co.za/"><img src="ads/mkhulumbhelefacilities.png" alt="mkhulumbhelefacilities"></a></div>
+
+           <div class="slide"><a href="https://johnstuckshop.co.za/"><img src="ads/johnstuckshop.png" alt="johnstuckshop"></a></div>
+
+          <!-- add more images as needed -->
+
+        </div>
+      </div>
+
+    <a href="aboutus.html">
+        
+        <button class="aboutus">about us</button>
+
+        </a>
+
+        <a href="extra.html">
+        
+            <button class="extra">extra</button>
+    
+            </a>
+
+        <audio autoplay src="music/waymaker.mp3" type="audio/mp3"></audio>
+
+    <footer> &copy; 2024 a1 (pty) ltd. all rights reserved. </footer>
+
+    <script>
+
+        // Function to show the order form popup
+        
+        function showOrderForm(itemName, itemPrice, itemDetails, itemImage) {
+
+            document.getElementById('item').value = itemName;
+            document.getElementById('price').value = itemPrice;
+            document.getElementById('details').value = itemDetails;
+            document.getElementById('orderForm').style.display = 'block';
+
+        }
+
+        // Function to close the order form popup
+        function closeForm() {
+
+            document.getElementById('orderForm').style.display = 'none';
+
+        }
+
+        // Function to handle form submission
+        document.getElementById('orderDetails').addEventListener('submit', function(event) {
+
+            event.preventDefault(); // Prevent default form submission
+
+            fetch(this.action, {
+                method: this.method,
+                body: new FormData(this),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    showPopup("order placed successfully!", false);
+                    this.reset(); // reset form
+                    closeForm(); // close form after successful submission
+                } else {
+                    throw new Error('network response was not ok.');
+                }
+            }).catch(error => {
+                showPopup("there was a problem with your submission. please try again.", true);
+            });
+
+        });
+
+        // Function to show success and failure popups
+        function showPopup(message, isFailure) {
+
+            const popup = document.getElementById('popupMessage');
+            popup.textContent = message;
+            popup.style.display = 'block';
+            popup.className = isFailure ? 'popup failure' : 'popup success';
+
+            // Hide popup after a few seconds
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 4000); // Adjust timeout duration as needed
+
+        }
+        
+    </script>
+
+</body>
+
+</html>
+
+<!-- get food images -->
+
+<!-- back to top button next to about us button that only appears when you've scrolled down long enough that you would need a button to get back up on top. -->
+
+
+
+
+
+
+
+
+
+
+
