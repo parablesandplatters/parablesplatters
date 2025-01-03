@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <link rel="icon" href="image2.png" type="image/x-icon">
+    <link rel="icon" href="images/parables_platters_logo.png" type="image/x-icon">
 
     <style>
 
@@ -43,6 +43,20 @@
             left: 0;
             z-index: 1000;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+
+        }
+
+        .header-link {
+
+            text-decoration: none; 
+            color: inherit; 
+
+        }
+
+        .header-link:hover {
+
+            cursor: pointer; 
+
         }
 
         h1 {
@@ -287,6 +301,33 @@
             100% {
                 text-shadow: 0 0 20px #ff6347, 0 0 30px #ff6347;
             }
+
+        }
+
+        #backToTop {
+
+            background: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            width: 10%;
+            bottom: 0;
+            right: 0;
+            margin-right: 40px;
+            margin-bottom: 80px;
+            box-shadow: 0 -1px 20px rgba(255, 255, 255, 0.3);
+            display: none;
+            color: #ffcbc288;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+            z-index: 1000;
+
+        }
+
+        #backToTop:hover {
+
+            background-color: #555;
 
         }
 
@@ -788,7 +829,11 @@
     
     <header>
 
-        <h1>parables & platters</h1>
+        <a href="index.html" class="header-link">
+
+            <h1>Parables & Platters</h1>
+
+        </a>
 
     </header>
 
@@ -800,7 +845,7 @@
             <h2>pasta mac</h2>
             <p>price: R50.00</p>
             <p>details: macaroni or spaghetti, wors, sambles, coleslaw, and grape coo-ee</p>
-            <button onclick="showOrderForm('pasta mac', 'R50.00', 'macaroni or spaghetti, wors, sambles, coleslaw, and grape coo-ee.', 'pastamac.jpg')" id="ordernow">order now</button>
+            <button onclick="showOrderForm('pasta mac', 'R50.00', 'macaroni or spaghetti, wors, sambles, coleslaw, and grape coo-ee.', 'pastamac.jpg')" id="ordernow" title="click to order now">order now</button>
 
         </div>
 
@@ -810,7 +855,7 @@
             <h2>munchy crunch</h2>
             <p>price: R35.00</p>
             <p>details: 2 burgers w/ fresh buns, wors, lettuce, tomatoes, mayonaisse, fried chips, fried chips on the side as well, and grape coo-ee</p>
-            <button onclick="showOrderForm('munchy crunch', 'R35.00', '2 burgers w/ fresh buns, wors, lettuce, tomatoes, mayonaisse, and fried chips, and fried chips on the side as well.', 'munchycrunch.jpg')">order now</button>
+            <button onclick="showOrderForm('munchy crunch', 'R35.00', '2 burgers w/ fresh buns, wors, lettuce, tomatoes, mayonaisse, and fried chips, and fried chips on the side as well.', 'munchycrunch.jpg')" title="click to order now">order now</button>
 
         </div>
 
@@ -820,7 +865,7 @@
             <h2>wors roll</h2>
             <p>price: R35.00</p>
             <p>details: 2 wors rolls w/ fried chips, and grape coo-ee</p>
-            <button onclick="showOrderForm('wors roll', 'R30.00', '2 wors rolls w/ fried chips, and grape coo-ee.', 'worsroll.jpg')">order now</button>
+            <button onclick="showOrderForm('wors roll', 'R30.00', '2 wors rolls w/ fried chips, and grape coo-ee.', 'worsroll.jpg')" title="click to order now">order now</button>
 
         </div>
 
@@ -830,7 +875,7 @@
             <h2>it's a wrap</h2>
             <p>price: R20.00</p>
             <p>details: roti wrap w/ mayonaisse, fried chips, tomatoes, lettuce, wors, and grape coo-ee</p>
-            <button onclick="showOrderForm('it\'s a wrap', 'R20.00', 'roti wrap w/ mayonaisse, fried chips, tomatoes, lettuce, wors, and grape coo-ee.', 'itsawrap.jpg')">order now</button>
+            <button onclick="showOrderForm('it\'s a wrap', 'R20.00', 'roti wrap w/ mayonaisse, fried chips, tomatoes, lettuce, wors, and grape coo-ee.', 'itsawrap.jpg')" title="click to order now">order now</button>
 
         </div>
 
@@ -840,7 +885,7 @@
             <h2>slice & dice</h2>
             <p>price: R20.00</p>
             <p>details: 4 toasted slices of brown or white bread w/ wors, lettuce, tomatoes, fried chips, mayonaisse, cucumbers, fried chips on the side as well, and grape coo-ee</p>
-            <button onclick="showOrderForm('slice & dice', 'R20.00', '4 toasted slices of brown or white bread w/ wors, lettuce, tomatoes, fried chips, mayonaisse, cucumbers, fried chips on the side as well, and grape coo-ee.', 'sliceanddice.jpg')">order now</button>
+            <button onclick="showOrderForm('slice & dice', 'R20.00', '4 toasted slices of brown or white bread w/ wors, lettuce, tomatoes, fried chips, mayonaisse, cucumbers, fried chips on the side as well, and grape coo-ee.', 'sliceanddice.jpg')" title="click to order now">order now</button>
 
         </div>
 
@@ -870,8 +915,8 @@
             <label for="details">anything else?:</label>
             <input type="text" name="details" required>
             <br>
-            <button type="submit">submit order</button>
-            <button type="button" onclick="closeForm()">cancel</button>
+            <button type="submit" title="click now to submit your order">submit order</button>
+            <button type="button" onclick="closeForm()" title="cancel">cancel</button>
 
         </form>
 
@@ -879,7 +924,7 @@
 
     <div class="popup" id="popupMessage" style="display:none;"></div>
 
-    <div class="slideshow-container">
+    <div class="slideshow-container" title="ads">
         <div class="slideshow">
 
            <div class="slide"><a href="https://mkhulumbhelefacilities.co.za/"><img src="ads/mkhulumbhelefacilities.png" alt="mkhulumbhelefacilities"></a></div>
@@ -897,15 +942,17 @@
 
     <a href="aboutus.html">
         
-        <button class="aboutus">about us</button>
+        <button class="aboutus" title="about us">about us</button>
 
         </a>
 
         <a href="extra.html">
         
-            <button class="extra">extra</button>
+            <button class="extra" title="extra">extra</button>
     
             </a>
+
+            <button id="backToTop" title="back to top">back to top</button>
 
         <audio autoplay src="music/thatwouldbegoodenoughforme.mp3" type="audio/mp3"></audio>
 
@@ -970,6 +1017,23 @@
             }, 4000); // Adjust timeout duration as needed
 
         }
+
+        const backToTopButton = document.getElementById("backToTop");
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) { // Show button after scrolling 300px
+            backToTopButton.style.display = "block";
+            } else {
+            backToTopButton.style.display = "none";
+            }
+        });
+
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+            });
+        });
         
     </script>
 
@@ -977,11 +1041,9 @@
 
 </html>
 
-<!-- get food images -->
-
 <!-- back to top button next to about us button that only appears when you've scrolled down long enough that you would need a button to get back up on top. -->
 
- 
+
 
 
 
