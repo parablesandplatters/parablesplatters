@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <link rel="icon" href="images/PPLOGO.png" type="image/x-icon">
+    <link rel="icon" href="images/jesuslogo_enef.png" type="image/x-icon">
 
     <style>
 
@@ -29,8 +29,7 @@
         body {
 
             font-family: 'Roboto', sans-serif;
-            background-color: #1c1c1c;
-            color: #fff;
+            background-color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -48,7 +47,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: #e3c5a3;
             padding: 20px;
             text-align: center;
             font-size: 24px;
@@ -71,76 +70,6 @@
 
         }
 
-        .slideshow-container {
-
-            width: 20%;
-            max-width: 500px;
-            overflow: hidden;
-            border-radius: 10px; /* optional: add rounded corners */
-            margin-bottom: 80px;
-            margin-top: -650px;
-
-        }
-
-            /* the slideshow itself (this will contain all the slides) */
-
-        .slideshow {
-
-            display: flex;
-            width: 100%;
-            animation: slideAnimation 20s infinite;
-
-        }
-
-            /* each individual slide */
-
-        .slide {
-
-            min-width: 100%;
-            transition: transform 0.5s ease;
-
-        }
-
-        .slide img {
-
-            width: 250px;
-            height: 170px;
-            display: block;
-
-        }
-
-        @keyframes slideAnimation {
-
-            0% {
-                transform: translateX(0);
-            }
-            50% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(-200%);
-            }
-            150% {
-                transform: translateX(-300%);
-            }
-            200% {
-                transform: translateX(0);
-            }
-
-        }
-
-
-        @keyframes glow {
-
-            0% {
-                text-shadow: 0 0 5px #ffefcb6b, 0 0 10px #ffefcb;
-            }
-
-            100% {
-                text-shadow: 0 0 20px #ffefcb, 0 0 30px #ffefcb77;
-            }
-
-        }
 
         @keyframes slideIn {
 
@@ -156,15 +85,15 @@
 
         section {
 
-            width: 90%;
+            width: 50%;
             max-width: 1200px;
-            background: rgba(0, 0, 0, 0.8);
+            background: #e3c5a379;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
             margin-top: 140px;
-            margin-bottom: 700px;
-            text-align: left;
+            margin-bottom: 100px;
+            text-align: center;
             transition: transform 0.5s ease;
 
         }
@@ -177,10 +106,16 @@
 
         }
 
+        .h1 {
+
+            font-size: 40px;
+
+        }
+
         h4 {
 
             font-size: 1.5rem;
-            color: #3cd3de;
+            color: black;
             margin-top: 20px;
 
         }
@@ -195,28 +130,28 @@
 
         .button {
 
-            background: rgba(78, 78, 78, 0.8);
-            color: #3cd3de;
+            background: #e3c5a3;
+            color: black;
             padding: 15px 30px;
             border: none;
             border-radius: 5px;
             font-size: 18px;
+            text-align: center;
             cursor: pointer;
             transition: background 0.3s ease;
             margin-top: 20px;
-            margin-left: 400px;
 
         }
 
         .button:hover {
 
-            background: #1f1f1f;
+            background: #e3c5a379;
 
         }
 
         #backToTop {
 
-            background: rgba(0, 0, 0, 0.8);
+            background: #e3c5a3;
             position: fixed;
             width: 10%;
             bottom: 0;
@@ -225,7 +160,7 @@
             margin-bottom: 80px;
             box-shadow: 0 -1px 20px rgba(255, 255, 255, 0.3);
             display: none;
-            color: #ffefcb;
+            color: black;
             border: none;
             padding: 10px;
             border-radius: 5px;
@@ -237,21 +172,20 @@
 
         #backToTop:hover {
 
-            background-color: #636363;
+            background-color: #e3c5a379;
 
         }
 
         footer {
 
-            background: rgba(0, 0, 0, 0.8);
+            background: #e3c5a3;
             width: 100%;
-            padding: 15px;
+            padding-top: 10px;
             position: fixed;
             bottom: 0;
             left: 0;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
             text-align: center;
-            color: #ffefcb;
+            color: black;
 
         }
 
@@ -297,75 +231,6 @@
 
             }
 
-            .slideshow-container {
-
-                width: 60%;
-                max-width: 500px;
-                overflow: hidden;
-                border-radius: 10px; /* optional: add rounded corners */
-                margin-bottom: 200px;
-
-            }
-
-            /* the slideshow itself (this will contain all the slides) */
-
-            .slideshow {
-
-                display: flex;
-                width: 100%;
-                animation: slideAnimation 20s infinite;
-
-            }
-
-            /* each individual slide */
-
-            .slide {
-
-                min-width: 100%;
-                transition: transform 0.5s ease;
-
-            }
-
-            .slide img {
-
-                width: 250px;
-                height: 170px;
-                display: block;
-
-            }
-
-            @keyframes slideAnimation {
-
-                0% {
-                    transform: translateX(0);
-                }
-                50% {
-                    transform: translateX(-100%);
-                }
-                100% {
-                    transform: translateX(-200%);
-                }
-                150% {
-                    transform: translateX(-300%);
-                }
-                200% {
-                    transform: translateX(0);
-                }
-
-            }
-
-            @keyframes glow {
-
-                0% {
-                    text-shadow: 0 0 5px #ffefcb6b, 0 0 10px #ffefcb;
-                }
-
-                100% {
-                    text-shadow: 0 0 20px #ffefcb, 0 0 30px #ffefcb77;
-                }
-
-            }
-
             @keyframes slideIn {
 
                 from {
@@ -398,6 +263,12 @@
                 font-size: 2rem;
                 margin-bottom: 20px;
                 color: inherit;
+
+            }
+
+            .h1 {
+
+                font-size: 40px;
 
             }
 
@@ -500,7 +371,7 @@
 
     <section>
 
-        <h1>company leadership</h1>
+        <h1 class="h1">company leadership</h1>
         <br>
         <h4>01. chief innovations officer: <br>
             <br>thato morake</h4>
@@ -547,22 +418,6 @@
         </a>
 
     </section>
-
-    <div class="slideshow-container">
-        <div class="slideshow">
-
-           <div class="slide"><a href="https://mkhulumbhelefacilities.co.za/"><img src="ads/mkhulumbhelefacilities.png" alt="mkhulumbhelefacilities"></a></div>
-
-           <div class="slide"><a href="https://johnstuckshop.co.za/"><img src="ads/johnstuckshop.png" alt="johnstuckshop"></a></div>
-
-           <div class="slide"><a href="https://mkhulumbhelefacilities.co.za/"><img src="ads/mkhulumbhelefacilities.png" alt="mkhulumbhelefacilities"></a></div>
-
-           <div class="slide"><a href="https://johnstuckshop.co.za/"><img src="ads/johnstuckshop.png" alt="johnstuckshop"></a></div>
-
-          <!-- add more images as needed -->
-
-        </div>
-      </div>
 
       <button id="backToTop" title="back to top">back to top</button>
 
