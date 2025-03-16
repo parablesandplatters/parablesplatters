@@ -1,0 +1,344 @@
+
+
+html
+Copy
+<div class="popup" id="orderForm">
+    <h2>Order Details</h2>
+
+    <form id="orderDetails" action="https://formspree.io/f/manqrkpv" method="POST" onsubmit="return validateForm()">
+        <input type="hidden" name="item" id="item">
+        <input type="hidden" name="price" id="price">
+        <input type="hidden" name="details" id="details">
+
+        <!-- Name Field -->
+        <label for="name">Your Name:</label>
+        <input type="text" name="name" id="name" required>
+        <br>
+        <span id="nameError" class="error-message" style="color: red; display: none;">Please enter your name.</span>
+
+        <!-- Phone Field -->
+        <label for="phone">Your Phone Number:</label>
+        <input type="text" name="phone" id="phone" required>
+        <br>
+        <span id="phoneError" class="error-message" style="color: red; display: none;">Please enter a valid phone number (only numbers).</span>
+
+        <!-- Email Field -->
+        <label for="email">Your Email:</label>
+        <input type="email" name="email" id="email" required>
+        <br>
+        <span id="emailError" class="error-message" style="color: red; display: none;">Please enter a valid email address.</span>
+
+        <!-- Company Dropdown -->
+        <label for="company">Company:</label>
+        <select name="company" id="company" required>
+            <option value="">Select a Company</option>
+            <option value="cci">CCI</option>
+            <option value="nutun">Nutun</option>
+            <option value="ignition">Ignition</option>
+            <option value="outworx">Outworx</option>
+            <option value="bespoke">Bespoke International Group</option>
+            <option value="uconnect">Uconnect</option>
+            <option value="consumer_connect">Consumer Connect</option>
+            <option value="concentrix">Concentrix</option>
+        </select>
+        <br>
+        <span id="companyError" class="error-message" style="color: red; display: none;">Please select a company.</span>
+
+        <!-- Address Field -->
+        <label for="address">Your Address:</label>
+        <input type="text" name="address" id="address" required>
+        <br>
+        <span id="addressError" class="error-message" style="color: red; display: none;">Please enter your address.</span>
+
+        <!-- Additional Details -->
+        <label for="details">Anything else?:</label>
+        <input type="text" name="details" id="details" required>
+        <br>
+        <span id="detailsError" class="error-message" style="color: red; display: none;">Please enter any additional details.</span>
+
+        <!-- Submit and Cancel Buttons -->
+        <button type="submit" title="Click now to submit your order">Submit Order</button>
+        <button type="button" onclick="closeForm()" title="Cancel">Cancel</button>
+    </form>
+</div>
+
+<!-- Popup message for submission feedback -->
+<div class="popup" id="popupMessage" style="display:none;"></div>
+
+<script>
+    function validateForm() {
+        // Hide error messages initially
+        hideErrorMessages();
+
+        let valid = true;
+
+        // Validate Name
+        let name = document.getElementById('name').value;
+        if (name.trim() === "") {
+            document.getElementById('nameError').style.display = 'inline';
+            valid = false;
+        }
+
+        // Validate Phone Number (Ensure only numbers are entered)
+        let phone = document.getElementById('phone').value;
+        if (!/^\d+$/.test(phone)) {
+            document.getElementById('phoneError').style.display = 'inline';
+            valid = false;
+        }
+
+        // Validate Email
+        let email = document.getElementById('email').value;
+        if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+            document.getElementById('emailError').style.display = 'inline';
+            valid = false;
+        }
+
+        // Validate Company Selection
+        let company = document.getElementById('company').value;
+        if (company === "") {
+            document.getElementById('companyError').style.display = 'inline';
+            valid = false;
+        }
+
+        // Validate Address
+        let address = document.getElementById('address').value;
+        if (address.trim() === "") {
+            document.getElementById('addressError').style.display = 'inline';
+            valid = false;
+        }
+
+        // Validate Details
+        let details = document.getElementById('details').value;
+        if (details.trim() === "") {
+            document.getElementById('detailsError').style.display = 'inline';
+            valid = false;
+        }
+
+        if (!valid) {
+            return false;  // Prevent form submission
+        }
+
+        // If everything is valid, show success message or proceed
+        document.getElementById('popupMessage').style.display = 'block';
+        document.getElementById('popupMessage').innerHTML = "Form submitted successfully!";
+        return true;  // Allow form submission
+    }
+
+    function hideErrorMessages() {
+        document.getElementById('nameError').style.display = 'none';
+        document.getElementById('phoneError').style.display = 'none';
+        document.getElementById('emailError').style.display = 'none';
+        document.getElementById('companyError').style.display = 'none';
+        document.getElementById('addressError').style.display = 'none';
+        document.getElementById('detailsError').style.display = 'none';
+    }
+
+    function closeForm() {
+        document.getElementById('orderForm').style.display = 'none';
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+html
+Copy
+<div class="popup" id="orderForm">
+    <h2>Order Details</h2>
+
+    <form id="orderDetails" action="https://formspree.io/f/manqrkpv" method="POST" onsubmit="return validateForm()">
+        <input type="hidden" name="item" id="item">
+        <input type="hidden" name="price" id="price">
+        <input type="hidden" name="details" id="details">
+
+        <!-- Name Field -->
+        <label for="name">Your Name:</label>
+        <input type="text" name="name" id="name" required>
+        <br>
+        <span id="nameError" class="error-message" style="color: red; display: none;">Please enter your name.</span>
+
+        <!-- Phone Field -->
+        <label for="phone">Your Phone Number:</label>
+        <input type="text" name="phone" id="phone" required>
+        <br>
+        <span id="phoneError" class="error-message" style="color: red; display: none;">Please enter a valid phone number (only numbers).</span>
+
+        <!-- Email Field -->
+        <label for="email">Your Email:</label>
+        <input type="email" name="email" id="email" required>
+        <br>
+        <span id="emailError" class="error-message" style="color: red; display: none;">Please enter a valid email address.</span>
+
+        <!-- Company Dropdown -->
+        <label for="company">Company:</label>
+        <select name="company" id="company" required>
+            <option value="">Select a Company</option>
+            <option value="cci">CCI</option>
+            <option value="nutun">Nutun</option>
+            <option value="ignition">Ignition</option>
+            <option value="outworx">Outworx</option>
+            <option value="bespoke">Bespoke International Group</option>
+            <option value="uconnect">Uconnect</option>
+            <option value="consumer_connect">Consumer Connect</option>
+            <option value="concentrix">Concentrix</option>
+        </select>
+        <br>
+        <span id="companyError" class="error-message" style="color: red; display: none;">Please select a company.</span>
+
+        <!-- Address Field -->
+        <label for="address">Your Address:</label>
+        <input type="text" name="address" id="address" required>
+        <br>
+        <span id="addressError" class="error-message" style="color: red; display: none;">Please enter your address.</span>
+
+        <!-- Additional Details -->
+        <label for="details">Anything else?:</label>
+        <input type="text" name="details" id="details" required>
+        <br>
+        <span id="detailsError" class="error-message" style="color: red; display: none;">Please enter any additional details.</span>
+
+        <!-- Time Field (24-hour intervals every 2 hours) -->
+        <label for="time">Preferred Time (24-hour intervals):</label>
+        <select name="time" id="time" required>
+            <option value="">Select a Time</option>
+            <option value="00:00">00:00</option>
+            <option value="02:00">02:00</option>
+            <option value="04:00">04:00</option>
+            <option value="06:00">06:00</option>
+            <option value="08:00">08:00</option>
+            <option value="10:00">10:00</option>
+            <option value="12:00">12:00</option>
+            <option value="14:00">14:00</option>
+            <option value="16:00">16:00</option>
+            <option value="18:00">18:00</option>
+            <option value="20:00">20:00</option>
+            <option value="22:00">22:00</option>
+        </select>
+        <br>
+        <span id="timeError" class="error-message" style="color: red; display: none;">Please select a time.</span>
+
+        <!-- Submit and Cancel Buttons -->
+        <button type="submit" title="Click now to submit your order">Submit Order</button>
+        <button type="button" onclick="closeForm()" title="Cancel">Cancel</button>
+    </form>
+</div>
+
+<!-- Popup message for submission feedback -->
+<div class="popup" id="popupMessage" style="display:none;"></div>
+
+<script>
+    function validateForm() {
+        // Hide error messages initially
+        hideErrorMessages();
+
+        let valid = true;
+
+        // Validate Name
+        let name = document.getElementById('name').value;
+        if (name.trim() === "") {
+            document.getElementById('nameError').style.display = 'inline';
+            valid = false;
+        }
+
+        // Validate Phone Number (Ensure only numbers are entered)
+        let phone = document.getElementById('phone').value;
+        if (!/^\d+$/.test(phone)) {
+            document.getElementById('phoneError').style.display = 'inline';
+            valid = false;
+        }
+
+        // Validate Email
+        let email = document.getElementById('email').value;
+        if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+            document.getElementById('emailError').style.display = 'inline';
+            valid = false;
+        }
+
+        // Validate Company Selection
+        let company = document.getElementById('company').value;
+        if (company === "") {
+            document.getElementById('companyError').style.display = 'inline';
+            valid = false;
+        }
+
+        // Validate Address
+        let address = document.getElementById('address').value;
+        if (address.trim() === "") {
+            document.getElementById('addressError').style.display = 'inline';
+            valid = false;
+        }
+
+        // Validate Details
+        let details = document.getElementById('details').value;
+        if (details.trim() === "") {
+            document.getElementById('detailsError').style.display = 'inline';
+            valid = false;
+        }
+
+        // Validate Time Selection
+        let time = document.getElementById('time').value;
+        if (time === "") {
+            document.getElementById('timeError').style.display = 'inline';
+            valid = false;
+        }
+
+        if (!valid) {
+            return false;  // Prevent form submission
+        }
+
+        // If everything is valid, show success message or proceed
+        document.getElementById('popupMessage').style.display = 'block';
+        document.getElementById('popupMessage').innerHTML = "Form submitted successfully!";
+        return true;  // Allow form submission
+    }
+
+    function hideErrorMessages() {
+        document.getElementById('nameError').style.display = 'none';
+        document.getElementById('phoneError').style.display = 'none';
+        document.getElementById('emailError').style.display = 'none';
+        document.getElementById('companyError').style.display = 'none';
+        document.getElementById('addressError').style.display = 'none';
+        document.getElementById('detailsError').style.display = 'none';
+        document.getElementById('timeError').style.display = 'none';
+    }
+
+    function closeForm() {
+        document.getElementById('orderForm').style.display = 'none';
+    }
+</script>
+
+
