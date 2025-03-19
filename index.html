@@ -1033,12 +1033,26 @@
             </select>
             <br>
             <span id="companyError" class="error-message" style="color: red; display: none;">Please select a company.</span>
-    
-            <!-- Address Field -->
-            <label for="address">Your Address:</label>
-            <input type="text" name="address" id="address" required>
+
+            <!-- Time Selection -->
+            <label for="time">Select Time:</label>
+            <select name="time" id="time" required>
+                <option value="">Select Time</option>
+                <option value="00:00">00:00</option>
+                <option value="02:00">02:00</option>
+                <option value="04:00">04:00</option>
+                <option value="06:00">06:00</option>
+                <option value="08:00">08:00</option>
+                <option value="10:00">10:00</option>
+                <option value="12:00">12:00</option>
+                <option value="14:00">14:00</option>
+                <option value="16:00">16:00</option>
+                <option value="18:00">18:00</option>
+                <option value="20:00">20:00</option>
+                <option value="22:00">22:00</option>
+            </select>
             <br>
-            <span id="addressError" class="error-message" style="color: red; display: none;">Please enter your address.</span>
+            <span id="timeError" class="error-message" style="color: red; display: none;">Please select a time.</span>
     
             <!-- Additional Details -->
             <label for="details">Anything else?:</label>
