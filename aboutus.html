@@ -1,33 +1,21 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>about us</title>
-
+    <title>About Us</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
     <link rel="icon" href="images/jesuslogo_enef.png" type="image/x-icon">
-
     <style>
-
         * {
-
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-
         }
 
         body {
-
             font-family: 'Roboto', sans-serif;
             background-color: white;
             display: flex;
@@ -38,11 +26,9 @@
             text-align: center;
             padding: 20px;
             animation: glow 2s infinite alternate;
-
         }
 
         header {
-
             position: fixed;
             top: 0;
             left: 0;
@@ -54,25 +40,18 @@
             box-shadow: 0 2px 15px rgba(255, 255, 255, 0.3);
             z-index: 1000;
             animation: slideIn 0.5s ease;
-
         }
 
         .header-link {
-
-            text-decoration: none; 
-            color: inherit; 
-
+            text-decoration: none;
+            color: inherit;
         }
 
         .header-link:hover {
-
-            cursor: pointer; 
-
+            cursor: pointer;
         }
 
-
         @keyframes slideIn {
-
             from {
                 transform: translateY(-100%);
             }
@@ -80,12 +59,10 @@
             to {
                 transform: translateY(0);
             }
-
         }
 
         section {
-
-            width: 50%;
+            width: 80%;
             max-width: 1200px;
             background: #e3c5a379;
             padding: 30px;
@@ -94,87 +71,79 @@
             margin-bottom: 100px;
             text-align: center;
             transition: transform 0.5s ease;
-
         }
 
         h1 {
-
             font-size: 3rem;
-
         }
 
-        .h1 {
-
-            font-size: 40px;
-
+        .profile {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 20px;
         }
 
-        h4 {
-
-            font-size: 1.5rem;
-            color: black;
-            margin-top: 20px;
-
-        }
-
-        p {
-
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-
-        }
-
-        .button {
-
-            background: #e3c5a3;
-            color: black;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
+        .profile-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            cursor: pointer;
-            transition: background 0.3s ease;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-card:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .profile-card h4 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .profile-card p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .contact-info {
+            margin-top: 50px;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
             margin-top: 20px;
-
         }
 
-        .button:hover {
-
-            background: #e3c5a379;
-
+        .social-icons a {
+            font-size: 30px;
+            color: #333;
+            transition: color 0.3s ease;
         }
 
-        #backToTop {
-
-            background: #e3c5a3;
-            position: fixed;
-            width: 10%;
-            bottom: 0;
-            right: 0;
-            margin-right: 40px;
-            margin-bottom: 80px;
-            box-shadow: 0 -1px 20px rgba(255, 255, 255, 0.3);
-            display: none;
-            color: black;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 15px;
-            z-index: 1000;
-
-        }
-
-        #backToTop:hover {
-
-            background-color: #e3c5a379;
-
+        .social-icons a:hover {
+            color: #e3c5a3;
         }
 
         footer {
-
             background: #e3c5a3;
             width: 100%;
             padding-top: 10px;
@@ -183,386 +152,107 @@
             left: 0;
             text-align: center;
             color: black;
-
         }
 
         @media (max-width: 768px) {
-
-            * {
-
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-
-            }
-
-            body {
-
-                font-family: 'Roboto', sans-serif;
-                background-color: white;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                min-height: 100vh;
-                text-align: center;
-                padding: 20px;
-                animation: glow 2s infinite alternate;
-
-            }
-
-            header {
-
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                background: #e3c5a3;
-                padding: 10px;
-                text-align: center;
-                font-size: 24px;
-                z-index: 1000;
-                animation: slideIn 0.5s ease;
-
-            }
-
-            @keyframes slideIn {
-
-                from {
-                    transform: translateY(-100%);
-                }
-
-                to {
-                    transform: translateY(0);
-                }
-
-            }
-
             section {
-
-                width: 70%;
-                max-width: 1200px;
-                background: #e3c5a379;
-                padding: 30px;
-                border-radius: 10px;
-                margin-top: 50px;
-                margin-bottom: 100px;
-                text-align: left;
-                transition: transform 0.5s ease;
-
+                width: 90%;
             }
 
-            h1 {
-
-                font-size: 35px;
-
+            .profile-card img {
+                width: 120px;
+                height: 120px;
             }
 
-            .h1 {
-
-                font-size: 25px;
-
-            }
-
-            h4 {
-
+            .profile-card h4 {
                 font-size: 1rem;
-                color: black;
-                margin-top: 20px;
-
             }
 
-            p {
+            .profile-card p {
+                font-size: 0.9rem;
+            }
 
+            .contact-info p {
                 font-size: 1rem;
-                line-height: 1.6;
-                margin-bottom: 20px;
-
             }
-
-            .button {
-
-                background: #e3c5a3;
-                color: black;
-                padding: 15px 30px;
-                border: none;
-                border-radius: 5px;
-                font-size: 12px;
-                text-align: center;
-                cursor: pointer;
-                transition: background 0.3s ease;
-                margin-top: 20px;
-                margin-left: -5px;
-
-            }
-
-            .button:hover {
-
-                background: #e3c5a379;
-
-            }
-
-            footer {
-
-                background: #e3c5a3;
-                width: 100%;
-                padding: 10px;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                text-align: center;
-                color: black;
-
-            }
-
-            #backToTop {
-
-                background: #e3c5a3;
-                position: fixed;
-                width: 10%;
-                bottom: 0;
-                right: 0;
-                margin-right: 15px;
-                margin-bottom: 120px;
-                display: none;
-                color: black;
-                border: none;
-                padding: 10px;
-                border-radius: 5px;
-                cursor: pointer;
-                font-size: 12px;
-                z-index: 1000;
-
-            }
-
-            #backToTop:hover {
-
-                background-color: #e3c5a379;
-
-            }
-
         }
-
     </style>
-
 </head>
 
 <body>
 
     <header>
-
         <a href="index.html" class="header-link" title="back to home page">
-
-            <h1>about us</h1>
-
+            <h1>About Us</h1>
         </a>
-
     </header>
 
     <section>
+        <h1>Company Leadership</h1>
 
-        <h1 class="h1">company leadership</h1>
-        <br>
-        <h4>01. chief innovations officer: <br>
-            <br>thato morake</h4>
-        <br>
-        <p>
+            <div class="profile-card">
+                <img src="images/olamakhayyim.jpeg" alt="Philani Kemele">
+                <h4>01. Philani Kemele</h4>
+                <p>Chief Technology Officer (CTO), Business Manager & Co-Founder</p>
+                <p>Age: 25</p>
+                <p>Power: Yeshua Meshikha</p>
+                <p>Qualifications: Graduated with an NQF-4 Information Technology certificate at Richfield Graduate Institute of Technology</p>
+                <p>Accolades: To be updated</p>
+            </div>
 
-            cio, and co-founder of parables & platters (pty) ltd.
-            <br>
+            <div class="profile-card">
+                <img src="images/jono.jpeg" alt="Jonathan Amoah">
+                <h4>02. Jonathan Amoah</h4>
+                <p>Senior Marketing Director</p>
+                <p>Age: 18</p>
+                <p>Power: Digital expertise and football</p>
+                <p>Qualifications: currently in grade 12.</p>
+                <p>Accolades: Several dozen gold medals for soccer</p>
+            </div>
 
-        </p>
-
-        <h4>02. senior director & lead chef: <br>
-            <br>siyabonga hlongwane</h4>
-        <br>
-        <p>
-
-            sd, and lead chef.
-            <br>
-            <br>
-            invites and accompanies all the chess pieces to align with the company's strategic vision... plus he can cook.
-
-        </p>
-
-        <h4>03. chief technology officer: <br>
-            <br>philani kemele</h4>
-        <br>
-        <p>
-
-            cto, and co-founder of parables & platters (pty) ltd.
-
-        </p>
-
-        <h4>04. marketing director: <br>
-            <br>sisanda mthethwa (also known as junior)</h4>
-        <br>
-        <p>
-
-            md of parables & platters (pty) ltd.
-
-        </p>
-
-        <a href="company documents/company documents.zip" download>
-            <button class="button" title="click to download our company documents">download company documents</button>
-        </a>
+        <div class="contact-info">
+            <h3>Contact Information</h3>
+            <!-- Dynamic phone number -->
+            <p>Phone: <span id="phone-number">063 473 2453</span> 
+                <!-- WhatsApp link -->
+                | <a href="https://wa.me/27634732453" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a> 
+                <!-- Direct phone call link -->
+                | <a href="tel:+27634732453">Call</a>
+            </p>
+            <p>Email: <a href="mailto:parablesandplatters@outlook.com">parablesandplatters@outlook.com</a> | <a href="mailto:parablesandplatters@gmail.com">parablesandplatters@gmail.com</a></p>
+            <div class="social-icons">
+                <a href="https://x.com/p_platters" target="_blank"><i class="fab fa-x"></i></a>
+                <a href="https://www.instagram.com/parablesandplatters" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
 
     </section>
 
-      <button id="backToTop" title="back to top">back to top</button>
-
-      <h2> terms and conditions </h2>
-      <br>
-
-      <p> welcome to parables & platters ("we," "our," "us"). 
-      <p> by accessing or using our website and services, you agree to be bound by these terms and conditions ("terms"). </p> 
-      <p> if you do not agree, please refrain from using our services. </p>
-      <p> parables & platters is a food delivery service operating in South Africa. </p>
-      <p> these Terms apply to all users of our website and services. </p>
-      <p> orders can be placed via our website. </p>
-      <p> delivery times are estimates and subject to change due to unforeseen circumstances. </p>
-      <p> orders must be placed within our specified delivery areas. we reserve the right to decline orders outside these areas. </p>
-      <p> you are responsible for providing accurate delivery details. we will not be liable for failed deliveries due to incorrect or incomplete information. </p>
-
-      <br>
-      <br>
-      <br>
-      <br>
-        
-      <p> as for payments... all prices are listed in South African Rand (ZAR) and include VAT unless stated otherwise. </p>
-      <p> payments must be made via the payment methods specified on our website. </p>
-
-      <br>
-      <br>
-      <br>
-      <br>
-
-      <p> orders can be canceled within a specified time frame, as stated on our website. </p>
-      <p> refunds for canceled orders will be processed in accordance with our refund policy. </p>
-      <p> we reserve the right to cancel any order due to unforeseen circumstances. in such cases, you will be entitled to a full refund. </p>
-
-      <br>
-      <br>
-      <br>
-      <br>
-
-      <p> while we take precautions to prevent cross-contamination, all food is prepared in a kitchen that handles common allergens. We cannot guarantee allergen-free meals. </p>
-      <p> it is your responsibility to inform us of any allergies or dietary restrictions when placing an order. </p>
-
-      <br>
-      <br>
-      <br>
-      <br>
-
-      <p> all content on our website, including text, images, and branding, is the property of parables & platters and protected by intellectual property laws. </p>
-      <p> you may not reproduce, distribute, or use our content without prior written permission. </p>
-
-      <br>
-      <br>
-      <br>
-      <br>
-
-      <p> you agree to use our website and services lawfully and respectfully. </p>
-      <p> you may not: engage in any fraudulent activities; interfere with the website’s functionality; post harmful or offensive content. </p>
-
-      <br>
-      <br>
-      <br>
-      <br>
-
-      <p> your personal information is handled in accordance with our Privacy Policy, available on our website. </p>
-      <p> by using our services, you consent to the collection and use of your information as outlined in our Privacy Policy. </p>
-
-      <br>
-      <br>
-      <br>
-      <br>
-
-      <p> to the extent permitted by law, Parables & Platters will not be liable for: indirect or consequential damages; loss resulting from incorrect delivery details; delays or failures outside our control. </p>
-
-      <br>
-      <br>
-      <br>
-      <br>
-
-      <p> our total liability will not exceed the amount paid for your order. </p>
-
-      <br>
-      <br>
-      <br>
-      <br>
-
-      <p> we reserve the right to update these Terms at any time. changes will be effective upon posting to our website. </p>
-      <p> continued use of our services after changes constitute acceptance of the updated Terms. </p>
-
-      <br>
-      <br>
-      <br>
-      <br>
-
-      <p> these Terms are governed by the laws of South Africa. </p>
-      <p> any disputes will be resolved under South African jurisdiction. </p>
-
-      <br>
-      <br>
-      <br>
-      <br>
-
-      <p> for questions or concerns, please contact us: email: philanikemele23@gmail.com; phone: 067 660 7194; physical and postal address: 37ART field place, newlands west, durban, 4037 </p>
-
-      <br>
-      <br>
-      <br>
-      <br>
-        
-      <p> thank you for choosing Parables & Platters! </p>
-
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-    
-    <audio autoplay src="music/iahtt.mp3" type="audio/mp3"></audio>
-
     <footer>
-        <p>&copy; 2025 parables & platters (pty) ltd. all rights reserved.</p>
+        <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
     </footer>
 
     <script>
-
         const backToTopButton = document.getElementById("backToTop");
 
         window.addEventListener("scroll", () => {
-            if (window.scrollY > 300) { // Show button after scrolling 300px
-            backToTopButton.style.display = "block";
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = "block";
             } else {
-            backToTopButton.style.display = "none";
+                backToTopButton.style.display = "none";
             }
         });
 
         backToTopButton.addEventListener("click", () => {
             window.scrollTo({
-            top: 0,
-            behavior: "smooth",
+                top: 0,
+                behavior: "smooth",
             });
         });
-
     </script>
 
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
