@@ -198,6 +198,14 @@
 
         }
 
+        .price {
+
+            color: green; /* Makes the price text green */
+            font-weight: bold; /* Optional: Make the price text bold */
+
+        }
+
+
         img {
 
             width: 100%;
@@ -1105,51 +1113,21 @@
 
         <div class="menu-item">
 
+            <img src="images/papsteakwors.jpg" alt="pasta mac">
+            <h2>Pap, Steak & Wors</h2>
+            <p class="price">price: R60</p>
+            <p>details: pap, steak, wors, sambles</p>
+            <button onclick="showOrderForm('pap, steak & wors', 'R60', 'pap, steak, wors, sambles', 'images/papsteakwors.jpg')" id="ordernow" title="click to order now">order now</button>
+
+        </div>
+
+        <div class="menu-item">
+
             <img src="images/champion.jpg" alt="pasta mac">
             <h2>the champion</h2>
-            <p>price: R50.00</p>
+            <p class="price">price: R55</p>
             <p>details: phuthu, wors, beef, sambles, and grape coo-ee</p>
-            <button onclick="showOrderForm('the champion', 'R50.00', 'phuthu, wors, beef, sambles, and grape coo-ee.', 'images/champion.jpg')" id="ordernow" title="click to order now">order now</button>
-
-        </div>
-
-        <div class="menu-item">
-
-            <img src="images/munchycrunch.jpg" alt="munchy crunch">
-            <h2>munchy crunch</h2>
-            <p>price: R35.00</p>
-            <p>details: 2 burgers w/ fresh buns, wors, lettuce, tomatoes, mayonaisse, fried chips, fried chips on the side as well, and grape coo-ee</p>
-            <button onclick="showOrderForm('munchy crunch', 'R35.00', '2 burgers w/ fresh buns, wors, lettuce, tomatoes, mayonaisse, and fried chips, and fried chips on the side as well.', 'munchycrunch.jpg')" title="click to order now">order now</button>
-
-        </div>
-
-        <div class="menu-item">
-
-            <img src="images/worsroll.jpg" alt="wors roll">
-            <h2>wors roll</h2>
-            <p>price: R35.00</p>
-            <p>details: 2 wors rolls w/ fried chips, and grape coo-ee</p>
-            <button onclick="showOrderForm('wors roll', 'R30.00', '2 wors rolls w/ fried chips, and grape coo-ee.', 'worsroll.jpg')" title="click to order now">order now</button>
-
-        </div>
-
-        <div class="menu-item">
-
-            <img src="images/itsawrap.jpg" alt="wors roll">
-            <h2>it's a wrap</h2>
-            <p>price: R20.00</p>
-            <p>details: roti wrap w/ mayonaisse, fried chips, tomatoes, lettuce, wors, and grape coo-ee</p>
-            <button onclick="showOrderForm('it\'s a wrap', 'R20.00', 'roti wrap w/ mayonaisse, fried chips, tomatoes, lettuce, wors, and grape coo-ee.', 'itsawrap.jpg')" title="click to order now">order now</button>
-
-        </div>
-
-        <div class="menu-item">
-
-            <img src="images/sliceanddice.jpg" alt="wors roll">
-            <h2>slice & dice</h2>
-            <p>price: R20.00</p>
-            <p>details: 4 toasted slices of brown or white bread w/ wors, lettuce, tomatoes, fried chips, mayonaisse, cucumbers, fried chips on the side as well, and grape coo-ee</p>
-            <button onclick="showOrderForm('slice & dice', 'R20.00', '4 toasted slices of brown or white bread w/ wors, lettuce, tomatoes, fried chips, mayonaisse, cucumbers, fried chips on the side as well, and grape coo-ee.', 'sliceanddice.jpg')" title="click to order now">order now</button>
+            <button onclick="showOrderForm('the champion', 'R55', 'phuthu, wors, beef, sambles, and grape coo-ee.', 'images/champion.jpg')" id="ordernow" title="click to order now">order now</button>
 
         </div>
 
