@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cancel your order</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="icon" href="images/jesuslogo_enef.png" type="image/x-icon">
+
+    <style>
+
+        * {
+
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+
+        body {
+
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+            animation: glow 2s infinite alternate;
+            color: #333;
+
+        }
+
+        header {
+
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #e3c5a3;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 24px;
+            box-shadow: 0 2px 15px rgba(255, 255, 255, 0.3);
+            z-index: 1000;
+            animation: slideIn 0.5s ease;
+
+        }
+
+        .header-link {
+
+            text-decoration: none;
+            color: inherit;
+
+        }
+
+        .header-link:hover {
+
+            cursor: pointer;
+
+        }
+
+        @keyframes slideIn {
+
+            from {
+                transform: translateY(-100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+
+        }
+
+        section {
+
+            width: 80%;
+            max-width: 1200px;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 100px;
+            margin-bottom: 100px;
+            transition: transform 0.5s ease;
+
+        }
+
+        h1 {
+
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+            animation: fadeIn 1.5s ease-in-out;
+
+        }
+
+        @keyframes fadeIn {
+
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+
+        }
+
+        .form-container {
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            animation: fadeUp 1s ease-in-out;
+
+        }
+
+        @keyframes fadeUp {
+
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+        }
+
+        .form-input {
+
+            width: 100%;
+            max-width: 600px;
+            padding: 15px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: border 0.3s ease;
+
+        }
+
+        .form-input:focus {
+
+            border-color: #e3c5a3;
+            outline: none;
+
+        }
+
+        .form-button {
+
+            background-color: #e3c5a3;
+            color: black;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border: none;
+
+        }
+
+        .form-button:hover {
+
+            background-color: #d0a37c;
+
+        }
+
+        .error-message {
+
+            color: red;
+            font-size: 0.9rem;
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+
+        }
+
+        footer {
+
+            background: #e3c5a3;
+            width: 100%;
+            padding-top: 10px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            text-align: center;
+            color: black;
+
+        }
+
+        @media (max-width: 768px) {
+
+            section {
+                width: 90%;
+            }
+
+            .form-input,
+            .form-button {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <a href="menupage.html" class="header-link" title="back to home page">
+            <h1>cancel an order</h1>
+        </a>
+    </header>
+
+    <section>
+        <h1>order cancellation request</h1>
+        <p>Please provide the details of the order you wish to cancel.</p>
+        <br>
+
+        <form id="cancel-order-form" action="https://formspree.io/f/YOUR_ENDPOINT" method="POST" class="form-container">
+
+            <input type="text" name="name" class="form-input" placeholder="your name" required>
+
+            <input type="number" name="phonenumber" class="form-input" placeholder="your phone number" required>
+
+            <input type="email" name="email" class="form-input" placeholder="your email address" required>
+
+            <label for="company">your company:</label>
+            <select name="company" id="company" required>
+                <option value="">select company</option>
+                <option value="cci">CCI</option>
+                <option value="nutun">Nutun</option>
+                <option value="ignition">Ignition</option>
+                <option value="outworx">Outworx</option>
+                <option value="bespoke">BeSpoke International Group</option>
+                <option value="uconnect">Uconnect @ hillcrest</option>
+            </select>
+            
+            <input type="text" name="order_number" class="form-input" placeholder="order number" required>
+
+            <textarea name="reason" class="form-input" placeholder="reason for cancellation" required rows="4"></textarea>
+
+            <button type="submit" class="form-button">Submit Cancellation Request</button>
+
+            <p id="error-message" class="error-message">Please fill out all fields correctly.</p>
+
+        </form>
+
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
+    </footer>
+
+    <script>
+
+        // Form submission validation
+        const form = document.getElementById('cancel-order-form');
+        const errorMessage = document.getElementById('error-message');
+
+        form.addEventListener('submit', (e) => {
+            let isValid = true;
+            const inputs = form.querySelectorAll('.form-input');
+            inputs.forEach(input => {
+                if (input.value.trim() === "") {
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                errorMessage.style.display = 'block';
+                e.preventDefault();
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+

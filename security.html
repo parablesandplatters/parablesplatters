@@ -1,7 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Security - Parables & Platters</title>
@@ -9,15 +11,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" href="images/jesuslogo_enef.png" type="image/x-icon">
     <style>
+
         * {
+
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+
         }
 
         body {
+
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(120deg, #a1c4fd, #c2e9fb);
+            background-color: white;
             min-height: 100vh;
             color: #444;
             display: flex;
@@ -28,9 +34,11 @@
             overflow-x: hidden;
             text-align: center;
             animation: fadeIn 2s ease-in-out;
+
         }
 
         @keyframes fadeIn {
+
             0% {
                 opacity: 0;
                 transform: translateY(100px);
@@ -40,11 +48,13 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+
         }
 
         header {
+
             background: #e3c5a3;
-            padding: 20px;
+            padding-top: 20px;
             width: 100%;
             text-align: center;
             font-size: 24px;
@@ -53,53 +63,68 @@
             position: fixed;
             top: 0;
             left: 0;
+
         }
 
         .header-link {
+
             text-decoration: none;
             color: inherit;
+
         }
 
         section {
+
             margin-top: 100px;
+            margin-bottom: 30px;
             width: 80%;
-            background: rgba(255, 255, 255, 0.85);
+            background: #e3c5a379;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.5s ease;
+
         }
 
         h1 {
+
             font-size: 3rem;
             color: #3e4a52;
             margin-bottom: 20px;
             text-align: center;
+
         }
 
         h2 {
+
             font-size: 2rem;
             color: #3e4a52;
             margin-top: 30px;
             margin-bottom: 15px;
+
         }
 
         p {
+
             font-size: 1.1rem;
             line-height: 1.8;
             margin-bottom: 20px;
             color: #555;
+
         }
 
         .security-measure {
+
             background: #e3c5a3;
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+
         }
 
         .button {
+
             background: #e3c5a3;
             color: black;
             padding: 15px 30px;
@@ -110,13 +135,17 @@
             cursor: pointer;
             transition: background 0.3s ease;
             margin-top: 30px;
+
         }
 
         .button:hover {
+
             background: #c2e9fb;
+
         }
 
         footer {
+
             background: #e3c5a3;
             width: 100%;
             padding: 10px;
@@ -125,127 +154,185 @@
             left: 0;
             text-align: center;
             color: black;
+
         }
 
-        /* Dynamic Features */
         .contact-container {
+
             display: flex;
             justify-content: space-around;
             margin-top: 50px;
             margin-bottom: 30px;
+
         }
 
         .contact-info {
+
             background: #fff;
             padding: 20px;
             width: 40%;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
         }
 
         .contact-info p {
+
             margin-bottom: 20px;
+
         }
 
         .contact-info a {
+
             text-decoration: none;
             color: #2c3e50;
             font-weight: 500;
             font-size: 1.2rem;
+
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
+
             section {
+
                 width: 90%;
-                margin-top: 120px;
+                margin-top: 80px;
+
             }
 
             h1 {
-                font-size: 2.2rem;
+
+                font-size: 2rem;
+
             }
 
             .contact-container {
+
                 flex-direction: column;
                 align-items: center;
+
             }
 
             .contact-info {
+
                 width: 80%;
                 margin-bottom: 20px;
+
             }
+
         }
 
     </style>
+
 </head>
 
 <body>
 
     <header>
-        <a href="index.html" class="header-link" title="Back to Home">
-            <h1>Security Measures - Parables & Platters</h1>
+        <a href="menupage.html" class="header-link" title="Back to Home">
+            <h1>Security</h1>
         </a>
     </header>
 
     <section>
-        <h1>Our Commitment to Security & Safety</h1>
-        <p>
-            At Parables & Platters, safety is our priority. We recognize the importance of protecting our team, our partners, and the communities we serve. Together, we work hand-in-hand with the South African Police Service and the Hawks to ensure a safe environment for everyone in our areas of operation.
-        </p>
 
-        <h2>Our Security Measures</h2>
+        <h1>Security Systems</h1>
+
         <div class="security-measure">
-            <h3>1. Real-Time Communication with Local Authorities</h3>
+            <h3>01. Call SAPS</h3>
             <p>
-                We maintain a direct line of communication with the South African Police Service and the Hawks for emergency responses and proactive safety measures. Our operatives are trained to contact authorities instantly should any threats arise, ensuring prompt action.
+                Instantly call SAPS in an emergency situation
+                <button class="button" onclick="window.location.href='tel:+2710111'">Call SAPS</button>
             </p>
         </div>
 
         <div class="security-measure">
-            <h3>2. Secure Location Tracking</h3>
+            <h3>02. Call Hawks</h3>
             <p>
-                Each vehicle and staff member is equipped with state-of-the-art GPS tracking to ensure real-time location sharing. In case of any emergency, the police or Hawks can trace the vehicle's movements to provide immediate assistance.
+                Call the Hawks department for urgent security matters. 
+                <button class="button" onclick="window.location.href='tel:+27'">Call Hawks</button>
             </p>
         </div>
 
         <div class="security-measure">
-            <h3>3. 24/7 Surveillance</h3>
+            <h3>03. Call SANDF</h3>
             <p>
-                Our team operates under constant surveillance with high-tech cameras placed at strategic locations, ensuring that our movements and actions are constantly monitored for our safety. Any abnormal activity is instantly reported.
+                Contact the military for matters beyond mere police. 
+                <button class="button" onclick="window.location.href='tel:+27'">Call SANDF</button>
             </p>
         </div>
 
         <div class="security-measure">
-            <h3>4. Armed Security Escort</h3>
+            <h3>04. Trigger Panic Button</h3>
             <p>
-                When deemed necessary, we engage armed escorts from local authorities to accompany our delivery vehicles to ensure the utmost protection of both our staff and goods.
+                Activate emergency alert and notify authorities and co instantly. 
+                <button class="button" onclick="alert('Panic Button Activated: Authorities notified and co notified!')">Trigger Panic Alert</button>
             </p>
         </div>
 
         <div class="security-measure">
-            <h3>5. Psychological Safety Measures</h3>
+            <h3>05. Request Armed Security Escort</h3>
             <p>
-                We also focus on the mental well-being of our team. Regular counseling and safety awareness programs are conducted to ensure that our team is always prepared and mentally strong in any situation.
+                Request armed security for deliveries or high-risk operations. 
+                <button class="button" onclick="alert('Armed Escort Requested')">Request Escort</button>
             </p>
         </div>
 
-        <div class="contact-container">
-            <div class="contact-info">
-                <h2>Contact South African Police Service</h2>
-                <p>For emergencies, please reach out directly:</p>
-                <a href="tel:+27" title="Call Police">Call SAPS Emergency Number</a>
-            </div>
-
-            <div class="contact-info">
-                <h2>Contact the Hawks</h2>
-                <p>For urgent security matters, please contact:</p>
-                <a href="tel:+27" title="Call Hawks">Call Hawks</a>
-            </div>
+        <div class="security-measure">
+            <h3>06. Activate Audio Surveillance</h3>
+            <p>
+                Turn on audio surveillance for the area in case of suspicious activity. Audio will transmit in the bacground.
+                <button class="button" onclick="alert('Audio Surveillance Activated')">Activate Audio</button>
+            </p>
         </div>
 
-        <button class="button" onclick="window.location.href='https://www.saps.gov.za/'" title="Visit SAPS Website">Visit SAPS Website</button>
+        <div class="security-measure">
+            <h3>07. Access Live Video Feed</h3>
+            <p>
+                Watch live video surveillance of the area for security monitoring. 
+                <button class="button" onclick="alert('Video Feed Activated')">View Video Feed</button>
+            </p>
+        </div>
+
+        <div class="security-measure">
+            <h3>08. Share Real-Time GPS Location</h3>
+            <p>
+                Share your real-time location for quick tracking and assistance.
+                <button class="button" onclick="alert('Location Shared')">Share Location</button>
+            </p>
+        </div>
+
+        <div class="security-measure">
+            <h3>09. Cybersecurity Alert System</h3>
+            <p>
+                Activate our cybersecurity alert system to notify our team about digital threats.
+                <button class="button" onclick="alert('Cybersecurity Alert Sent')">Activate Cybersecurity</button>
+            </p>
+        </div>
+
+        <div class="security-measure">
+            <h3>10. Medic</h3>
+            <p>
+                Get immediate first aid assistance if needed. 
+                <button class="button" onclick="alert('First Aid Request Sent')">Request Medic</button>
+            </p>
+        </div>
+
+        <div class="security-measure">
+            <h3>11. Access Location Tracking for Staff</h3>
+            <p>
+                Track the location of your staff for safety during deliveries. 
+                <button class="button" onclick="alert('Staff Location Shared')">Track Staff Location</button>
+            </p>
+        </div>
 
     </section>
+
+    <br>
+    <br>
+    <br>
+    <br>
 
     <footer>
         <p>&copy; 2025 Parables & Platters. All Rights Reserved.</p>
@@ -254,3 +341,6 @@
 </body>
 
 </html>
+
+
+

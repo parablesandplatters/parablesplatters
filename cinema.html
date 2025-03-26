@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>extra</title>
+
+    <link rel="icon" href="images/jesuslogo_enef.png" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        body {
+
+            font-family: 'Roboto', sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+
+        }
+
+        header {
+
+            background: #e3c5a3;
+            width: 100%;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+
+        }
+
+        .header-link {
+
+            text-decoration: none;
+            color: inherit; 
+
+        }
+
+        .header-link:hover {
+
+            cursor: pointer; 
+
+        }
+
+        h1 {
+
+            font-size: 40px;
+            margin: 0;
+            color: black;
+            text-align: center;
+
+        }
+
+        h4 {
+
+            color: black;
+            text-align: center;
+
+        }
+
+        .cinema-section {
+
+            width: 80%;
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #e3c5a3;
+
+        }
+
+        .cinema-section h2 {
+
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: black;
+
+        }
+
+        .video-container {
+
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+
+        }
+
+        .video-box {
+
+            background-color: #e3c5a3;
+            width: 45%;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+
+        }
+
+        .video-box video {
+
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+
+        }
+
+        .slideshow-container {
+
+            width: 20%;
+            max-width: 500px;
+            overflow: hidden;
+            border-radius: 10px; /* optional: add rounded corners */
+            margin-bottom: 100px;
+
+        }
+
+            /* the slideshow itself (this will contain all the slides) */
+
+        .slideshow {
+
+            display: flex;
+            width: 100%;
+            animation: slideAnimation 20s infinite;
+
+        }
+
+            /* each individual slide */
+
+        .slide {
+
+            min-width: 100%;
+            transition: transform 0.5s ease;
+
+        }
+
+        .slide img {
+
+            width: 250px;
+            height: 170px;
+            display: block;
+
+        }
+
+        .bodylogoimage {
+
+            width: 20%;
+            margin-bottom: 100px;
+            border: 10px solid #e3c5a3;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+
+        }
+
+        .aviation_school {
+
+            background: #e3c5a3;
+            width: 10%;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            margin-right: 10px;
+            margin-bottom: 100px;
+            box-shadow: 0 -1px 20px rgba(255, 255, 255, 0.3);
+            color: black;
+            font-size: 15px;
+
+        }
+
+        .aviation_school:hover {
+
+            background: #e3c5a379;
+
+        }
+
+        footer {
+
+            background: #e3c5a3;
+            width: 100%;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            text-align: center;
+            color: black;
+
+        }
+
+        @keyframes slideAnimation {
+
+            0% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(-200%);
+            }
+            150% {
+                transform: translateX(-300%);
+            }
+            200% {
+                transform: translateX(0);
+            }
+
+        }
+
+        #backToTop {
+
+            background: #e3c5a3;
+            position: fixed;
+            width: 10%;
+            bottom: 0;
+            right: 0;
+            margin-right: 10px;
+            margin-bottom: 160px;
+            box-shadow: 0 -1px 20px rgba(255, 255, 255, 0.3);
+            display: none;
+            color: black;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+            z-index: 1000;
+
+        }
+
+        #backToTop:hover {
+
+            background-color: #e3c5a379;
+
+        }
+
+        @media (max-width: 720px) {
+
+            body {
+
+                font-family: 'Roboto', sans-serif;
+                background-color: white;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                text-align: center;
+
+            }
+
+            header {
+
+                background: #e3c5a3;
+                width: 100%;
+                padding: 20px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 1000;
+                
+            }
+
+            h1 {
+
+                font-size: 30px;
+                margin: 0;
+                color: black;
+                margin-right: 45px;
+
+            }
+
+            .cinema-section {
+
+                width: 60%;
+                max-width: 1200px;
+                margin: 100px auto;
+                padding: 20px;
+                border-radius: 10px;
+                background-color: #e3c5a3;
+                
+            }
+
+            .cinema-section h2 {
+
+                font-size: 22px;
+                margin-bottom: 20px;
+                color: black;
+
+            }
+
+            .video-container {
+
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                gap: 20px;
+
+            }
+
+            .video-box {
+
+                background-color: #e3c5a3;
+                width: 100%;
+                border-radius: 10px;
+                overflow: hidden;
+                position: relative;
+                margin-bottom: 50px;
+
+            }
+
+            .video-box video {
+
+                width: 100%;
+                height: auto;
+                border-radius: 10px;
+
+            }
+
+            .video-box button {
+
+                background-color: #ff7b4b;
+                color: #fff;
+                border: none;
+                padding: 10px;
+                position: absolute;
+                bottom: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 18px;
+                cursor: pointer;
+                border-radius: 5px;
+                transition: background-color 0.3s;
+
+            }
+
+            .video-box button:hover {
+
+                background-color: #ff4927;
+
+            }
+
+            h4 {
+
+                font-size: 14px;
+
+            }
+
+            .slideshow-container {
+
+                width: 60%;
+                max-width: 500px;
+                overflow: hidden;
+                border-radius: 10px; /* optional: add rounded corners */
+
+            }
+
+            /* the slideshow itself (this will contain all the slides) */
+
+            .slideshow {
+
+                display: flex;
+                width: 100%;
+                animation: slideAnimation 20s infinite;
+
+            }
+
+            /* each individual slide */
+
+            .slide {
+
+                min-width: 100%;
+                transition: transform 0.5s ease;
+
+            }
+
+            .slide img {
+
+                width: 150px;
+                height: 170px;
+                display: block;
+
+            }
+
+            .bodylogoimage {
+
+                width: 40%;
+                margin-bottom: 100px;
+
+            }
+
+            footer {
+
+                background: #e3c5a3;
+                width: 95%;
+                font-size: 13px;
+                padding: 15px;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                text-align: center;
+                color: black;
+
+            }
+
+            .aviation_school {
+
+                background: #e3c5a3;
+                width: 10%;
+                padding: 10px;
+                position: fixed;
+                bottom: 0;
+                right: 0;
+                margin-right: 10px;
+                margin-bottom: 100px;
+                color: black;
+                font-size: 15px;
+
+            }
+
+            .aviation_school:hover {
+
+                background: #e3c5a379;
+
+            }
+
+        }
+
+        @media (max-width: 480px) {
+
+            body {
+
+                font-family: 'Roboto', sans-serif;
+                background-color: white;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                text-align: center;
+
+            }
+
+            header {
+
+                background: #e3c5a3;
+                width: 100%;
+                padding: 20px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 1000;
+
+            }
+
+            h1 {
+
+                font-size: 40px;
+                margin: 0;
+                color: black;
+
+            }
+
+            .cinema-section {
+
+                width: 80%;
+                max-width: 1200px;
+                margin: 100px auto;
+                padding: 20px;
+                border-radius: 10px;
+                background-color: rgba(0, 0, 0, 0.8);
+
+            }
+
+            .cinema-section h2 {
+
+                font-size: 32px;
+                margin-bottom: 20px;
+                color: black;
+
+            }
+
+            .video-container {
+
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                gap: 20px;
+
+            }
+
+            .video-box {
+
+                background-color: #e3c5a3;
+                width: 45%;
+                border-radius: 10px;
+                overflow: hidden;
+                position: relative;
+
+            }
+
+            .video-box video {
+
+                width: 100%;
+                height: auto;
+                border-radius: 10px;
+
+            }
+
+            .slideshow-container {
+
+                width: 20%;
+                max-width: 500px;
+                overflow: hidden;
+                border-radius: 10px; /* optional: add rounded corners */
+
+            }
+
+            /* the slideshow itself (this will contain all the slides) */
+
+            .slideshow {
+
+                display: flex;
+                width: 100%;
+                animation: slideAnimation 20s infinite;
+
+            }
+
+            /* each individual slide */
+
+            .slide {
+
+                min-width: 140%;
+                transition: transform 0.5s ease;
+
+            }
+
+            .slide img {
+
+                width: 350px;
+                height: 170px;
+                display: block;
+
+            }
+
+            footer {
+
+                background: #e3c5a3;
+                width: 100%;
+                padding: 15px;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                text-align: center;
+                color: black;
+
+            }
+
+        }      
+
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        <a href="index.html" class="header-link" title="back to home page">
+
+            <h1>extra</h1>
+
+        </a>
+
+    </header>
+
+    <!-- Cinema Section -->
+    <div class="cinema-section">
+
+        <h2>enjoy our cinema</h2>
+
+        <div class="video-container">
+            <!-- Video Box 1 -->
+            <div class="video-box">
+
+                <h4>RANCE ALLEN - I STOOD ON THE BANKS OF JORDAN</h4>
+
+                <video controls>
+                    <source src="cinema/Rance Allen - _I Stood on the Banks of Jordan_.mp4" type="video/mp4">
+                    your browser does not support the video tag.
+                </video>
+
+            </div>
+
+            <!-- Video Box 2 -->
+            
+            <div class="video-box">
+
+                <h4>T.D. JAKES - FOR UNTO US</h4>
+
+                <video controls>
+                    <source src="cinema/For Unto Us.mp4" type="video/mp4">
+                    your browser does not support the video tag.
+                </video>
+
+            </div>
+
+            <!-- Video Box 3 -->
+            
+            <div class="video-box">
+
+                <h4>BILLY GRAHAM - WHO IS JESUS CHRIST?</h4>
+
+                <video controls>
+                    <source src="cinema/Who is Jesus - Billy Graham.mp4" type="video/mp4">
+                    your browser does not support the video tag.
+                </video>
+
+            </div>
+
+            <!-- Video Box 4 -->
+            
+            <div class="video-box">
+
+                <h4>YOLANDA ADAMS - FRAGILE HEART</h4>
+
+                <video controls>
+                    <source src="cinema/Yolanda Adams - Fragile Heart (Apollo 2000).mp4" type="video/mp4">
+                    your browser does not support the video tag.
+                </video>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="slideshow-container">
+        <div class="slideshow">
+
+           <div class="slide"><a href="https://mkhulumbhelefacilities.co.za/"><img src="ads/mkhulumbhelefacilities.png" alt="mkhulumbhelefacilities"></a></div>
+
+           <div class="slide"><a href="https://johnstuckshop.co.za/"><img src="ads/johnstuckshop.png" alt="johnstuckshop"></a></div>
+
+           <div class="slide"><a href="https://mkhulumbhelefacilities.co.za/"><img src="ads/mkhulumbhelefacilities.png" alt="mkhulumbhelefacilities"></a></div>
+
+           <div class="slide"><a href="https://johnstuckshop.co.za/"><img src="ads/johnstuckshop.png" alt="johnstuckshop"></a></div>
+
+          <!-- add more images as needed -->
+
+        </div>
+      </div>
+
+      <img src="images/jesuslogo_black.png" class="bodylogoimage" title="parables & platters">
+
+    <a href="aviation_school.html">
+        
+        <button class="aviation_school">avs</button>
+
+        </a>
+
+        <button id="backToTop" title="back to top">back to top</button>
+
+    <footer>
+        <p>&copy; 2025 parables & platters (pty) ltd. all rights reserved.</p>
+    </footer>
+
+    <script>
+
+        function downloadVideo(file) {
+
+            try {
+
+                const link = document.createElement('a');
+                link.href = file;
+                link.download = file;
+                link.click();
+            } catch (error) {
+
+                console.error('download failed:', error);
+
+            }
+
+        }
+
+        function selectCoupon(type) {
+
+            try {
+
+                document.getElementById('purchaseForm').style.display = 'flex';
+                document.getElementById('couponType').value = type.charAt(0).toUpperCase() + type.slice(1) + ' coupon';
+            } catch (error) {
+
+                console.error('error selecting coupon:', error);
+
+            }
+
+        }
+
+        function submitCouponPurchase() {
+
+            try {
+
+                const couponType = document.getElementById('couponType').value;
+                const paymentMethod = document.getElementById('paymentMethod').value;
+                const errorMessage = document.getElementById('errorMessage');
+                
+                // simple validation
+                if (!couponType || !paymentMethod) {
+                    errorMessage.textContent = 'please select a coupon type and payment method.';
+                    return;
+                }
+
+                // Simulate successful
+
+ purchase
+                errorMessage.textContent = '';
+                alert(`Successfully purchased ${couponType} with ${paymentMethod} payment!`);
+            } catch (error) {
+                console.error('Error submitting coupon purchase:', error);
+                document.getElementById('errorMessage').textContent = 'An error occurred. Please try again.';
+            }
+        }
+
+        const backToTopButton = document.getElementById("backToTop");
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) { // Show button after scrolling 300px
+            backToTopButton.style.display = "block";
+            } else {
+            backToTopButton.style.display = "none";
+            }
+        });
+
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+<!-- for the extra.html page... I want a cinema to be here, for when customers are eating. user can either watch online or download. I'll manually add the legal mp4 movies myself. for now... only add heyyou.mp4 and heynow.mp4 ... I made these movies myself, so no copyright infringement... user must be able to download them as well. a nice cinema section for this... nicely designed and functional. -->
+
+<!-- also on this page, add a meal coupon section... where user will be able to purchase monthly food coupon... this is innovative and groundbreaking. -->
+
+<!-- I want top high class functionality for this... error handling, bug free, compact, precise javascript. leave nothing out. handle a case for everything. -->
+
+<!-- I want top high class styling and design for this... just the best, and don't cheat Me out on the styling. -->
+

@@ -1,20 +1,33 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>System Clearance</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <link rel="icon" href="images/jesuslogo_enef.png" type="image/x-icon">
+
     <style>
+
         * {
+
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+
         }
 
         body {
+
             font-family: 'Roboto', sans-serif;
             background-color: white;
             display: flex;
@@ -25,9 +38,11 @@
             text-align: center;
             padding: 20px;
             animation: glow 2s infinite alternate;
+
         }
 
         header {
+
             position: fixed;
             top: 0;
             left: 0;
@@ -39,60 +54,91 @@
             box-shadow: 0 2px 15px rgba(255, 255, 255, 0.3);
             z-index: 1000;
             animation: slideIn 0.5s ease;
+
         }
 
         .header-link {
+
             text-decoration: none; 
             color: inherit; 
+
         }
 
         .header-link:hover {
+
             cursor: pointer; 
+
+        }
+
+        .header-link2 {
+
+            text-decoration: none; 
+            color: inherit; 
+
+        }
+
+        .header-link2:hover {
+
+            cursor: pointer; 
+
         }
 
         @keyframes slideIn {
+
             from {
                 transform: translateY(-100%);
             }
             to {
                 transform: translateY(0);
+
             }
         }
 
         section {
+
             width: 50%;
             max-width: 1200px;
             background: #e3c5a379;
             padding: 30px;
             border-radius: 10px;
-            margin-top: 100px;
+            margin-top: 70px;
             margin-bottom: 100px;
             text-align: center;
             transition: transform 0.5s ease;
+
         }
 
         h1 {
-            font-size: 3rem;
+
+            font-size: 2rem;
+
         }
 
         p {
+
             font-size: 1rem;
             line-height: 1.6;
             margin-bottom: 20px;
+
         }
 
         ul {
+
             text-align: left;
             font-size: 1rem;
             line-height: 1.6;
             margin-bottom: 20px;
+
         }
 
         li {
+
             margin-bottom: 10px;
+
         }
 
         .button {
+
             background: #e3c5a3;
             color: black;
             padding: 15px 30px;
@@ -103,13 +149,17 @@
             cursor: pointer;
             transition: background 0.3s ease;
             margin-top: 20px;
+
         }
 
         .button:hover {
+
             background: #e3c5a379;
+
         }
 
         footer {
+
             background: #e3c5a3;
             width: 100%;
             padding-top: 10px;
@@ -118,58 +168,268 @@
             left: 0;
             text-align: center;
             color: black;
+
+        }
+
+        .pdf-viewer-container {
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+            margin-top: -40px;
+
+        }
+
+        .pdf-card {
+
+            background: #f0e0c9;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            padding: 15px;
+            width: 90%;
+            max-width: 1100px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+
+        }
+
+        .pdf-card:hover {
+
+            transform: scale(1.05);
+
+        }
+
+        .pdf-card h3 {
+
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+
+        }
+
+        .pdf-iframe {
+
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 8px;
+
+        }
+
+        .error-message {
+
+            color: red;
+            font-size: 1.2rem;
+            margin-top: 20px;
+
         }
 
         @media (max-width: 768px) {
+
             section {
+
                 width: 70%;
-                margin-top: 50px;
+                margin-top: 100px;
+
             }
 
             h1 {
-                font-size: 35px;
+
+                font-size: 2rem;
+
             }
 
             .button {
+
                 font-size: 12px;
                 padding: 12px 20px;
+
             }
 
             footer {
+
                 padding: 10px;
+
             }
+
         }
+
     </style>
+
 </head>
+
 <body>
     <header>
-        <a href="index.html" class="header-link" title="back to home page">
+        <a href="menupage.html" class="header-link" title="back to home page">
             <h1>System Clearance</h1>
         </a>
     </header>
 
     <section class="section">
-        <h1>What to Do if Pulled Over</h1>
+
+        <h1>Parables & Platters - Legal Operating License</h1>
+
         <p>
-            If you're ever pulled over by authorities, please remain calm and follow the steps outlined below to ensure that your rights are protected and you stay informed about the process.
+            Parables & Platters is a legally registered business operating under the South African constitution. Our company is officially registered with the CIPC (Enterprise Number: 2025/094299/07) and holds a valid tax number (9324863258).
         </p>
-        <ul>
-            <li><strong>Stay Calm:</strong> Always stay calm and remain respectful.</li>
-            <li><strong>Provide Your Documentation:</strong> Show your driver's license, vehicle registration, and proof of insurance.</li>
-            <li><strong>Know Your Rights:</strong> You have the right to remain silent and to ask for clarification on why you were stopped.</li>
-            <li><strong>Don't Engage in Arguments:</strong> If you feel your rights are being violated, remain respectful and note down the details for later.</li>
-            <li><strong>Request Legal Assistance:</strong> If necessary, request a lawyer or legal representative to be present during the interaction.</li>
-        </ul>
+
         <p>
-            We at Parables & Platters value your safety and rights, and our mission is to ensure that you are always prepared in situations where you may encounter legal authorities.
+            We offer high-quality meals, including pap, steak, and wors, served to the working-class community. Our services include delivery via various platforms such as our website, WhatsApp, phone calls, social media, and email. We also operate as a mobile kitchen where customers can purchase directly from our car, offering convenience for those who cannot place an order in advance.
         </p>
-        <a href="company_documents.zip" download>
-            <button class="button" title="Click to download documents">Download Documents</button>
-        </a>
+
+        <p>
+            All transactions are currently cash-based as our payment gateways are in the process of deployment. We operate in Umhlanga, Hillcrest, and Westville, and we pride ourselves on the unique and high-quality products we offer.
+        </p>
+
+        <p>
+            As a legal business, we should not face prejudice or discrimination while carrying out our operations, whether on the streets or at our various locations.
+        </p>
+
+        <p>
+            We value transparency, respect, and the rights of our customers and aim to contribute positively to the community we serve.
+        </p>
+
     </section>
+
+    <div class="pdf-viewer-container">
+        <h2>View Our Legal Documents</h2>
+        <br>
+        <p>Below are the legal documents for Parables & Platters. You can view them directly on the website. If needed, download them using the buttons provided.</p>
+
+        <div class="pdf-card">
+            <h3>CIPC Welcome Letter</h3>
+            <iframe class="pdf-iframe" src="company documents/WELCOME.pdf" onerror="displayError(this)"></iframe>
+            <a href="company documents/WELCOME.pdf" download>
+                <button class="button">Download PDF</button>
+            </a>
+        </div>
+
+        <div class="pdf-card">
+            <h3>9427121633</h3>
+            <iframe class="pdf-iframe" src="company documents/9427121633.pdf" onerror="displayError(this)"></iframe>
+            <a href="company documents/9427121633.pdf" download>
+                <button class="button">Download PDF</button>
+            </a>
+        </div>
+
+        <div class="pdf-card">
+            <h3>Tax Number</h3>
+            <iframe class="pdf-iframe" src="company documents/TaxNumber_9324863258.pdf" onerror="displayError(this)"></iframe>
+            <a href="company documents/TaxNumber_9324863258.pdf" download>
+                <button class="button">Download PDF</button>
+            </a>
+        </div>
+
+        <div class="pdf-card">
+            <h3>Broad Based Black Economic Empowerment certificate</h3>
+            <iframe class="pdf-iframe" src="company documents/BBECertificate.pdf.pdf" onerror="displayError(this)"></iframe>
+            <a href="company documents/BBECertificate.pdf.pdf" download>
+                <button class="button">Download PDF</button>
+            </a>
+        </div>
+
+        <div class="pdf-card">
+            <h3>Registration certificate</h3>
+            <iframe class="pdf-iframe" src="company documents/COR14.3.pdf" onerror="displayError(this)"></iframe>
+            <a href="company documents/COR14.3.pdf" download>
+                <button class="button">Download PDF</button>
+            </a>
+        </div>
+
+        <div class="pdf-card">
+            <h3>COR14.1</h3>
+            <iframe class="pdf-iframe" src="company documents/COR14.1.pdf" onerror="displayError(this)"></iframe>
+            <a href="company documents/COR14.1.pdf" download>
+                <button class="button">Download PDF</button>
+            </a>
+        </div>
+
+        <div class="pdf-card">
+            <h3>COR14.1A</h3>
+            <iframe class="pdf-iframe" src="company documents/COR14.1A.pdf" onerror="displayError(this)"></iframe>
+            <a href="company documents/COR14.1A.pdf" download>
+                <button class="button">Download PDF</button>
+            </a>
+        </div>
+
+        <div class="pdf-card">
+            <h3>COR15.1A</h3>
+            <iframe class="pdf-iframe" src="company documents/COR15.1A.pdf" onerror="displayError(this)"></iframe>
+            <a href="company documents/COR15.1A.pdf" download>
+                <button class="button">Download PDF</button>
+            </a>
+        </div>
+
+        <div id="error-message" class="error-message" style="display: none;">
+            <p>Sorry, there was an issue loading the document. Please try again later.</p>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
 
     <footer>
         <p>&copy; 2025 Parables & Platters. All Rights Reserved.</p>
     </footer>
+
+    <script>
+
+        // Lazy loading PDFs by adding "loading='lazy'" to the iframe elements dynamically
+        document.addEventListener('DOMContentLoaded', () => {
+            const pdfIframes = document.querySelectorAll('.pdf-iframe');
+            pdfIframes.forEach(iframe => {
+                iframe.setAttribute('loading', 'lazy');
+            });
+        });
+    
+        // Error handling function for PDF iframes
+        function displayError(element) {
+            const errorMessage = document.getElementById('error-message');
+            errorMessage.style.display = 'block';
+            element.style.display = 'none';
+        }
+    
+        // Retry PDF loading function
+        function retryLoadPdf(iframe, src) {
+            iframe.style.display = 'none'; // Hide iframe initially
+            setTimeout(() => {
+                iframe.src = src; // Reset iframe src to reload PDF
+                iframe.style.display = 'block'; // Show iframe after reload
+            }, 1000); // Retry after 1 second
+        }
+    
+        // Attach retry mechanism to iframes with errors
+        document.querySelectorAll('.pdf-iframe').forEach((iframe) => {
+            iframe.addEventListener('error', () => {
+                const src = iframe.getAttribute('src');
+                displayError(iframe); // Show error message
+                setTimeout(() => {
+                    retryLoadPdf(iframe, src); // Try reloading the PDF after some time
+                }, 2000); // Retry after 2 seconds
+            });
+        });
+    
+        // Optimize scroll performance by throttling the scroll event
+        let lastScrollTime = 0;
+        const throttleScroll = () => {
+            const now = Date.now();
+            if (now - lastScrollTime >= 200) {
+                // Perform any scroll-related tasks here
+                lastScrollTime = now;
+            }
+        };
+        
+        window.addEventListener('scroll', throttleScroll);
+    
+    </script>    
+
 </body>
+
 </html>
+
+
+
+

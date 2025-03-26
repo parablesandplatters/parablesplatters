@@ -1,21 +1,32 @@
-<!DOCTYPE html> // download company documents
+<!DOCTYPE html> 
+<!-- // download company documents -->
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <link rel="icon" href="images/jesuslogo_enef.png" type="image/x-icon">
+
     <style>
+
         * {
+
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+
         }
 
         body {
+
             font-family: 'Roboto', sans-serif;
             background-color: white;
             display: flex;
@@ -26,9 +37,11 @@
             text-align: center;
             padding: 20px;
             animation: glow 2s infinite alternate;
+
         }
 
         header {
+
             position: fixed;
             top: 0;
             left: 0;
@@ -40,18 +53,24 @@
             box-shadow: 0 2px 15px rgba(255, 255, 255, 0.3);
             z-index: 1000;
             animation: slideIn 0.5s ease;
+
         }
 
         .header-link {
+
             text-decoration: none;
             color: inherit;
+
         }
 
         .header-link:hover {
+
             cursor: pointer;
+
         }
 
         @keyframes slideIn {
+
             from {
                 transform: translateY(-100%);
             }
@@ -59,9 +78,11 @@
             to {
                 transform: translateY(0);
             }
+
         }
 
         section {
+
             width: 80%;
             max-width: 1200px;
             background: #e3c5a379;
@@ -71,79 +92,106 @@
             margin-bottom: 100px;
             text-align: center;
             transition: transform 0.5s ease;
+            
         }
 
         h1 {
-            font-size: 3rem;
+
+            font-size: 2rem;
+
         }
 
         .profile {
+
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 40px;
             padding: 20px;
+
         }
 
         .profile-card {
+
             background-color: #fff;
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s ease;
+            margin-bottom: 30px;
+
         }
 
         .profile-card:hover {
+
             transform: scale(1.05);
+
         }
 
         .profile-card img {
+
             width: 150px;
             height: 150px;
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 20px;
+
         }
 
         .profile-card h4 {
+
             font-size: 1.2rem;
             color: #333;
             margin-bottom: 10px;
+
         }
 
         .profile-card p {
+
             font-size: 1rem;
             color: #555;
+
         }
 
         .contact-info {
+
             margin-top: 50px;
             font-size: 1.1rem;
             color: #333;
+
         }
 
         .contact-info p {
+
             margin-bottom: 10px;
+
         }
 
         .social-icons {
+
             display: flex;
             justify-content: center;
             gap: 15px;
             margin-top: 20px;
+
         }
 
         .social-icons a {
+
             font-size: 30px;
             color: #333;
             transition: color 0.3s ease;
+
         }
 
         .social-icons a:hover {
+
             color: #e3c5a3;
+
         }
 
         footer {
+
             background: #e3c5a3;
             width: 100%;
             padding-top: 10px;
@@ -152,31 +200,120 @@
             left: 0;
             text-align: center;
             color: black;
+
+        }
+
+        .download-section {
+
+            margin-top: 30px;
+
+        }
+
+        .download-button {
+
+            background-color: #e3c5a3;
+            color: black;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+
+        }
+
+        .download-button:hover {
+
+            background-color: #d0a37c;
+            cursor: pointer;
+
+        }
+
+        .system-clearance {
+
+            background: #e3c5a3;
+            width: 10%;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            margin-right: 1005px;
+            margin-bottom: 30px;
+            color: black;
+            font-size: 15px;
+
+        }
+
+        .system-clearance:hover {
+
+            background: #e3c5a379;
+
+        }
+
+        .security {
+
+        background: #e3c5a3;
+        width: 10%;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        margin-right: 360px;
+        margin-bottom: 30px;
+        color: black;
+        font-size: 15px;
+
+        }
+
+        .security:hover {
+
+        background: #e3c5a379;
+
         }
 
         @media (max-width: 768px) {
+
+            h1 {
+
+                font-size: 2rem;
+
+            }
+
             section {
+
                 width: 90%;
+
             }
 
             .profile-card img {
+
                 width: 120px;
                 height: 120px;
+
             }
 
             .profile-card h4 {
+
                 font-size: 1rem;
+
             }
 
             .profile-card p {
+
                 font-size: 0.9rem;
+
             }
 
             .contact-info p {
+
                 font-size: 1rem;
+
             }
+
         }
+
     </style>
+
 </head>
 
 <body>
@@ -189,43 +326,215 @@
 
     <section>
         <h1>Company Leadership</h1>
+        <br>
+        <br>
 
             <div class="profile-card">
-                <img src="images/olamakhayyim.jpeg" alt="Philani Kemele">
-                <h4>01. Philani Kemele</h4>
-                <p>Chief Technology Officer (CTO), Business Manager & Co-Founder</p>
+                <img src="images/olamakhayyim.jpeg" alt="Olama Khayyim">
+                <h4>01. Hoss</h4>
+                <p>Chief Innovations Officer (CIO) & Founder</p>
+                <br>
+                <p>Age: 22</p>
+                <br>
+                <p>Power: Sheer Will</p>
+                <br>
+                <p>Qualifications: National Senior Certificate (matric)</p>
+                <br>
+                <p>Accolades: To be updated</p>
+            </div>
+
+            <div class="profile-card">
+                <img src="images/olamakhayyim.jpeg" alt="Olama Khayyim">
+                <h4>02. Olama Khayyim</h4>
+                <p>Chief Technology Officer (CTO), Business Manager (BM) & Co-Founder</p>
+                <br>
                 <p>Age: 25</p>
+                <br>
                 <p>Power: Yeshua Meshikha</p>
-                <p>Qualifications: Graduated with an NQF-4 Information Technology certificate at Richfield Graduate Institute of Technology</p>
+                <br>
+                <p>Qualifications: Graduated with an NQF-4 Information Technology certificate @ Richfield Graduate Institute of Technology</p>
+                <br>
+                <p>Accolades: To be updated</p>
+            </div>
+
+            <div class="profile-card">
+                <img src="images/olamakhayyim.jpeg" alt="Olama Khayyim">
+                <h4>03. MaSiya</h4>
+                <p>Lead Chef</p>
+                <br>
+                <p>Age: 29</p>
+                <br>
+                <p>Power: People</p>
+                <br>
+                <p>Qualifications: National Senior Certificate (matric)</p>
+                <br>
+                <p>Accolades: To be updated</p>
+            </div>
+
+            <div class="profile-card">
+                <img src="images/olamakhayyim.jpeg" alt="Olama Khayyim">
+                <h4>04. Junior</h4>
+                <p>Supporting Chef</p>
+                <br>
+                <p>Age: 18</p>
+                <br>
+                <p>Power: Creative Arts</p>
+                <br>
+                <p>Qualifications: National Senior Certificate (matric)</p>
+                <br>
                 <p>Accolades: To be updated</p>
             </div>
 
             <div class="profile-card">
                 <img src="images/jono.jpeg" alt="Jonathan Amoah">
-                <h4>02. Jonathan Amoah</h4>
-                <p>Senior Marketing Director</p>
+                <h4>05. Jonathan Amoah</h4>
+                <p>Senior Marketing Director (SMD)</p>
+                <br>
                 <p>Age: 18</p>
-                <p>Power: Digital expertise and football</p>
-                <p>Qualifications: currently in grade 12.</p>
-                <p>Accolades: Several dozen gold medals for soccer</p>
+                <br>
+                <p>Power: Soccer</p>
+                <br>
+                <p>Qualifications: currently in grade 12</p>
+                <br>
+                <p>Accolades: Several dozen gold, silver, and bronze medals and cups for playing soccer exceptionally</p>
             </div>
+
+            <div class="profile-card">
+                <img src="images/jono.jpeg" alt="Jonathan Amoah">
+                <h4>06. Frost</h4>
+                <p>Head of Transport & Logistics</p>
+                <br>
+                <p>Age: 23</p>
+                <br>
+                <p>Power: Subtility</p>
+                <br>
+                <p>Qualifications: National Senior Certificate (matric)</p>
+                <br>
+                <p>Accolades: to be updated</p>
+            </div>
+
+            <div class="profile-card">
+                <img src="images/meshack.jpg" alt="Jonathan Amoah">
+                <h4>07. Meshack</h4>
+                <p>Senior Sales Manager</p>
+                <br>
+                <p>Age: to be updated</p>
+                <br>
+                <p>Power: Rapping</p>
+                <br>
+                <p>Qualifications: National Senior Certificate (matric)</p>
+                <br>
+                <p>Accolades: to be updated</p>
+            </div>
+
+            <div class="profile-card">
+                <img src="images/meshack.jpg" alt="Meshack Bondo">
+                <h4>08. Queena</h4>
+                <p>Marketing Director & Driver</p>
+                <br>
+                <p>Age: to be updated</p>
+                <br>
+                <p>Power: to be updated</p>
+                <br>
+                <p>Qualifications: National Senior Certificate (Matric)</p>
+                <br>
+                <p>Accolades: to be updated</p>
+            </div>
+
+            <div class="profile-card">
+                <img src="images/meshack.jpg" alt="Meshack Bondo">
+                <h4>09. Michee</h4>
+                <p>Data Analyst</p>
+                <br>
+                <p>Age: to be updated</p>
+                <br>
+                <p>Power: to be updated</p>
+                <br>
+                <p>Qualifications: to be updated</p>
+                <br>
+                <p>Accolades: to be updated</p>
+            </div>
+
+            <div class="profile-card">
+                <img src="images/meshack.jpg" alt="Meshack Bondo">
+                <h4>10. Leiroy</h4>
+                <p>Driver</p>
+                <br>
+                <p>Age: 25</p>
+                <br>
+                <p>Power: to be updated</p>
+                <br>
+                <p>Qualifications: to be updated</p>
+                <br>
+                <p>Accolades: to be updated</p>
+            </div>
+
+            <div class="profile-card">
+                <img src="images/meshack.jpg" alt="Meshack Bondo">
+                <h4>11. Bayanda</h4>
+                <p>Salesman & Junior Software Developer</p>
+                <br>
+                <p>Age: to be updated</p>
+                <br>
+                <p>Power: ladies</p>
+                <br>
+                <p>Qualifications: still in high school</p>
+                <br>
+                <p>Accolades: to be updated</p>
+            </div>
+
+            <div class="profile-card">
+                <img src="images/meshack.jpg" alt="Meshack Bondo">
+                <h4>11. Vuyo</h4>
+                <p>Salesman</p>
+                <br>
+                <p>Age: to be updated</p>
+                <br>
+                <p>Power: to be updated</p>
+                <br>
+                <p>Qualifications: still in high school</p>
+                <br>
+                <p>Accolades: to be updated</p>
+            </div>
+
+            <div class="profile-card">
+                <img src="images/meshack.jpg" alt="Meshack Bondo">
+                <h4>12. Doc</h4>
+                <p>Driver/Senior Software Developer</p>
+                <br>
+                <p>Age: to be updated</p>
+                <br>
+                <p>Power: to be updated</p>
+                <br>
+                <p>Qualifications: Computer Science Degree @ Richfield Graduate Institute of Technology</p>
+                <br>
+                <p>Accolades: to be updated</p>
+            </div>
+
+            <div class="download-section">
+                <a href="company documents/company documents.zip" download="company_documents.zip" class="download-button">Download Company Documents</a>
+            </div>            
 
         <div class="contact-info">
             <h3>Contact Information</h3>
-            <!-- Dynamic phone number -->
             <p>Phone: <span id="phone-number">063 473 2453</span> 
-                <!-- WhatsApp link -->
                 | <a href="https://wa.me/27634732453" target="_blank">
                     <i class="fab fa-whatsapp"></i> WhatsApp
                 </a> 
-                <!-- Direct phone call link -->
                 | <a href="tel:+27634732453">Call</a>
             </p>
-            <p>Email: <a href="mailto:parablesandplatters@outlook.com">parablesandplatters@outlook.com</a> | <a href="mailto:parablesandplatters@gmail.com">parablesandplatters@gmail.com</a></p>
+
+            <p>Email: <a href="mailto:parablesandplatters@outlook.com">parablesandplatters@outlook.com</a> |
+                <br>
+                <br>
+                 <a href="mailto:parablesandplatters@gmail.com">parablesandplatters@gmail.com</a></p>
             <div class="social-icons">
+
                 <a href="https://x.com/p_platters" target="_blank"><i class="fab fa-x"></i></a>
                 <a href="https://www.instagram.com/parablesandplatters" target="_blank"><i class="fab fa-instagram"></i></a>
+
             </div>
+
         </div>
 
     </section>
@@ -235,6 +544,7 @@
     </footer>
 
     <script>
+
         const backToTopButton = document.getElementById("backToTop");
 
         window.addEventListener("scroll", () => {
@@ -251,8 +561,11 @@
                 behavior: "smooth",
             });
         });
+
     </script>
 
 </body>
 
 </html>
+
+
