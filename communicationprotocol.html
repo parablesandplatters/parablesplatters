@@ -8,7 +8,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>extra</title>
+    <title>Communication Protocol</title>
 
     <link rel="icon" href="images/jesuslogo_enef.png" type="image/x-icon">
 
@@ -46,86 +46,92 @@
         .header-link {
 
             text-decoration: none;
-            color: inherit; 
+            color: inherit;
 
         }
 
         .header-link:hover {
 
-            cursor: pointer; 
+            cursor: pointer;
 
         }
 
         h1 {
 
-            font-size: 40px;
+            font-size: 30px;
             margin: 0;
             color: black;
             text-align: center;
 
         }
 
-        h4 {
-
-            color: black;
-            text-align: center;
-
-        }
-
-        .cinema-section {
+        .communication-section {
 
             width: 80%;
             max-width: 1200px;
-            margin: 100px auto;
+            margin-top: 10px;
             padding: 20px;
             border-radius: 10px;
             background-color: #e3c5a3;
 
         }
 
-        .cinema-section h2 {
+        h2 {
 
-            font-size: 32px;
+            font-size: 22px;
             margin-bottom: 20px;
             color: black;
 
         }
 
-        .video-container {
+        .button-container {
 
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
+            margin-bottom: 20px;
 
         }
 
-        .video-box {
+        .communication-button {
 
-            background-color: #e3c5a3;
-            width: 45%;
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-
-        }
-
-        .video-box video {
-
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-
-        }
-
-        .bodylogoimage {
-
-            width: 20%;
-            margin-bottom: 100px;
-            border: 10px solid #e3c5a3;
-            padding: 10px;
+            padding: 15px 30px;
+            font-size: 18px;
             border-radius: 5px;
+            background-color: #e3c5a3;
+            border: none;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 10px;
+
+        }
+
+        .communication-button:hover {
+
+            background-color: #d0a37c;
+
+        }
+
+        .chat-container {
+
+            width: 80%;
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            text-align: center;
+
+        }
+
+        #chatInput {
+
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            text-align: center;
 
         }
 
@@ -137,195 +143,26 @@
             position: fixed;
             bottom: 0;
             left: 0;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
             text-align: center;
             color: black;
 
         }
 
-        @keyframes slideAnimation {
-
-            0% {
-                transform: translateX(0);
-            }
-            50% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(-200%);
-            }
-            150% {
-                transform: translateX(-300%);
-            }
-            200% {
-                transform: translateX(0);
-            }
-
-        }
-
-        #backToTop {
+        #exitButton {
 
             background: #e3c5a3;
-            position: fixed;
-            width: 10%;
-            bottom: 0;
-            right: 0;
-            margin-right: 10px;
-            margin-bottom: 160px;
-            box-shadow: 0 -1px 20px rgba(255, 255, 255, 0.3);
-            display: none;
-            color: black;
-            border: none;
-            padding: 10px;
             border-radius: 5px;
+            padding: 10px 20px;
             cursor: pointer;
-            font-size: 15px;
-            z-index: 1000;
+            font-size: 16px;
 
         }
 
-        #backToTop:hover {
+        #exitButton:hover {
 
-            background-color: #e3c5a379;
+            background: #d0a37c;
 
         }
-
-        @media (max-width: 720px) {
-
-            body {
-
-                font-family: 'Roboto', sans-serif;
-                background-color: white;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                min-height: 100vh;
-                text-align: center;
-
-            }
-
-            header {
-
-                background: #e3c5a3;
-                width: 100%;
-                padding: 20px;
-                position: fixed;
-                top: 0;
-                left: 0;
-                z-index: 1000;
-                
-            }
-
-            h1 {
-
-                font-size: 30px;
-                margin: 0;
-                color: black;
-                margin-right: 45px;
-
-            }
-
-            .cinema-section {
-
-                width: 60%;
-                max-width: 1200px;
-                margin: 100px auto;
-                padding: 20px;
-                border-radius: 10px;
-                background-color: #e3c5a3;
-                
-            }
-
-            .cinema-section h2 {
-
-                font-size: 22px;
-                margin-bottom: 20px;
-                color: black;
-
-            }
-
-            .video-container {
-
-                display: flex;
-                justify-content: space-around;
-                flex-wrap: wrap;
-                gap: 20px;
-
-            }
-
-            .video-box {
-
-                background-color: #e3c5a3;
-                width: 100%;
-                border-radius: 10px;
-                overflow: hidden;
-                position: relative;
-                margin-bottom: 50px;
-
-            }
-
-            .video-box video {
-
-                width: 100%;
-                height: auto;
-                border-radius: 10px;
-
-            }
-
-            .video-box button {
-
-                background-color: #ff7b4b;
-                color: #fff;
-                border: none;
-                padding: 10px;
-                position: absolute;
-                bottom: 10px;
-                left: 50%;
-                transform: translateX(-50%);
-                font-size: 18px;
-                cursor: pointer;
-                border-radius: 5px;
-                transition: background-color 0.3s;
-
-            }
-
-            .video-box button:hover {
-
-                background-color: #ff4927;
-
-            }
-
-            h4 {
-
-                font-size: 14px;
-
-            }
-
-            .bodylogoimage {
-
-                width: 40%;
-                margin-bottom: 100px;
-
-            }
-
-            footer {
-
-                background: #e3c5a3;
-                width: 95%;
-                font-size: 13px;
-                padding: 15px;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                text-align: center;
-                color: black;
-
-            }
-
-        } 
 
     </style>
 
@@ -335,117 +172,153 @@
 
     <header>
 
-        <a href="index.html" class="header-link" title="back to home page">
-
-            <h1>extra</h1>
-
+        <a href="menupage.html" class="header-link" title="back to main menu">
+            <h1>Communication Protocol</h1>
         </a>
 
     </header>
 
-    <!-- Cinema Section -->
-    <div class="cinema-section">
+    <div class="communication-section">
 
-        <h2>enjoy our cinema</h2>
+        <h2>Select Your Communication Mode</h2>
 
-        <div class="video-container">
-            <!-- Video Box 1 -->
-            <div class="video-box">
+        <div class="button-container">
 
-                <h4>RANCE ALLEN - I STOOD ON THE BANKS OF JORDAN</h4>
-
-                <video controls>
-                    <source src="cinema/Rance Allen - _I Stood on the Banks of Jordan_.mp4" type="video/mp4">
-                    your browser does not support the video tag.
-                </video>
-
-            </div>
-
-            <!-- Video Box 2 -->
-            
-            <div class="video-box">
-
-                <h4>T.D. JAKES - FOR UNTO US</h4>
-
-                <video controls>
-                    <source src="cinema/For Unto Us.mp4" type="video/mp4">
-                    your browser does not support the video tag.
-                </video>
-
-            </div>
-
-            <!-- Video Box 3 -->
-            
-            <div class="video-box">
-
-                <h4>BILLY GRAHAM - WHO IS JESUS CHRIST?</h4>
-
-                <video controls>
-                    <source src="cinema/Who is Jesus - Billy Graham.mp4" type="video/mp4">
-                    your browser does not support the video tag.
-                </video>
-
-            </div>
-
-            <!-- Video Box 4 -->
-            
-            <div class="video-box">
-
-                <h4>YOLANDA ADAMS - FRAGILE HEART</h4>
-
-                <video controls>
-                    <source src="cinema/Yolanda Adams - Fragile Heart (Apollo 2000).mp4" type="video/mp4">
-                    your browser does not support the video tag.
-                </video>
-
-            </div>
+            <button id="joinTextChat" class="communication-button">Join Text Chat</button>
+            <button id="joinAudioChat" class="communication-button">Join Audio Chat</button>
+            <button id="joinVideoChat" class="communication-button">Join Video Chat</button>
 
         </div>
 
+        <div id="textChat" style="display: none;">
+
+            <h3>Text Chat</h3>
+
+            <div class="chat-container" id="chatContainer">
+
+            </div>
+            <input type="text" id="chatInput" placeholder="Type your message..." />
+            <button id="sendMessage" class="communication-button">Send Message</button>
+
+        </div>
+
+        <div id="audioChat" style="display: none;">
+            <h3>Audio Chat</h3>
+            <audio id="audio" controls></audio>
+            <button id="startAudio" class="communication-button">Start Audio</button>
+        </div>
+
+        <div id="videoChat" style="display: none;">
+            <h3>Video Chat</h3>
+            <video id="localVideo" autoplay muted></video>
+            <video id="remoteVideo" autoplay></video>
+            <button id="startVideo" class="communication-button">Start Video</button>
+        </div>
+
+        <button id="exitButton">Exit</button>
+
     </div>
 
-      <img src="images/jesuslogo_black.png" class="bodylogoimage" title="parables & platters">
-
-        <button id="backToTop" title="back to top">back to top</button>
-
     <footer>
-        <p>&copy; 2025 parables & platters (pty) ltd. all rights reserved.</p>
+        <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
     </footer>
 
     <script>
 
-        function downloadVideo(file) {
+        let localStream;
+        let remoteStream;
+        let peerConnection;
+        let dataChannel;
+        const chatContainer = document.getElementById('chatContainer');
+        const chatInput = document.getElementById('chatInput');
+        const sendMessageButton = document.getElementById('sendMessage');
+        const joinTextChatButton = document.getElementById('joinTextChat');
+        const joinAudioChatButton = document.getElementById('joinAudioChat');
+        const joinVideoChatButton = document.getElementById('joinVideoChat');
+        const exitButton = document.getElementById('exitButton');
+        const audio = document.getElementById('audio');
+        const localVideo = document.getElementById('localVideo');
+        const remoteVideo = document.getElementById('remoteVideo');
+        const startAudioButton = document.getElementById('startAudio');
+        const startVideoButton = document.getElementById('startVideo');
 
-            try {
+        // Handle text chat
+        joinTextChatButton.onclick = () => {
+            document.getElementById('textChat').style.display = 'block';
+            document.getElementById('audioChat').style.display = 'none';
+            document.getElementById('videoChat').style.display = 'none';
+        };
 
-                const link = document.createElement('a');
-                link.href = file;
-                link.download = file;
-                link.click();
-            } catch (error) {
-
-                console.error('download failed:', error);
-
+        sendMessageButton.onclick = () => {
+            const message = chatInput.value;
+            if (message) {
+                chatContainer.innerHTML += `<p>${message}</p>`;
+                chatInput.value = '';
             }
+        };
 
-        }
+        // Handle audio chat
+        joinAudioChatButton.onclick = () => {
+            document.getElementById('audioChat').style.display = 'block';
+            document.getElementById('textChat').style.display = 'none';
+            document.getElementById('videoChat').style.display = 'none';
+        };
 
-        const backToTopButton = document.getElementById("backToTop");
+        startAudioButton.onclick = async () => {
+            localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            audio.srcObject = localStream;
+        };
 
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 300) { // Show button after scrolling 300px
-            backToTopButton.style.display = "block";
-            } else {
-            backToTopButton.style.display = "none";
-            }
-        });
+        // Handle video chat
+        joinVideoChatButton.onclick = () => {
+            document.getElementById('videoChat').style.display = 'block';
+            document.getElementById('textChat').style.display = 'none';
+            document.getElementById('audioChat').style.display = 'none';
+        };
 
-        backToTopButton.addEventListener("click", () => {
-            window.scrollTo({
-            top: 0,
-            behavior: "smooth",
+        startVideoButton.onclick = async () => {
+            localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+            localVideo.srcObject = localStream;
+
+            // WebRTC peer connection setup (using a simple approach without signaling server)
+            peerConnection = new RTCPeerConnection();
+            localStream.getTracks().forEach(track => {
+                peerConnection.addTrack(track, localStream);
             });
-        });
+
+            peerConnection.onicecandidate = event => {
+                if (event.candidate) {
+                    // send ICE candidates to the other peer
+                }
+            };
+
+            peerConnection.ontrack = event => {
+                remoteStream = event.streams[0];
+                remoteVideo.srcObject = remoteStream;
+            };
+
+            // Create an offer and send it to the other peer
+            const offer = await peerConnection.createOffer();
+            await peerConnection.setLocalDescription(offer);
+
+            // Add code to send the offer to the other peer here...
+        };
+
+        // Handle exit
+        exitButton.onclick = () => {
+            // Stop all media tracks
+            if (localStream) {
+                localStream.getTracks().forEach(track => track.stop());
+            }
+            // Close the peer connection
+            if (peerConnection) {
+                peerConnection.close();
+            }
+            // Hide all chat sections
+            document.getElementById('textChat').style.display = 'none';
+            document.getElementById('audioChat').style.display = 'none';
+            document.getElementById('videoChat').style.display = 'none';
+        };
 
     </script>
 
@@ -453,13 +326,9 @@
 
 </html>
 
-<!-- copyright information. we don't own this content. -->
 
-<!-- food coupon -->
 
---
 
-using above styling, create a communicationprotocol.html page. this is where we'll chat with each other in real time as a team without any database... just in the html file - make it happen... no bugs, no glitches... all one needs to do is to click join on either the voice button, text button or video button, and then boom... just like that - we're communication live in real time over the internet. please be precise and robust in this... leave no glitches or bugs behind. be of expertise. one must be able to exit the chat on their side if they choose to do so... just go all out on this one without leaving anything behind. 
 
---
+
 

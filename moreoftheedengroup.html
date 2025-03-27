@@ -1,4 +1,247 @@
-the AirCav page is a website of its' own. this page will link us to our other companies. 
+<!DOCTYPE html>
 
---
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>More of the Eden Group</title>
+
+    <link rel="icon" href="images/jesuslogo_enef.png" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        body {
+
+            font-family: 'Roboto', sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+
+        }
+
+        header {
+
+            background: #e3c5a3;
+            width: 100%;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+
+        }
+
+        .header-link {
+
+            text-decoration: none;
+            color: inherit;
+
+        }
+
+        .header-link:hover {
+
+            cursor: pointer;
+
+        }
+
+        h1 {
+
+            font-size: 40px;
+            margin: 0;
+            color: black;
+
+        }
+
+        .group-section {
+
+            width: 80%;
+            max-width: 1000px;
+            margin-top: 100px;
+            margin-bottom: 170px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #e3c5a3;
+
+        }
+
+        h2 {
+
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: black;
+
+        }
+
+        .company-list {
+
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+
+        }
+
+        .company-item {
+
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+
+        }
+
+        .company-item:hover {
+
+            transform: scale(1.05);
+
+        }
+
+        .company-item h3 {
+
+            font-size: 24px;
+            color: black;
+            margin-bottom: 10px;
+
+        }
+
+        .company-item p {
+
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: black;
+
+        }
+
+        .company-item a {
+
+            color: #af630c;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+
+        }
+
+        .company-item a:hover {
+
+            color: #d0a37c;
+
+        }
+
+        footer {
+
+            background: #e3c5a3;
+            width: 100%;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            text-align: center;
+            color: black;
+
+        }
+
+        @media (max-width: 720px) {
+
+            body {
+
+                padding: 10px;
+
+            }
+
+            .group-section {
+
+                width: 90%;
+
+            }
+
+            h1 {
+
+                font-size: 30px;
+                text-align: center;
+
+            }
+
+            h2 {
+
+                font-size: 24px;
+
+            }
+
+            .company-item h3 {
+
+                font-size: 20px;
+
+            }
+
+            .company-item p {
+
+                font-size: 14px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <a href="menupage.html" class="header-link" title="back to main menu">
+            <h1>More of the Eden Group</h1>
+        </a>
+    </header>
+
+    <div class="group-section">
+        <h2>Explore More of the Eden Group</h2>
+        <p>Click the links below to explore our diverse businesses, services, and products.</p>
+
+        <div class="company-list">
+
+            <div class="company-item">
+                <h3>Mount Sinai Real Estate</h3>
+                <p>Your go-to commercial and residential real-estate company.</p>
+                <a href="mountsinai.html">Visit Website</a>
+            </div>
+
+            <div class="company-item">
+                <h3>AirCav</h3>
+                <p>Aviation & Aerodynamics</p>
+                <a href="aircav.html">Visit Website</a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Eden Group. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
 

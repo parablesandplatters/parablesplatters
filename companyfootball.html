@@ -1,4 +1,280 @@
-using above styling. create an html page called companyfootball.html. over here what I want to do is to send the link of this page to other companies and when they open it they will find it to be an issuing out of a challenge from us "Parables & Platters" . Sp make this page about challenging a company to a soccer match where they will fill out a form and then we'll get back to them with a response. they can set their own terms in the form. add plenty of options in this form - precisely 10 options. I'll add the formspree endpoint myself in the html. robustness - precision - error handling - no bugs - feel free to add your own content. 
+<!DOCTYPE html>
 
---
+<html lang="en">
+    
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Company Football</title>
+
+    <link rel="icon" href="images/jesuslogo_enef.png" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        body {
+
+            font-family: 'Roboto', sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+
+        }
+
+        header {
+
+            background: #e3c5a3;
+            width: 100%;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+
+        }
+
+        .header-link {
+
+            text-decoration: none;
+            color: inherit;
+
+        }
+
+        .header-link:hover {
+
+            cursor: pointer;
+
+        }
+
+        h1 {
+
+            font-size: 30px;
+            margin: 0;
+            color: black;
+            text-align: center;
+
+        }
+
+        .football-challenge-section {
+
+            width: 80%;
+            max-width: 1000px;
+            margin-top: 100px;
+            margin-bottom: 170px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #e3c5a3;
+
+        }
+
+        h2 {
+
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: black;
+
+        }
+
+        .form-container {
+
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .form-container label {
+
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: black;
+            display: block;
+
+        }
+
+        .form-container input,
+        .form-container select,
+        .form-container textarea {
+
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+
+        }
+
+        .form-container input[type="submit"] {
+
+            background-color: #e3c5a3;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 15px;
+            width: auto;
+            transition: background-color 0.3s ease;
+
+        }
+
+        .form-container input[type="submit"]:hover {
+
+            background-color: #d0a37c;
+
+        }
+
+        footer {
+
+            background: #e3c5a3;
+            width: 100%;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            text-align: center;
+            color: black;
+
+        }
+
+        @media (max-width: 720px) {
+
+            body {
+
+                padding: 10px;
+
+            }
+
+            .football-challenge-section {
+
+                width: 90%;
+
+            }
+
+            .form-container {
+
+                padding: 20px;
+
+            }
+
+            h2 {
+
+                font-size: 24px;
+
+            }
+
+            .form-container input,
+            .form-container select,
+            .form-container textarea {
+
+                font-size: 14px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <a href="menupage.html" class="header-link" title="back to main menu">
+            <h1>Company Football</h1>
+        </a>
+    </header>
+
+    <div class="football-challenge-section">
+
+        <h2>Let's Go!</h2>
+
+        <p>We at Parables & Platters (Pty) Ltd. challenge your company to a soccer match! Fill out the form below and let us know your terms. We’ll get back to you.</p>
+
+        <div class="form-container">
+            
+            <form action="YOUR_FORMSPREE_ENDPOINT" method="POST" id="footballChallengeForm">
+
+                <label for="companyName">Company Name</label>
+                <input type="text" id="companyName" name="companyName" required>
+
+                <label for="contactPerson">Contact Person Name</label>
+                <input type="text" id="contactPerson" name="contactPerson" required>
+
+                <label for="email">Contact Person Email Address</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="preferredDate">Preferred Match Date</label>
+                <input type="date" id="preferredDate" name="preferredDate" required>
+
+                <label for="location">Preferred Match Location</label>
+                <input type="text" id="location" name="location" required>
+
+                <label for="numberOfPlayers">Number of Players (including substitutes)</label>
+                <input type="number" id="numberOfPlayers" name="numberOfPlayers" min="10" max="50" required>
+
+                <label for="matchDuration">Preferred Match Duration</label>
+                <select id="matchDuration" name="matchDuration" required>
+                    <option value="30">30 minutes per half</option>
+                    <option value="45">45 minutes per half</option>
+                    <option value="60">60 minutes per half</option>
+                </select>
+
+                <label for="referee">Preferred Referee</label>
+                <input type="text" id="referee" name="referee">
+
+                <label for="specialTerms">Special Terms or Requests</label>
+                <textarea id="specialTerms" name="specialTerms" rows="4"></textarea>
+
+                <input type="submit" value="Send Challenge">
+            </form>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Basic error handling and form validation
+        document.getElementById('footballChallengeForm').addEventListener('submit', function (event) {
+            let valid = true;
+            const inputs = document.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                if (!input.value) {
+                    valid = false;
+                    input.style.border = '2px solid red';
+                } else {
+                    input.style.border = '';
+                }
+            });
+
+            if (!valid) {
+                alert('Please fill out all required fields before submitting.');
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
 

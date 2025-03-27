@@ -1,15 +1,22 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Recipes - Chef's Guide</title>
     <link rel="icon" href="images/jesuslogo_enef.png" type="image/x-icon">
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
+
         body {
+
             font-family: 'Roboto', sans-serif;
             background-color: #fff;
             margin: 0;
@@ -20,9 +27,11 @@
             justify-content: flex-start;
             min-height: 100vh;
             text-align: center;
+
         }
 
         header {
+
             background: #e3c5a3;
             width: 100%;
             padding: 20px;
@@ -30,20 +39,26 @@
             top: 0;
             left: 0;
             z-index: 1000;
+
         }
 
         .header-link {
+
             text-decoration: none;
             color: inherit;
+
         }
 
         h1 {
+
             font-size: 40px;
             margin: 0;
             color: black;
+
         }
 
         .recipes-section {
+
             width: 80%;
             max-width: 1200px;
             margin-top: 120px;
@@ -51,32 +66,42 @@
             background-color: #f0f0f0;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 100px;
+
         }
 
         .recipe-drawer {
+
             margin: 20px 0;
             background-color: #e3c5a3;
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
         }
 
         .recipe-drawer h2 {
+
             font-size: 28px;
             margin-bottom: 15px;
             color: #333;
+
         }
 
         .recipe-content {
+
             display: none;
             padding: 15px;
+            margin-top: 20px;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
             text-align: left;
+
         }
 
         .recipe-drawer button {
+
             background-color: #ff7b4b;
             color: #fff;
             border: none;
@@ -85,17 +110,23 @@
             cursor: pointer;
             border-radius: 5px;
             transition: background-color 0.3s ease;
+
         }
 
         .recipe-drawer button:hover {
+
             background-color: #ff4927;
+
         }
 
         .recipe-drawer button:focus {
+
             outline: none;
+
         }
 
         footer {
+
             background: #e3c5a3;
             width: 100%;
             padding: 15px;
@@ -104,61 +135,81 @@
             left: 0;
             text-align: center;
             color: black;
+
         }
 
         /* Responsive Styling */
         @media (max-width: 720px) {
+
             header {
+
                 padding: 15px;
+
             }
 
             .recipes-section {
+
                 width: 90%;
                 padding: 15px;
+
             }
 
             h1 {
+
                 font-size: 32px;
+
             }
+
         }
 
         /* Animation for Drawer */
         @keyframes slideAnimation {
+
             0% {
+
                 transform: translateX(0);
                 opacity: 0;
+
             }
+
             100% {
+
                 transform: translateX(0);
                 opacity: 1;
+
             }
+
         }
 
         .recipe-content.open {
+
             animation: slideAnimation 0.5s forwards;
             display: block;
+
         }
+
     </style>
+
 </head>
 
 <body>
 
     <header>
-        <a href="index.html" class="header-link" title="back to home page">
+
+        <a href="menupage.html" class="header-link" title="back to main menu">
             <h1>Chef's Recipes</h1>
         </a>
+
     </header>
 
     <div class="recipes-section">
-        <h2>Welcome to our Chef's Recipe Collection</h2>
-        <p>Here are some of our favorite dishes with detailed cooking guides, perfect for every chef. Explore each recipe below and get cooking!</p>
 
-        <!-- Pap, Steak & Wors Recipe Drawer -->
+        <p>Let's go</p>
+
         <div class="recipe-drawer">
-            <h2>Pap, Steak & Wors</h2>
-            <button onclick="toggleRecipe(0)">View Recipe</button>
+            <h2>Pap</h2>
+            <button onclick="toggleRecipe(0)" title="click to view recipe">View Recipe</button>
             <div class="recipe-content">
-                <h3>Pap Recipe</h3>
                 <ul>
                     <li>1L water</li>
                     <li>2 cups maize meal</li>
@@ -176,12 +227,10 @@
             </div>
         </div>
 
-        <!-- Pasta, Steak & Wors Recipe Drawer -->
         <div class="recipe-drawer">
-            <h2>Pasta, Steak & Wors</h2>
-            <button onclick="toggleRecipe(1)">View Recipe</button>
+            <h2>Pasta</h2>
+            <button onclick="toggleRecipe(1)" title="click to view recipe">View Recipe</button>
             <div class="recipe-content">
-                <h3>Pasta Recipe</h3>
                 <ul>
                     <li>Lots of water</li>
                     <li>Seasoning</li>
@@ -197,12 +246,10 @@
             </div>
         </div>
 
-        <!-- Phuthu, Beef & Wors Recipe Drawer -->
         <div class="recipe-drawer">
-            <h2>Phuthu, Beef & Wors</h2>
-            <button onclick="toggleRecipe(2)">View Recipe</button>
+            <h2>Phuthu</h2>
+            <button onclick="toggleRecipe(2)" title="click to view recipe">View Recipe</button>
             <div class="recipe-content">
-                <h3>Phuthu Recipe</h3>
                 <ul>
                     <li>2 cups maize meal</li>
                     <li>Water (adjust for consistency)</li>
@@ -215,8 +262,6 @@
             </div>
         </div>
 
-        <!-- Additional Recipe Drawers can be added here in a similar way -->
-
     </div>
 
     <footer>
@@ -224,13 +269,25 @@
     </footer>
 
     <script>
+
         function toggleRecipe(index) {
+
             const recipeContents = document.querySelectorAll('.recipe-content');
             const currentRecipe = recipeContents[index];
             currentRecipe.classList.toggle('open');
+
         }
+
     </script>
 
 </body>
 
 </html>
+
+<!-- let's protect this with an admin pin -->
+
+
+
+
+
+ -->

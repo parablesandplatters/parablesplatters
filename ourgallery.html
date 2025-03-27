@@ -8,7 +8,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>extra</title>
+    <title>Our Gallery - Parables & Platters</title>
 
     <link rel="icon" href="images/jesuslogo_enef.png" type="image/x-icon">
 
@@ -46,13 +46,13 @@
         .header-link {
 
             text-decoration: none;
-            color: inherit; 
+            color: inherit;
 
         }
 
         .header-link:hover {
 
-            cursor: pointer; 
+            cursor: pointer;
 
         }
 
@@ -61,71 +61,59 @@
             font-size: 40px;
             margin: 0;
             color: black;
-            text-align: center;
 
         }
 
-        h4 {
-
-            color: black;
-            text-align: center;
-
-        }
-
-        .cinema-section {
+        .gallery-section {
 
             width: 80%;
             max-width: 1200px;
-            margin: 100px auto;
+            margin-top: 100px;
+            margin-bottom: 100px;
             padding: 20px;
             border-radius: 10px;
             background-color: #e3c5a3;
 
         }
 
-        .cinema-section h2 {
+        h2 {
 
-            font-size: 32px;
+            font-size: 28px;
             margin-bottom: 20px;
             color: black;
 
         }
 
-        .video-container {
+        .gallery-grid {
 
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
+            padding: 20px;
 
         }
 
-        .video-box {
+        .gallery-item {
 
-            background-color: #e3c5a3;
-            width: 45%;
+            background-color: white;
             border-radius: 10px;
             overflow: hidden;
-            position: relative;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
 
         }
 
-        .video-box video {
+        .gallery-item img {
 
             width: 100%;
             height: auto;
-            border-radius: 10px;
+            display: block;
 
         }
 
-        .bodylogoimage {
+        .gallery-item:hover {
 
-            width: 20%;
-            margin-bottom: 100px;
-            border: 10px solid #e3c5a3;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
+            transform: scale(1.05);
 
         }
 
@@ -137,195 +125,44 @@
             position: fixed;
             bottom: 0;
             left: 0;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
             text-align: center;
             color: black;
 
         }
 
-        @keyframes slideAnimation {
-
-            0% {
-                transform: translateX(0);
-            }
-            50% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(-200%);
-            }
-            150% {
-                transform: translateX(-300%);
-            }
-            200% {
-                transform: translateX(0);
-            }
-
-        }
-
-        #backToTop {
-
-            background: #e3c5a3;
-            position: fixed;
-            width: 10%;
-            bottom: 0;
-            right: 0;
-            margin-right: 10px;
-            margin-bottom: 160px;
-            box-shadow: 0 -1px 20px rgba(255, 255, 255, 0.3);
-            display: none;
-            color: black;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 15px;
-            z-index: 1000;
-
-        }
-
-        #backToTop:hover {
-
-            background-color: #e3c5a379;
-
-        }
-
         @media (max-width: 720px) {
 
-            body {
+            .gallery-section {
 
-                font-family: 'Roboto', sans-serif;
-                background-color: white;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                min-height: 100vh;
-                text-align: center;
+                width: 90%;
 
-            }
-
-            header {
-
-                background: #e3c5a3;
-                width: 100%;
-                padding: 20px;
-                position: fixed;
-                top: 0;
-                left: 0;
-                z-index: 1000;
-                
             }
 
             h1 {
 
-                font-size: 30px;
-                margin: 0;
-                color: black;
-                margin-right: 45px;
+                font-size: 32px;
 
             }
 
-            .cinema-section {
+            h2 {
 
-                width: 60%;
-                max-width: 1200px;
-                margin: 100px auto;
-                padding: 20px;
-                border-radius: 10px;
-                background-color: #e3c5a3;
-                
-            }
-
-            .cinema-section h2 {
-
-                font-size: 22px;
-                margin-bottom: 20px;
-                color: black;
+                font-size: 21px;
 
             }
 
-            .video-container {
+            .gallery-grid {
 
-                display: flex;
-                justify-content: space-around;
-                flex-wrap: wrap;
-                gap: 20px;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 
             }
 
-            .video-box {
+            .gallery-item img {
 
-                background-color: #e3c5a3;
-                width: 100%;
-                border-radius: 10px;
-                overflow: hidden;
-                position: relative;
-                margin-bottom: 50px;
-
-            }
-
-            .video-box video {
-
-                width: 100%;
                 height: auto;
-                border-radius: 10px;
 
             }
 
-            .video-box button {
-
-                background-color: #ff7b4b;
-                color: #fff;
-                border: none;
-                padding: 10px;
-                position: absolute;
-                bottom: 10px;
-                left: 50%;
-                transform: translateX(-50%);
-                font-size: 18px;
-                cursor: pointer;
-                border-radius: 5px;
-                transition: background-color 0.3s;
-
-            }
-
-            .video-box button:hover {
-
-                background-color: #ff4927;
-
-            }
-
-            h4 {
-
-                font-size: 14px;
-
-            }
-
-            .bodylogoimage {
-
-                width: 40%;
-                margin-bottom: 100px;
-
-            }
-
-            footer {
-
-                background: #e3c5a3;
-                width: 95%;
-                font-size: 13px;
-                padding: 15px;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                text-align: center;
-                color: black;
-
-            }
-
-        } 
+        }
 
     </style>
 
@@ -334,128 +171,76 @@
 <body>
 
     <header>
-
-        <a href="index.html" class="header-link" title="back to home page">
-
-            <h1>extra</h1>
-
+        <a href="menupage.html" class="header-link" title="back to main menu">
+            <h1>Our Gallery</h1>
         </a>
-
     </header>
 
-    <!-- Cinema Section -->
-    <div class="cinema-section">
+    <div class="gallery-section">
 
-        <h2>enjoy our cinema</h2>
+        <h2>Explore the Beauty of Parables & Platters</h2>
+        <p>Take a look at some of the stunning events, delicious food, and unforgettable moments we've captured. Enjoy!</p>
 
-        <div class="video-container">
-            <!-- Video Box 1 -->
-            <div class="video-box">
+        <div class="gallery-grid">
 
-                <h4>RANCE ALLEN - I STOOD ON THE BANKS OF JORDAN</h4>
-
-                <video controls>
-                    <source src="cinema/Rance Allen - _I Stood on the Banks of Jordan_.mp4" type="video/mp4">
-                    your browser does not support the video tag.
-                </video>
-
+            <div class="gallery-item">
+                <img src="images/gallery1.jpg" alt="Gallery Image 1">
             </div>
 
-            <!-- Video Box 2 -->
-            
-            <div class="video-box">
-
-                <h4>T.D. JAKES - FOR UNTO US</h4>
-
-                <video controls>
-                    <source src="cinema/For Unto Us.mp4" type="video/mp4">
-                    your browser does not support the video tag.
-                </video>
-
+            <div class="gallery-item">
+                <img src="images/gallery2.jpg" alt="Gallery Image 2">
             </div>
 
-            <!-- Video Box 3 -->
-            
-            <div class="video-box">
-
-                <h4>BILLY GRAHAM - WHO IS JESUS CHRIST?</h4>
-
-                <video controls>
-                    <source src="cinema/Who is Jesus - Billy Graham.mp4" type="video/mp4">
-                    your browser does not support the video tag.
-                </video>
-
+            <div class="gallery-item">
+                <img src="images/gallery3.jpg" alt="Gallery Image 3">
             </div>
 
-            <!-- Video Box 4 -->
-            
-            <div class="video-box">
+            <div class="gallery-item">
+                <img src="images/gallery4.jpg" alt="Gallery Image 4">
+            </div>
 
-                <h4>YOLANDA ADAMS - FRAGILE HEART</h4>
+            <div class="gallery-item">
+                <img src="images/gallery5.jpg" alt="Gallery Image 5">
+            </div>
 
-                <video controls>
-                    <source src="cinema/Yolanda Adams - Fragile Heart (Apollo 2000).mp4" type="video/mp4">
-                    your browser does not support the video tag.
-                </video>
+            <div class="gallery-item">
+                <img src="images/gallery6.jpg" alt="Gallery Image 6">
+            </div>
 
+            <div class="gallery-item">
+                <img src="images/gallery7.jpg" alt="Gallery Image 7">
+            </div>
+
+            <div class="gallery-item">
+                <img src="images/gallery8.jpg" alt="Gallery Image 8">
+            </div>
+
+            <div class="gallery-item">
+                <img src="images/gallery9.jpg" alt="Gallery Image 9">
+            </div>
+
+            <div class="gallery-item">
+                <img src="images/gallery10.jpg" alt="Gallery Image 10">
             </div>
 
         </div>
-
     </div>
 
-      <img src="images/jesuslogo_black.png" class="bodylogoimage" title="parables & platters">
-
-        <button id="backToTop" title="back to top">back to top</button>
-
     <footer>
-        <p>&copy; 2025 parables & platters (pty) ltd. all rights reserved.</p>
+        <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
     </footer>
-
-    <script>
-
-        function downloadVideo(file) {
-
-            try {
-
-                const link = document.createElement('a');
-                link.href = file;
-                link.download = file;
-                link.click();
-            } catch (error) {
-
-                console.error('download failed:', error);
-
-            }
-
-        }
-
-        const backToTopButton = document.getElementById("backToTop");
-
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 300) { // Show button after scrolling 300px
-            backToTopButton.style.display = "block";
-            } else {
-            backToTopButton.style.display = "none";
-            }
-        });
-
-        backToTopButton.addEventListener("click", () => {
-            window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-            });
-        });
-
-    </script>
 
 </body>
 
 </html>
 
---
 
-using above styling... create a ourgallery.html which will be a eautiful gallery hub for parables and platters... this is where we'll host our images statically. 
 
---
+
+
+
+
+
+
+
 
