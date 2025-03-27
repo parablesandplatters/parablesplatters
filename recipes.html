@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes - Chef's Guide</title>
+    <link rel="icon" href="images/jesuslogo_enef.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        header {
+            background: #e3c5a3;
+            width: 100%;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin: 0;
+            color: black;
+        }
+
+        .recipes-section {
+            width: 80%;
+            max-width: 1200px;
+            margin-top: 120px;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .recipe-drawer {
+            margin: 20px 0;
+            background-color: #e3c5a3;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .recipe-drawer h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .recipe-content {
+            display: none;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            text-align: left;
+        }
+
+        .recipe-drawer button {
+            background-color: #ff7b4b;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .recipe-drawer button:hover {
+            background-color: #ff4927;
+        }
+
+        .recipe-drawer button:focus {
+            outline: none;
+        }
+
+        footer {
+            background: #e3c5a3;
+            width: 100%;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            text-align: center;
+            color: black;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 720px) {
+            header {
+                padding: 15px;
+            }
+
+            .recipes-section {
+                width: 90%;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+        }
+
+        /* Animation for Drawer */
+        @keyframes slideAnimation {
+            0% {
+                transform: translateX(0);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .recipe-content.open {
+            animation: slideAnimation 0.5s forwards;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html" class="header-link" title="back to home page">
+            <h1>Chef's Recipes</h1>
+        </a>
+    </header>
+
+    <div class="recipes-section">
+        <h2>Welcome to our Chef's Recipe Collection</h2>
+        <p>Here are some of our favorite dishes with detailed cooking guides, perfect for every chef. Explore each recipe below and get cooking!</p>
+
+        <!-- Pap, Steak & Wors Recipe Drawer -->
+        <div class="recipe-drawer">
+            <h2>Pap, Steak & Wors</h2>
+            <button onclick="toggleRecipe(0)">View Recipe</button>
+            <div class="recipe-content">
+                <h3>Pap Recipe</h3>
+                <ul>
+                    <li>1L water</li>
+                    <li>2 cups maize meal</li>
+                    <li>2 cups water for mixing</li>
+                    <li>Salt (to taste)</li>
+                    <li>Whisk for stirring</li>
+                </ul>
+                <p>1. Boil the 1L water in a pot.</p>
+                <p>2. In a separate bowl, mix maize meal with 2 cups of water.</p>
+                <p>3. Gradually stir the maize meal mixture into the boiling water.</p>
+                <p>4. Stir continuously to avoid lumps. Be patient!</p>
+                <p>5. Let it cook on medium heat for 10 minutes.</p>
+                <p>6. Adjust thickness by adding more maize meal as needed. Cook for an additional 5 minutes for perfect consistency.</p>
+                <p>Enjoy your delicious pap!</p>
+            </div>
+        </div>
+
+        <!-- Pasta, Steak & Wors Recipe Drawer -->
+        <div class="recipe-drawer">
+            <h2>Pasta, Steak & Wors</h2>
+            <button onclick="toggleRecipe(1)">View Recipe</button>
+            <div class="recipe-content">
+                <h3>Pasta Recipe</h3>
+                <ul>
+                    <li>Lots of water</li>
+                    <li>Seasoning</li>
+                    <li>Olive oil to prevent sticking</li>
+                    <li>Salt, pepper, and olive oil for seasoning</li>
+                </ul>
+                <p>1. Boil plenty of water in a pot and add seasoning.</p>
+                <p>2. Add olive oil to prevent the pasta from sticking.</p>
+                <p>3. Once the water boils, add the pasta and stir gently with tongs.</p>
+                <p>4. Let it cook until 'al dente' (test by biting a strand).</p>
+                <p>5. Drain the pasta and mix with olive oil, salt, and pepper for a perfect dish!</p>
+                <p>Serve with steak and wors for a complete meal!</p>
+            </div>
+        </div>
+
+        <!-- Phuthu, Beef & Wors Recipe Drawer -->
+        <div class="recipe-drawer">
+            <h2>Phuthu, Beef & Wors</h2>
+            <button onclick="toggleRecipe(2)">View Recipe</button>
+            <div class="recipe-content">
+                <h3>Phuthu Recipe</h3>
+                <ul>
+                    <li>2 cups maize meal</li>
+                    <li>Water (adjust for consistency)</li>
+                    <li>Salt to taste</li>
+                </ul>
+                <p>1. Bring water to a boil in a large pot.</p>
+                <p>2. Gradually add maize meal while stirring to prevent lumps.</p>
+                <p>3. Let it cook for about 10-15 minutes, stirring occasionally.</p>
+                <p>4. Season with salt to taste and serve with beef and wors for a hearty meal!</p>
+            </div>
+        </div>
+
+        <!-- Additional Recipe Drawers can be added here in a similar way -->
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleRecipe(index) {
+            const recipeContents = document.querySelectorAll('.recipe-content');
+            const currentRecipe = recipeContents[index];
+            currentRecipe.classList.toggle('open');
+        }
+    </script>
+
+</body>
+
+</html>

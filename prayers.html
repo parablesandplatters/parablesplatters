@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <!-- // download company documents -->
 <html lang="en">
 
@@ -85,13 +85,12 @@
 
             width: 80%;
             max-width: 1200px;
-            background: #e3c5a3;
+            background: #e3c5a379;
             padding: 30px;
             border-radius: 10px;
             margin-top: 100px;
             margin-bottom: 100px;
             text-align: center;
-            background-color: #e3c5a3;
             transition: transform 0.5s ease;
             
         }
@@ -105,7 +104,7 @@
         .profile {
 
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 40px;
             padding: 20px;
 
@@ -113,14 +112,13 @@
 
         .profile-card {
 
-            background-color: #e3c5a3;
+            background-color: #fff;
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s ease;
             margin-bottom: 30px;
-            background-color: #fff;
 
         }
 
@@ -160,9 +158,6 @@
             margin-top: 50px;
             font-size: 1.1rem;
             color: #333;
-            background-color: #f3f3f3;
-            padding: 20px;
-            border-radius: 10px;
 
         }
 
@@ -183,7 +178,7 @@
 
         .social-icons a {
 
-            font-size: 50px;
+            font-size: 30px;
             color: #333;
             transition: color 0.3s ease;
 
@@ -205,19 +200,18 @@
             left: 0;
             text-align: center;
             color: black;
-            padding-bottom: 20px;
 
         }
 
         .download-section {
 
             margin-top: 30px;
-            
+
         }
 
         .download-button {
 
-            background-color: #ffff;
+            background-color: #e3c5a3;
             color: black;
             padding: 15px 30px;
             font-size: 1.2rem;
@@ -232,6 +226,48 @@
 
             background-color: #d0a37c;
             cursor: pointer;
+
+        }
+
+        .system-clearance {
+
+            background: #e3c5a3;
+            width: 10%;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            margin-right: 1005px;
+            margin-bottom: 30px;
+            color: black;
+            font-size: 15px;
+
+        }
+
+        .system-clearance:hover {
+
+            background: #e3c5a379;
+
+        }
+
+        .security {
+
+        background: #e3c5a3;
+        width: 10%;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        margin-right: 360px;
+        margin-bottom: 30px;
+        color: black;
+        font-size: 15px;
+
+        }
+
+        .security:hover {
+
+        background: #e3c5a379;
 
         }
 
@@ -274,13 +310,6 @@
 
             }
 
-            .profile {
-
-                grid-template-columns: 1fr;
-                gap: 20px;
-
-            }
-
         }
 
     </style>
@@ -290,19 +319,16 @@
 <body>
 
     <header>
-
-        <a href="menupage.html" class="header-link" title="back to main menu">
+        <a href="index.html" class="header-link" title="back to home page">
             <h1>About Us</h1>
         </a>
-
     </header>
 
     <section>
-        
         <h1>Company Leadership</h1>
         <br>
+        <br>
 
-        <div class="profile">
             <div class="profile-card">
                 <img src="images/hoss.png" alt="Hoss">
                 <h4>01. Hoss</h4>
@@ -320,7 +346,7 @@
             <div class="profile-card">
                 <img src="images/morpheus.jpg" alt="Olama Khayyim">
                 <h4>02. Olama Khayyim</h4>
-                <p>Chief Technology Officer (CTO), Business Manager (BM), Brand Ambassador & Co-Founder</p>
+                <p>Chief Technology Officer (CTO), Business Manager (BM) & Co-Founder</p>
                 <br>
                 <p>Age: 25</p>
                 <br>
@@ -332,8 +358,8 @@
             </div>
 
             <div class="profile-card">
-                <img src="images/masiya.jpg" alt="Masiya">
-                <h4>03. MaSiYa</h4>
+                <img src="images/olamakhayyim.jpeg" alt="Masiya">
+                <h4>03. MaSiya</h4>
                 <p>Lead Chef</p>
                 <br>
                 <p>Age: 29</p>
@@ -344,9 +370,7 @@
                 <br>
                 <p>Accolades: To be updated</p>
             </div>
-        </div>
 
-        <div class="profile">
             <div class="profile-card">
                 <img src="images/jr.jpg" alt="Junior">
                 <h4>04. Junior</h4>
@@ -388,9 +412,7 @@
                 <br>
                 <p>Accolades: to be updated</p>
             </div>
-        </div>
 
-        <div class="profile">
             <div class="profile-card">
                 <img src="images/meshack.jpg" alt="Meshack">
                 <h4>07. Meshack</h4>
@@ -406,7 +428,7 @@
             </div>
 
             <div class="profile-card">
-                <img src="images/queena.png" alt="Queena">
+                <img src="images/meshack.jpg" alt="Queena">
                 <h4>08. Queena</h4>
                 <p>Marketing Director & Driver</p>
                 <br>
@@ -420,7 +442,7 @@
             </div>
 
             <div class="profile-card">
-                <img src="images/michee.jpg!sw800" alt="Michee">
+                <img src="images/meshack.jpg" alt="Michee">
                 <h4>09. Michee</h4>
                 <p>Data Analyst</p>
                 <br>
@@ -432,9 +454,7 @@
                 <br>
                 <p>Accolades: to be updated</p>
             </div>
-        </div>
 
-        <div class="profile">
             <div class="profile-card">
                 <img src="images/leiroy.jpg" alt="Leiroy">
                 <h4>10. Leiroy</h4>
@@ -464,7 +484,7 @@
             </div>
 
             <div class="profile-card">
-                <img src="images/vuyo.jpg" alt="Vuyo">
+                <img src="images/meshack.jpg" alt="Vuyo">
                 <h4>11. Vuyo</h4>
                 <p>Salesman</p>
                 <br>
@@ -476,11 +496,9 @@
                 <br>
                 <p>Accolades: to be updated</p>
             </div>
-        </div>
 
-        <div class="profile">
             <div class="profile-card">
-                <img src="images/doc.jpg" alt="Doc">
+                <img src="images/meshack.jpg" alt="Doc">
                 <h4>12. Doc</h4>
                 <p>Driver/Senior Software Developer</p>
                 <br>
@@ -492,15 +510,13 @@
                 <br>
                 <p>Accolades: to be updated</p>
             </div>
-        </div>
 
-        <div class="download-section">
-            <a href="company documents/company documents.zip" download="company_documents.zip" class="download-button">Download Company Documents</a>
-        </div>            
+            <div class="download-section">
+                <a href="company documents/company documents.zip" download="company_documents.zip" class="download-button">Download Company Documents</a>
+            </div>            
 
         <div class="contact-info">
             <h3>Contact Information</h3>
-            <br>
             <p>Phone: <span id="phone-number">063 473 2453</span> 
                 | <a href="https://wa.me/27634732453" target="_blank">
                     <i class="fab fa-whatsapp"></i> WhatsApp
@@ -508,7 +524,7 @@
                 | <a href="tel:+27634732453">Call</a>
             </p>
 
-            <p>Email: <a href="mailto:parablesandplatters@outlook.com">parablesandplatters@outlook.com</a> 
+            <p>Email: <a href="mailto:parablesandplatters@outlook.com">parablesandplatters@outlook.com</a> |
                 <br>
                 <br>
                  <a href="mailto:parablesandplatters@gmail.com">parablesandplatters@gmail.com</a></p>
@@ -551,3 +567,42 @@
 </body>
 
 </html>
+
+--
+
+using above styling create a prayers.html page. I will type and upload prayers to this page statically now and again. add 4 of your own prayers for now. I will add more myself later. go all out on styling and make this very very long. 
+
+you can also put this one exactly as it is with no refinement. add more others of your own. -> 
+
+My LORD.
+
+I knew thee in the wilderness... in the land of
+great drought.
+
+According to my pasture, I Am filled... I Am filled with the Holy Ghost. 
+
+My heart is of peace and I have not forgotten you. 
+
+I will be unto you like a lion - like a Bull with His horns. 
+
+I will be like unto you as a leopard by thy wayside I'll observe.
+
+ndizoba ibhele baba... elinguKumkani.
+
+Yes my LORD I Am King, but I Am only King for you have ordained Me to be.
+
+I Am Forever and Glory and Peace and Power and I rain all Eternal songs unto Him.
+
+He. Him. Hima Shima. Mar Shaddai - Lord Hirashima. Worthy O' Art - Glory - Bully Almighty. Worthy is thine name. and thy glory. and Honour. Worthy O' Olashi - The ulimate king's honour. 
+
+--
+
+refine this prayer first though bro. 
+
+--
+
+
+
+
+
+

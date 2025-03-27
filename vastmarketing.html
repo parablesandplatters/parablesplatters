@@ -2,16 +2,12 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vast Marketing</title>
-
+    <title>Vast Marketing - Infinite Slideshow</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
     <link rel="icon" href="images/jesuslogo_enef.png" type="image/x-icon">
-
     <style>
         * {
             margin: 0;
@@ -21,124 +17,150 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: black;
-            color: #00ff00; /* Binary green color */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-            font-size: 2rem;
+            background-color: white;
+            padding: 20px;
             text-align: center;
-        }
-
-        .binary-stream {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            animation: binaryFlow 0.3s linear infinite;
-            white-space: nowrap;
+            min-height: 100vh;
         }
 
-        .binary-line {
-            font-family: 'Roboto', sans-serif;
-            font-size: 2rem;
-            animation: binaryFlowLine 15s linear infinite;
-            animation-delay: calc(0.1s * var(--line-number));
-        }
-
-        @keyframes binaryFlow {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(-100%);
-            }
-        }
-
-        @keyframes binaryFlowLine {
-            0% {
-                transform: translateY(100%);
-            }
-            100% {
-                transform: translateY(-100%);
-            }
-        }
-
-        /* Control binary flow speed */
-        .binary-line:nth-child(even) {
-            animation-duration: 18s;
-        }
-
-        .binary-line:nth-child(odd) {
-            animation-duration: 20s;
-        }
-
-        footer {
-            position: fixed;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
+        header {
+            width: 100%;
             background: #e3c5a3;
-            padding: 10px;
-            border-radius: 5px;
-            color: black;
-            font-size: 1rem;
+            padding: 20px;
+            font-size: 24px;
+            text-align: center;
+            box-shadow: 0 2px 15px rgba(255, 255, 255, 0.3);
+            z-index: 1000;
+            position: fixed;
+            top: 0;
+            left: 0;
         }
 
-        .back-to-menu {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            padding: 15px;
-            background-color: #e3c5a3;
-            color: black;
-            font-size: 1.2rem;
+        header h1 {
+            color: #333;
+            font-size: 2rem;
+        }
+
+        .header-link {
             text-decoration: none;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s ease;
+            color: inherit;
         }
 
-        .back-to-menu:hover {
-            background-color: #d0a37c;
+        .header-link:hover {
             cursor: pointer;
         }
 
-    </style>
+        .content {
+            margin-top: 120px;
+            width: 80%;
+            max-width: 1200px;
+            background: #e3c5a379;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
 
+        .content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        /* Slideshow Styles */
+        .slideshow-container {
+            width: 100%;
+            height: 600px;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid #e3c5a3;
+            margin-bottom: 20px;
+        }
+
+        .slideshow-images {
+            display: flex;
+            width: 400%; /* 4 images for a 100% width */
+            animation: slideAnimation 20s infinite linear;
+        }
+
+        .slideshow-images img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes slideAnimation {
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-100%);
+            }
+
+            50% {
+                transform: translateX(-200%);
+            }
+
+            75% {
+                transform: translateX(-300%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        footer {
+            background: #e3c5a3;
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+            color: black;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .content {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- Back to main menu link -->
-    <a href="menupage.html" class="back-to-menu">Back to Menu</a>
+    <header>
+        <a href="menupage.html" class="header-link" title="back to home page">
+            <h1>Vast Marketing - Infinite Slideshow</h1>
+        </a>
+    </header>
 
-    <div class="binary-stream">
-        <!-- Binary digits flowing animation -->
-        <div class="binary-line" style="--line-number: 1;">0101010101010101010101010101010101010101010101010101010101010101</div>
-        <div class="binary-line" style="--line-number: 2;">1010101010101010101010101010101010101010101010101010101010101010</div>
-        <div class="binary-line" style="--line-number: 3;">1111000000001111000000001111000000001111000000001111000000001111</div>
-        <div class="binary-line" style="--line-number: 4;">0000111100000000111100000000111100000000111100000000111100000000</div>
-        <div class="binary-line" style="--line-number: 5;">0101010101010101010101010101010101010101010101010101010101010101</div>
-        <div class="binary-line" style="--line-number: 6;">1010101010101010101010101010101010101010101010101010101010101010</div>
-        <div class="binary-line" style="--line-number: 7;">0110011001100110011001100110011001100110011001100110011001100110</div>
-        <div class="binary-line" style="--line-number: 8;">1001100110011001100110011001100110011001100110011001100110011001</div>
-        <div class="binary-line" style="--line-number: 9;">0101001010010100101001010010100101001010010100101001010010100101</div>
-        <div class="binary-line" style="--line-number: 10;">1010101010101010101010101010101010101010101010101010101010101010</div>
-        <div class="binary-line" style="--line-number: 11;">0111011101110111011101110111011101110111011101110111011101110111</div>
-        <div class="binary-line" style="--line-number: 12;">0011001100110011001100110011001100110011001100110011001100110011</div>
+    <div class="content">
+        <h2>Welcome to Our Vast Marketing Slideshow</h2>
+
+        <!-- Slideshow Container -->
+        <div class="slideshow-container">
+            <div class="slideshow-images">
+                <img src="images/hoss.png" alt="Advertisement 1">
+                <img src="images/frost.png" alt="Advertisement 2">
+                <img src="images/jr.jpg" alt="Advertisement 3">
+                <img src="images/leiroy.jpg" alt="Advertisement 4">
+            </div>
+        </div>
     </div>
 
     <footer>
-        <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
+        <p>&copy; 2025 Vast Marketing | All rights reserved.</p>
     </footer>
 
 </body>
