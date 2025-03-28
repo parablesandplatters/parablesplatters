@@ -1,5 +1,5 @@
-<!-- <!DOCTYPE html> 
-// download company documents
+<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -7,7 +7,8 @@
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
+
+    <title>Prayers</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
@@ -28,14 +29,14 @@
         body {
 
             font-family: 'Roboto', sans-serif;
-            background-color: white;
+            background-color: #f1f1f1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             min-height: 100vh;
-            text-align: center;
             padding: 20px;
+            text-align: center;
             animation: glow 2s infinite alternate;
 
         }
@@ -92,7 +93,7 @@
             margin-bottom: 100px;
             text-align: center;
             transition: transform 0.5s ease;
-            
+
         }
 
         h1 {
@@ -101,55 +102,35 @@
 
         }
 
-        .profile {
-
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 40px;
-            padding: 20px;
-
-        }
-
-        .profile-card {
+        .prayer-card {
 
             background-color: #fff;
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
+            text-align: left;
             margin-bottom: 30px;
+            transition: transform 0.3s ease;
+            font-size: 1.1rem;
 
         }
 
-        .profile-card:hover {
+        .prayer-card:hover {
 
             transform: scale(1.05);
 
         }
 
-        .profile-card img {
+        footer {
 
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-
-        }
-
-        .profile-card h4 {
-
-            font-size: 1.2rem;
-            color: #333;
-            margin-bottom: 10px;
-
-        }
-
-        .profile-card p {
-
-            font-size: 1rem;
-            color: #555;
+            background: #e3c5a3;
+            width: 100%;
+            padding-top: 10px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            text-align: center;
+            color: black;
 
         }
 
@@ -190,19 +171,6 @@
 
         }
 
-        footer {
-
-            background: #e3c5a3;
-            width: 100%;
-            padding-top: 10px;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            text-align: center;
-            color: black;
-
-        }
-
         .download-section {
 
             margin-top: 30px;
@@ -229,48 +197,6 @@
 
         }
 
-        .system-clearance {
-
-            background: #e3c5a3;
-            width: 10%;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            right: 0;
-            margin-right: 1005px;
-            margin-bottom: 30px;
-            color: black;
-            font-size: 15px;
-
-        }
-
-        .system-clearance:hover {
-
-            background: #e3c5a379;
-
-        }
-
-        .security {
-
-        background: #e3c5a3;
-        width: 10%;
-        padding: 10px;
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        margin-right: 360px;
-        margin-bottom: 30px;
-        color: black;
-        font-size: 15px;
-
-        }
-
-        .security:hover {
-
-        background: #e3c5a379;
-
-        }
-
         @media (max-width: 768px) {
 
             h1 {
@@ -285,31 +211,6 @@
 
             }
 
-            .profile-card img {
-
-                width: 120px;
-                height: 120px;
-
-            }
-
-            .profile-card h4 {
-
-                font-size: 1rem;
-
-            }
-
-            .profile-card p {
-
-                font-size: 0.9rem;
-
-            }
-
-            .contact-info p {
-
-                font-size: 1rem;
-
-            }
-
         }
 
     </style>
@@ -319,222 +220,56 @@
 <body>
 
     <header>
-        <a href="index.html" class="header-link" title="back to home page">
-            <h1>About Us</h1>
+        <a href="menupage.html" class="header-link" title="back to main menu">
+            <h1>Prayers</h1>
         </a>
     </header>
 
     <section>
-        <h1>Company Leadership</h1>
-        <br>
-        <br>
 
-            <div class="profile-card">
-                <img src="images/hoss.png" alt="Hoss">
-                <h4>01. Hoss</h4>
-                <p>Chief Innovations Officer (CIO) & Founder</p>
-                <br>
-                <p>Age: 22</p>
-                <br>
-                <p>Power: Sheer Will</p>
-                <br>
-                <p>Qualifications: National Senior Certificate (matric)</p>
-                <br>
-                <p>Accolades: To be updated</p>
-            </div>
+        <div class="prayer-card">
+            <h3>My LORD</h3>
+            <br>
+            <p>I knew Thee in the wilderness, O mighty One, when I wandered in the land of great drought and desolation.</p>
+            <br>
+            <p>When the sun scorched the earth and the winds blew with such fury that they seemed to tear apart the very soul of the land.</p>
+            <br>
+            <p>And it was in that barren place, amidst the silence of despair, I sought Thee with all My heart, for I knew that Thou art My only refuge.</p>
+            <br>
+            <p>It is there, in the wilderness, where My spirit was humbled and My Soul was tried, that I found Thee.</p>
+            <br>
+            <p>I found Thee, O LORD, as a shelter in My storm, as a fortress of strength in the midst of weakness, as a stream of living Eternity in the desert of My Soul.</p>
+            <br>
+            <p>According to My pasture, according to the measure of Thy Grace, I Am filled. I Am filled with the Holy Ghost.</p>
+            <br>
+            <p>I will be like unto You as a lion, a mighty beast of the field, strong and fierce, and protector of Thine inheritance.</p>
+            <br>
+            <p>I will be a Bull baba wami, with Thy mighty horns to trample down the enemy, and to stand as a sentinel in the land that Thou hast given.</p>
+            <br>
+            <p>I will be as a leopard by Thy wayside, swift and vigilant, watching over the path that Thou hast set for Me.</p>
+            <br>
+            <p>Ndizoba ibhele baba... elinguKumkani. Yea, my LORD, I proclaim. I Am Forever thine yours.</p>
+            <br>
+            <p>You Are My Song of Eternal Praise that resounds through All Infinity.</p>
+            <br>
+            <p>Glory be unto Thee, for Thou art the Eternal One, the beginning and the end, the Alpha and the Omega.</p>
+            <br>
+            <p>Thy Power is unmatched, Thy wisdom unsearchable, and Thy Love immeasurable.</p>
+            <br>
+            <p>Thou Art the source of All Life, the Giver of every good and perfect gift, and to Thee alone be all Glory, now and forevermore.</p>
+            <br>
+            <p>I rain Eternal songs unto Thee. Thy Name Is Great, and Greatly to be Praised.</p>
+            <br>
+            <p>Thy Glory is beyond all comprehension, and Thy Power is limitless.</p>
+            <br>
+            <p>He. Hima Shima. Mar Shaddai - Lord Hirashima.</p>
+            <br>
+            <p>Worthy thou art... Worthy Is the King of Glory.</p>
+            <br>
+        </div>
 
-            <div class="profile-card">
-                <img src="images/morpheus.jpg" alt="Olama Khayyim">
-                <h4>02. Olama Khayyim</h4>
-                <p>Chief Technology Officer (CTO), Business Manager (BM) & Co-Founder</p>
-                <br>
-                <p>Age: 25</p>
-                <br>
-                <p>Power: Yeshua Meshikha</p>
-                <br>
-                <p>Qualifications: Graduated with an NQF-4 Information Technology certificate @ Richfield Graduate Institute of Technology (year of 2019)</p>
-                <br>
-                <p>Accolades: To be updated</p>
-            </div>
-
-            <div class="profile-card">
-                <img src="images/olamakhayyim.jpeg" alt="Masiya">
-                <h4>03. MaSiya</h4>
-                <p>Lead Chef</p>
-                <br>
-                <p>Age: 29</p>
-                <br>
-                <p>Power: People</p>
-                <br>
-                <p>Qualifications: National Senior Certificate (matric)</p>
-                <br>
-                <p>Accolades: To be updated</p>
-            </div>
-
-            <div class="profile-card">
-                <img src="images/jr.jpg" alt="Junior">
-                <h4>04. Junior</h4>
-                <p>Supporting Chef</p>
-                <br>
-                <p>Age: 18</p>
-                <br>
-                <p>Power: Creative Arts</p>
-                <br>
-                <p>Qualifications: National Senior Certificate (matric)</p>
-                <br>
-                <p>Accolades: To be updated</p>
-            </div>
-
-            <div class="profile-card">
-                <img src="images/jono.jpeg" alt="Jonathan Amoah">
-                <h4>05. Jonathan Amoah</h4>
-                <p>Senior Marketing Director (SMD)</p>
-                <br>
-                <p>Age: 18</p>
-                <br>
-                <p>Power: Soccer</p>
-                <br>
-                <p>Qualifications: currently in grade 12</p>
-                <br>
-                <p>Accolades: Several dozen gold, silver, and bronze medals and cups for playing soccer exceptionally</p>
-            </div>
-
-            <div class="profile-card">
-                <img src="images/frost.jpg" alt="Frost">
-                <h4>06. Frost</h4>
-                <p>Head of Transport & Logistics</p>
-                <br>
-                <p>Age: 23</p>
-                <br>
-                <p>Power: Subtility</p>
-                <br>
-                <p>Qualifications: National Senior Certificate (matric)</p>
-                <br>
-                <p>Accolades: to be updated</p>
-            </div>
-
-            <div class="profile-card">
-                <img src="images/meshack.jpg" alt="Meshack">
-                <h4>07. Meshack</h4>
-                <p>Senior Sales Manager</p>
-                <br>
-                <p>Age: to be updated</p>
-                <br>
-                <p>Power: Rapping</p>
-                <br>
-                <p>Qualifications: National Senior Certificate (matric)</p>
-                <br>
-                <p>Accolades: to be updated</p>
-            </div>
-
-            <div class="profile-card">
-                <img src="images/meshack.jpg" alt="Queena">
-                <h4>08. Queena</h4>
-                <p>Marketing Director & Driver</p>
-                <br>
-                <p>Age: to be updated</p>
-                <br>
-                <p>Power: to be updated</p>
-                <br>
-                <p>Qualifications: National Senior Certificate (Matric)</p>
-                <br>
-                <p>Accolades: to be updated</p>
-            </div>
-
-            <div class="profile-card">
-                <img src="images/meshack.jpg" alt="Michee">
-                <h4>09. Michee</h4>
-                <p>Data Analyst</p>
-                <br>
-                <p>Age: to be updated</p>
-                <br>
-                <p>Power: to be updated</p>
-                <br>
-                <p>Qualifications: to be updated</p>
-                <br>
-                <p>Accolades: to be updated</p>
-            </div>
-
-            <div class="profile-card">
-                <img src="images/leiroy.jpg" alt="Leiroy">
-                <h4>10. Leiroy</h4>
-                <p>Driver</p>
-                <br>
-                <p>Age: 25</p>
-                <br>
-                <p>Power: to be updated</p>
-                <br>
-                <p>Qualifications: to be updated</p>
-                <br>
-                <p>Accolades: to be updated</p>
-            </div>
-
-            <div class="profile-card">
-                <img src="images/putin.png" alt="Bayanda">
-                <h4>11. Bayanda</h4>
-                <p>Salesman & Junior Software Developer</p>
-                <br>
-                <p>Age: to be updated</p>
-                <br>
-                <p>Power: ladies</p>
-                <br>
-                <p>Qualifications: still in high school</p>
-                <br>
-                <p>Accolades: to be updated</p>
-            </div>
-
-            <div class="profile-card">
-                <img src="images/meshack.jpg" alt="Vuyo">
-                <h4>11. Vuyo</h4>
-                <p>Salesman</p>
-                <br>
-                <p>Age: to be updated</p>
-                <br>
-                <p>Power: to be updated</p>
-                <br>
-                <p>Qualifications: still in high school</p>
-                <br>
-                <p>Accolades: to be updated</p>
-            </div>
-
-            <div class="profile-card">
-                <img src="images/meshack.jpg" alt="Doc">
-                <h4>12. Doc</h4>
-                <p>Driver/Senior Software Developer</p>
-                <br>
-                <p>Age: to be updated</p>
-                <br>
-                <p>Power: to be updated</p>
-                <br>
-                <p>Qualifications: Computer Science Degree @ Richfield Graduate Institute of Technology</p>
-                <br>
-                <p>Accolades: to be updated</p>
-            </div>
-
-            <div class="download-section">
-                <a href="company documents/company documents.zip" download="company_documents.zip" class="download-button">Download Company Documents</a>
-            </div>            
-
-        <div class="contact-info">
-            <h3>Contact Information</h3>
-            <p>Phone: <span id="phone-number">063 473 2453</span> 
-                | <a href="https://wa.me/27634732453" target="_blank">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </a> 
-                | <a href="tel:+27634732453">Call</a>
-            </p>
-
-            <p>Email: <a href="mailto:parablesandplatters@outlook.com">parablesandplatters@outlook.com</a> |
-                <br>
-                <br>
-                 <a href="mailto:parablesandplatters@gmail.com">parablesandplatters@gmail.com</a></p>
-            <div class="social-icons">
-
-                <a href="https://x.com/p_platters" target="_blank"><i class="fab fa-x"></i></a>
-                <a href="https://www.instagram.com/parablesandplatters" target="_blank"><i class="fab fa-instagram"></i></a>
-
-            </div>
-
+        <div class="prayer-card">
+            <h3>Pending...</h3>
         </div>
 
     </section>
@@ -543,64 +278,14 @@
         <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
     </footer>
 
-    <script>
-
-        const backToTopButton = document.getElementById("backToTop");
-
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 300) {
-                backToTopButton.style.display = "block";
-            } else {
-                backToTopButton.style.display = "none";
-            }
-        });
-
-        backToTopButton.addEventListener("click", () => {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-            });
-        });
-
-    </script>
-
 </body>
 
-</html> -->
+</html>
 
---
 
-<!-- using above styling create a prayers.html page. I will type and upload prayers to this page statically now and again. add 4 of your own prayers for now. I will add more myself later. go all out on styling and make this very very long. 
 
-you can also put this one exactly as it is with no refinement. add more others of your own. -> 
 
-My LORD.
 
-I knew thee in the wilderness... in the land of
-great drought.
-
-According to my pasture, I Am filled... I Am filled with the Holy Ghost. 
-
-My heart is of peace and I have not forgotten you. 
-
-I will be unto you like a lion - like a Bull with His horns. 
-
-I will be like unto you as a leopard by thy wayside I'll observe.
-
-ndizoba ibhele baba... elinguKumkani.
-
-Yes my LORD I Am King, but I Am only King for you have ordained Me to be.
-
-I Am Forever and Glory and Peace and Power and I rain all Eternal songs unto Him.
-
-He. Him. Hima Shima. Mar Shaddai - Lord Hirashima. Worthy O' Art - Glory - Bully Almighty. Worthy is thine name. and thy glory. and Honour. Worthy O' Olashi - The ulimate king's honour. 
-
---
-
-refine this prayer first though bro. 
-
---
- -->
 
 
 

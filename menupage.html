@@ -137,6 +137,13 @@
 
         }
 
+        .error-message {
+
+            color: red;
+            font-weight: bold;
+
+        }
+
     </style>
 
 </head>
@@ -171,35 +178,61 @@
 
             <a href="kjvbible.html" class="menu-button" title="KJV Bible">KJV Bible</a>
 
-            <a href="recipes.html" class="menu-button" title="Recipes">Recipes</a>
+            <a href="recipes.html" class="menu-button" title="Recipes" onclick="checkPin(event, 'recipes.html')">Recipes</a>
 
             <a href="prayers.html" class="menu-button" title="Prayers">Prayers</a>
 
             <a href="cinema.html" class="menu-button" title="Cinema">Cinema</a>
 
-            <a href="stockintake.html" class="menu-button" title="Stock Intake">Stock Intake</a>
+            <a href="stockintake.html" class="menu-button" title="Stock Intake" onclick="checkPin(event, 'stockintake.html')">Stock Intake</a>
 
             <a href="customerservice.html" class="menu-button" title="Customer Service">Customer Service</a>
 
             <a href="digitaltransactions.html" class="menu-button" title="Digital Transactions">Digital Transactions</a>
 
-            <a href="carinventory.html" class="menu-button" title="Car Inventory">Car Inventory</a>
+            <a href="carinventory.html" class="menu-button" title="Car Inventory" onclick="checkPin(event, 'carinventory.html')">Car Inventory</a>
 
-            <a href="communicationprotocol.html" class="menu-button" title="communication protocol">Communication Protocol</a>
+            <a href="communicationprotocol.html" class="menu-button" title="Communication Protocol" onclick="checkPin(event, 'communicationprotocol.html')">Communication Protocol</a>
 
-            <a href="companyfootball.html" class="menu-button" title="company football">Company Football</a>
+            <a href="companyfootball.html" class="menu-button" title="Company Football">Company Football</a>
 
-            <a href="moreoftheedengroup.html" class="menu-button" title="more of the eden group">More of the Eden Group</a>
+            <a href="moreoftheedengroup.html" class="menu-button" title="More of the Eden Group">More of the Eden Group</a>
 
-            <a href="ourgallery.html" class="menu-button" title="our gallery">Our Gallery</a>
+            <a href="ourgallery.html" class="menu-button" title="Our Gallery">Our Gallery</a>
 
+            <a href="physicalfranchises.html" class="menu-button" title="Our Physical Franchises">Our Physical Franchises</a>
+
+            <a href="sellingspots.html" class="menu-button" title="Selling Spots" onclick="checkPin(event, 'sellingspots.html')">Selling Spots</a>
+
+            <a href="safehouse.html" class="menu-button" title="safe house">safe house</a>
+            
         </div>
+
+        <div id="error-message" class="error-message"></div>
 
     </section>
 
     <footer>
         <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
     </footer>
+
+    <script>
+        const correctPin = "2023";
+
+        function checkPin(event, targetPage) {
+
+            event.preventDefault(); // Prevent the default link action
+            const pin = prompt("Please enter the admin PIN:");
+            
+            if (pin === correctPin) {
+                window.location.href = targetPage; // Redirect to the desired page
+            } else {
+                document.getElementById("error-message").textContent = "Incorrect PIN. Please try again.";
+            }
+
+        }
+
+    </script>
 
 </body>
 
