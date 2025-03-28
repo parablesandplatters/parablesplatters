@@ -207,13 +207,33 @@
             text-align: left;
             width: 500px;
             height: 500px;
+            overflow-y: auto; /* Add scroll when content overflows */
+
+        }
+
+        .close-btn {
+
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #333;
+            cursor: pointer;
+
+        }
+
+        .close-btn:hover {
+
+            color: #e3c5a3;
 
         }
 
         .popup input,
         .popup textarea {
 
-            width: 70%;
+            width: 80%;
             padding: 10px;
             margin: 5px 0;
             border: 1px solid #ccc;
@@ -480,18 +500,8 @@
 
             .popup {
 
-                display: none;
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: rgba(255, 255, 255, 0.9);
-                color: #000;
-                padding: 20px;
-                border-radius: 10px;
-                z-index: 1001;
-                text-align: left;
-                width: 300px;
+                max-height: 70vh; /* Limit max height on mobile */
+                width: 80%;
 
             }
 
@@ -632,6 +642,8 @@
 
     <div class="popup" id="orderForm">
         <h2>Order Details</h2>
+
+        <button type="button" class="close-btn" onclick="closeForm()" title="Close">X</button>
     
         <form id="orderDetails" action="https://formspree.io/f/manqrkpv" method="POST" onsubmit="return validateForm()">
             <input type="hidden" name="item" id="item">
