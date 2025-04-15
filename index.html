@@ -495,7 +495,7 @@
 
             h2 {
 
-                font-size: 27px;
+                font-size: 23px;
             }
 
             .popup {
@@ -562,26 +562,25 @@
 
             }
 
-            /* Shared properties for all elements */
             .menupage {
+
                 background: #e3c5a3;
                 position: fixed;
-                width: 10%;
+                width: 11%;
                 bottom: 0;
                 right: 0;
-                margin-right: 18px;
+                margin-right: 20px;
                 margin-bottom: 140px;
                 color: black;
                 border: none;
                 padding: 10px;
                 border-radius: 5px;
                 cursor: pointer;
-                font-size: 8px;
+                font-size: 9px;
                 z-index: 1000;
 
             }
 
-            /* Hover effect for all elements */
             .menuupage:hover {
 
                 background: #e3c5a379;
@@ -615,16 +614,6 @@
             <p class="price">price: R50</p>
             <p>details: pap, steak, wors, sambles, coleslaw</p>
             <button onclick="showOrderForm('pap, steak & wors', 'R50', 'pap, steak, wors, sambles', 'images/papsteakwors.jpg')" id="ordernow" title="click to order now">order now</button>
-
-        </div>
-
-        <div class="menu-item">
-
-            <img src="images/champion.jpg" alt="pasta mac">
-            <h2>the champion (will be available soon)</h2>
-            <p class="price">price: R50</p>
-            <p>details: phuthu, wors, beef, sambles, and grape coo-ee</p>
-            <!-- <button onclick="showOrderForm('the champion', 'R50', 'phuthu, wors, beef, sambles, and grape coo-ee.', 'images/champion.jpg')" id="ordernow" title="click to order now">order now</button> -->
 
         </div>
 
@@ -668,44 +657,19 @@
             <br>
             <span id="emailError" class="error-message" style="color: red; display: none;">Please enter a valid email address.</span>
     
-            <!-- Company Dropdown -->
-            <label for="company">Company:</label>
+            <!-- Location -->
+            <label for="company">Location:</label>
+            <p>on our next update, you will be able to choose your precise location. please be patient with us as our software development team fine-tunes this. meanwhile, please choose from the list of options down below on the dropdown, and we will contact you for a precise location.</p>
             <select name="company" id="company" required>
-                <option value="">Select a Company</option>
-                <option value="cci">CCI</option>
-                <option value="nutun">Nutun</option>
-                <option value="ignition">Ignition</option>
-                <option value="outworx">Outworx</option>
-                <option value="bespoke">BeSpoke International Group</option>
-                <option value="uconnect">Uconnect @ hillcrest</option>
+                <option value="cbd">Durban CBD - The Market</option>
+                <option value="cbd">Durban CBD - Harbour Side</option>
+                <option value="cbd">Durban CBD - Workshop Side</option>
             </select>
             <br>
             <span id="companyError" class="error-message" style="color: red; display: none;">Please select a company.</span>
 
-            <!-- Time Selection -->
-            <label for="time">Select Time:</label>
-            <select name="time" id="time" required>
-                <option value="">Select Time</option>
-                <option value="00:00">00:00</option>
-                <option value="01:00">01:00</option>
-                <option value="02:00">02:00</option>
-                <option value="03:00">03:00</option>
-                <option value="03:30">03:30</option>
-                <option value="08:00">08:00</option>
-                <option value="10:00">10:00</option>
-                <option value="12:00">12:00</option>
-                <option value="14:00">14:00</option>
-                <option value="14:00">14:00</option>
-                <option value="16:00">16:00</option>
-                <option value="18:00">18:00</option>
-                <option value="20:00">20:00</option>
-                <option value="22:00">22:00</option>
-            </select>
-            <br>
-            <span id="timeError" class="error-message" style="color: red; display: none;">Please select a time.</span>
-
             <!-- Quantity Field -->
-            <label for="quantity">How Many?:</label>
+            <label for="quantity">Quantity/How Many?:</label>
             <input type="number" name="quantity" id="quantity" required>
             <br>
             <span id="quantity" class="error-message" style="color: red; display: none;">How many of this do you want to order?</span>
@@ -827,6 +791,8 @@
 </body>
 
 </html>
+
+<!-- digital transactions are coming soon... just awaiting our business bank account... these directors though are delaying. -->
 
 
 
