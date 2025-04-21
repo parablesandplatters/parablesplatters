@@ -100,14 +100,22 @@
             overflow: hidden;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
+            max-height: 300px;
 
         }
 
         .gallery-item img {
 
-            width: 100%;
-            height: auto;
+            max-width: 500px;
+            height: 100%;
             display: block;
+
+        }
+
+        .gallery-item video {
+
+            width: 345px;
+            height: 100%;
 
         }
 
@@ -160,7 +168,16 @@
 
             .gallery-item img {
 
-                height: auto;
+
+                max-height: 500px;
+                max-width: 500px;
+
+            }
+
+            .gallery-item video {
+
+                width: 410px;
+                height: 100%;
 
             }
 
@@ -193,6 +210,12 @@
                 <img src="our gallery/hm.jpg" alt="Gallery Image 2">
             </div>
 
+            <div class="gallery-item">
+                <video controls>
+                <source src="our gallery/morning prep..mp4" type=video/mp4 alt="Gallery Image 3">
+                </video>
+            </div>
+
         </div>
 
     </div>
@@ -204,6 +227,8 @@
 </body>
 
 </html>
+
+<!-- make everything fit accordingly here -->
 
 
 
