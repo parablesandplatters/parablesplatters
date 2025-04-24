@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Stock Management</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+
+  <link rel="icon" href="01. images/jesuslogo_enef.png" type="image/x-icon">
+
+  <style>
+
+    body {
+
+      font-family: 'Roboto', sans-serif;
+      background-color: #fffdf9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+    }
+
+    header, footer {
+
+      background: #e3c5a3;
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+      position: sticky;
+      color: #333;
+      text-decoration: none;
+
+    }
+
+    header {
+
+      top: 0;
+      z-index: 1000;
+      text-decoration: none;
+
+    }
+
+    footer {
+
+      bottom: 0;
+      font-size: 14px;
+
+    }
+
+    h1 {
+
+      margin: 0;
+      font-size: 36px;
+      color: black;
+
+    }
+
+    .stock-section {
+
+      width: 90%;
+      max-width: 1200px;
+      margin: 120px auto 100px;
+      padding: 20px;
+      background: #f8f4ee;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+
+    }
+
+    .stock-section h2 {
+
+      font-size: 28px;
+      margin-bottom: 15px;
+
+    }
+
+    .stock-list {
+
+      list-style: none;
+      padding: 0;
+
+    }
+
+    .stock-item {
+
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      background: #fff;
+      margin-bottom: 10px;
+      padding: 12px;
+      border-radius: 8px;
+      border-left: 6px solid #e3c5a3;
+      transition: background 0.2s ease;
+
+    }
+
+    .stock-item:hover {
+
+      background: #f5e9dc;
+
+    }
+
+    .stock-item input[type="checkbox"] {
+
+      margin-right: 10px;
+
+    }
+
+    .desc {
+
+      flex: 1;
+
+    }
+
+    .stock-item input[type="number"] {
+
+      width: 80px;
+      margin-left: 10px;
+      padding: 5px;
+
+    }
+
+    .total {
+
+      text-align: right;
+      font-weight: bold;
+      font-size: 20px;
+      margin-top: 20px;
+
+    }
+
+    .form-add {
+
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+
+    }
+
+    .form-add input, .form-add button {
+
+      padding: 10px;
+      font-size: 14px;
+
+    }
+
+    .form-add input {
+
+      flex: 1;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+
+    }
+
+    .form-add button {
+
+      background-color: #e3c5a3;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+
+    }
+
+    .form-add button:hover {
+
+      background-color: #d6b58f;
+
+    }
+
+    .export-buttons {
+
+      text-align: right;
+      margin-top: 20px;
+
+    }
+
+    .export-buttons button {
+
+      margin-left: 10px;
+      padding: 10px 15px;
+      background-color: #d8c3a5;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+
+    }
+
+    .export-buttons button:hover {
+
+      background-color: #cdb495;
+
+    }
+
+    @media (max-width: 720px) {
+
+      h1 {
+
+        font-size: 24px;
+
+      }
+
+      .stock-item {
+
+        flex-direction: column;
+        align-items: flex-start;
+
+      }
+
+      .desc {
+
+        margin-bottom: 5px;
+
+      }
+
+      .form-add {
+
+        flex-direction: column;
+
+      }
+
+      .total, .export-buttons {
+
+        text-align: center;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+  <header>
+    <a href="menupage.html" style="text-decoration: none;"><h1 title="back to main menu">Stock Management</h1></a>
+  </header>
+
+  <div class="stock-section">
+    <h2>Inventory Checklist</h2>
+    <ul class="stock-list" id="stockList"></ul>
+
+    <div class="total" id="totalCost">Total: R0</div>
+
+    <div class="form-add">
+      <input type="text" id="newItemName" placeholder="Item Name" required />
+      <input type="text" id="newItemSource" placeholder="Source" required />
+      <input type="number" id="newItemPrice" placeholder="Price (optional)" min="0"/>
+      <button onclick="addItem()">Add Item</button>
+    </div>
+
+    <div class="export-buttons">
+      <button onclick="exportList('txt')">Export as .TXT</button>
+      <button onclick="exportList('csv')">Export as .CSV</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
+  </footer>
+
+  <script>
+
+    let items = [
+      { name: "Maize", source: "Shoprite" },
+      { name: "Pasta", source: "Shoprite" },
+      { name: "Pasta Sauce", source: "Shoprite" },
+      { name: "Steak", source: "Delta" },
+      { name: "Wors", source: "Force" },
+      { name: "Storage Containers", source: "Spar Passage", price: 125 },
+      { name: "Polyester Containers", source: "Bargain Basket" },
+      { name: "Sambles Cups", source: "Bargain Basket", price: 40 },
+      { name: "Tomatoes, and onions", source: "The Market" },
+      { name: "Chillies", source: "James' Tuck Shop @ Savannah Park", price: 10 },
+      { name: "Vinegar", source: "James' Tuck Shop @ Savannah Park", price: 10 },
+      { name: "Cutlery", source: "Bargain Basket" }
+    ];
+
+    const stockList = document.getElementById('stockList');
+    const totalCostEl = document.getElementById('totalCost');
+
+    function renderList() {
+      stockList.innerHTML = '';
+      items.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.className = 'stock-item';
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+
+        const desc = document.createElement('div');
+        desc.className = 'desc';
+        desc.innerHTML = `<strong>${item.name}</strong> - ${item.source}`;
+
+        const priceInput = document.createElement('input');
+        priceInput.type = 'number';
+        priceInput.placeholder = 'Price (R)';
+        priceInput.value = item.price || '';
+        priceInput.min = 0;
+        priceInput.addEventListener('input', updateTotal);
+
+        li.appendChild(checkbox);
+        li.appendChild(desc);
+        li.appendChild(priceInput);
+
+        stockList.appendChild(li);
+      });
+
+      updateTotal();
+    }
+
+    function updateTotal() {
+      let total = 0;
+      const prices = document.querySelectorAll('.stock-item input[type="number"]');
+      prices.forEach(input => {
+        const value = parseFloat(input.value);
+        if (!isNaN(value)) {
+          total += value;
+        }
+      });
+      totalCostEl.textContent = `Total: R${total.toFixed(2)}`;
+    }
+
+    function addItem() {
+      const name = document.getElementById('newItemName').value.trim();
+      const source = document.getElementById('newItemSource').value.trim();
+      const price = parseFloat(document.getElementById('newItemPrice').value.trim());
+
+      if (name && source) {
+        const newItem = { name, source };
+        if (!isNaN(price)) newItem.price = price;
+        items.push(newItem);
+        renderList();
+
+        // Reset fields
+        document.getElementById('newItemName').value = '';
+        document.getElementById('newItemSource').value = '';
+        document.getElementById('newItemPrice').value = '';
+      } else {
+        alert("Please enter both item name and source.");
+      }
+    }
+
+    function exportList(type) {
+      let content = '';
+      const rows = [['Item', 'Source', 'Price']];
+      const inputs = document.querySelectorAll('.stock-item');
+
+      inputs.forEach(row => {
+        const name = row.querySelector('.desc strong')?.textContent || '';
+        const text = row.querySelector('.desc')?.textContent.replace(name, '').trim().replace(' - ', '') || '';
+        const price = row.querySelector('input[type="number"]')?.value || '0';
+        rows.push([name, text, `R${price}`]);
+      });
+
+      if (type === 'csv') {
+        content = rows.map(r => r.join(',')).join('\n');
+        download('stock_inventory.csv', content);
+      } else {
+        content = rows.map(r => r.join(' - ')).join('\n');
+        download('stock_inventory.txt', content);
+      }
+    }
+
+    function download(filename, content) {
+      const blob = new Blob([content], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      link.click();
+    }
+
+    renderList();
+
+  </script>
+
+</body>
+
+</html>
+
+<!-- link with database -->
+
+
+
+
