@@ -798,6 +798,136 @@
 
 
 
+--
+
+<!-- To implement a unique order number for customers upon successful order submission, we can generate a random order number, display it in the success popup, and allow the user to copy it for future reference. We will also ensure error handling and that the order number is associated with the user's order.
+
+Here's how you can modify your code to achieve this:
+
+Key Additions:
+Order Number Generation: We'll generate a unique order number when the order is successfully placed.
+
+Display Order Number: Once the order is placed successfully, the order number will be shown in the popup.
+
+Copy Order Number: Add a button to allow the customer to copy the order number.
+
+Update the Form: Display the order number in the success popup.
+
+Here's how you can modify your current code to implement the order number feature:
+
+Step 1: Modify the Success Popup to Include the Order Number
+Add a new section in the success popup that displays the order number and includes a copy button.
+
+html
+Copy
+Edit
+<div class="popup" id="popupMessage" style="display:none;">
+    <p id="popupMessageText"></p>
+    <button id="copyOrderNumber" style="display:none;" onclick="copyOrderNumber()">Copy Order Number</button>
+</div>
+Step 2: Modify the JavaScript to Generate the Order Number and Handle Copying
+Update the JavaScript to generate a unique order number and display it in the popup.
+
+javascript
+Copy
+Edit
+// Function to handle form submission
+document.getElementById('orderDetails').addEventListener('submit', function(event) {
+
+    event.preventDefault(); // Prevent default form submission
+
+    fetch(this.action, {
+        method: this.method,
+        body: new FormData(this),
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
+            const orderNumber = generateOrderNumber(); // Generate unique order number
+            showPopup(`Order placed successfully! Your order number is: ${orderNumber}`, false);
+            this.reset(); // reset form
+            closeForm(); // close form after successful submission
+        } else {
+            throw new Error('Network response was not ok.');
+        }
+    }).catch(error => {
+        showPopup("There was a problem with your submission. Please try again.", true);
+    });
+
+});
+
+// Function to generate a unique order number
+function generateOrderNumber() {
+    const prefix = "ORD";
+    const date = new Date();
+    const timestamp = date.getTime();
+    const randomNum = Math.floor(Math.random() * 10000);
+    return `${prefix}-${timestamp}-${randomNum}`;
+}
+
+// Function to show success and failure popups
+function showPopup(message, isFailure) {
+    const popup = document.getElementById('popupMessage');
+    const copyButton = document.getElementById('copyOrderNumber');
+    popup.textContent = message;
+    
+    if (message.includes("Your order number is:")) {
+        // If the message contains an order number, show the copy button
+        copyButton.style.display = 'block';
+    } else {
+        copyButton.style.display = 'none';
+    }
+
+    popup.style.display = 'block';
+    popup.className = isFailure ? 'popup failure' : 'popup success';
+
+    // Hide popup after a few seconds
+    setTimeout(() => {
+        popup.style.display = 'none';
+    }, 4000); // Adjust timeout duration as needed
+}
+
+// Function to copy the order number to clipboard
+function copyOrderNumber() {
+    const popupMessageText = document.getElementById('popupMessageText').textContent;
+    const orderNumber = popupMessageText.match(/Your order number is: (.+)/)[1];
+    
+    const textArea = document.createElement('textarea');
+    textArea.value = orderNumber;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+
+    alert("Order number copied to clipboard!");
+}
+Key Changes in the JavaScript:
+generateOrderNumber(): A function to create a unique order number by combining a prefix (ORD), timestamp (to make it unique), and a random number.
+
+showPopup(): If the order number is generated, the popup message will display it and show a "Copy Order Number" button.
+
+copyOrderNumber(): This function allows the user to copy the generated order number to the clipboard.
+
+Step 3: Display the Order Number in the Success Popup
+Modify the showPopup() function to display the order number in the popup message. If the order is placed successfully, the popup will show something like this:
+
+"Order placed successfully! Your order number is: ORD-1619180289573-1234"
+
+The "Copy Order Number" button will allow the user to copy this order number.
+
+With these changes, when a customer places an order, they will be shown a unique order number that they can copy for future reference. The order number is tied to their submission, and this can be used later for tracking or contact purposes.
+
+Let me know if you need further help with this!
+ -->
+
+
+
+
+
+
+
+
 
 
 
