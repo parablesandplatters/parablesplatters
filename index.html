@@ -374,6 +374,13 @@
 
         }
 
+        .fade-image {
+
+            transition: opacity 1s ease-in-out;
+            opacity: 1;
+
+        }
+
         @media (max-width: 768px) {
 
             body {
@@ -609,11 +616,21 @@
 
         <div class="menu-item">
 
-            <img src="01. images/pap_wors_beans.jpg" alt="pasta mac" title="hmmm... yummy!">
+            <img id="slideshowImage" class="fade-image" src="01. images/pap_wors_beans.jpg" alt="Pap, Wors & Beans Curry" title="hmmm... yummy!">
             <h2>Pap, Wors & Beans Curry</h2>
             <p class="price">price: R25</p>
-            <p>details: pap, steak, wors, sambles, coleslaw.</p>
-            <button onclick="showOrderForm('pap, wors & beans curry', 'R25', 'pap, steak, wors, sambles', '01. images/pap_wors_beans.jpg')" id="ordernow" title="click to order now">order now</button>
+            <p>details: pap, wors, beans curry, chilli & coleslaw.</p>
+            <button onclick="showOrderForm('pap, wors & beans curry', 'R25', 'pap, wors, beans curry, chilli & coleslaw', '01. images/pap_wors_beans.jpg')" id="ordernow" title="click to order now">order now</button>
+
+        </div>
+
+        <div class="menu-item">
+
+            <img id="slideshowImage" class="fade-image" src="01. images/macaroni.jpg" alt="Macaroni, Wors & Tomato Curry" title="hmmm... yummy!">
+            <h2>Macaroni, Wors & Tomato Curry</h2>
+            <p class="price">price: R25</p>
+            <p>details: macaroni, wors, tomato curry, chilli & coleslaw.</p>
+            <button onclick="showOrderForm('macaroni, wors & tomato curry', 'R25', 'macaroni, wors, tomato curry, chilli & coleslaw.', '01. images/pap_wors_beans.jpg')" id="ordernow" title="click to order now">order now</button>
 
         </div>
 
@@ -695,6 +712,9 @@
             <!-- Submit and Cancel Buttons -->
             <button type="submit" title="Click now to submit your order">Submit Order</button>
             <button type="button" onclick="closeForm()" title="Cancel">Cancel</button>
+
+            <input type="hidden" name="orderNumber" id="orderNumber">
+
         </form>
     </div>
     
@@ -738,9 +758,17 @@
         }
 
         // Function to handle form submission
-        document.getElementById('orderDetails').addEventListener('submit', function(event) {
 
+        document.getElementById('orderDetails').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
+
+            // Generate unique order number
+            const now = new Date();
+            const datePart = now.toISOString().slice(2, 10).replace(/-/g, ''); // e.g. "250518"
+            const randomPart = Math.floor(1000 + Math.random() * 9000); // random 4-digit number
+            const orderNum = `PP-${datePart}-${randomPart}`; // e.g. "PP-250518-4829"
+
+            document.getElementById('orderNumber').value = orderNum;
 
             fetch(this.action, {
                 method: this.method,
@@ -750,31 +778,44 @@
                 }
             }).then(response => {
                 if (response.ok) {
-                    showPopup("order placed successfully!", false);
-                    this.reset(); // reset form
-                    closeForm(); // close form after successful submission
+                    showPopup("Order placed successfully! Your order number is: " + orderNum, false, orderNum);
+                    this.reset(); // Reset form
+                    closeForm(); // Close form after successful submission
                 } else {
-                    throw new Error('network response was not ok.');
+                    throw new Error('Network response was not ok.');
                 }
             }).catch(error => {
-                showPopup("there was a problem with your submission. please try again.", true);
+                showPopup("There was a problem with your submission. Please try again.", true);
             });
-
         });
 
+
         // Function to show success and failure popups
-        function showPopup(message, isFailure) {
-
+        function showPopup(message, isFailure, orderNum = '') {
             const popup = document.getElementById('popupMessage');
-            popup.textContent = message;
-            popup.style.display = 'block';
+            popup.innerHTML = isFailure
+                ? `<p>${message}</p>`
+                : `<p>${message}</p>
+                <p><strong>Order Number:</strong> <span id="copyOrderNum">${orderNum}</span></p>
+                <button onclick="copyOrderNumber()">Copy Order Number</button>`;
+            
             popup.className = isFailure ? 'popup failure' : 'popup success';
+            popup.style.display = 'block';
 
-            // Hide popup after a few seconds
             setTimeout(() => {
                 popup.style.display = 'none';
-            }, 4000); // Adjust timeout duration as needed
+            }, 30000); // show a bit longer for copy time
+        }
 
+        function copyOrderNumber() {
+            const orderNumElement = document.getElementById('copyOrderNum');
+            const text = orderNumElement.innerText;
+
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Order number copied to clipboard: " + text);
+            }).catch(err => {
+                alert("Failed to copy order number.");
+            });
         }
 
         const backToTopButton = document.getElementById("backToTop");
@@ -793,6 +834,36 @@
             behavior: "smooth",
             });
         });
+
+
+        const slideshowImages = [
+            "01. images/pap_wors_beans.jpg",
+            "01. images/bnw.jpg"
+        ];
+
+        let currentIndex = 0;
+        const slideshowElement = document.getElementById("slideshowImage");
+
+        function fadeToNextImage() {
+            // Fade out
+            slideshowElement.style.opacity = 0;
+
+            setTimeout(() => {
+                // Change image when faded out
+                currentIndex = (currentIndex + 1) % slideshowImages.length;
+                slideshowElement.src = slideshowImages[currentIndex];
+
+                // Fade in
+                slideshowElement.style.opacity = 1;
+            }, 1000); // matches transition time
+        }
+
+
+        function startSlideshow() {
+            setInterval(fadeToNextImage, 5000); // Every 3 seconds
+        }
+
+        window.addEventListener("DOMContentLoaded", startSlideshow);
         
     </script>
 
@@ -800,136 +871,6 @@
 
 </html>
 
-<!-- I wanna add order number here for the customer. unique. error handling - robustness - efficient - must be able to copy order number once placed order successfully. and then we will get in touch with the customer regarding their order using the information that they provided. -->
-
- 
-
-
-
-
-
---
-
-<!-- To implement a unique order number for customers upon successful order submission, we can generate a random order number, display it in the success popup, and allow the user to copy it for future reference. We will also ensure error handling and that the order number is associated with the user's order.
-
-Here's how you can modify your code to achieve this:
-
-Key Additions:
-Order Number Generation: We'll generate a unique order number when the order is successfully placed.
-
-Display Order Number: Once the order is placed successfully, the order number will be shown in the popup.
-
-Copy Order Number: Add a button to allow the customer to copy the order number.
-
-Update the Form: Display the order number in the success popup.
-
-Here's how you can modify your current code to implement the order number feature:
-
-Step 1: Modify the Success Popup to Include the Order Number
-Add a new section in the success popup that displays the order number and includes a copy button.
-
-html
-Copy
-Edit
-<div class="popup" id="popupMessage" style="display:none;">
-    <p id="popupMessageText"></p>
-    <button id="copyOrderNumber" style="display:none;" onclick="copyOrderNumber()">Copy Order Number</button>
-</div>
-Step 2: Modify the JavaScript to Generate the Order Number and Handle Copying
-Update the JavaScript to generate a unique order number and display it in the popup.
-
-javascript
-Copy
-Edit
-// Function to handle form submission
-document.getElementById('orderDetails').addEventListener('submit', function(event) {
-
-    event.preventDefault(); // Prevent default form submission
-
-    fetch(this.action, {
-        method: this.method,
-        body: new FormData(this),
-        headers: {
-            'Accept': 'application/json'
-        }
-    }).then(response => {
-        if (response.ok) {
-            const orderNumber = generateOrderNumber(); // Generate unique order number
-            showPopup(`Order placed successfully! Your order number is: ${orderNumber}`, false);
-            this.reset(); // reset form
-            closeForm(); // close form after successful submission
-        } else {
-            throw new Error('Network response was not ok.');
-        }
-    }).catch(error => {
-        showPopup("There was a problem with your submission. Please try again.", true);
-    });
-
-});
-
-// Function to generate a unique order number
-function generateOrderNumber() {
-    const prefix = "ORD";
-    const date = new Date();
-    const timestamp = date.getTime();
-    const randomNum = Math.floor(Math.random() * 10000);
-    return `${prefix}-${timestamp}-${randomNum}`;
-}
-
-// Function to show success and failure popups
-function showPopup(message, isFailure) {
-    const popup = document.getElementById('popupMessage');
-    const copyButton = document.getElementById('copyOrderNumber');
-    popup.textContent = message;
-    
-    if (message.includes("Your order number is:")) {
-        // If the message contains an order number, show the copy button
-        copyButton.style.display = 'block';
-    } else {
-        copyButton.style.display = 'none';
-    }
-
-    popup.style.display = 'block';
-    popup.className = isFailure ? 'popup failure' : 'popup success';
-
-    // Hide popup after a few seconds
-    setTimeout(() => {
-        popup.style.display = 'none';
-    }, 4000); // Adjust timeout duration as needed
-}
-
-// Function to copy the order number to clipboard
-function copyOrderNumber() {
-    const popupMessageText = document.getElementById('popupMessageText').textContent;
-    const orderNumber = popupMessageText.match(/Your order number is: (.+)/)[1];
-    
-    const textArea = document.createElement('textarea');
-    textArea.value = orderNumber;
-    document.body.appendChild(textArea);
-    textArea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textArea);
-
-    alert("Order number copied to clipboard!");
-}
-Key Changes in the JavaScript:
-generateOrderNumber(): A function to create a unique order number by combining a prefix (ORD), timestamp (to make it unique), and a random number.
-
-showPopup(): If the order number is generated, the popup message will display it and show a "Copy Order Number" button.
-
-copyOrderNumber(): This function allows the user to copy the generated order number to the clipboard.
-
-Step 3: Display the Order Number in the Success Popup
-Modify the showPopup() function to display the order number in the popup message. If the order is placed successfully, the popup will show something like this:
-
-"Order placed successfully! Your order number is: ORD-1619180289573-1234"
-
-The "Copy Order Number" button will allow the user to copy this order number.
-
-With these changes, when a customer places an order, they will be shown a unique order number that they can copy for future reference. The order number is tied to their submission, and this can be used later for tracking or contact purposes.
-
-Let me know if you need further help with this!
- -->
 
 
 
