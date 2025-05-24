@@ -1,48 +1,69 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Prayers | Parables & Platters</title>
+  <title>Prayers</title>
+
   <meta name="description" content="A sacred prayer reflection. Seeking and proclaiming the glory of the Lord through poetic devotion." />
+
   <meta name="author" content="Parables & Platters (Pty) Ltd." />
+
   <meta name="theme-color" content="#e3c5a3" />
 
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" defer />
+
   <link rel="icon" href="01. images/jesuslogo_enef.png" type="image/x-icon" />
 
+
   <style>
+
     :root {
+
       --primary: #e3c5a3;
       --secondary: #fff;
       --text-dark: #333;
       --bg-light: #f1f1f1;
       --shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+
     }
 
     body.dark-mode {
+
       background-color: #1a1a1a;
       color: #f1f1f1;
+
     }
 
     body.dark-mode .prayer-card {
+
       background-color: #292929;
+
     }
 
     body.dark-mode footer {
+
       background-color: #2e2e2e;
+
     }
 
     *, *::before, *::after {
+
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+
     }
 
     body {
+
       font-family: 'Roboto', sans-serif;
       background-color: var(--bg-light);
       color: var(--text-dark);
@@ -51,9 +72,11 @@
       align-items: center;
       padding: 20px;
       min-height: 100vh;
+
     }
 
     header {
+
       position: fixed;
       top: 0;
       left: 0;
@@ -64,18 +87,24 @@
       box-shadow: var(--shadow);
       z-index: 1000;
       animation: slideIn 0.6s ease-in-out;
+
     }
 
     .header-link {
+
       text-decoration: none;
       color: inherit;
+
     }
 
     .header-link:hover {
+
       opacity: 0.85;
+
     }
 
     .theme-toggle {
+
       position: absolute;
       right: 20px;
       top: 22px;
@@ -84,13 +113,17 @@
       background: none;
       border: none;
       color: #000;
+
     }
 
     body.dark-mode .theme-toggle {
+
       color: #f1f1f1;
+
     }
 
     main {
+
       margin-top: 120px;
       margin-bottom: 100px;
       width: 90%;
@@ -99,13 +132,17 @@
       padding: 30px;
       border-radius: 12px;
       box-shadow: var(--shadow);
+
     }
 
     h1 {
+
       font-size: 2.2rem;
+
     }
 
     .prayer-card {
+
       background: var(--secondary);
       padding: 25px;
       border-radius: 10px;
@@ -113,18 +150,24 @@
       font-size: 1.15rem;
       line-height: 1.8;
       transition: transform 0.3s ease-in-out;
+
     }
 
     .prayer-card:hover {
+
       transform: scale(1.02);
+
     }
 
     .download-section {
+
       margin-top: 30px;
       text-align: center;
+
     }
 
     .download-button {
+
       background-color: var(--primary);
       color: #000;
       padding: 12px 25px;
@@ -133,13 +176,17 @@
       text-decoration: none;
       transition: background-color 0.3s;
       display: inline-block;
+
     }
 
     .download-button:hover {
+
       background-color: #d0a37c;
+
     }
 
     footer {
+
       width: 100%;
       background-color: var(--primary);
       text-align: center;
@@ -148,9 +195,11 @@
       position: fixed;
       bottom: 0;
       left: 0;
+
     }
 
     @keyframes slideIn {
+
       from {
         transform: translateY(-100%);
         opacity: 0;
@@ -160,9 +209,11 @@
         transform: translateY(0);
         opacity: 1;
       }
+
     }
 
     @media (max-width: 768px) {
+
       h1 {
         font-size: 1.6rem;
       }
@@ -175,8 +226,11 @@
         top: 18px;
         right: 10px;
       }
+
     }
+
   </style>
+
 </head>
 
 <body>
@@ -262,6 +316,15 @@
         
         <p>Worthy Art Thou, thou art... Worthy Is the King of Glory.</p>
 
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <p>written by: Olama Khayyim</p>
+
     </article>
 
   </main>
@@ -271,6 +334,7 @@
   </footer>
 
   <script>
+
     function toggleTheme() {
       document.body.classList.toggle('dark-mode');
       localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
@@ -282,8 +346,22 @@
         document.body.classList.add('dark-mode');
       }
     });
+
   </script>
 
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
