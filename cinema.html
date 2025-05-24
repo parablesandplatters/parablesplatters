@@ -4,501 +4,359 @@
 
 <head>
 
-    <meta charset="UTF-8">
+  <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>cinema</title>
+  <title>Cinema</title>
 
-    <link rel="icon" href="01. images/jesuslogo_enef.png" type="image/x-icon">
+  <meta name="description" content="Watch inspiring Christian cinema content including sermons, music videos, and messages of hope." />
 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta property="og:title" content="Cinema | Parables & Platters" />
 
-    <style>
+  <meta property="og:description" content="Watch inspiring Christian cinema content including sermons, music videos, and messages of hope." />
 
-        body {
+  <meta property="og:image" content="01. images/jesuslogo_enef.png" />
 
-            font-family: 'Roboto', sans-serif;
-            background-color: white;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
+  <meta property="og:type" content="website" />
 
-        }
+  <link rel="icon" href="01. images/jesuslogo_enef.png" type="image/x-icon" />
 
-        header {
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
 
-            background: #e3c5a3;
-            width: 100%;
-            padding: 20px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
+  <style>
 
-        }
+    :root {
 
-        .header-link {
+      --primary-bg: #ffffff;
+      --primary-text: #000000;
+      --section-bg: #f5e1cd;
+      --button-bg: #ff7b4b;
+      --button-hover: #ff4927;
+      --highlight: #ffebc6;
 
-            text-decoration: none;
-            color: inherit; 
+    }
 
-        }
+    body.dark-mode {
 
-        .header-link:hover {
+      --primary-bg: #1e1e1e;
+      --primary-text: #ffffff;
+      --section-bg: #3a2f27;
+      --button-bg: #ffa07a;
+      --button-hover: #ff6347;
+      --highlight: #40352f;
 
-            cursor: pointer; 
+    }
 
-        }
+    body {
 
-        h1 {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--primary-bg);
+      color: var(--primary-text);
+      margin: 0;
+      padding-top: 80px;
+      transition: background 0.3s, color 0.3s;
+      scroll-behavior: smooth;
 
-            font-size: 40px;
-            margin: 0;
-            color: black;
-            text-align: center;
+    }
 
-        }
+    header {
 
-        h4 {
+      background: var(--section-bg);
+      position: fixed;
+      width: 100%;
+      padding: 20px;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-            color: black;
-            text-align: center;
+    }
 
-        }
+    header h1 {
 
-        .cinema-section {
+      margin: 0;
+      font-size: 32px;
 
-            width: 80%;
-            max-width: 1200px;
-            margin: 100px auto;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #e3c5a3;
+    }
 
-        }
+    .dark-toggle {
 
-        .cinema-section h2 {
+      background-color: var(--button-bg);
+      border: none;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s ease;
 
-            font-size: 32px;
-            margin-bottom: 20px;
-            color: black;
+    }
 
-        }
+    .dark-toggle:hover {
 
-        .video-container {
+      background-color: var(--button-hover);
 
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
+    }
 
-        }
+    main {
 
-        .video-box {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
 
-            background-color: #e3c5a3;
-            width: 45%;
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-
-        }
-
-        .video-box video {
-
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-
-        }
-
-        .bodylogoimage {
-
-            width: 20%;
-            margin-bottom: 100px;
-            border: 10px solid #e3c5a3;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-
-        }
-
-        footer {
-
-            background: #e3c5a3;
-            width: 100%;
-            padding: 15px;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-            text-align: center;
-            color: black;
-
-        }
-
-        @keyframes slideAnimation {
-
-            0% {
-                transform: translateX(0);
-            }
-            50% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(-200%);
-            }
-            150% {
-                transform: translateX(-300%);
-            }
-            200% {
-                transform: translateX(0);
-            }
-
-        }
-
-        #backToTop {
-
-            background: #e3c5a3;
-            position: fixed;
-            width: 10%;
-            bottom: 0;
-            right: 0;
-            margin-right: 10px;
-            margin-bottom: 160px;
-            box-shadow: 0 -1px 20px rgba(255, 255, 255, 0.3);
-            display: none;
-            color: black;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 15px;
-            z-index: 1000;
-
-        }
-
-        #backToTop:hover {
-
-            background-color: #e3c5a379;
-
-        }
-
-        @media (max-width: 720px) {
-
-            body {
-
-                font-family: 'Roboto', sans-serif;
-                background-color: white;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                min-height: 100vh;
-                text-align: center;
+    }
 
-            }
+    .cinema-section {
 
-            header {
+      background-color: var(--section-bg);
+      border-radius: 10px;
+      padding: 30px 20px;
+      margin-bottom: 60px;
 
-                background: #e3c5a3;
-                width: 100%;
-                padding: 20px;
-                position: fixed;
-                top: 0;
-                left: 0;
-                z-index: 1000;
-                
-            }
+    }
 
-            h1 {
+    .cinema-section h2 {
 
-                font-size: 30px;
-                margin: 0;
-                color: black;
-                margin-right: 45px;
-                text-align: center;
+      font-size: 28px;
+      margin-bottom: 20px;
 
-            }
+    }
 
-            .cinema-section {
+    #videoSearch {
 
-                width: 60%;
-                max-width: 1200px;
-                margin: 100px auto;
-                padding: 20px;
-                border-radius: 10px;
-                background-color: #e3c5a3;
-                
-            }
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 30px;
 
-            .cinema-section h2 {
-
-                font-size: 22px;
-                margin-bottom: 20px;
-                color: black;
-
-            }
+    }
 
-            .video-container {
+    .video-container {
 
-                display: flex;
-                justify-content: space-around;
-                flex-wrap: wrap;
-                gap: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
 
-            }
+    }
 
-            .video-box {
+    .video-box {
 
-                background-color: #e3c5a3;
-                width: 100%;
-                border-radius: 10px;
-                overflow: hidden;
-                position: relative;
-                margin-bottom: 50px;
+      background-color: var(--primary-bg);
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s;
 
-            }
+    }
 
-            .video-box video {
+    .video-box:hover {
 
-                width: 100%;
-                height: auto;
-                border-radius: 10px;
+      transform: translateY(-5px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 
-            }
+    }
 
-            .video-box button {
+    .video-box h4 {
 
-                background-color: #ff7b4b;
-                color: #fff;
-                border: none;
-                padding: 10px;
-                position: absolute;
-                bottom: 10px;
-                left: 50%;
-                transform: translateX(-50%);
-                font-size: 18px;
-                cursor: pointer;
-                border-radius: 5px;
-                transition: background-color 0.3s;
+      font-size: 16px;
+      margin: 10px 0;
 
-            }
+    }
 
-            .video-box button:hover {
+    video {
 
-                background-color: #ff4927;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      display: block;
 
-            }
+    }
 
-            h4 {
+    .download-btn {
 
-                font-size: 14px;
+      display: inline-block;
+      margin-top: 10px;
+      background-color: var(--button-bg);
+      color: white;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
 
-            }
+    }
 
-            .bodylogoimage {
+    .download-btn:hover {
 
-                width: 40%;
-                margin-bottom: 100px;
+      background-color: var(--button-hover);
 
-            }
+    }
 
-            footer {
+    .bodylogoimage {
 
-                background: #e3c5a3;
-                width: 95%;
-                font-size: 13px;
-                padding: 15px;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                text-align: center;
-                color: black;
+      width: 20%;
+      display: block;
+      margin: 60px auto;
 
-            }
+    }
 
-            #backToTop {
+    footer {
 
-                background: #e3c5a3;
-                position: fixed;
-                width: 10%;
-                bottom: 0;
-                right: 0;
-                margin-right: 10px;
-                margin-bottom: 160px;
-                box-shadow: 0 -1px 20px rgba(255, 255, 255, 0.3);
-                display: none;
-                color: black;
-                border: none;
-                padding: 10px;
-                border-radius: 5px;
-                cursor: pointer;
-                font-size: 10px;
-                z-index: 1000;
+      background-color: var(--section-bg);
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
 
-            }
+    }
 
-            #backToTop:hover {
+    #backToTop {
 
-                background-color: #e3c5a379;
+      position: fixed;
+      right: 20px;
+      bottom: 80px;
+      background-color: var(--button-bg);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 5px;
+      border: none;
+      display: none;
+      cursor: pointer;
+      z-index: 1001;
 
-            }
+    }
 
-        } 
+    @media (max-width: 600px) {
 
-    </style>
+      header h1 {
+        font-size: 24px;
+      }
+
+      .bodylogoimage {
+        width: 50%;
+      }
+
+    }
+
+    .highlight {
+
+      background-color: var(--highlight);
+      border-radius: 5px;
+      padding: 0 4px;
+
+    }
+
+  </style>
 
 </head>
 
 <body>
 
-    <header>
+  <header role="banner">
 
-        <a href="menupage.html" class="header-link" title="back to main menu">
+    <a href="menupage.html" aria-label="Back to menu" style="text-decoration: none; color: inherit;" title="Back to main menu">
+      <h1>Cinema</h1>
+    </a>
 
-            <h1>cinema</h1>
+    <button class="dark-toggle" id="toggleTheme" aria-label="Toggle dark mode">Toggle Dark Mode</button>
+  </header>
 
-        </a>
+  <main class="cinema-section" role="main" aria-label="Christian Video Library">
+    <h2>Enjoy Our Cinema</h2>
+    <input type="text" id="videoSearch" placeholder="Search videos..." aria-label="Search videos">
+    <div class="video-container" id="videoList">
+      <div class="video-box">
+        <h4>Rance Allen - I Stood on the Banks of Jordan</h4>
+        <video controls loop preload="metadata" poster="01. images/video_placeholder.png" loading="lazy">
+          <source src="11. cinema/Rance Allen - _I Stood on the Banks of Jordan_.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <button class="download-btn" onclick="downloadVideo('11. cinema/Rance Allen - _I Stood on the Banks of Jordan_.mp4')">Download</button>
+      </div>
 
-    </header>
-
-    <div class="cinema-section">
-
-        <h2>enjoy our cinema</h2>
-
-        <div class="video-container">
-
-            <div class="video-box">
-
-                <h4>RANCE ALLEN - I STOOD ON THE BANKS OF JORDAN</h4>
-
-                <video controls loop>
-                    <source src="11. cinema/Rance Allen - _I Stood on the Banks of Jordan_.mp4" type="video/mp4">
-                    your browser does not support the video tag.
-                </video>
-
-            </div>
-            
-            <div class="video-box">
-
-                <h4>T.D. JAKES - FOR UNTO US</h4>
-
-                <video controls loop>
-                    <source src="11. cinema/For Unto Us.mp4" type="video/mp4">
-                    your browser does not support the video tag.
-                </video>
-
-            </div>
-            
-            <div class="video-box">
-
-                <h4>BILLY GRAHAM - WHO IS JESUS CHRIST?</h4>
-
-                <video controls loop>
-                    <source src="11. cinema/Who is Jesus - Billy Graham.mp4" type="video/mp4">
-                    your browser does not support the video tag.
-                </video>
-
-            </div>
-            
-            <div class="video-box">
-
-                <h4>YOLANDA ADAMS - FRAGILE HEART</h4>
-
-                <video controls loop>
-                    <source src="11. cinema/Yolanda Adams - Fragile Heart (Apollo 2000).mp4" type="video/mp4">
-                    your browser does not support the video tag.
-                </video>
-
-            </div>
-
-            <div class="video-box"> 
-
-                <h4>RANCE ALLEN - HEAR MY VOICE</h4>
-
-                <video controls loop>
-                    <source src="11. cinema/Rance Allen - Hear my voice.mp4" type="video/mp4">
-                    your browser does not support the video tag.
-                </video>
-
-            </div>
-
-        </div>
-
+      <div class="video-box">
+        <h4>T.D. Jakes - For Unto Us</h4>
+        <video controls loop preload="metadata" poster="01. images/video_placeholder.png" loading="lazy">
+          <source src="11. cinema/For Unto Us.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <button class="download-btn" onclick="downloadVideo('11. cinema/For Unto Us.mp4')">Download</button>
+      </div>
     </div>
 
-      <img src="01. images/jesuslogo_black.png" class="bodylogoimage" title="parables & platters">
 
-        <button id="backToTop" title="back to top">back to top</button>
 
-        <p style="margin-bottom: 160px;">&copy; The content presented on this site, including videos, logos, and trademarks, is the property of its respective owners. We do not claim ownership of the videos and materials shown here, which are used for informational and entertainment purposes only. All videos, music, and other content are copyrighted by their respective creators, producers, and distributors. We make no claims to the ownership of any materials on this website. If you believe any content violates copyright laws, please contact us immediately for proper attribution or removal.</p>
 
-    <footer>
-        <p>&copy; 2025 parables & platters (pty) ltd. all rights reserved.</p>
-    </footer>
+  </main>
 
-    <script>
+  <img src="01. images/jesuslogo_black.png" class="bodylogoimage" alt="Jesus Logo">
 
-        function downloadVideo(file) {
+  <button id="backToTop" title="Back to top">↑ Top</button>
 
-            try {
+  <footer role="contentinfo">
+    <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
+  </footer>
 
-                const link = document.createElement('a');
-                link.href = file;
-                link.download = file;
-                link.click();
-            } catch (error) {
+  <script>
+    // Search filter with highlight
+    document.getElementById('videoSearch').addEventListener('input', function () {
+      const query = this.value.trim().toLowerCase();
+      const boxes = document.querySelectorAll('.video-box');
 
-                console.error('download failed:', error);
+      boxes.forEach(box => {
+        const h4 = box.querySelector('h4');
+        const title = h4.textContent;
+        const match = title.toLowerCase().includes(query);
 
-            }
-
+        if (query && match) {
+          const regex = new RegExp(`(${query})`, 'gi');
+          h4.innerHTML = title.replace(regex, '<span class="highlight">$1</span>');
+          box.style.display = 'block';
+        } else {
+          h4.innerHTML = title; // reset text
+          box.style.display = query ? 'none' : 'block';
         }
+      });
+    });
 
-        const backToTopButton = document.getElementById("backToTop");
+    function downloadVideo(file) {
+      const link = document.createElement('a');
+      link.href = file;
+      link.download = file.split('/').pop();
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
 
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 300) { // Show button after scrolling 300px
-            backToTopButton.style.display = "block";
-            } else {
-            backToTopButton.style.display = "none";
-            }
-        });
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
-        backToTopButton.addEventListener("click", () => {
-            window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-            });
-        });
+    const toggleBtn = document.getElementById('toggleTheme');
+    const body = document.body;
 
-    </script>
+    function setTheme(mode) {
+      body.classList.toggle('dark-mode', mode === 'dark');
+      localStorage.setItem('theme', mode);
+    }
 
+    toggleBtn.addEventListener('click', () => {
+      const newTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
+      setTheme(newTheme);
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      setTheme(savedTheme);
+    });
+  </script>
 </body>
 
 </html>
-
-<!-- iframe -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-

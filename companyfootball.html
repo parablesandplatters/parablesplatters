@@ -1,285 +1,340 @@
 <!DOCTYPE html>
 
 <html lang="en">
-    
+
 <head>
 
-    <meta charset="UTF-8">
+  <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DCSL - Delta Company Sports League</title>
 
-    <title>Company Football</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="icon" href="01. images/jesuslogo_enef.png" type="image/x-icon">
+  <style>
 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    :root {
 
-    <style>
+      --primary: #007bff;
+      --primary-dark: #0056b3;
+      --bg: #f4f4f4;
+      --card: #ffffff;
+      --text: #222;
 
-        body {
+    }
 
-            font-family: 'Roboto', sans-serif;
-            background-color: white;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
+    body {
 
-        }
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: var(--bg);
 
-        header {
+    }
 
-            background: #e3c5a3;
-            width: 100%;
-            padding: 20px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
+    header, footer {
 
-        }
+      background: var(--text);
+      color: white;
+      text-align: center;
+      padding: 1rem;
 
-        .header-link {
+    }
 
-            text-decoration: none;
-            color: inherit;
+    nav a {
 
-        }
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
 
-        .header-link:hover {
+    }
 
-            cursor: pointer;
+    main {
 
-        }
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
 
-        h1 {
+    }
 
-            font-size: 28px;
-            margin: 0;
-            color: black;
-            text-align: center;
+    section {
 
-        }
+      background: var(--card);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
 
-        .football-challenge-section {
+    }
 
-            width: 80%;
-            max-width: 1000px;
-            margin-top: 100px;
-            margin-bottom: 170px;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #e3c5a3;
+    h2 {
 
-        }
+      margin-top: 0;
 
-        h2 {
+    }
 
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: black;
+    .btn {
 
-        }
+      padding: 10px 15px;
+      margin: 10px 5px 0 0;
+      background: var(--primary);
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
 
-        .form-container {
+    }
 
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    .btn:hover {
 
-        }
+      background: var(--primary-dark);
 
-        .form-container label {
+    }
 
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: black;
-            display: block;
+    table {
 
-        }
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
 
-        .form-container input,
-        .form-container select,
-        .form-container textarea {
+    }
 
-            width: 90%;
-            padding: 10px;
-            margin-bottom: 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+    th, td {
 
-        }
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
 
-        .form-container input[type="submit"] {
+    }
 
-            background-color: #e3c5a3;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            padding: 15px;
-            width: auto;
-            transition: background-color 0.3s ease;
+    th {
 
-        }
+      background: var(--primary);
+      color: white;
 
-        .form-container input[type="submit"]:hover {
+    }
 
-            background-color: #d0a37c;
+    tr:nth-child(even) {
 
-        }
+      background: #f9f9f9;
 
-        footer {
+    }
 
-            background: #e3c5a3;
-            width: 100%;
-            padding: 15px;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            text-align: center;
-            color: black;
+    #modal {
 
-        }
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      align-items: center;
+      justify-content: center;
 
-        @media (max-width: 720px) {
+    }
 
-            body {
+    #modalContent {
 
-                padding: 10px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      box-shadow: 0 0 10px black;
 
-            }
+    }
 
-            .football-challenge-section {
+    .modal-field {
 
-                width: 90%;
+      margin-bottom: 10px;
+      width: 100%;
 
-            }
+    }
 
-            .form-container {
+    .modal-field input {
 
-                padding: 20px;
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
 
-            }
+    }
 
-            h2 {
+    .loading {
 
-                font-size: 24px;
+      font-style: italic;
+      color: gray;
 
-            }
+    }
 
-            .form-container input,
-            .form-container select,
-            .form-container textarea {
-
-                font-size: 14px;
-                width: 80%;
-
-            }
-
-            h1 {
-
-                font-size: 26px;
-                text-align: center;
-
-            }
-
-        }
-
-    </style>
+  </style>
 
 </head>
 
 <body>
 
-    <header>
-        <a href="menupage.html" class="header-link" title="back to main menu">
-            <h1>Company Football</h1>
-        </a>
-    </header>
+  <header>
+    <a href="index.html" style="text-decoration: none;" title="Back to main menu"><h1>Delta Company Sports League</h1></a>
+    <nav>
+      <a href="#soccer">Soccer</a>
+      <a href="#rugby">Rugby</a>
+      <a href="#basketball">Basketball</a>
+      <a href="#vg">Video Gaming</a>
+    </nav>
+  </header>
 
-    <div class="football-challenge-section">
+  <main>
 
-        <h2>Let's Go!</h2>
+    <section id="soccer">
+      <h2>⚽ DCSL Soccer</h2>
+      <button class="btn" onclick="showModal('soccer')">Add Team</button>
+      <div class="loading" id="soccer-loading">Loading...</div>
+      <div id="soccer-table"></div>
+    </section>
 
-        <p>We at Parables & Platters (Pty) Ltd. challenge your company to a soccer match! Fill out the form below and let us know your terms. We’ll get back to you.</p>
+    <section id="rugby">
+      <h2>🏉 DCSL Rugby</h2>
+      <button class="btn" onclick="showModal('rugby')">Add Team</button>
+      <div class="loading" id="rugby-loading">Loading...</div>
+      <div id="rugby-table"></div>
+    </section>
 
-        <div class="form-container">
-            
-            <form action="https://formspree.io/f/mvgapzlv" method="POST" id="footballChallengeForm">
+    <section id="basketball">
+      <h2>🏀 DCSL Basketball</h2>
+      <button class="btn" onclick="showModal('basketball')">Add Team</button>
+      <div class="loading" id="basketball-loading">Loading...</div>
+      <div id="basketball-table"></div>
+    </section>
 
-                <!-- very own endpoint -->
+    <section id="vg">
+      <h2>🎮 DCSL Video Gaming</h2>
+      <button class="btn" onclick="showModal('vg')">Add Team</button>
+      <div class="loading" id="vg-loading">Loading...</div>
+      <div id="vg-table"></div>
+    </section>
 
-                <label for="companyName">Company Name</label>
-                <input type="text" id="companyName" name="companyName" required>
+  </main>
 
-                <label for="contactPerson">Contact Person Name</label>
-                <input type="text" id="contactPerson" name="contactPerson" required>
+  <footer>
+    <p>&copy; 2025 DCSL - All rights reserved.</p>
+  </footer>
 
-                <label for="email">Contact Person Email Address</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="preferredDate">Preferred Match Date</label>
-                <input type="date" id="preferredDate" name="preferredDate" required>
-
-                <label for="location">Preferred Match Location</label>
-                <input type="text" id="location" name="location" required>
-
-                <label for="numberOfPlayers">Number of Players (including substitutes)</label>
-                <input type="number" id="numberOfPlayers" name="numberOfPlayers" min="10" max="50" required>
-
-                <label for="matchDuration">Preferred Match Duration</label>
-                <select id="matchDuration" name="matchDuration" required>
-                    <option value="30">30 minutes per half</option>
-                    <option value="45">45 minutes per half</option>
-                    <option value="60">60 minutes per half</option>
-                </select>
-
-                <label for="referee">Preferred Referee</label>
-                <input type="text" id="referee" name="referee">
-
-                <label for="specialTerms">Special Terms or Requests</label>
-                <textarea id="specialTerms" name="specialTerms" rows="4"></textarea>
-
-                <input type="submit" value="Send Challenge">
-            </form>
-        </div>
-
+  <!-- Modal Form -->
+  <div id="modal">
+    <div id="modalContent">
+      <h3 id="modalTitle">Add Team</h3>
+      <div class="modal-field">
+        <input type="text" id="teamName" placeholder="Team Name" />
+      </div>
+      <div class="modal-field">
+        <input type="number" id="teamPoints" placeholder="Points" />
+      </div>
+      <button class="btn" onclick="submitTeam()">Save</button>
+      <button class="btn" onclick="closeModal()">Cancel</button>
     </div>
+  </div>
 
-    <footer>
-        <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
-    </footer>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+    import { getFirestore, collection, onSnapshot, setDoc, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
 
-    <script>
-        // Basic error handling and form validation
-        document.getElementById('footballChallengeForm').addEventListener('submit', function (event) {
-            let valid = true;
-            const inputs = document.querySelectorAll('input, select, textarea');
-            inputs.forEach(input => {
-                if (!input.value) {
-                    valid = false;
-                    input.style.border = '2px solid red';
-                } else {
-                    input.style.border = '';
-                }
-            });
+    const firebaseConfig = {
+      apiKey: "AIzaSyByfd1hMZtslYOWr8MugscmGuoWCjUTPbY",
+      authDomain: "dcsl-d4e89.firebaseapp.com",
+      projectId: "dcsl-d4e89",
+      storageBucket: "dcsl-d4e89.appspot.com",
+      messagingSenderId: "372192660504",
+      appId: "1:372192660504:web:506b52f82249999702076d"
+    };
 
-            if (!valid) {
-                alert('Please fill out all required fields before submitting.');
-                event.preventDefault(); // Prevent form submission
-            }
-        });
-    </script>
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const leagues = ['soccer', 'rugby', 'basketball', 'vg'];
+
+    let currentLeague = null;
+    let editId = null;
+
+    leagues.forEach(league => {
+      const leagueRef = collection(db, league);
+      onSnapshot(leagueRef, (snapshot) => {
+        const teams = [];
+        snapshot.forEach(doc => teams.push({ id: doc.id, ...doc.data() }));
+        renderTable(league, teams);
+        document.getElementById(`${league}-loading`).style.display = "none";
+      });
+    });
+
+    function renderTable(league, teams) {
+      const container = document.getElementById(`${league}-table`);
+      if (!teams.length) {
+        container.innerHTML = "<p>No teams yet.</p>";
+        return;
+      }
+
+      let html = `<table>
+        <tr><th>Team</th><th>Points</th><th>Actions</th></tr>`;
+      teams.sort((a, b) => b.points - a.points).forEach(team => {
+        html += `<tr>
+          <td>${team.name}</td>
+          <td>${team.points}</td>
+          <td>
+            <button class="btn" onclick="editTeam('${league}', '${team.id}', '${team.name}', ${team.points})">Edit</button>
+            <button class="btn" onclick="deleteTeam('${league}', '${team.id}')">Delete</button>
+          </td>
+        </tr>`;
+      });
+      html += `</table>`;
+      container.innerHTML = html;
+    }
+
+    window.showModal = (league) => {
+      currentLeague = league;
+      editId = null;
+      document.getElementById('teamName').value = '';
+      document.getElementById('teamPoints').value = '';
+      document.getElementById('modalTitle').textContent = "Add Team";
+      document.getElementById('modal').style.display = 'flex';
+    };
+
+    window.editTeam = (league, id, name, points) => {
+      currentLeague = league;
+      editId = id;
+      document.getElementById('teamName').value = name;
+      document.getElementById('teamPoints').value = points;
+      document.getElementById('modalTitle').textContent = "Edit Team";
+      document.getElementById('modal').style.display = 'flex';
+    };
+
+    window.submitTeam = async () => {
+      const pin = prompt("Enter admin PIN:");
+      if (pin !== "2026") return alert("Wrong PIN!");
+      const name = document.getElementById('teamName').value.trim();
+      const points = parseInt(document.getElementById('teamPoints').value, 10);
+      if (!name || isNaN(points)) return alert("Invalid input.");
+
+      const id = editId || `id_${Date.now()}`;
+      await setDoc(doc(db, currentLeague, id), { name, points });
+      closeModal();
+    };
+
+    window.closeModal = () => {
+      document.getElementById('modal').style.display = 'none';
+    };
+
+    window.deleteTeam = async (league, id) => {
+      const pin = prompt("Enter admin PIN:");
+      if (pin !== "2026") return alert("Wrong PIN!");
+      await deleteDoc(doc(db, league, id));
+    };
+
+  </script>
 
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
 
 
 

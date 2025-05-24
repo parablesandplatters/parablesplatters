@@ -399,6 +399,31 @@
     <div class="list-container" id="documentsList"></div>
   </section>
 
+  <!-- Selling Spots Section -->
+<section id="sellingSpotsSection">
+  <h2>📍 Selling Spots</h2>
+  <div class="form-add" id="sellingSpotsFormAdd">
+    <input type="text" id="spotName" placeholder="Spot Name" />
+    <input type="text" id="spotLocation" placeholder="Location" />
+    <input type="text" id="spotType" placeholder="Type (e.g., Market, Curbside)" />
+    <button id="spotAddBtn">Add Spot</button>
+  </div>
+
+  <div class="list-controls">
+    <input type="text" id="spotsSearch" class="filter-search" placeholder="Search spots..." />
+    <select id="spotsSort" class="filter-search" title="Sort Spots">
+      <option value="name_asc">Name ↑</option>
+      <option value="name_desc">Name ↓</option>
+      <option value="location_asc">Location ↑</option>
+      <option value="location_desc">Location ↓</option>
+    </select>
+  </div>
+
+  <div class="feedback" id="spotsFeedback"></div>
+  <div class="list-container" id="spotsList"></div>
+</section>
+
+
   <footer>
     <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
   </footer>
@@ -825,217 +850,66 @@
         container.appendChild(card);
       }
     });
+
+    // ===== SELLING SPOTS MANAGER =====
+const sellingSpotsManager = new ListManager({
+  collectionName: 'sellingSpots',
+  listId: 'spotsList',
+  feedbackId: 'spotsFeedback',
+  searchId: 'spotsSearch',
+  sortId: 'spotsSort',
+  addBtnId: 'spotAddBtn',
+  formInputs: ['spotName', 'spotLocation', 'spotType'],
+  validateAdd() {
+    const name = document.getElementById('spotName').value.trim();
+    const location = document.getElementById('spotLocation').value.trim();
+    if (!name || !location) {
+      this.showFeedback('Spot Name and Location are required', true);
+      return false;
+    }
+    return true;
+  },
+  parseAdd() {
+    return {
+      name: document.getElementById('spotName').value.trim(),
+      location: document.getElementById('spotLocation').value.trim(),
+      type: document.getElementById('spotType').value.trim()
+    };
+  },
+  filterItem(item, term) {
+    return (
+      item.name.toLowerCase().includes(term) ||
+      item.location.toLowerCase().includes(term) ||
+      (item.type && item.type.toLowerCase().includes(term))
+    );
+  },
+  renderItem(container, item, manager) {
+    const card = document.createElement('div');
+    card.className = 'item-card';
+
+    card.innerHTML = `
+      <div class="item-details">
+        <strong>${item.name}</strong>
+        <span>Location: ${item.location}</span>
+        ${item.type ? `<span>Type: ${item.type}</span>` : ''}
+      </div>
+      <div class="item-actions">
+        <button class="edit-btn" title="Edit"><i class="fas fa-edit"></i></button>
+        <button class="delete-btn" title="Delete"><i class="fas fa-trash-alt"></i></button>
+      </div>
+    `;
+
+    card.querySelector('.edit-btn').onclick = () => manager.handleEdit(item);
+    card.querySelector('.delete-btn').onclick = () => manager.handleDelete(item.id);
+
+    container.appendChild(card);
+  }
+});
+
   </script>
 </body>
 
 </html>
-
-<!-- <!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Selling Spots</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    <link rel="icon" href="01. images/jesuslogo_enef.png" type="image/x-icon">
-
-    <style>
-
-        * {
-
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-
-        }
-
-        body {
-
-            font-family: 'Roboto', sans-serif;
-            background-color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-            padding: 20px;
-
-        }
-
-        header {
-
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: #e3c5a3;
-            padding: 20px;
-            text-align: center;
-            font-size: 24px;
-            box-shadow: 0 2px 15px rgba(255, 255, 255, 0.3);
-            z-index: 1000;
-
-        }
-
-        .header-link {
-
-            text-decoration: none;
-            color: inherit;
-
-        }
-
-        .header-link:hover {
-
-            cursor: pointer;
-
-        }
-
-        section {
-
-            width: 80%;
-            max-width: 1200px;
-            background: #e3c5a379;
-            padding: 30px;
-            border-radius: 10px;
-            margin-top: 140px;
-            margin-bottom: 100px;
-            text-align: center;
-
-        }
-
-        h1 {
-
-            font-size: 1.8rem;
-            text-align: center;
-
-        }
-
-        .selling-spot-list {
-
-            margin-top: 20px;
-            text-align: left;
-            padding-left: 20px;
-
-        }
-
-        .selling-spot-item {
-
-            font-size: 1.2rem;
-            background-color: #e3c5a3;
-            color: black;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-
-        }
-
-        footer {
-
-            background: #e3c5a3;
-            width: 100%;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            text-align: center;
-            color: black;
-
-        }
-
-    </style>
-
-</head>
-
-<body>
-
-    <header>
-        <a href="menupage.html" class="header-link" title="back to main menu">
-            <h1>Selling Spots</h1>
-        </a>
-    </header>
-
-    <section>
-
-        <h1 style="font-size: 26px;">Our Selling Spots</h1>
-
-        <p style="font-size: 15px;">not to be shared with anyone:</p>
-
-        <div class="selling-spot-list">
-
-            <div class="selling-spot-item">
-                <strong>01. Gateway Rank - 24/7 (Awaiting Business License from eThekwini Municipality) - to deploy here</strong>
-            </div>
-
-            <br>
-
-            <div class="selling-spot-item">
-                <strong>02. Umhlanga Rank in town - 24/7 (Awaiting Business License from eThekwini Municipality) - to deploy here even more</strong>
-            </div>
-
-            <br>
-        
-            <div class="selling-spot-item">
-                <strong>03. CCI (midnight marauders) - Awaiting our own vehicle. Must park by CCI</strong>
-            </div>
-
-            <br>
-
-            <div class="selling-spot-item">
-                <strong>04. Home Affairs CBD - Wors Rolls</strong>
-            </div>
-
-            <br>
-
-            <div class="selling-spot-item">
-                <strong>05. uConnect @ Hillcrest (awaiting our own vehicle - we're coming for the entire world kahle kahle)</strong>
-            </div>
-
-            <br>
-
-            <div class="selling-spot-item">
-                <strong>06. Chesterville Rank corner</strong>
-            </div>
-
-            <br>
-            
-        </div>
-
-    </section>
-
-    <footer>
-        <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
-    </footer>
-
-</body>
-
-</html>
-
-
-
-
-
-
-
-
-
-
- -->
-
-
-
-
-
 
 
 

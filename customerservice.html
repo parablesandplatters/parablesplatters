@@ -4,173 +4,303 @@
 
 <head>
 
-    <meta charset="UTF-8">
+  <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <title>Customer Service</title>
+  <title>Customer Service</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
 
-    <link rel="icon" href="01. images/jesuslogo_enef.png" type="image/x-icon">
+  <link rel="icon" href="01. images/jesuslogo_enef.png" type="image/x-icon"/>
 
-    <style>
+  <style>
 
-        * {
+    * {
 
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
 
-        }
+    }
 
-        body {
+    body {
 
-            font-family: 'Roboto', sans-serif;
-            background-color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-            padding: 20px;
+      font-family: 'Roboto', sans-serif;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      min-height: 100vh;
+      padding: 100px 20px 120px;
 
-        }
+    }
 
-        header {
+    header {
 
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: #e3c5a3;
-            padding: 20px;
-            text-align: center;
-            font-size: 24px;
-            box-shadow: 0 2px 15px rgba(255, 255, 255, 0.3);
-            z-index: 1000;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #e3c5a3;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
 
-        }
+    }
 
-        .header-link {
+    .header-link {
 
-            text-decoration: none;
-            color: inherit;
+      text-decoration: none;
+      color: inherit;
 
-        }
+    }
 
-        .header-link:hover {
+    .header-link:hover {
 
-            cursor: pointer;
+      text-decoration: underline;
 
-        }
+    }
 
-        section {
+    section {
 
-            width: 80%;
-            max-width: 1200px;
-            background: #e3c5a379;
-            padding: 30px;
-            border-radius: 10px;
-            margin-top: 80px;
-            margin-bottom: 100px;
-            text-align: center;
+      width: 90%;
+      max-width: 900px;
+      background: #f9f5f1;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 
-        }
+    }
 
-        h1 {
+    h1, h2 {
 
-            font-size: 1.5rem;
-            text-align: center;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 15px;
 
-        }
+    }
 
-        .contact-info {
+    .phone-number {
 
-            margin-top: 20px;
+      font-size: 1.4rem;
+      color: #a3530d;
+      font-weight: 500;
 
-        }
+    }
 
-        .phone-number {
+    .contact-info {
 
-            font-size: 1.2rem;
-            color: #e3c5a3;
+      margin-top: 20px;
+      font-size: 1.1rem;
 
-        }
+    }
 
-        .contact-info a {
+    .contact-info a {
 
-            color: #a3530d;
-            text-decoration: none;
+      color: #a3530d;
+      font-weight: 500;
 
-        }
+    }
 
-        footer {
+    form {
 
-            background: #e3c5a3;
-            width: 100%;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            text-align: center;
-            color: black;
+      margin-top: 40px;
 
-        }
+    }
 
-        @media screen and (max-width: 768px) {
+    form input,
+    form textarea,
+    form select {
 
-        }
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: #fff;
 
-    </style>
+    }
+
+    form input:focus,
+    form textarea:focus {
+
+      border-color: #a3530d;
+      outline: none;
+      box-shadow: 0 0 5px rgba(163, 83, 13, 0.2);
+
+    }
+
+    form button {
+
+      background-color: #a3530d;
+      color: white;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+    }
+
+    form button:hover {
+
+      background-color: #7e3f0b;
+
+    }
+
+    .faq {
+
+      text-align: left;
+      margin-top: 40px;
+
+    }
+
+    .faq p {
+
+      margin-bottom: 10px;
+
+    }
+
+    footer {
+
+      background: #e3c5a3;
+      width: 100%;
+      padding: 15px 0;
+      text-align: center;
+      color: black;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+
+    }
+
+    @media screen and (max-width: 768px) {
+
+      body {
+        padding: 80px 15px 120px;
+      }
+
+      h1, h2 {
+        font-size: 1.3rem;
+      }
+
+      .phone-number {
+        font-size: 1.2rem;
+      }
+
+      form button {
+        width: 100%;
+      }
+
+    }
+
+    .success-message {
+
+      display: none;
+      background-color: #d4edda;
+      color: #155724;
+      padding: 15px;
+      border: 1px solid #c3e6cb;
+      border-radius: 6px;
+      margin-top: 20px;
+      text-align: center;
+
+    }
+
+  </style>
 
 </head>
 
 <body>
 
-    <header>
-        <a href="menupage.html" class="header-link" title="back to main menu">
-            <h1>Customer Service</h1>
-        </a>
-    </header>
+  <header>
+    <a href="menupage.html" class="header-link" title="Back to main menu">
+      <h1>Customer Service</h1>
+    </a>
+  </header>
 
-    <section>
-        <h1>Our Customer Service Is currently the same as our main number:</h1>
-        <br>
-        <span class="phone-number"><a href="tel:+27634732453">063 473 2453</a></span></p>
-        
-        <div class="contact-info">
-            <p>You can also send us an email:</p>
-            <a href="mailto:parablesandplatters@outlook.com">parablesandplatters@outlook.com</a></p>
-            <p>Our team is always ready to assist you!</p>
-        </div>
+  <section>
+    <h1>Need Help? We're Here for You.</h1>
+    <p>Call us directly at:</p>
+    <p class="phone-number"><a href="tel:+27634732453">063 473 2453</a></p>
 
-        <br>
-        <br>
+    <div class="contact-info">
+      <p>Prefer email?</p>
+      <a href="mailto:parablesandplatters@outlook.com">parablesandplatters@outlook.com</a>
+      <p>Our support team is happy to assist you.</p>
+    </div>
 
-        <h2>Frequently Asked Questions</h2>
-        <br>
-        <div class="faq">
-            <p><strong>Q1: How can I cancel my order?</strong></p>
-            <p>A1: You can cancel your order only after 10 minutes from placing it by going to our main menu and choosing the "cancel an order" option and then filling out the cancellation form appropriately. but don't cancel your order - our food is delicious, trust me.
-            </p>
-            <br>
-        </div>
+    <br>
 
-        <!-- Footer Section -->
-        <footer>
-            <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
-        </footer>
+    <h2>Contact Us via Form:</h2>
+    <form action="https://formspree.io/f/mkgrlnqk" method="POST" onsubmit="showMessage(event)">
+      <input type="text" name="name" placeholder="Your Full Name" required>
+      <input type="email" name="email" placeholder="Your Email Address" required>
+      <input type="tel" name="phone" placeholder="Phone Number (optional)">
+      <input type="text" name="subject" placeholder="Subject" required>
+      <textarea name="message" rows="5" placeholder="Type your message here..." required></textarea>
+      <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+    </form>
 
-    </section>
+    <div class="success-message" id="successMessage">
+      Thank you! Your message has been sent. We will get back to you shortly.
+    </div>
+
+    <br>
+
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq">
+      <p><strong>Q1: How can I cancel my order?</strong></p>
+      <p>A1: Go to our main menu, select "Cancel an Order" and complete the form. Please cancel within 10 minutes of placing your order.</p>
+
+      <!-- <p><strong>Q2: What payment methods are accepted?</strong></p>
+      <p>A2: We accept major cards, SnapScan, and EFT. For details, visit the checkout page.</p> -->
+
+      <p><strong>Q2: How long does delivery take?</strong></p>
+      <p>A3: Deliveries take 30–60 minutes based on your location and order size. We'll keep you updated by your contact systems.</p>
+
+      <p><strong>Q3: Do you offer refunds?</strong></p>
+      <p>A4: Refunds are available for undelivered or incorrect orders. Please reach out within 24 hours of the incident.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
+  </footer>
+
+  <script>
+
+    function showMessage(event) {
+      event.preventDefault();
+      const form = event.target;
+      const successMessage = document.getElementById("successMessage");
+      
+      // Simulate sending
+      setTimeout(() => {
+        form.reset();
+        successMessage.style.display = "block";
+        setTimeout(() => {
+          successMessage.style.display = "none";
+        }, 5000);
+      }, 1000);
+    }
+
+  </script>
 
 </body>
 
 </html>
+
+
+
 
 
 
