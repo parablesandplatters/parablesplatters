@@ -4,316 +4,355 @@
 
 <head>
 
-    <meta charset="UTF-8">
+  <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <title>Recipes - Chef's Guide</title>
+  <title>Recipes</title>
 
-    <link rel="icon" href="01. images/jesuslogo_enef.png" type="image/x-icon">
+  <link rel="icon" href="01. images/jesuslogo_enef.png" type="image/x-icon">
 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <style>
+  <style>
 
-        body {
+    :root {
 
-            font-family: 'Roboto', sans-serif;
-            background-color: #fff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            min-height: 100vh;
-            text-align: center;
+      --bg-color: #fff;
+      --text-color: #000;
+      --accent: #e3c5a3;
+      --button-bg: #ff7b4b;
+      --button-hover: #ff4927;
+      --toast-bg: #333;
+      --toast-text: #fff;
 
-        }
+    }
 
-        header {
+    [data-theme="dark"] {
 
-            background: #e3c5a3;
-            width: 100%;
-            padding: 20px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
+      --bg-color: #121212;
+      --text-color: #f0f0f0;
+      --accent: #3e2f1c;
+      --button-bg: #ffa07a;
+      --button-hover: #e76f51;
+      --toast-bg: #eee;
+      --toast-text: #000;
 
-        }
+    }
 
-        .header-link {
+    body {
 
-            text-decoration: none;
-            color: inherit;
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
 
-        }
+    }
 
-        h1 {
+    header, footer {
 
-            font-size: 40px;
-            margin: 0;
-            color: black;
-            text-align: center;
+      background: var(--accent);
+      padding: 20px;
+      text-align: center;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
 
-        }
+    }
 
-        .recipes-section {
+    header {
 
-            width: 80%;
-            max-width: 1200px;
-            margin-top: 120px;
-            padding: 20px;
-            background-color: #f0f0f0;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 100px;
+      top: 0;
 
-        }
+    }
 
-        .recipe-drawer {
+    footer {
 
-            margin: 20px 0;
-            background-color: #e3c5a3;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      bottom: 0;
 
-        }
+    }
 
-        .recipe-drawer h2 {
+    .header-link {
 
-            font-size: 28px;
-            margin-bottom: 15px;
-            color: #333;
+      text-decoration: none;
+      color: inherit;
 
-        }
+    }
 
-        .recipe-content {
+    .theme-toggle {
 
-            display: none;
-            padding: 15px;
-            margin-top: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-            text-align: left;
+      position: absolute;
+      right: 20px;
+      top: 25px;
+      background: transparent;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      margin-right: 30px;
 
-        }
+    }
 
-        .recipe-drawer button {
+    .main {
 
-            background-color: #ff7b4b;
-            color: black;
-            border: none;
-            padding: 10px;
-            font-size: 18px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+      margin-top: 120px;
+      margin-bottom: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-        }
+    }
 
-        .recipe-drawer button:hover {
+    input, textarea {
 
-            background-color: #ff4927;
+      width: 90%;
+      max-width: 500px;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
 
-        }
+    }
 
-        .recipe-drawer button:focus {
+    button {
 
-            outline: none;
+      background-color: var(--button-bg);
+      color: black;
+      border: none;
+      padding: 10px 15px;
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
 
-        }
+    }
 
-        footer {
+    button:hover {
 
-            background: #e3c5a3;
-            width: 100%;
-            padding: 15px;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            text-align: center;
-            color: black;
+      background-color: var(--button-hover);
 
-        }
+    }
 
-        /* Responsive Styling */
-        @media (max-width: 720px) {
+    #recipesContainer {
 
-            header {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      width: 90%;
+      max-width: 1200px;
+      margin: 30px auto;
 
-                padding: 15px;
+    }
 
-            }
+    .recipe-drawer {
 
-            .recipes-section {
+      background-color: var(--accent);
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
 
-                width: 90%;
-                padding: 15px;
+    }
 
-            }
+    .recipe-drawer:hover {
 
-            h1 {
+      transform: scale(1.01);
 
-                font-size: 26px;
-                text-align: center;
+    }
 
-            }
+    .recipe-content {
 
-        }
+      background: var(--bg-color);
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 6px;
+      display: none;
 
-        /* Animation for Drawer */
-        @keyframes slideAnimation {
+    }
 
-            0% {
+    .recipe-content.active {
 
-                transform: translateX(0);
-                opacity: 0;
+      display: block;
 
-            }
+    }
 
-            100% {
+    #toast {
 
-                transform: translateX(0);
-                opacity: 1;
+      position: fixed;
+      bottom: 80px;
+      background-color: var(--toast-bg);
+      color: var(--toast-text);
+      padding: 12px 20px;
+      border-radius: 6px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1001;
 
-            }
+    }
 
-        }
-
-        .recipe-content.open {
-
-            animation: slideAnimation 0.5s forwards;
-            display: block;
-
-        }
-
-    </style>
+  </style>
 
 </head>
 
-<body>
+<body data-theme="light">
 
-    <header>
+  <header>
+    <a href="menupage.html" class="header-link" title="Back to main menu"><h1>Recipes</h1></a>
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeIcon" title="theme">🌙</button>
+  </header>
 
-        <a href="menupage.html" class="header-link" title="back to main menu">
-            <h1>Chef's Recipes</h1>
-        </a>
+  <main class="main" role="main">
 
-    </header>
+    <h2>Add New Recipe</h2>
+    <input type="text" id="newTitle" placeholder="Recipe Title" aria-label="Recipe Title"/>
+    <textarea id="newInstructions" placeholder="One instruction per line..." aria-label="Instructions"></textarea>
+    <button id="addRecipeBtn">Add Recipe</button>
 
-    <div class="recipes-section">
-
-        <p>Let's go</p>
-
-        <div class="recipe-drawer">
-            <h2>Pap</h2>
-            <button onclick="toggleRecipe(0)" title="click to view recipe">View Recipe</button>
-            <div class="recipe-content">
-                <ul>
-                    <li>01. 1L water into Pot</li>
-                    <br>
-                    <li>02. Allow to boil</li>
-                    <br>
-                    <li>03. In a separate bowl, mix maize meal with 2 cups of water.</li>
-                    <br>
-                    <li>04. Gradually stir the maize meal mixture into the boiling water.</li>
-                    <br>
-                    <li>05. Stir continuously with wisk to avoid lumps. Be patient!.</li>
-                    <br>
-                    <li>06. Let it cook on medium heat for 10 minutes.</li>
-                    <br>
-                    <li>07. Adjust thickness by adding more maize meal as needed. Cook for an additional 5 minutes for perfect consistency.</li>
-                    <br>
-                    <li>08. Pinch of Salt.</li>
-                    <br>
-                    <li>09. Enjoy your delicious pap!</li>
-                    <br>
-                </ul>
-            </div>
-        </div>
-
-        <div class="recipe-drawer">
-            <h2>Pasta</h2>
-            <button onclick="toggleRecipe(1)" title="click to view recipe">View Recipe</button>
-            <div class="recipe-content">
-                <ul>
-                    <li>coming soon!</li>
-            </div>
-        </div>
-
-        <div class="recipe-drawer">
-            <h2>Braai Wors</h2>
-            <button onclick="toggleRecipe(2)" title="click to view recipe">View Recipe</button>
-            <div class="recipe-content">
-                <ul>
-                    <li>start your fire by putting the charcoal on top of the grill and then putting paper, cardboard and plastic or just paper alone - anything you find, and then put these underneath with your grill of charcoal on top, and then light it up. the charcoal will burn perfectly from underneath.</li>
-                    <br>
-                    <li>once you see your charcoal being red, load it inside the stand carefully.</li>
-                    <br>
-                    <li>clean your grill with half an onion.</li>
-                    <br>
-                    <li>let it heat up some more and then once you got red hot flaming charcoal all over, you would have already marinaded your wors with spices of your choosing, and then place it on your grill to cook.</li>
-                    <br>
-                    <li>With wors, we always want to limit flames to avoid the skin burning black, so always have your cup of water on standby to sprinkle.</li>
-                    <br>
-                    <li>as your wors is braaing, do some small cuts to it to allow to cook thoroughly on the inside. keep turning it, and then once you're satisfied, you're all done with Wors.</li>
-                    <br>
-                </ul>
-            </div>
-        </div>
-
-        <div class="recipe-drawer">
-            <h2>Braai Steak</h2>
-            <button onclick="toggleRecipe(3)" title="click to view recipe">View Recipe</button>
-            <div class="recipe-content">
-                <ul>
-                    <li>start your fire by putting the charcoal on top of the grill and then putting paper, cardboard and plastic or just paper alone - anything you find, and then put these underneath with your grill of charcoal on top, and then light it up. the charcoal will burn perfectly from underneath.</li>
-                    <br>
-                    <li>once you see your charcoal being red, load it inside the stand carefully.</li>
-                    <br>
-                    <li>clean your grill with half an onion.</li>
-                    <br>
-                    <li>let it heat up some more and then once you got red hot flaming charcoal all over, you would have already marinaded your steak with spices of your choosing, and then place it on your grill to cook.</li>
-                    <br>
-                    <li>With steak, we always want flames, it's much faster. but always have your cup of water on standby to sprinkle just incase the fire gets out of hand.</li>
-                    <br>
-                    <li>keep turning it, and then once you're satisfied, you're all done with your lekker steak.</li>
-                    <br>
-                </ul>
-            </div>
-        </div>
-
-        <div class="recipe-drawer">
-            <h2>Fried Wors</h2>
-            <button onclick="toggleRecipe(4)" title="click to view recipe">View Recipe</button>
-            <div class="recipe-content">
-                <ul>
-                    <li>coming soon!</li>
+    <input type="text" id="searchBox" oninput="filterRecipes()" placeholder="Search recipes..." aria-label="Search Recipes"/>
+    
+    <div id="recipesContainer">
+      <p id="loadingMessage">Loading recipes...</p>
     </div>
 
-    <footer>
-        <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
-    </footer>
+  </main>
 
-    <script>
+  <footer>
+    <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
+  </footer>
 
-        function toggleRecipe(index) {
+  <div id="toast"></div>
 
-            const recipeContents = document.querySelectorAll('.recipe-content');
-            const currentRecipe = recipeContents[index];
-            currentRecipe.classList.toggle('open');
+  <!-- Firebase Setup -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
 
-        }
+    const firebaseConfig = {
+      apiKey: "AIzaSyBoc_mvc4WpduIYYUvLnA3iu46NvweFiLQ",
+      authDomain: "recipes-1b0d1.firebaseapp.com",
+      projectId: "recipes-1b0d1",
+      storageBucket: "recipes-1b0d1.appspot.com",
+      messagingSenderId: "15200297908",
+      appId: "1:15200297908:web:45cdc1cdee6ce211d788e1"
+    };
 
-    </script>
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const recipesRef = collection(db, "recipes");
+
+    async function addRecipe() {
+      const title = document.getElementById("newTitle").value.trim();
+      const instructions = document.getElementById("newInstructions").value.trim().split("\n").map(i => i.trim()).filter(Boolean);
+      if (!title || !instructions.length) {
+        showToast("Please complete all fields.");
+        return;
+      }
+
+      await addDoc(recipesRef, { title, instructions });
+      document.getElementById("newTitle").value = "";
+      document.getElementById("newInstructions").value = "";
+      showToast("Recipe added successfully!");
+      loadRecipes();
+    }
+
+    async function loadRecipes() {
+      const container = document.getElementById("recipesContainer");
+      const querySnapshot = await getDocs(recipesRef);
+      container.innerHTML = "";
+
+      if (querySnapshot.empty) {
+        container.innerHTML = "<p>No recipes found.</p>";
+        return;
+      }
+
+      querySnapshot.forEach(docSnap => {
+        const { title, instructions } = docSnap.data();
+        const id = docSnap.id;
+
+        const drawer = document.createElement("div");
+        drawer.className = "recipe-drawer";
+        drawer.dataset.title = title.toLowerCase();
+        drawer.innerHTML = `
+          <h3 onclick="toggleContent('${id}')">${title}</h3>
+          <button onclick="startEdit('${id}', '${title.replace(/'/g, "\\'")}')">Edit</button>
+          <button onclick="deleteRecipe('${id}')">Delete</button>
+          <div class="recipe-content" id="content-${id}">
+            <ul>${instructions.map(step => `<li>${step}</li>`).join("")}</ul>
+          </div>
+        `;
+        container.appendChild(drawer);
+      });
+    }
+
+    window.deleteRecipe = async id => {
+      if (confirm("Are you sure you want to delete this recipe?")) {
+        await deleteDoc(doc(db, "recipes", id));
+        showToast("Recipe deleted.");
+        loadRecipes();
+      }
+    };
+
+    window.startEdit = (id, currentTitle) => {
+      const content = document.getElementById(`content-${id}`);
+      const listItems = Array.from(content.querySelectorAll("li")).map(li => li.textContent).join("\n");
+      content.innerHTML = `
+        <input type="text" id="editTitle-${id}" value="${currentTitle}" />
+        <textarea id="editInstructions-${id}">${listItems}</textarea>
+        <button onclick="saveEdit('${id}')">Save</button>
+        <button onclick="loadRecipes()">Cancel</button>
+      `;
+    };
+
+    window.saveEdit = async id => {
+      const title = document.getElementById(`editTitle-${id}`).value.trim();
+      const instructions = document.getElementById(`editInstructions-${id}`).value.trim().split("\n").map(s => s.trim()).filter(Boolean);
+      if (!title || !instructions.length) return showToast("Please complete all fields.");
+      await updateDoc(doc(db, "recipes", id), { title, instructions });
+      showToast("Recipe updated.");
+      loadRecipes();
+    };
+
+    window.filterRecipes = () => {
+      const search = document.getElementById("searchBox").value.toLowerCase();
+      const drawers = document.querySelectorAll(".recipe-drawer");
+      drawers.forEach(drawer => {
+        drawer.style.display = drawer.dataset.title.includes(search) ? "block" : "none";
+      });
+    };
+
+    window.toggleTheme = () => {
+      const isLight = document.body.getAttribute("data-theme") === "light";
+      document.body.setAttribute("data-theme", isLight ? "dark" : "light");
+      document.getElementById("themeIcon").textContent = isLight ? "☀️" : "🌙";
+    };
+
+    window.toggleContent = id => {
+      const content = document.getElementById(`content-${id}`);
+      content.classList.toggle("active");
+    };
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.style.opacity = "1";
+      setTimeout(() => (toast.style.opacity = "0"), 3000);
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("addRecipeBtn").addEventListener("click", addRecipe);
+      loadRecipes();
+    });
+  </script>
 
 </body>
 
 </html>
+
+
+
 
 
 

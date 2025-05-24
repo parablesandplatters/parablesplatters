@@ -1,298 +1,289 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Prayers</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    <link rel="icon" href="01. images/jesuslogo_enef.png" type="image/x-icon">
-
-    <style>
-
-        * {
-
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-
-        }
-
-        body {
-
-            font-family: 'Roboto', sans-serif;
-            background-color: #f1f1f1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-            animation: glow 2s infinite alternate;
-
-        }
-
-        header {
-
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: #e3c5a3;
-            padding: 20px;
-            text-align: center;
-            font-size: 24px;
-            box-shadow: 0 2px 15px rgba(255, 255, 255, 0.3);
-            z-index: 1000;
-            animation: slideIn 0.5s ease;
-
-        }
-
-        .header-link {
-
-            text-decoration: none;
-            color: inherit;
-
-        }
-
-        .header-link:hover {
-
-            cursor: pointer;
-
-        }
-
-        @keyframes slideIn {
-
-            from {
-                transform: translateY(-100%);
-            }
-
-            to {
-                transform: translateY(0);
-            }
-
-        }
-
-        section {
-
-            width: 80%;
-            max-width: 1200px;
-            background: #e3c5a379;
-            padding: 30px;
-            border-radius: 10px;
-            margin-top: 100px;
-            margin-bottom: 100px;
-            text-align: center;
-            transition: transform 0.5s ease;
-
-        }
-
-        h1 {
-
-            font-size: 2rem;
-            text-align: center;
-
-        }
-
-        .prayer-card {
-
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            text-align: left;
-            margin-bottom: 30px;
-            transition: transform 0.3s ease;
-            font-size: 1.1rem;
-
-        }
-
-        .prayer-card:hover {
-
-            transform: scale(1.05);
-
-        }
-
-        footer {
-
-            background: #e3c5a3;
-            width: 100%;
-            padding-top: 10px;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            text-align: center;
-            color: black;
-
-        }
-
-        .contact-info {
-
-            margin-top: 50px;
-            font-size: 1.1rem;
-            color: #333;
-
-        }
-
-        .contact-info p {
-
-            margin-bottom: 10px;
-
-        }
-
-        .social-icons {
-
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-
-        }
-
-        .social-icons a {
-
-            font-size: 30px;
-            color: #333;
-            transition: color 0.3s ease;
-
-        }
-
-        .social-icons a:hover {
-
-            color: #e3c5a3;
-
-        }
-
-        .download-section {
-
-            margin-top: 30px;
-
-        }
-
-        .download-button {
-
-            background-color: #e3c5a3;
-            color: black;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            text-decoration: none;
-            border-radius: 5px;
-            display: inline-block;
-            transition: background-color 0.3s ease;
-
-        }
-
-        .download-button:hover {
-
-            background-color: #d0a37c;
-            cursor: pointer;
-
-        }
-
-        @media (max-width: 768px) {
-
-            h1 {
-
-                font-size: 1.8rem;
-                text-align: center;
-
-            }
-
-            section {
-
-                width: 90%;
-
-            }
-
-        }
-
-    </style>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Prayers | Parables & Platters</title>
+  <meta name="description" content="A sacred prayer reflection. Seeking and proclaiming the glory of the Lord through poetic devotion." />
+  <meta name="author" content="Parables & Platters (Pty) Ltd." />
+  <meta name="theme-color" content="#e3c5a3" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" defer />
+  <link rel="icon" href="01. images/jesuslogo_enef.png" type="image/x-icon" />
+
+  <style>
+    :root {
+      --primary: #e3c5a3;
+      --secondary: #fff;
+      --text-dark: #333;
+      --bg-light: #f1f1f1;
+      --shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-mode {
+      background-color: #1a1a1a;
+      color: #f1f1f1;
+    }
+
+    body.dark-mode .prayer-card {
+      background-color: #292929;
+    }
+
+    body.dark-mode footer {
+      background-color: #2e2e2e;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--primary);
+      padding: 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      z-index: 1000;
+      animation: slideIn 0.6s ease-in-out;
+    }
+
+    .header-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .header-link:hover {
+      opacity: 0.85;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      right: 20px;
+      top: 22px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: #000;
+    }
+
+    body.dark-mode .theme-toggle {
+      color: #f1f1f1;
+    }
+
+    main {
+      margin-top: 120px;
+      margin-bottom: 100px;
+      width: 90%;
+      max-width: 1000px;
+      background: rgba(227, 197, 163, 0.2);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+    }
+
+    .prayer-card {
+      background: var(--secondary);
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      font-size: 1.15rem;
+      line-height: 1.8;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .prayer-card:hover {
+      transform: scale(1.02);
+    }
+
+    .download-section {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .download-button {
+      background-color: var(--primary);
+      color: #000;
+      padding: 12px 25px;
+      font-size: 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+      display: inline-block;
+    }
+
+    .download-button:hover {
+      background-color: #d0a37c;
+    }
+
+    footer {
+      width: 100%;
+      background-color: var(--primary);
+      text-align: center;
+      padding: 15px;
+      font-size: 0.95rem;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      .prayer-card {
+        font-size: 1rem;
+      }
+
+      .theme-toggle {
+        top: 18px;
+        right: 10px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <header>
-        <a href="menupage.html" class="header-link" title="back to main menu">
-            <h1>Prayers</h1>
-        </a>
-    </header>
+  <header>
+    <a href="menupage.html" class="header-link" title="Back to main menu">
+      <h1>Prayers</h1>
+    </a>
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Light/Dark Mode">
+      <i class="fas fa-adjust"></i>
+    </button>
+  </header>
 
-    <section>
+  <main>
+    <article class="prayer-card">
+      <h2>My LORD</h2>
 
-        <div class="prayer-card">
-            <h3>My LORD.</h3>
-            <br>
-            <p>I knew Thee in the wilderness O' Mighty One.</p>
-            <br>
-            <p>When I wandered in the land of great drought and desolation.</p>
-            <br>
-            <p>When the sun scorched me and the winds blew with such fury that they seemed to tear apart the very soul of my land.</p>
-            <br>
-            <p>And it was in that barren place LORD that I sought Thee... with all of my heart, for I knew that Thou Art My Only refuge.</p>
-            <br>
-            <p>It is there in the wilderness where My spirit was humbled and My Soul was tried.</p>
-            <br>
-            <p>I found Thee O' LORD, as a shelter in the storm, as a fortress of strength in the midst of weakness, as a stream of Living Eternity in the desert of my Soul.</p>
-            <br>
-            <p>According to thine pasture, according to the measure of Thy Grace, I am filled, and I am compounded by thy Holy Ghost.</p>
-            <br>
-            <p>I will be like unto You as a lion, as a mighty beast of the field, strong and fierce, and protector of Thine inheritance.</p>
-            <br>
-            <p>I will be a Bull Baba wami, with Thy mighty horns to trample down the enemy, and to stand as an obliterator in the land that Thou hast given.</p>
-            <br>
-            <p>I will be as a leopard by Thy wayside, swift and vigilant, watching over the path that Thou hast set for me.</p>
-            <br>
-            <p>Ndizoba ibhele baba... elinguKumkani - Yea my LORD, I proclaim - I Am Forever thine Eternally yours.</p>
-            <br>
-            <p>You my Song of Eternal Praise that resounds throughout All Infinity.</p>
-            <br>
-            <p>Glory Be unto You, for Thou Art the Eternal One, the beginning and the end, the Alpha and the Omega.</p>
-            <br>
-            <p>Thy Power is unmatched, Thy Wisdom unparalleled - and Thy Love Is immeasurable.</p>
-            <br>
-            <p>Thou Art the source of All Life, the Giver of every good and perfect gift, and to Thee alone be all Glory, now and Forevermore.</p>
-            <br>
-            <p>He - Hima Shima, Mar Shaddai - Lord Hirashima.</p>
-            <br>
-            <p>Worthy Art Thou, thou art... Worthy Is the King of Glory.</p>
-            <br>
-        </div>
+      <br>
 
-        <br>
-        <br>
-        <br>
-        <br>
+        <p>I knew Thee in the wilderness O' Mighty One.</p> 
+        
+        <br> 
+        
+        <p>When I wandered in the land of great drought and desolation.</p> 
+        
+        <br> 
+        
+        <p>When the sun scorched me and the winds blew with such fury that they seemed to tear apart the very soul of my land.</p> 
+        
+        <br> 
+        
+        <p>And it was in that barren place LORD that I sought Thee... with all of my heart, for I knew that Thou Art My Only refuge.</p> 
+        
+        <br> 
+        
+        <p>It is there in the wilderness where My spirit was humbled and My Soul was tried.</p> 
+        
+        <br> 
+        
+        <p>I found Thee O' LORD, as a shelter in the storm, as a fortress of strength in the midst of weakness, as a stream of Living Eternity in the desert of my Soul.</p> 
+        
+        <br> 
+        
+        <p>According to thine pasture, according to the measure of Thy Grace, I am filled, and I am compounded by thy Holy Ghost.</p> 
+        
+        <br> 
+        
+        <p>I will be like unto You as a lion, as a mighty beast of the field, strong and fierce, and protector of Thine inheritance.</p> 
+        
+        <br> 
+        
+        <p>I will be a Bull Baba wami, with Thy mighty horns to trample down the enemy, and to stand as an obliterator in the land that Thou hast given.</p> 
+        
+        <br> 
+        
+        <p>I will be as a leopard by Thy wayside, swift and vigilant, watching over the path that Thou hast set for me.</p> 
+        
+        <br> 
+        
+        <p>Ndizoba ibhele baba... elinguKumkani - Yea my LORD, I proclaim - I Am Forever thine Eternally yours.</p> 
+        
+        <br> 
+        
+        <p>You my Song of Eternal Praise that resounds throughout All Infinity.</p> 
+        
+        <br> 
+        
+        <p>Glory Be unto You, for Thou Art the Eternal One, the beginning and the end, the Alpha and the Omega.</p> 
+        
+        <br> 
+        
+        <p>Thy Power is unmatched, Thy Wisdom unparalleled - and Thy Love Is immeasurable.</p> 
+        
+        <br> 
+        
+        <p>Thou Art the source of All Life, the Giver of every good and perfect gift, and to Thee alone be all Glory, now and Forevermore.</p> 
+        
+        <br> 
+        
+        <p>He - Hima Shima, Mar Shaddai - Lord Hirashima.</p> 
+        
+        <br> 
+        
+        <p>Worthy Art Thou, thou art... Worthy Is the King of Glory.</p>
 
-        <div class="prayer-card">
-            <h3>Pending...</h3>
-        </div>
+    </article>
 
-    </section>
+  </main>
 
-    <footer>
-        <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
-    </footer>
+  <footer>
+    <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+
+    // Load preferred theme from localStorage
+    window.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    });
+  </script>
 
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
