@@ -4,19 +4,32 @@
 
 <head>
 
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>About Us</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Meet the team behind Parables & Platters, a fully mobile and digitized restaurant company revolutionizing food delivery." />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
 
-    <link rel="icon" href="01. images/jesuslogo_enef.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <link rel="icon" href="01. images/jesuslogo_enef.png" type="image/x-icon" />
 
     <style>
+
+        :root {
+
+            --main-bg: #e3c5a3;
+            --text-dark: #333;
+            --text-light: #fff;
+            --card-bg: #fff;
+            --hover-bg: #d0a37c;
+            --accent: #f3f3f3;
+
+        }
 
         * {
 
@@ -29,15 +42,14 @@
         body {
 
             font-family: 'Roboto', sans-serif;
-            background-color: white;
+            background-color: #ffffff;
+            color: var(--text-dark);
+            text-align: center;
+            padding: 20px;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-            padding: 20px;
-            animation: glow 2s infinite alternate;
 
         }
 
@@ -47,13 +59,17 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: #e3c5a3;
+            background-color: var(--main-bg);
             padding: 20px;
-            text-align: center;
-            font-size: 24px;
-            box-shadow: 0 2px 15px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-            animation: slideIn 0.5s ease;
+
+        }
+
+        header h1 {
+
+            font-size: 24px;
+            color: black;
 
         }
 
@@ -64,63 +80,51 @@
 
         }
 
-        .header-link:hover {
+        main {
 
-            cursor: pointer;
-
-        }
-
-        @keyframes slideIn {
-
-            from {
-                transform: translateY(-100%);
-            }
-
-            to {
-                transform: translateY(0);
-            }
+            margin-top: 100px;
+            width: 100%;
+            max-width: 1200px;
 
         }
 
         section {
 
-            width: 80%;
-            max-width: 1200px;
-            background: #e3c5a3;
+            background: var(--main-bg);
             padding: 30px;
             border-radius: 10px;
-            margin-top: 100px;
             margin-bottom: 100px;
-            text-align: center;
-            background-color: #e3c5a3;
-            transition: transform 0.5s ease;
 
         }
 
-        h1 {
+        section h1 {
 
-            font-size: 2rem;
+            color: black;
+
+        }
+
+        h1, h3 {
+
+            margin-bottom: 20px;
 
         }
 
         .profile {
 
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 40px;
-            padding: 20px;
+            padding: 20px 0;
 
         }
 
         .profile-card {
 
-            background-color: #fff;
+            background-color: var(--card-bg);
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
             transition: transform 0.3s ease;
-            margin-bottom: 30px;
 
         }
 
@@ -143,32 +147,13 @@
         .profile-card h4 {
 
             font-size: 1.2rem;
-            color: #333;
             margin-bottom: 10px;
 
         }
 
         .profile-card p {
 
-            font-size: 1rem;
-            color: #555;
-
-        }
-
-        .contact-info {
-
-            margin-top: 50px;
-            font-size: 1.1rem;
-            color: #333;
-            background-color: #f3f3f3;
-            padding: 20px;
-            border-radius: 10px;
-
-        }
-
-        .contact-info p {
-
-            margin-bottom: 10px;
+            margin: 5px 0;
 
         }
 
@@ -177,35 +162,21 @@
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 15px;
 
         }
 
         .social-icons a {
 
-            font-size: 50px;
-            color: #333;
+            font-size: 24px;
+            color: var(--text-light);
             transition: color 0.3s ease;
 
         }
 
         .social-icons a:hover {
 
-            color: #e3c5a3;
-
-        }
-
-        footer {
-
-            background: #e3c5a3;
-            width: 100%;
-            padding-top: 10px;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            text-align: center;
-            color: black;
-            padding-bottom: 20px;
+            color: var(--hover-bg);
 
         }
 
@@ -217,68 +188,93 @@
 
         .download-button {
 
-            background-color: #ffff;
+            background-color: var(--card-bg);
             color: black;
             padding: 15px 30px;
-            font-size: 1.2rem;
+            font-size: 1rem;
             text-decoration: none;
             border-radius: 5px;
-            display: inline-block;
             transition: background-color 0.3s ease;
 
         }
 
         .download-button:hover {
 
-            background-color: #d0a37c;
-            cursor: pointer;
+            background-color: var(--hover-bg);
 
         }
 
-        @media (max-width: 768px) {
+        .contact-info {
 
-            h1 {
+            margin-top: 50px;
+            background-color: var(--accent);
+            padding: 20px;
+            border-radius: 10px;
 
-                font-size: 1.8rem;
-                text-align: center;
+        }
+
+        footer {
+
+            background: var(--main-bg);
+            width: 100%;
+            padding: 15px 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+
+        }
+
+        #backToTop {
+
+            position: fixed;
+            bottom: 70px;
+            right: 20px;
+            display: none;
+            background-color: var(--main-bg);
+            color: black;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+        }
+
+        @media (prefers-color-scheme: dark) {
+
+            body {
+
+                background-color: #121212;
+                color: #fff;
 
             }
 
-            section {
+            .profile-card {
 
-                width: 90%;
-
-            }
-
-            .profile-card img {
-
-                width: 120px;
-                height: 120px;
+                background-color: #1e1e1e;
+                color: #fff;
 
             }
 
-            .profile-card h4 {
+            .download-button {
 
-                font-size: 1rem;
-
-            }
-
-            .profile-card p {
-
-                font-size: 0.9rem;
+                background-color: #333;
+                color: #fff;
 
             }
 
-            .contact-info p {
+            .contact-info {
 
-                font-size: 1rem;
+                background-color: #222;
 
             }
 
-            .profile {
+            footer {
 
-                grid-template-columns: 1fr;
-                gap: 20px;
+                background: #1a1a1a;
+                color: #eee;
 
             }
 
@@ -289,172 +285,148 @@
 </head>
 
 <body>
-
     <header>
-        <a href="menupage.html" class="header-link" title="back to main menu">
+        <a href="menupage.html" class="header-link" title="Back to main menu">
             <h1>About Us</h1>
         </a>
     </header>
 
-    <section>
-
-        <h1 title="about us">Company Leadership</h1>
-        <br>
-
-        <div class="profile">
-            <div class="profile-card">
-                <img src="04. about us/01. Profiles/01. Hoss/hoss.png" alt="Hoss" title="I'm willing to die for it.">
-                <h4>01. Hoss</h4>
-                <p>Chief Innovations Officer (CIO) & Founder</p>
-                <br>
-                <p>Born: 03 October 2003 - Age 22</p>
-                <br>
-                <p>Power: Sheer Will</p>
-                <br>
-                <p>Reports to: No one</p>
-                <br>
-                <p>CV: unavailable</p>
-                <br>
-                <p>Qualifications: National Senior Certificate (matric) - Class of 2021</p>
-                <br>
-                <p>Driver's License: not yet</p>
-                <br>
-                <p>Pilot's License: none</p>
-                <br>
-                <div class="social-icons">
-                    <a href="https://www.instagram.com/ttrueshinobi7" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="mailto:thatosmorake@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
-                    <a href="https://wa.me/0615549064" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-
-            <!-- - -->
-
-            <div class="profile-card">
-                <img src="04. about us/01. Profiles/02. Olama Khayyim/morpheus.jpg" alt="Olama Khayyim" title="I Eternally Love the LORD Jesus.">
-                <h4>02. Olama Khayyim</h4>
-                <p>Chief Technology Officer (CTO), Business Manager (BM), Brand Ambassador, Chef & Co-Founder</p>
-                <br>
-                <p>Born: 03 October 1999 - Age 25</p>
-                <br>
-                <p>Power: God</p>
-                <br>
-                <p>Reports to: Hoss</p>
-                <br>
-                <p>CV: Available
-                    <a href="04. about us/01. Profiles/02. Olama Khayyim/02. CV/Khayyim_CV.pdf" download="Olama_Khayyim_CV.pdf">Download</a></p>
+    <main>
+        <section>
+            <h1>Company Leadership</h1>
+            <div class="profile">
+                <!-- Hoss -->
+                <article class="profile-card">
+                    <img src="04. about us/01. Profiles/01. Hoss/hoss.png" alt="Hoss">
+                    <h4>01. Hoss</h4>
                     <br>
-                <p>Qualifications: NQF-4 Information Technology certificate @ Richfield Graduate Institute of Technology - Year 2019
-                    <a href="04. about us/01. Profiles/02. Olama Khayyim/Qualifications.zip" download="Olama_Khayyim_Qualifications.zip">Download</a></p>
-                <br>
-                <p>Driver's License: not yet</p>
-                <br>
-                <p>Pilot's License: not yet (currently studying under the FAA)</p>
-                <br>
-                <div class="social-icons">
-                    <a href="https://www.instagram.com/olamakhayyim" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/olamakhayyim" target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.youtube.com/olamakhayyim" target="_blank"><i class="fab fa-youtube"></i></a>
-                    <a href="https://x.com/olamakhayyim" target="_blank"><i class="fab fa-x"></i></a>
-                    <a href="https://www.flickr.com/olamakhayyim" target="_blank"><i class="fab fa-flickr"></i></a>
-                    <a href="https://www.pinterest.com/olamakhayyim" target="_blank"><i class="fab fa-pinterest"></i></a>
-                    <a href="mailto:philanikemele23@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
-
-            <!-- add linkedin, and indeed for Yourself -->
-
-            <!-- - -->
-
-            <div class="profile-card">
-                <img src="04. about us/01. Profiles/03. Frost/frost.jpg" alt="Hoss" title="Can you trust your landlord?">
-                <h4>03. Tobin Frost</h4>
-                <p>Head of Transport & Logistics</p>
-                <br>
-                <p>Born: 19 September 2001 - Age 23</p>
-                <br>
-                <p>Power: Subtility & Calmness</p>
-                <br>
-                <p>Reports to: Olama Khayyim</p>
-                <br>
-                <p>CV: Available
-                    <a href="04. about us/01. Profiles/03. Frost/02. CV/SK.pdf" download="Frost_CV.pdf">Download</a></p>
+                    <p>Chief Innovations Officer & Founder</p>
                     <br>
-                <p>Qualifications: National Senior Certificate (matric) - Class of 2019</p>
-                <br>
-                <p>Driver's License: Code 10 <a href="04. about us/01. Profiles/03. Frost/03. Driver's License/SDOC-65482BB34755E699E65B31C8D7B0ADE2-02-10-SI.pdf" download="Frost_Drivers_License.pdf">Download</a></p>
-                <br>
-                <p>Pilot's License: none</p>
-                <br>
+                    <p>Born: 03 Oct 2003 — Age 22</p>
+                    <br>
+                    <p>Power: Sheer Will</p>
+                    <br>
+                    <p>Reports to: No one</p>
+                    <br>
+                    <p>CV: Currently unavailable</p>
+                    <br>
+                    <p>Qualification: National Senior Certificate (2021)</p>
+                    <br>
+                    <p>Driver's License: impending...</p>
+                    <br>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/ttrueshinobi7" title="instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="mailto:thatosmorake@gmail.com" title="email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://wa.me/0615549064" title="whatsapp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </article>
+
+                <!-- Khayyim -->
+                <article class="profile-card">
+                    <img src="04. about us/01. Profiles/02. Olama Khayyim/morpheus.jpg" alt="Olama Khayyim">
+                    <h4>02. Olama Khayyim</h4>
+                    <br>
+                    <p>Chief Technology Officer, interim Lead Chef & Co-Founder</p>
+                    <br>
+                    <p>Born: 22 Oct 1999 — Age 25</p>
+                    <br>
+                    <p>Power: God</p>
+                    <br>
+                    <p>Reports to: Hoss</p>
+                    <br>
+                    <p>
+                        CV:
+                        <a href="04. about us/01. Profiles/02. Olama Khayyim/02. CV/Khayyim_CV.pdf" download>Download</a>
+                    </p>
+                    <br>
+                    <p>
+                        Qualification: NQF-4 [Information Technology - Technical Support] @ Richfield (2019)
+                        <a href="04. about us/01. Profiles/02. Olama Khayyim/Qualifications.zip" download>Download</a>
+                    </p>
+                    <br>
+                    <p>Driver's License: impending...</p>
+                    <br>
+                    <p>Pilot's License: Studying under FAA</p>
+                    <br>
+                    <div class="social-icons">
+                        <a href="https://instagram.com/olamakhayyim" title="instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://facebook.com/olamakhayyim" title="facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://youtube.com/olamakhayyim" title="youtube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://x.com/olamakhayyim" title="x... even though it sucks"><i class="fab fa-x"></i></a>
+                        <a href="mailto:philanikemele23@gmail.com" title="email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </article>
+
+                <!-- Frost -->
+                <article class="profile-card">
+                    <img src="04. about us/01. Profiles/03. Frost/frost.jpg" alt="Tobin Frost">
+                    <h4>03. Tobin Frost</h4>
+                    <br>
+                    <p>Head of Transport & Logistics</p>
+                    <br>
+                    <p>Born: 19 Sep 2001 — Age 23</p>
+                    <br>
+                    <p>Power: Subtility & Calmness</p>
+                    <br>
+                    <p>Reports to: Khayyim</p>
+                    <br>
+                    <p>
+                        CV:
+                        <a href="04. about us/01. Profiles/03. Frost/02. CV/SK.pdf" download>Download</a>
+                    </p>
+                    <br>
+                    <p>
+                        Driver's License: Code 10
+                        <a href="04. about us/01. Profiles/03. Frost/03. Driver's License/SDOC-65482BB34755E699E65B31C8D7B0ADE2-02-10-SI.pdf" download>Download</a>
+                    </p>
+                    <br>
+                    <div class="social-icons">
+                        <a href="https://instagram.com/arnold_khumalo" title="instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="mailto:blackfrost096@gmail.com" title="email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://wa.me/0671100101" title="whatsapp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="download-section">
+                <a href="07. company documents/company documents.zip" download class="download-button" title="click">Download Company Documents</a>
+            </div>
+
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <p>Phone: <a href="tel:+27634732453">063 473 2453</a> | <a href="https://wa.me/27634732453"><i class="fab fa-whatsapp"></i> WhatsApp</a></p>
+                <p>Email: <a href="mailto:parablesandplatters@outlook.com">parablesandplatters@outlook.com</a></p>
                 <div class="social-icons">
-                    <a href="https://www.instagram.com/frost_black" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="mailto:frostblack@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
-                    <a href="https://wa.me/0671100101" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://x.com/p_platters" title="musk's x... -_-"><i class="fab fa-x"></i></a>
+                    <a href="https://instagram.com/parablesandplatters" title="instagram"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-            
-        </div>
+        </section>
+    </main>
 
-        <div class="download-section" title="click to download">
-            <a href="07. company documents/company documents.zip" download="company_documents.zip" class="download-button">Download Company Documents</a>
-        </div>
+    <button id="backToTop" title="Back to top">↑ Top</button>
 
-        <div class="contact-info">
-            <h3>Contact Information</h3>
-            <br>
-            <p>Phone: <span id="phone-number">063 473 2453</span> 
-                | <a href="https://wa.me/27634732453" target="_blank" style="text-decoration: none;" title="click"><i class="fab fa-whatsapp"></i>WhatsApp</a>
-                | <a href="tel:+27634732453" style="text-decoration: none;" title="click">Call</a></p>
-                <br>
-            <p>Email: <a href="mailto:parablesandplatters@outlook.com" style="text-decoration: none;" title="click to email us">parablesandplatters@outlook.com</a></p>
-            <div class="social-icons">
-                <a href="https://x.com/p_platters" target="_blank"><i class="fab fa-x"></i></a>
-                <a href="https://www.instagram.com/parablesandplatters" target="_blank"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-
-        <p>Parables & Platters is a fully digitized and mobile restaurant company.</p>
-
-        <!-- Add more uniqueness to this -->
-         
-    </section>
-
-    <footer title="We are elite.">
+    <footer>
         <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
     </footer>
 
     <script>
-        const backToTopButton = document.getElementById("backToTop");
+
+        const backToTop = document.getElementById("backToTop");
+
         window.addEventListener("scroll", () => {
-            if (window.scrollY > 300) {
-                backToTopButton.style.display = "block";
-            } else {
-                backToTopButton.style.display = "none";
-            }
+            backToTop.style.display = window.scrollY > 300 ? "block" : "none";
         });
 
-        backToTopButton.addEventListener("click", () => {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-            });
+        backToTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
         });
+
     </script>
+
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
