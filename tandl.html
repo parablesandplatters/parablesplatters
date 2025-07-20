@@ -399,31 +399,6 @@
     <div class="list-container" id="documentsList"></div>
   </section>
 
-  <!-- Selling Spots Section -->
-<section id="sellingSpotsSection">
-  <h2>📍 Selling Spots</h2>
-  <div class="form-add" id="sellingSpotsFormAdd">
-    <input type="text" id="spotName" placeholder="Spot Name" />
-    <input type="text" id="spotLocation" placeholder="Location" />
-    <input type="text" id="spotType" placeholder="Type (e.g., Market, Curbside)" />
-    <button id="spotAddBtn">Add Spot</button>
-  </div>
-
-  <div class="list-controls">
-    <input type="text" id="spotsSearch" class="filter-search" placeholder="Search spots..." />
-    <select id="spotsSort" class="filter-search" title="Sort Spots">
-      <option value="name_asc">Name ↑</option>
-      <option value="name_desc">Name ↓</option>
-      <option value="location_asc">Location ↑</option>
-      <option value="location_desc">Location ↓</option>
-    </select>
-  </div>
-
-  <div class="feedback" id="spotsFeedback"></div>
-  <div class="list-container" id="spotsList"></div>
-</section>
-
-
   <footer>
     <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
   </footer>
@@ -658,7 +633,7 @@
           <div class="item-details">
             <strong>${item.name}</strong>
             <span>Source: ${item.source}</span>
-            <span>Price: $${item.price.toFixed(2)}</span>
+            <span>Price: R${item.price.toFixed(2)}</span>
           </div>
           <div class="item-actions">
             <button class="edit-btn" title="Edit"><i class="fas fa-edit"></i></button>
@@ -851,66 +826,14 @@
       }
     });
 
-    // ===== SELLING SPOTS MANAGER =====
-const sellingSpotsManager = new ListManager({
-  collectionName: 'sellingSpots',
-  listId: 'spotsList',
-  feedbackId: 'spotsFeedback',
-  searchId: 'spotsSearch',
-  sortId: 'spotsSort',
-  addBtnId: 'spotAddBtn',
-  formInputs: ['spotName', 'spotLocation', 'spotType'],
-  validateAdd() {
-    const name = document.getElementById('spotName').value.trim();
-    const location = document.getElementById('spotLocation').value.trim();
-    if (!name || !location) {
-      this.showFeedback('Spot Name and Location are required', true);
-      return false;
-    }
-    return true;
-  },
-  parseAdd() {
-    return {
-      name: document.getElementById('spotName').value.trim(),
-      location: document.getElementById('spotLocation').value.trim(),
-      type: document.getElementById('spotType').value.trim()
-    };
-  },
-  filterItem(item, term) {
-    return (
-      item.name.toLowerCase().includes(term) ||
-      item.location.toLowerCase().includes(term) ||
-      (item.type && item.type.toLowerCase().includes(term))
-    );
-  },
-  renderItem(container, item, manager) {
-    const card = document.createElement('div');
-    card.className = 'item-card';
-
-    card.innerHTML = `
-      <div class="item-details">
-        <strong>${item.name}</strong>
-        <span>Location: ${item.location}</span>
-        ${item.type ? `<span>Type: ${item.type}</span>` : ''}
-      </div>
-      <div class="item-actions">
-        <button class="edit-btn" title="Edit"><i class="fas fa-edit"></i></button>
-        <button class="delete-btn" title="Delete"><i class="fas fa-trash-alt"></i></button>
-      </div>
-    `;
-
-    card.querySelector('.edit-btn').onclick = () => manager.handleEdit(item);
-    card.querySelector('.delete-btn').onclick = () => manager.handleDelete(item.id);
-
-    container.appendChild(card);
-  }
-});
-
   </script>
 </body>
 
 </html>
 
+<!-- For inventory checklist, add do we have stock available under price with checkboxes for yes and no, but with a note that it must always be yes, and if yes, what is the quantity of that stock... we always want to be on a surplus with stock to cut transportation trips to the supplier, and to also avoid the supplier increasing the price when they realise that with this particular item, it's going off the shelf ... and if ticked no, then why? must leave a note. -->
+
+<!-- change the documents section to upload actual media files... such as txt, pdf, word, etc. and even different types of audio, just incase the head of t&l decides to leave a voice recording. -->
 
 
 
