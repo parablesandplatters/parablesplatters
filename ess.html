@@ -34,10 +34,25 @@
     }
 
     header, footer {
+
       background: var(--primary);
       color: white;
       text-align: center;
       padding: 1.5rem;
+      
+    }
+
+    .header-link {
+
+      text-decoration: none;
+      color: inherit;
+
+    }
+
+    .header-link:hover {
+
+      opacity: 0.85;
+
     }
 
     main {
@@ -110,7 +125,7 @@
 
 <body>
   <header>
-    <h1>E.S.S ⚽</h1>
+    <a href="menupage.html" class="header-link" title="Back to main menu"><h1>E.S.S ⚽</h1></a>
     <h2>Eden Soccer Sundays — 2025 Season</h2>
     <p><strong>League Duration:</strong> 6 July – 30 November 2025 | Sundays @ 14:00</p>
     <div class="countdown" id="countdown">Loading next match countdown...</div>
