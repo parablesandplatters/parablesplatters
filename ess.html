@@ -98,6 +98,10 @@
       background-color: #f3f4f6;
     }
 
+    .lt {
+      width:200%;
+    }
+
     ul {
       padding-left: 1.2rem;
     }
@@ -119,6 +123,17 @@
       color: var(--text-light);
     }
 
+    
+    @media (max-width: 600px) {
+
+      .lt {
+
+        width:100%;
+
+      }
+
+    }
+
   </style>
 
 </head>
@@ -132,7 +147,7 @@
   </header>
 
   <main>
-    <section>
+    <section class="lt">
       <h2>🏆 League Table</h2>
       <table>
         <tr>
@@ -140,25 +155,30 @@
           <th>Played</th>
           <th>Won</th>
           <th>Lost</th>
+          <th>Draw</th>
           <th>Points</th>
         </tr>
         <tr>
           <td><strong>Eden Alpha</strong></td>
-          <td>8</td>
+          <td>9</td>
           <td>5</td>
           <td>3</td>
-          <td>15</td>
+          <td>1</td>
+          <td>16</td>
         </tr>
         <tr>
           <td><strong>Eden Delta</strong></td>
-          <td>8</td>
+          <td>9</td>
           <td>3</td>
           <td>5</td>
-          <td>9</td>
+          <td>1</td>
+          <td>10</td>
         
         </tr>
       </table>
     </section>
+
+    <br>
 
     <section>
       <h2>⚔️ Match Results</h2>
@@ -171,6 +191,7 @@
         <li><strong>Game 4.2</strong> – Eden Alpha 4 : 0 Eden Delta | <em>Man of the Match:</em> Xan</li>
         <li><strong>Game 5</strong> – Eden Alpha 4 : 2 Eden Delta | <em>Man of the Match:</em> Queener</li>
         <li><strong>Game 5.1</strong> – Eden Alpha 0 : 2 Eden Delta | <em>Man of the Match:</em>Junior</li>
+        <li><strong>Game 6</strong> – Eden Alpha 3 : 3 Eden Delta | <em>Man of the Match:</em>Junior</li>
       </ul>
     </section>
 
@@ -185,11 +206,11 @@
         <tr><th>Player</th><th>Goals</th></tr>
         <tr><td>01. Vuyo</td><td>10</td></tr>
         <tr><td>02. Frost</td><td>6</td></tr>
-        <tr><td>03. Joy</td><td>5</td></tr>
-        <tr><td>04. Bayanda</td><td>4</td></tr>
-        <tr><td>05. Xan</td><td>4</td></tr>
-        <tr><td>06. Hoss</td><td>3</td></tr>
-        <tr><td>07. Junior</td><td>3</td></tr>
+        <tr><td>03. Joy</td><td>6</td></tr>
+        <tr><td>04. Junior</td><td>6</td></tr>
+        <tr><td>05. Bayanda</td><td>5</td></tr>
+        <tr><td>06. Xan</td><td>4</td></tr>
+        <tr><td>07. Hoss</td><td>4</td></tr>
         <tr><td>08. Olama</td><td>2</td></tr>
         
       </table>
@@ -207,6 +228,8 @@
         <tr><td>Game 4.2</td><td>Xan</td></tr>
         <tr><td>Game 5</td><td>Queener</td></tr>
         <tr><td>Game 5.1</td><td>Junior</td></tr>
+        <tr><td>Game 6</td><td>Junior</td></tr>
+
 
       </table>
     </section>
