@@ -127,6 +127,59 @@
     </section>
   </main>
 
+    <section class="panel" id="walkiePanel" style="margin-top: 30px;">
+  <h2>Digital Walkie-Talkie (No Backend, Manual Connection)</h2>
+  <p class="lead" style="white-space: pre-line;">
+    This lets you talk live with one team member anywhere on the internet.<br>
+    <strong>No backend server needed.</strong> You will manually exchange connection info.<br><br>
+
+    <strong>How to connect:</strong>
+    1. One person clicks "Create Offer" and copies the generated text.<br>
+    2. Send that text to your teammate (via chat, email, etc).<br>
+    3. Your teammate pastes it into "Signaling Input" and clicks "Create Answer".<br>
+    4. They send the new text back to you.<br>
+    5. You paste it into your "Signaling Input" and click "Set Remote Description".<br><br>
+
+    Once connected, open your mic to start talking and listening live.<br>
+    You can close your mic or connection anytime.<br><br>
+
+    <strong>Important:</strong><br>
+    - You can talk and listen simultaneously (full duplex).<br>
+    - Both users must keep this page open and connected.<br>
+    - If connection drops, repeat the process.<br><br>
+
+    This works best with stable internet and modern browsers (Chrome, Firefox, Edge).
+  </p>
+
+  <div class="controls" style="flex-direction: column; align-items: stretch; gap: 12px;">
+
+    <div>
+      <button id="createOfferBtn" class="btn">Create Offer (Start Connection)</button>
+      <button id="createAnswerBtn" class="btn">Create Answer (Respond to Offer)</button>
+    </div>
+
+    <label for="signalingOutput" style="font-weight: 600; margin-top: 8px;">Signaling Output (copy this text and send to your teammate):</label>
+    <textarea id="signalingOutput" rows="6" readonly style="width: 100%; border-radius: 8px; padding: 8px; font-family: monospace;"></textarea>
+
+    <label for="signalingInput" style="font-weight: 600; margin-top: 12px;">Signaling Input (paste teammate’s response here):</label>
+    <textarea id="signalingInput" rows="6" style="width: 100%; border-radius: 8px; padding: 8px; font-family: monospace;"></textarea>
+
+    <button id="setRemoteDescBtn" class="btn" style="align-self: flex-start;">Set Remote Description (Finalize Connection)</button>
+
+    <div style="display: flex; gap: 12px; margin-top: 16px;">
+      <button id="openMicBtn" class="btn" disabled><i class="fas fa-microphone"></i> Open Mic (Start Talking)</button>
+      <button id="closeMicBtn" class="btn ghost" disabled><i class="fas fa-microphone-slash"></i> Close Mic (Stop Talking)</button>
+      <button id="closeConnBtn" class="btn ghost" disabled><i class="fas fa-times-circle"></i> Close Connection</button>
+    </div>
+
+    <div id="walkieStatus" style="margin-top: 14px; font-weight: 600; color: #444;">
+      Status: <span id="walkieStatusText">Disconnected</span>
+    </div>
+
+    <audio id="remoteAudio" autoplay playsinline style="width: 100%; margin-top: 16px; border-radius: 8px; background: #eee;"></audio>
+  </div>
+    </section>
+
   <footer>&copy; 2025 Parables & Platters. All rights reserved.</footer>
 
   <script>
@@ -448,10 +501,270 @@
     })();
       
   </script>
+
+    <script>
+        
+(() => {
+  const createOfferBtn = document.getElementById('createOfferBtn');
+  const createAnswerBtn = document.getElementById('createAnswerBtn');
+  const signalingOutput = document.getElementById('signalingOutput');
+  const signalingInput = document.getElementById('signalingInput');
+  const setRemoteDescBtn = document.getElementById('setRemoteDescBtn');
+  const openMicBtn = document.getElementById('openMicBtn');
+  const closeMicBtn = document.getElementById('closeMicBtn');
+  const closeConnBtn = document.getElementById('closeConnBtn');
+  const walkieStatusText = document.getElementById('walkieStatusText');
+  const remoteAudio = document.getElementById('remoteAudio');
+
+  
+  const configuration = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] };
+  let pc = null;
+  let localStream = null;
+
+  function logStatus(text, color = '#444') {
+    walkieStatusText.textContent = text;
+    walkieStatusText.style.color = color;
+  }
+
+  function reset() {
+    if (pc) {
+      try { pc.close(); } catch(e) {}
+      pc = null;
+    }
+    if (localStream) {
+      localStream.getTracks().forEach(t => t.stop());
+      localStream = null;
+    }
+    remoteAudio.srcObject = null;
+    signalingOutput.value = '';
+    signalingInput.value = '';
+    openMicBtn.disabled = true;
+    closeMicBtn.disabled = true;
+    closeConnBtn.disabled = true;
+    logStatus('Disconnected', '#444');
+  }
+
+  function handleConnectionState() {
+    if (!pc) return;
+    switch(pc.iceConnectionState) {
+      case 'connected':
+      case 'completed':
+        logStatus('Connected', 'green');
+        openMicBtn.disabled = false;
+        closeConnBtn.disabled = false;
+        break;
+      case 'disconnected':
+      case 'failed':
+        logStatus('Disconnected or Failed', 'red');
+        openMicBtn.disabled = true;
+        closeMicBtn.disabled = true;
+        closeConnBtn.disabled = false;
+        break;
+      case 'closed':
+        logStatus('Connection Closed', '#444');
+        openMicBtn.disabled = true;
+        closeMicBtn.disabled = true;
+        closeConnBtn.disabled = true;
+        break;
+      default:
+        logStatus('Connecting...', '#f97316');
+    }
+  }
+
+  async function createPeerConnection() {
+    pc = new RTCPeerConnection(configuration);
+
+    pc.onicecandidate = event => {
+      if (event.candidate) {
+        
+        try {
+          let data = JSON.parse(signalingOutput.value || '{}');
+          if (!data.iceCandidates) data.iceCandidates = [];
+          data.iceCandidates.push(event.candidate);
+          signalingOutput.value = JSON.stringify(data, null, 2);
+        } catch {
+          
+          signalingOutput.value = JSON.stringify({ iceCandidates: [event.candidate] }, null, 2);
+        }
+      }
+    };
+
+    pc.ontrack = event => {
+      
+      if (remoteAudio.srcObject !== event.streams[0]) {
+        remoteAudio.srcObject = event.streams[0];
+      }
+    };
+
+    pc.oniceconnectionstatechange = handleConnectionState;
+
+    return pc;
+  }
+
+  async function getUserMicStream() {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      return stream;
+    } catch (err) {
+      alert('Microphone access denied or not available.');
+      throw err;
+    }
+  }
+
+  createOfferBtn.addEventListener('click', async () => {
+    reset();
+    pc = await createPeerConnection();
+
+    try {
+      const offer = await pc.createOffer();
+      await pc.setLocalDescription(offer);
+
+      signalingOutput.value = JSON.stringify({ sdp: pc.localDescription }, null, 2);
+      logStatus('Offer created. Send it to your teammate.');
+    } catch (err) {
+      alert('Failed to create offer: ' + err);
+      reset();
+    }
+  });
+
+  createAnswerBtn.addEventListener('click', async () => {
+    reset();
+    pc = await createPeerConnection();
+
+    try {
+      const input = signalingInput.value.trim();
+      if (!input) { alert('Paste the offer SDP from your teammate first!'); return; }
+
+      let data = null;
+      try { data = JSON.parse(input); } catch(e) { alert('Invalid JSON in input'); return; }
+
+      if (!data.sdp) { alert('Input must contain an SDP offer'); return; }
+
+      await pc.setRemoteDescription(new RTCSessionDescription(data.sdp));
+      const answer = await pc.createAnswer();
+      await pc.setLocalDescription(answer);
+
+      signalingOutput.value = JSON.stringify({ sdp: pc.localDescription }, null, 2);
+
+      
+      if (data.iceCandidates && data.iceCandidates.length) {
+        for (const c of data.iceCandidates) {
+          try {
+            await pc.addIceCandidate(new RTCIceCandidate(c));
+          } catch(e) {
+            console.warn('Error adding ICE candidate from offer:', e);
+          }
+        }
+      }
+
+      logStatus('Answer created. Send it to your teammate.');
+    } catch (err) {
+      alert('Failed to create answer: ' + err);
+      reset();
+    }
+  });
+
+  setRemoteDescBtn.addEventListener('click', async () => {
+    if (!pc) {
+      alert('Create offer or answer first!');
+      return;
+    }
+    const input = signalingInput.value.trim();
+    if (!input) { alert('Paste the signaling data from your teammate!'); return; }
+
+    let data = null;
+    try { data = JSON.parse(input); } catch(e) { alert('Invalid JSON in input'); return; }
+
+    try {
+      if (data.sdp) {
+        await pc.setRemoteDescription(new RTCSessionDescription(data.sdp));
+        logStatus('Remote SDP set.');
+      }
+      if (data.iceCandidates && data.iceCandidates.length) {
+        for (const c of data.iceCandidates) {
+          try {
+            await pc.addIceCandidate(new RTCIceCandidate(c));
+          } catch(e) {
+            console.warn('Error adding ICE candidate:', e);
+          }
+        }
+        logStatus('Remote ICE candidates added.');
+      }
+    } catch (err) {
+      alert('Failed to set remote description: ' + err);
+    }
+  });
+
+  openMicBtn.addEventListener('click', async () => {
+    if (!pc) {
+      alert('No connection established!');
+      return;
+    }
+    if (localStream) {
+      alert('Mic already open.');
+      return;
+    }
+    try {
+      localStream = await getUserMicStream();
+      for (const track of localStream.getTracks()) {
+        pc.addTrack(track, localStream);
+      }
+      openMicBtn.disabled = true;
+      closeMicBtn.disabled = false;
+      logStatus('Mic opened. You can talk now.', 'green');
+    } catch (e) {
+      console.error(e);
+    }
+  });
+
+  closeMicBtn.addEventListener('click', () => {
+    if (!localStream) {
+      alert('Mic is not open.');
+      return;
+    }
+    localStream.getTracks().forEach(t => {
+      try {
+        t.stop();
+      } catch(e){}
+    });
+    localStream = null;
+    
+    if (pc) {
+      const senders = pc.getSenders();
+      senders.forEach(sender => {
+        try {
+          pc.removeTrack(sender);
+        } catch(e) {}
+      });
+    }
+    openMicBtn.disabled = false;
+    closeMicBtn.disabled = true;
+    logStatus('Mic closed.', '#444');
+  });
+
+  closeConnBtn.addEventListener('click', () => {
+    reset();
+  });
+
+  reset();
+})();
+        
+</script>
     
 </body>
     
 </html>
+
+
+
+
+
+
+              
+
+
+
+
 
 
 
