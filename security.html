@@ -103,33 +103,34 @@
         <button id="exportIndexBtn" class="btn ghost"><i class="fas fa-download"></i> Export Index</button>
       </div>
 
-      <div class="small" style="margin-top:10px">Storage: <span id="storageInfo">Calculating…</span></div>
+      <div class="small" style="margin-top:10px">storage: <span id="storageInfo">calculating…</span></div>
       <div id="errorMsg" class="small" style="color:#b91c1c;margin-top:8px"></div>
 
       <div id="log" class="log" aria-live="polite"></div>
     </section>
 
     <section class="panel">
-      <h2>Transcripts & Merge Settings</h2>
-      <p class="small">Live transcription uses the browser SpeechRecognition API when available. Transcripts are saved per chunk and combined when you merge files.</p>
+      <h2>transcripts & merge settings</h2>
+      <p class="small">live transcription uses the browser SpeechRecognition API when available. Transcripts are saved per chunk and combined when you merge files.</p>
 
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-        <button id="showTranscriptBtn" class="btn ghost">Show Combined Transcript</button>
-        <button id="downloadTranscriptBtn" class="btn ghost">Download Transcript (.txt)</button>
+        <button id="showTranscriptBtn" class="btn ghost">show combined transcript</button>
+        <button id="downloadTranscriptBtn" class="btn ghost">download transcript (.txt)</button>
       </div>
 
       <div id="transcriptArea" class="transcript-area" hidden></div>
     </section>
 
     <section class="panel">
-      <h2>Tips & Notes</h2>
-      <p class="small">If Activate does nothing: check browser mic permissions, use a secure origin (https or localhost), and test in Chrome/Edge/Firefox desktop or mobile with mic. Some sandboxed previews disable getUserMedia.</p>
+      <h2>tips & notes</h2>
+      <p class="small">if Activate does nothing: check browser mic permissions, use a secure origin (https or localhost), and test in Chrome/Edge/Firefox desktop or mobile with mic. Some sandboxed previews disable getUserMedia.</p>
     </section>
   </main>
 
   <footer>&copy; 2025 Parables & Platters. All rights reserved.</footer>
 
   <script>
+      
     (function(){
       
       const startBtn = document.getElementById('startBtn');
