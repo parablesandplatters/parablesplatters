@@ -1,266 +1,456 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
+    
 <head>
+    
+  <meta charset="UTF-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+  <title>security</title>
+    
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+  <link rel="icon" href="01. images/jesuslogo_enef.png" type="image/x-icon">
+    
+  <style>
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Roboto', sans-serif; background-color: #fff; color: #333; text-align: center; padding-top: 100px; padding-bottom: 80px; animation: fadeIn 1.2s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
 
-    <meta charset="UTF-8" />
+    header { background-color: #e3c5a3; padding: 18px 0; position: fixed; width: 100%; top: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); z-index: 999; }
+    header h1 { font-size: 1.6rem; margin-left: 8px; }
+    .header-link { text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 8px; }
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    main { max-width: 960px; margin: 0 auto; padding: 28px 20px; text-align: left; }
+    .panel { background: #f9f4ee; border-radius: 12px; padding: 18px; margin-bottom: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
+    h2 { font-size: 1.6rem; color: #222; margin-bottom: 8px; }
+    p.lead { color: #333; margin-bottom: 12px; }
 
-    <title>Security - Parables & Platters</title>
+    .controls { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .btn { background: #e3c5a3; color: #000; padding: 10px 14px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
+    .btn.ghost { background: transparent; border: 1px solid rgba(0,0,0,0.08); }
+    .small { font-size: .9rem; color: #444; }
 
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    .status { margin-left:auto; display:flex; align-items:center; gap:8px; }
+    .dot { width:12px; height:12px; border-radius:50%; background:#d32f2f; }
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    .log { margin-top:12px; display:flex; flex-direction:column; gap:10px; max-height:420px; overflow:auto; }
+    .log-entry { background: white; border-radius:10px; padding:12px; border:1px solid #eee; }
+    .log-entry audio { width:100%; margin-top:8px; }
 
-    <link rel="icon" href="01. images/jesuslogo_enef.png" type="image/x-icon">
+    .settings { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:12px; }
+    input[type=number], select { padding:8px; border-radius:8px; border:1px solid #ddd; }
+    label { font-size:.95rem; color:#222; }
 
-    <style>
+    .transcript-area { background:#fff; padding:12px; border-radius:8px; border:1px solid #eee; max-height:200px; overflow:auto; margin-top:8px; }
 
-        * {
+    footer { background-color: #e3c5a3; position: fixed; bottom: 0; width: 100%; padding: 10px 0; font-size: 0.9rem; color: #000; }
 
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-
-        }
-
-        body {
-
-            font-family: 'Roboto', sans-serif;
-            background-color: #fff;
-            color: #333;
-            text-align: center;
-            padding-top: 100px;
-            padding-bottom: 80px;
-            animation: fadeIn 1.5s ease;
-
-        }
-
-        @keyframes fadeIn {
-
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-        }
-
-        header {
-
-            background-color: #e3c5a3;
-            padding: 20px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 999;
-
-        }
-
-        header h1 {
-
-            font-size: 2rem;
-
-        }
-
-        .header-link {
-
-            text-decoration: none;
-            color: inherit;
-
-        }
-
-        section {
-
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 30px 20px;
-
-        }
-
-        h2 {
-
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            color: #222;
-
-        }
-
-        .security-measure {
-
-            background-color: #f9f4ee;
-            margin: 20px 0;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-            transition: transform 0.3s ease;
-
-        }
-
-        .security-measure:hover {
-
-            transform: translateY(-4px);
-
-        }
-
-        .security-measure h3 {
-
-            font-size: 1.5rem;
-            color: #2c3e50;
-            margin-bottom: 10px;
-
-        }
-
-        .security-measure p {
-
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-
-        }
-
-        .button {
-
-            display: inline-block;
-            background-color: #e3c5a3;
-            color: #000;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background 0.3s;
-
-        }
-
-        .button:hover {
-
-            background-color: #c2e9fb;
-
-        }
-
-        footer {
-
-            background-color: #e3c5a3;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            padding: 15px 0;
-            font-size: 0.9rem;
-            color: #000;
-
-        }
-
-        @media (max-width: 600px) {
-
-            .security-measure {
-                padding: 15px;
-            }
-
-            header h1 {
-                font-size: 1.5rem;
-            }
-
-        }
-
-    </style>
-
+    @media (max-width:600px){ body{padding-top:120px} header h1{font-size:1.2rem} }
+      
+  </style>
+    
 </head>
-
+    
 <body>
+    
+  <header>
+      
+    <div style="display:flex;align-items:center;justify-content:center">
+        
+      <a href="menupage.html" class="header-link"><h1><i class="fas fa-shield-alt"></i> Security</h1></a>
+        
+    </div>
+      
+  </header>
 
-    <header>
-        <a href="menupage.html" class="header-link" title="Return to menu">
-            <h1><i class="fas fa-shield-alt"></i> Security</h1>
-        </a>
-    </header>
+  <main>
+      
+    <section class="panel">
+        
+      <h2>audio surveillance</h2>
+        
+      <p class="lead">robust chunked recording with auto-save, automatic merging (optional), speech-to-text transcription, and advanced controls. recordings are stored locally in IndexedDB and can be merged into a single downloadable file.</p>
 
-    <section>
-        <h2>Security Systems</h2>
+      <div class="controls">
+          
+        <button id="startBtn" class="btn"><i class="fas fa-microphone"></i> Activate</button>
+          
+        <button id="stopBtn" class="btn ghost" disabled><i class="fas fa-stop"></i> Stop</button>
 
-        <div class="security-measure">
-            <h3><i class="fas fa-phone-alt"></i> 01. South African Police Service (SAPS)</h3>
-            <p>Available only via phone call.</p>
-            <button class="button" onclick="window.location.href='tel:+2710111'">Call SAPS</button>
+        <div class="settings">
+          <label>Chunk (s): <input id="chunkSec" type="number" min="3" max="60" value="10" /></label>
+          <label>Auto-merge every (min): <input id="autoMergeMin" type="number" min="0" max="1440" value="0" /></label>
+          <label><input id="autoMergeToggle" type="checkbox" /> Enable Auto-Merge</label>
+          <label><input id="transcribeToggle" type="checkbox" checked /> Enable Transcription</label>
         </div>
 
-        <div class="security-measure">
-            <h3><i class="fas fa-user-secret"></i> 02. Hawks</h3>
-            <p>Contact details will be updated soon.</p>
-            <button class="button" onclick="window.location.href='tel:+27128464590'">Call Hawks</button>
+        <div class="status" style="margin-left:auto">
+          <div class="dot" id="statusDot"></div>
+          <div class="small" id="statusText">Idle</div>
         </div>
+      </div>
 
-        <div class="security-measure">
-            <h3><i class="fas fa-helmet-safety"></i> 03. SANDF</h3>
-            <p>For serious situations. Contacts will be updated.</p>
-            <button class="button" onclick="window.location.href='tel:+27123556302'">Call SANDF</button>
-        </div>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <button id="mergeBtn" class="btn ghost"><i class="fas fa-compress-arrows-alt"></i> Merge & Download</button>
+        <button id="downloadAllBtn" class="btn ghost"><i class="fas fa-file-archive"></i> Download All (ZIP)</button>
+        <button id="clearBtn" class="btn ghost" style="color:#900"><i class="fas fa-trash"></i> Clear All</button>
+        <button id="exportIndexBtn" class="btn ghost"><i class="fas fa-download"></i> Export Index</button>
+      </div>
 
-        <div class="security-measure">
-            <h3><i class="fas fa-microphone-alt"></i> 04. Activate Audio Surveillance</h3>
-            <p>Begin passive audio monitoring in the background.</p>
-            <button class="button" onclick="activateSurveillance()">Activate</button>
-        </div>
+      <div class="small" style="margin-top:10px">Storage: <span id="storageInfo">Calculating…</span></div>
+      <div id="errorMsg" class="small" style="color:#b91c1c;margin-top:8px"></div>
 
-        <div class="security-measure">
-            <h3><i class="fas fa-map-marker-alt"></i> 05. Share Real-Time GPS Location</h3>
-            <p>Share your live location for rapid assistance.</p>
-            <button class="button" onclick="shareLocation()">Share Location</button>
-        </div>
-
-        <div class="security-measure">
-            <h3><i class="fas fa-briefcase-medical"></i> 06. Medic</h3>
-            <p>Medical contacts will be updated.</p>
-            <button class="button" onclick="window.location.href='tel:+2710177'">Call Medic</button>
-        </div>
+      <div id="log" class="log" aria-live="polite"></div>
     </section>
 
-    <footer>
-        <p>&copy; 2025 Parables & Platters. All rights reserved.</p>
-    </footer>
+    <section class="panel">
+      <h2>Transcripts & Merge Settings</h2>
+      <p class="small">Live transcription uses the browser SpeechRecognition API when available. Transcripts are saved per chunk and combined when you merge files.</p>
 
-    <script>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <button id="showTranscriptBtn" class="btn ghost">Show Combined Transcript</button>
+        <button id="downloadTranscriptBtn" class="btn ghost">Download Transcript (.txt)</button>
+      </div>
 
-        function activateSurveillance() {
-            alert("Audio Surveillance Activated.\nNote: Real-time audio features coming soon.");
-            // Placeholder for future audio API integration
-        }
+      <div id="transcriptArea" class="transcript-area" hidden></div>
+    </section>
 
-        function shareLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(position => {
-                    const { latitude, longitude } = position.coords;
-                    alert(`Location shared:\nLat: ${latitude}\nLong: ${longitude}`);
-                    // Placeholder: send coordinates to backend or emergency contact
-                }, () => {
-                    alert("Location access denied or unavailable.");
-                });
-            } else {
-                alert("Geolocation not supported by your browser.");
+    <section class="panel">
+      <h2>Tips & Notes</h2>
+      <p class="small">If Activate does nothing: check browser mic permissions, use a secure origin (https or localhost), and test in Chrome/Edge/Firefox desktop or mobile with mic. Some sandboxed previews disable getUserMedia.</p>
+    </section>
+  </main>
+
+  <footer>&copy; 2025 Parables & Platters. All rights reserved.</footer>
+
+  <script>
+    (function(){
+      
+      const startBtn = document.getElementById('startBtn');
+      const stopBtn = document.getElementById('stopBtn');
+      const mergeBtn = document.getElementById('mergeBtn');
+      const downloadAllBtn = document.getElementById('downloadAllBtn');
+      const clearBtn = document.getElementById('clearBtn');
+      const exportIndexBtn = document.getElementById('exportIndexBtn');
+      const logEl = document.getElementById('log');
+      const statusDot = document.getElementById('statusDot');
+      const statusText = document.getElementById('statusText');
+      const chunkSecInput = document.getElementById('chunkSec');
+      const autoMergeMinInput = document.getElementById('autoMergeMin');
+      const autoMergeToggle = document.getElementById('autoMergeToggle');
+      const transcribeToggle = document.getElementById('transcribeToggle');
+      const storageInfo = document.getElementById('storageInfo');
+      const errorMsg = document.getElementById('errorMsg');
+      const showTranscriptBtn = document.getElementById('showTranscriptBtn');
+      const downloadTranscriptBtn = document.getElementById('downloadTranscriptBtn');
+      const transcriptArea = document.getElementById('transcriptArea');
+
+      
+      let mediaRecorder = null;
+      let currentStream = null;
+      let isRecording = false;
+      let chunkIndex = 0;
+      let selectedMime = '';
+      let autoMergeTimer = null;
+      let transcriptionEngine = null; 
+
+      
+      const DB_NAME = 'parables-audio-db';
+      const STORE_NAME = 'recordings';
+
+      function openDB(){
+        return new Promise((resolve, reject) => {
+          const req = indexedDB.open(DB_NAME, 2);
+          req.onupgradeneeded = (e) => {
+            const db = req.result;
+            if(!db.objectStoreNames.contains(STORE_NAME)){
+              const store = db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true });
             }
+          };
+          req.onsuccess = () => resolve(req.result);
+          req.onerror = () => reject(req.error || new Error('IndexedDB open failed'));
+        });
+      }
+
+      async function saveChunk(blob, meta = {}){
+        const db = await openDB();
+        return new Promise((resolve, reject) => {
+          const tx = db.transaction(STORE_NAME, 'readwrite');
+          const store = tx.objectStore(STORE_NAME);
+          const data = Object.assign({ blob, timestamp: Date.now(), size: blob.size }, meta);
+          const req = store.add(data);
+          req.onsuccess = () => resolve(req.result);
+          req.onerror = () => reject(req.error);
+        });
+      }
+
+      async function getAllChunks(){
+        const db = await openDB();
+        return new Promise((resolve,reject)=>{
+          const tx = db.transaction(STORE_NAME, 'readonly');
+          const store = tx.objectStore(STORE_NAME);
+          const req = store.getAll();
+          req.onsuccess = () => resolve(req.result);
+          req.onerror = () => reject(req.error);
+        });
+      }
+
+      async function deleteChunk(id){
+        const db = await openDB();
+        return new Promise((resolve,reject)=>{
+          const tx = db.transaction(STORE_NAME, 'readwrite');
+          const store = tx.objectStore(STORE_NAME);
+          const req = store.delete(id);
+          req.onsuccess = () => resolve();
+          req.onerror = () => reject(req.error);
+        });
+      }
+
+      async function clearAllChunks(){
+        const db = await openDB();
+        return new Promise((resolve,reject)=>{
+          const tx = db.transaction(STORE_NAME, 'readwrite');
+          const store = tx.objectStore(STORE_NAME);
+          const req = store.clear();
+          req.onsuccess = () => resolve();
+          req.onerror = () => reject(req.error);
+        });
+      }
+
+
+      function setStatus(state, text){
+        if(state === 'recording'){ statusDot.style.background = '#2e7d32'; statusText.textContent = text || 'Recording'; }
+        else if(state === 'idle'){ statusDot.style.background = '#d32f2f'; statusText.textContent = text || 'Idle'; }
+        else if(state === 'error'){ statusDot.style.background = '#f97316'; statusText.textContent = text || 'Error'; }
+      }
+
+      function renderChunk(item){
+        const el = document.createElement('div');
+        el.className = 'log-entry';
+        const date = new Date(item.timestamp).toLocaleString();
+        const kb = Math.round((item.size|| (item.blob && item.blob.size)||0)/1024);
+        const url = URL.createObjectURL(item.blob);
+        const transcriptText = item.transcript ? `<p><strong>Transcript:</strong> ${escapeHtml(item.transcript)}</p>` : '';
+        el.innerHTML = `\n          <div style=\"display:flex;justify-content:space-between;align-items:center;gap:8px\">\n            <div><strong>Chunk</strong> <span class=\"small\">${date}</span></div>\n            <div class=\"small\">${kb} KB</div>\n          </div>\n          <audio controls src=\"${url}\"></audio>\n          ${transcriptText}\n          <div style=\"margin-top:8px;display:flex;gap:8px;flex-wrap:wrap\">\n            <a href=\"${url}\" download=\"chunk-${item.id}.webm\" class=\"btn ghost\">Download</a>\n            <button data-id=\"${item.id}\" class=\"btn ghost\" style=\"color:#900\">Delete</button>\n          </div>\n        `;
+        const del = el.querySelector('button');
+        del.addEventListener('click', async ()=>{ del.disabled=true; await deleteChunk(item.id); el.remove(); updateStorageInfo(); });
+        logEl.prepend(el);
+      }
+
+      async function refreshLog(){ logEl.innerHTML=''; try{ const all = await getAllChunks(); all.sort((a,b)=>b.timestamp - a.timestamp); all.forEach(renderChunk); }catch(e){ console.error(e); logEl.innerHTML='<div class="small">Unable to load recordings</div>'; } }
+
+      
+      function pickMime(){
+        const candidates = ['audio/webm;codecs=opus','audio/webm','audio/ogg;codecs=opus','audio/ogg'];
+        for(const m of candidates){ if(window.MediaRecorder && MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(m)) return m; }
+        if(window.MediaRecorder) return 'audio/webm';
+        return '';
+      }
+
+      
+      async function updateStorageInfo(){
+        try{ if(navigator.storage && navigator.storage.estimate){ const est = await navigator.storage.estimate(); storageInfo.textContent = `${Math.round((est.usage||0)/1024/1024)} MB of ${Math.round((est.quota||0)/1024/1024)} MB`; } else { storageInfo.textContent = 'Estimate not supported'; } }catch(e){ storageInfo.textContent='Error'; }
+      }
+
+      
+      function createSpeechRecognition(){
+        const SR = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+        if(!SR) return null;
+        const r = new SR();
+        r.lang = 'en-US';
+        r.interimResults = true;
+        r.continuous = true;
+        return r;
+      }
+
+      
+      function escapeHtml(str){ if(!str) return ''; return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+      
+      async function startRecording(){
+        errorMsg.textContent='';
+        if(isRecording) return;
+        if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){ setStatus('error','Microphone API unavailable'); errorMsg.textContent='Microphone API not available in this environment.'; return; }
+        if(!window.MediaRecorder){ setStatus('error','MediaRecorder unsupported'); errorMsg.textContent='MediaRecorder is not supported by this browser.'; return; }
+
+        selectedMime = pickMime();
+        const chunkSec = Math.max(3, Math.min(60, Number(chunkSecInput.value||10)));
+
+        try{
+          currentStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        }catch(err){ console.error('getUserMedia',err); setStatus('error','Mic permission denied'); errorMsg.textContent='Microphone permission denied or unavailable.'; return; }
+
+        try{
+          mediaRecorder = new MediaRecorder(currentStream, selectedMime ? { mimeType: selectedMime } : undefined);
+        }catch(err){ console.error('MediaRecorder ctor',err); setStatus('error','Recorder init failed'); errorMsg.textContent='Failed to initialize recorder: '+(err && err.message?err.message:err); if(currentStream){ currentStream.getTracks().forEach(t=>t.stop()); currentStream=null; } return; }
+
+        
+        if(transcribeToggle.checked){
+          transcriptionEngine = createSpeechRecognition();
+        } else transcriptionEngine = null;
+
+        let interimTranscript = '';
+        let finalTranscript = '';
+
+        if(transcriptionEngine){
+          transcriptionEngine.onresult = (ev)=>{
+            let interim = '';
+            for(let i = ev.resultIndex; i < ev.results.length; ++i){
+              if(ev.results[i].isFinal){ finalTranscript += ev.results[i][0].transcript + ' '; }
+              else { interim += ev.results[i][0].transcript; }
+            }
+            interimTranscript = interim;
+          };
+          transcriptionEngine.onerror = (ev)=>{ console.warn('SpeechRecognition error',ev); };
+          try{ transcriptionEngine.start(); }catch(e){ console.warn('Failed to start recognition',e); }
         }
 
-    </script>
+        mediaRecorder.ondataavailable = async (e) => {
+          try{
+            if(e.data && e.data.size > 0){
+              // Save chunk with transcript if available
+              const meta = {};
+              if(finalTranscript || interimTranscript){ meta.transcript = (finalTranscript + ' ' + interimTranscript).trim(); }
+              await saveChunk(e.data, Object.assign(meta,{ mime: selectedMime, chunkIndex: chunkIndex++ }));
+              
+              finalTranscript = '';
+              interimTranscript = '';
+              // Update UI
+              await refreshLog();
+              updateStorageInfo();
+            }
+          }catch(saveErr){ console.error('save chunk',saveErr); }
+        };
 
+        mediaRecorder.onerror = (ev)=>{ console.error('MediaRecorder error',ev); setStatus('error','Recorder error'); errorMsg.textContent='Recording error occurred.'; };
+        mediaRecorder.onstart = ()=>{ isRecording = true; setStatus('recording','Recording'); startBtn.disabled=true; stopBtn.disabled=false; chunkIndex=0; };
+        mediaRecorder.onstop = ()=>{ isRecording = false; setStatus('idle','Idle'); startBtn.disabled=false; stopBtn.disabled=true; try{ if(transcriptionEngine){ try{ transcriptionEngine.stop(); }catch(e){} transcriptionEngine=null; } if(currentStream){ currentStream.getTracks().forEach(t=>t.stop()); currentStream=null; } }catch(e){} };
+
+        try{
+          mediaRecorder.start(chunkSec * 1000);
+          await refreshLog();
+          updateStorageInfo();
+          
+          setupAutoMerge();
+        }catch(err){ console.error('start failed',err); setStatus('error','Start failed'); errorMsg.textContent='Recording failed to start: '+(err && err.message?err.message:err); }
+      }
+
+      function stopRecording(){ try{ if(mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop(); }catch(e){ console.error('stop error',e); } }
+
+      
+      async function mergeChunks(options = { download: true, saveMergedToDB: false }){
+        try{
+          const items = await getAllChunks();
+          if(!items || items.length===0){ alert('No chunks to merge'); return null; }
+          
+          items.sort((a,b)=>a.timestamp - b.timestamp);
+          const blobs = items.map(i=>i.blob instanceof Blob ? i.blob : new Blob([i.blob]));
+          
+          const mime = items[0].mime || (items[0].blob && items[0].blob.type) || 'audio/webm';
+          const combined = new Blob(blobs, { type: mime });
+
+          if(options.saveMergedToDB){
+            await saveChunk(combined, { merged: true, mime });
+            await refreshLog();
+            updateStorageInfo();
+          }
+
+          if(options.download){
+            const ext = mime.includes('webm') ? 'webm' : 'dat';
+            const url = URL.createObjectURL(combined);
+            const a = document.createElement('a'); a.href = url; a.download = `parables-merged-${Date.now()}.${ext}`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+          }
+
+          return combined;
+        }catch(err){ console.error('merge failed',err); alert('Could not merge recordings: '+(err && err.message?err.message:err)); return null; }
+      }
+
+      
+      function setupAutoMerge(){
+        clearAutoMerge();
+        if(autoMergeToggle.checked){
+          const mins = Math.max(0, Number(autoMergeMinInput.value || 0));
+          if(mins > 0){
+            autoMergeTimer = setInterval(()=>{ mergeChunks({ download:false, saveMergedToDB:true }).then(()=>console.log('Auto-merged chunks')); }, mins * 60 * 1000);
+          }
+        }
+      }
+      function clearAutoMerge(){ if(autoMergeTimer){ clearInterval(autoMergeTimer); autoMergeTimer = null; } }
+
+      
+      async function downloadAllAsZip(){
+        try{
+          const items = await getAllChunks();
+          if(!items || !items.length){ alert('No chunks'); return; }
+          if(window.JSZip){
+            const zip = new JSZip();
+            items.forEach(it => zip.file(`chunk-${it.id}.webm`, it.blob));
+            const content = await zip.generateAsync({ type: 'blob' });
+            const url = URL.createObjectURL(content); const a=document.createElement('a'); a.href=url; a.download=`parables-chunks-${Date.now()}.zip`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+          }else{
+            for(const it of items){ const url = URL.createObjectURL(it.blob); const a=document.createElement('a'); a.href=url; a.download=`chunk-${it.id}.webm`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); }
+            alert('Downloaded all chunks individually (JSZip not available).');
+          }
+        }catch(e){ console.error(e); alert('Download all failed'); }
+      }
+
+      
+      async function getCombinedTranscript(){
+        const items = await getAllChunks();
+        items.sort((a,b)=>a.timestamp - b.timestamp);
+        return items.map(it => it.transcript || '').filter(Boolean).join('\n\n');
+      }
+
+      async function downloadTranscript(){
+        try{
+          const txt = await getCombinedTranscript();
+          if(!txt) { alert('No transcripts found'); return; }
+          const blob = new Blob([txt], { type: 'text/plain' });
+          const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `parables-transcript-${Date.now()}.txt`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+        }catch(e){ console.error(e); alert('Download transcript failed'); }
+      }
+
+      
+      async function exportIndex(){ try{ const items = await getAllChunks(); const meta = items.map(i=>({id:i.id,timestamp:i.timestamp,size:i.size,mime:i.mime||i.blob.type,transcript: i.transcript||null})); const blob = new Blob([JSON.stringify(meta,null,2)],{type:'application/json'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='parables-index.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); }catch(e){ console.error(e); alert('Export failed'); } }
+
+      
+      startBtn.addEventListener('click', startRecording);
+      stopBtn.addEventListener('click', stopRecording);
+      mergeBtn.addEventListener('click', ()=>mergeChunks({ download:true, saveMergedToDB:false }));
+      downloadAllBtn.addEventListener('click', downloadAllAsZip);
+      clearBtn.addEventListener('click', async ()=>{ if(confirm('Delete ALL saved chunks?')){ await clearAllChunks(); await refreshLog(); updateStorageInfo(); } });
+      exportIndexBtn.addEventListener('click', exportIndex);
+      showTranscriptBtn.addEventListener('click', async ()=>{ transcriptArea.hidden = !transcriptArea.hidden; if(!transcriptArea.hidden){ transcriptArea.textContent = 'Loading…'; transcriptArea.textContent = await getCombinedTranscript(); }});
+      downloadTranscriptBtn.addEventListener('click', downloadTranscript);
+
+    
+      autoMergeToggle.addEventListener('change', setupAutoMerge);
+      autoMergeMinInput.addEventListener('change', setupAutoMerge);
+
+      
+      (async function init(){
+        setStatus('idle','Idle');
+        await refreshLog();
+        await updateStorageInfo();
+        
+      })();
+
+      
+      window.__parablesAudio = { start:startRecording, stop:stopRecording, merge: mergeChunks };
+
+    })();
+      
+  </script>
+    
 </body>
-
+    
 </html>
-
-
-
-
-
-
-
-
 
 
 
