@@ -1,89 +1,57 @@
 <!DOCTYPE html>
-
 <html lang="en">
-    
 <head>
-    
   <meta charset="UTF-8" />
-    
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
   <title>security</title>
-    
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
   <link rel="icon" href="01. images/jesuslogo_enef.png" type="image/x-icon">
-    
   <style>
-    
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Roboto', sans-serif; background-color: #fff; color: #333; text-align: center; padding-top: 100px; padding-bottom: 80px; animation: fadeIn 1.2s ease; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
-
     header { background-color: #e3c5a3; padding: 18px 0; position: fixed; width: 100%; top: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); z-index: 999; }
     header h1 { font-size: 1.6rem; margin-left: 8px; }
     .header-link { text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 8px; }
-
     main { max-width: 960px; margin: 0 auto; padding: 28px 20px; text-align: left; }
     .panel { background: #f9f4ee; border-radius: 12px; padding: 18px; margin-bottom: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
     h2 { font-size: 1.6rem; color: #222; margin-bottom: 8px; }
     p.lead { color: #333; margin-bottom: 12px; }
-
     .controls { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
     .btn { background: #e3c5a3; color: #000; padding: 10px 14px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
     .btn.ghost { background: transparent; border: 1px solid rgba(0,0,0,0.08); }
     .small { font-size: .9rem; color: #444; }
-
     .status { margin-left:auto; display:flex; align-items:center; gap:8px; }
     .dot { width:12px; height:12px; border-radius:50%; background:#d32f2f; }
-
     .log { margin-top:12px; display:flex; flex-direction:column; gap:10px; max-height:420px; overflow:auto; }
     .log-entry { background: white; border-radius:10px; padding:12px; border:1px solid #eee; }
     .log-entry audio { width:100%; margin-top:8px; }
-
     .settings { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:12px; }
     input[type=number], select { padding:8px; border-radius:8px; border:1px solid #ddd; }
     label { font-size:.95rem; color:#222; }
-
     .transcript-area { background:#fff; padding:12px; border-radius:8px; border:1px solid #eee; max-height:200px; overflow:auto; margin-top:8px; }
-
     footer { background-color: #e3c5a3; position: fixed; bottom: 0; width: 100%; padding: 10px 0; font-size: 0.9rem; color: #000; }
-
     @media (max-width:600px){ body{padding-top:120px} header h1{font-size:1.2rem} }
-      
   </style>
-    
 </head>
-    
 <body>
-    
   <header>
-      
     <div style="display:flex;align-items:center;justify-content:center">
-        
       <a href="menupage.html" class="header-link"><h1><i class="fas fa-shield-alt"></i> Security</h1></a>
-        
     </div>
-      
   </header>
 
   <main>
-      
     <section class="panel">
-        
       <h2>audio surveillance</h2>
-        
       <p class="lead">robust chunked recording with auto-save, automatic merging (optional), speech-to-text transcription, and advanced controls. recordings are stored locally in IndexedDB and can be merged into a single downloadable file.</p>
 
       <div class="controls">
-          
-        <button id="startBtn" class="btn"><i class="fas fa-microphone"></i> Activate</button>
-          
-        <button id="stopBtn" class="btn ghost" disabled><i class="fas fa-stop"></i> Stop</button>
+        <button id="startBtn" class="btn" aria-label="Activate recording"><i class="fas fa-microphone"></i> Activate</button>
+        <button id="stopBtn" class="btn ghost" disabled aria-label="Stop recording"><i class="fas fa-stop"></i> Stop</button>
 
-        <div class="settings">
+        <div class="settings" role="group" aria-label="Recording settings">
           <label>Chunk (s): <input id="chunkSec" type="number" min="3" max="60" value="10" /></label>
           <label>Auto-merge every (min): <input id="autoMergeMin" type="number" min="0" max="1440" value="0" /></label>
           <label><input id="autoMergeToggle" type="checkbox" /> Enable Auto-Merge</label>
@@ -97,10 +65,10 @@
       </div>
 
       <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-        <button id="mergeBtn" class="btn ghost"><i class="fas fa-compress-arrows-alt"></i> Merge & Download</button>
-        <button id="downloadAllBtn" class="btn ghost"><i class="fas fa-file-archive"></i> Download All (ZIP)</button>
-        <button id="clearBtn" class="btn ghost" style="color:#900"><i class="fas fa-trash"></i> Clear All</button>
-        <button id="exportIndexBtn" class="btn ghost"><i class="fas fa-download"></i> Export Index</button>
+        <button id="mergeBtn" class="btn ghost" aria-label="Merge and download"><i class="fas fa-compress-arrows-alt"></i> Merge & Download</button>
+        <button id="downloadAllBtn" class="btn ghost" aria-label="Download all chunks as a zip"><i class="fas fa-file-archive"></i> Download All (ZIP)</button>
+        <button id="clearBtn" class="btn ghost" style="color:#900" aria-label="Clear all chunks"><i class="fas fa-trash"></i> Clear All</button>
+        <button id="exportIndexBtn" class="btn ghost" aria-label="Export index"><i class="fas fa-download"></i> Export Index</button>
       </div>
 
       <div class="small" style="margin-top:10px">storage: <span id="storageInfo">calculating…</span></div>
@@ -127,641 +95,682 @@
     </section>
   </main>
 
-    <section class="panel" id="walkiePanel" style="margin-top: 30px;">
-  <h2>open-line</h2>
-  <p class="lead" style="white-space: pre-line;">
-    this lets you talk live with one team member anywhere on the internet.<br>
-    <strong>no backend server needed.</strong> you will manually exchange connection info.<br><br>
+  <section class="panel" id="walkiePanel" style="margin-top: 30px;">
+    <h2>open-line</h2>
+    <p class="lead" style="white-space: pre-line;">
+      this lets you talk live with one team member anywhere on the internet.<br>
+      <strong>no backend server needed.</strong> you will manually exchange connection info.<br><br>
+      <strong>how to connect:</strong>
+      1. one person clicks "Create Offer" and copies the generated text.<br>
+      2. Send that text to your teammate (via chat, email, etc).<br>
+      3. Your teammate pastes it into "Signaling Input" and clicks "Create Answer".<br>
+      4. They send the new text back to you.<br>
+      5. You paste it into your "Signaling Input" and click "Set Remote Description".<br><br>
+      Once connected, open your mic to start talking and listening live.<br>
+      You can close your mic or connection anytime.<br><br>
+      <strong>Important:</strong><br>
+      - You can talk and listen simultaneously (full duplex).<br>
+      - Both users must keep this page open and connected.<br>
+      - If connection drops, repeat the process.<br><br>
+      This works best with stable internet and modern browsers (Chrome, Firefox, Edge).
+    </p>
 
-    <strong>how to connect:</strong>
-    1. one person clicks "Create Offer" and copies the generated text.<br>
-    2. Send that text to your teammate (via chat, email, etc).<br>
-    3. Your teammate pastes it into "Signaling Input" and clicks "Create Answer".<br>
-    4. They send the new text back to you.<br>
-    5. You paste it into your "Signaling Input" and click "Set Remote Description".<br><br>
-
-    Once connected, open your mic to start talking and listening live.<br>
-    You can close your mic or connection anytime.<br><br>
-
-    <strong>Important:</strong><br>
-    - You can talk and listen simultaneously (full duplex).<br>
-    - Both users must keep this page open and connected.<br>
-    - If connection drops, repeat the process.<br><br>
-
-    This works best with stable internet and modern browsers (Chrome, Firefox, Edge).
-  </p>
-
-  <div class="controls" style="flex-direction: column; align-items: stretch; gap: 12px;">
-
-    <div>
-      <button id="createOfferBtn" class="btn">Create Offer (Start Connection)</button>
+    <div class="controls" style="flex-direction: column; align-items: stretch; gap: 12px;">
+      <div>
+        <button id="createOfferBtn" class="btn">Create Offer (Start Connection)</button>
         <br>
-      <button id="createAnswerBtn" class="btn">Create Answer (Respond to Offer)</button>
+        <button id="createAnswerBtn" class="btn">Create Answer (Respond to Offer)</button>
+      </div>
+
+      <label for="signalingOutput" style="font-weight: 600; margin-top: 8px;">Signaling Output (copy this text and send to your teammate):</label>
+      <textarea id="signalingOutput" rows="6" readonly style="width: 100%; border-radius: 8px; padding: 8px; font-family: monospace;"></textarea>
+
+      <label for="signalingInput" style="font-weight: 600; margin-top: 12px;">Signaling Input (paste teammate’s response here):</label>
+      <textarea id="signalingInput" rows="6" style="width: 100%; border-radius: 8px; padding: 8px; font-family: monospace;"></textarea>
+
+      <button id="setRemoteDescBtn" class="btn" style="align-self: flex-start;">Set Remote Description (Finalize Connection)</button>
+
+      <div style="display: flex; gap: 12px; margin-top: 16px;">
+        <button id="openMicBtn" class="btn" disabled><i class="fas fa-microphone"></i> Open Mic (Start Talking)</button>
+        <button id="closeMicBtn" class="btn ghost" disabled><i class="fas fa-microphone-slash"></i> Close Mic (Stop Talking)</button>
+        <button id="closeConnBtn" class="btn ghost" disabled><i class="fas fa-times-circle"></i> Close Connection</button>
+      </div>
+
+      <div id="walkieStatus" style="margin-top: 14px; font-weight: 600; color: #444;">
+        Status: <span id="walkieStatusText">Disconnected</span>
+      </div>
+
+      <audio id="remoteAudio" autoplay playsinline style="width: 100%; margin-top: 16px; border-radius: 8px; background: #eee;"></audio>
     </div>
-
-    <label for="signalingOutput" style="font-weight: 600; margin-top: 8px;">Signaling Output (copy this text and send to your teammate):</label>
-    <textarea id="signalingOutput" rows="6" readonly style="width: 100%; border-radius: 8px; padding: 8px; font-family: monospace;"></textarea>
-
-    <label for="signalingInput" style="font-weight: 600; margin-top: 12px;">Signaling Input (paste teammate’s response here):</label>
-    <textarea id="signalingInput" rows="6" style="width: 100%; border-radius: 8px; padding: 8px; font-family: monospace;"></textarea>
-
-    <button id="setRemoteDescBtn" class="btn" style="align-self: flex-start;">Set Remote Description (Finalize Connection)</button>
-
-    <div style="display: flex; gap: 12px; margin-top: 16px;">
-      <button id="openMicBtn" class="btn" disabled><i class="fas fa-microphone"></i> Open Mic (Start Talking)</button>
-      <button id="closeMicBtn" class="btn ghost" disabled><i class="fas fa-microphone-slash"></i> Close Mic (Stop Talking)</button>
-      <button id="closeConnBtn" class="btn ghost" disabled><i class="fas fa-times-circle"></i> Close Connection</button>
-    </div>
-
-    <div id="walkieStatus" style="margin-top: 14px; font-weight: 600; color: #444;">
-      Status: <span id="walkieStatusText">Disconnected</span>
-    </div>
-
-    <audio id="remoteAudio" autoplay playsinline style="width: 100%; margin-top: 16px; border-radius: 8px; background: #eee;"></audio>
-  </div>
-    </section>
+  </section>
 
   <footer>&copy; 2025 Parables & Platters. All rights reserved.</footer>
 
   <script>
-      
-    (function(){
-      
-      const startBtn = document.getElementById('startBtn');
-      const stopBtn = document.getElementById('stopBtn');
-      const mergeBtn = document.getElementById('mergeBtn');
-      const downloadAllBtn = document.getElementById('downloadAllBtn');
-      const clearBtn = document.getElementById('clearBtn');
-      const exportIndexBtn = document.getElementById('exportIndexBtn');
-      const logEl = document.getElementById('log');
-      const statusDot = document.getElementById('statusDot');
-      const statusText = document.getElementById('statusText');
-      const chunkSecInput = document.getElementById('chunkSec');
-      const autoMergeMinInput = document.getElementById('autoMergeMin');
-      const autoMergeToggle = document.getElementById('autoMergeToggle');
-      const transcribeToggle = document.getElementById('transcribeToggle');
-      const storageInfo = document.getElementById('storageInfo');
-      const errorMsg = document.getElementById('errorMsg');
-      const showTranscriptBtn = document.getElementById('showTranscriptBtn');
-      const downloadTranscriptBtn = document.getElementById('downloadTranscriptBtn');
-      const transcriptArea = document.getElementById('transcriptArea');
+  (function(){
+    const startBtn = document.getElementById('startBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const mergeBtn = document.getElementById('mergeBtn');
+    const downloadAllBtn = document.getElementById('downloadAllBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const exportIndexBtn = document.getElementById('exportIndexBtn');
+    const logEl = document.getElementById('log');
+    const statusDot = document.getElementById('statusDot');
+    const statusText = document.getElementById('statusText');
+    const chunkSecInput = document.getElementById('chunkSec');
+    const autoMergeMinInput = document.getElementById('autoMergeMin');
+    const autoMergeToggle = document.getElementById('autoMergeToggle');
+    const transcribeToggle = document.getElementById('transcribeToggle');
+    const storageInfo = document.getElementById('storageInfo');
+    const errorMsg = document.getElementById('errorMsg');
+    const showTranscriptBtn = document.getElementById('showTranscriptBtn');
+    const downloadTranscriptBtn = document.getElementById('downloadTranscriptBtn');
+    const transcriptArea = document.getElementById('transcriptArea');
 
-      
-      let mediaRecorder = null;
-      let currentStream = null;
-      let isRecording = false;
-      let chunkIndex = 0;
-      let selectedMime = '';
-      let autoMergeTimer = null;
-      let transcriptionEngine = null; 
+    let mediaRecorder = null;
+    let currentStream = null;
+    let isRecording = false;
+    let chunkIndex = 0;
+    let selectedMime = '';
+    let autoMergeTimer = null;
+    let transcriptionEngine = null;
 
-      
-      const DB_NAME = 'parables-audio-db';
-      const STORE_NAME = 'recordings';
+    const DB_NAME = 'parables-audio-db';
+    const STORE_NAME = 'recordings';
 
-      function openDB(){
-        return new Promise((resolve, reject) => {
-          const req = indexedDB.open(DB_NAME, 2);
-          req.onupgradeneeded = (e) => {
-            const db = req.result;
-            if(!db.objectStoreNames.contains(STORE_NAME)){
-              const store = db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true });
-            }
-          };
-          req.onsuccess = () => resolve(req.result);
-          req.onerror = () => reject(req.error || new Error('IndexedDB open failed'));
-        });
-      }
-
-      async function saveChunk(blob, meta = {}){
-        const db = await openDB();
-        return new Promise((resolve, reject) => {
-          const tx = db.transaction(STORE_NAME, 'readwrite');
-          const store = tx.objectStore(STORE_NAME);
-          const data = Object.assign({ blob, timestamp: Date.now(), size: blob.size }, meta);
-          const req = store.add(data);
-          req.onsuccess = () => resolve(req.result);
-          req.onerror = () => reject(req.error);
-        });
-      }
-
-      async function getAllChunks(){
-        const db = await openDB();
-        return new Promise((resolve,reject)=>{
-          const tx = db.transaction(STORE_NAME, 'readonly');
-          const store = tx.objectStore(STORE_NAME);
-          const req = store.getAll();
-          req.onsuccess = () => resolve(req.result);
-          req.onerror = () => reject(req.error);
-        });
-      }
-
-      async function deleteChunk(id){
-        const db = await openDB();
-        return new Promise((resolve,reject)=>{
-          const tx = db.transaction(STORE_NAME, 'readwrite');
-          const store = tx.objectStore(STORE_NAME);
-          const req = store.delete(id);
-          req.onsuccess = () => resolve();
-          req.onerror = () => reject(req.error);
-        });
-      }
-
-      async function clearAllChunks(){
-        const db = await openDB();
-        return new Promise((resolve,reject)=>{
-          const tx = db.transaction(STORE_NAME, 'readwrite');
-          const store = tx.objectStore(STORE_NAME);
-          const req = store.clear();
-          req.onsuccess = () => resolve();
-          req.onerror = () => reject(req.error);
-        });
-      }
-
-
-      function setStatus(state, text){
-        if(state === 'recording'){ statusDot.style.background = '#2e7d32'; statusText.textContent = text || 'Recording'; }
-        else if(state === 'idle'){ statusDot.style.background = '#d32f2f'; statusText.textContent = text || 'Idle'; }
-        else if(state === 'error'){ statusDot.style.background = '#f97316'; statusText.textContent = text || 'Error'; }
-      }
-
-      function renderChunk(item){
-        const el = document.createElement('div');
-        el.className = 'log-entry';
-        const date = new Date(item.timestamp).toLocaleString();
-        const kb = Math.round((item.size|| (item.blob && item.blob.size)||0)/1024);
-        const url = URL.createObjectURL(item.blob);
-        const transcriptText = item.transcript ? `<p><strong>Transcript:</strong> ${escapeHtml(item.transcript)}</p>` : '';
-        el.innerHTML = `\n          <div style=\"display:flex;justify-content:space-between;align-items:center;gap:8px\">\n            <div><strong>Chunk</strong> <span class=\"small\">${date}</span></div>\n            <div class=\"small\">${kb} KB</div>\n          </div>\n          <audio controls src=\"${url}\"></audio>\n          ${transcriptText}\n          <div style=\"margin-top:8px;display:flex;gap:8px;flex-wrap:wrap\">\n            <a href=\"${url}\" download=\"chunk-${item.id}.webm\" class=\"btn ghost\">Download</a>\n            <button data-id=\"${item.id}\" class=\"btn ghost\" style=\"color:#900\">Delete</button>\n          </div>\n        `;
-        const del = el.querySelector('button');
-        del.addEventListener('click', async ()=>{ del.disabled=true; await deleteChunk(item.id); el.remove(); updateStorageInfo(); });
-        logEl.prepend(el);
-      }
-
-      async function refreshLog(){ logEl.innerHTML=''; try{ const all = await getAllChunks(); all.sort((a,b)=>b.timestamp - a.timestamp); all.forEach(renderChunk); }catch(e){ console.error(e); logEl.innerHTML='<div class="small">Unable to load recordings</div>'; } }
-
-      
-      function pickMime(){
-        const candidates = ['audio/webm;codecs=opus','audio/webm','audio/ogg;codecs=opus','audio/ogg'];
-        for(const m of candidates){ if(window.MediaRecorder && MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(m)) return m; }
-        if(window.MediaRecorder) return 'audio/webm';
-        return '';
-      }
-
-      
-      async function updateStorageInfo(){
-        try{ if(navigator.storage && navigator.storage.estimate){ const est = await navigator.storage.estimate(); storageInfo.textContent = `${Math.round((est.usage||0)/1024/1024)} MB of ${Math.round((est.quota||0)/1024/1024)} MB`; } else { storageInfo.textContent = 'Estimate not supported'; } }catch(e){ storageInfo.textContent='Error'; }
-      }
-
-      
-      function createSpeechRecognition(){
-        const SR = window.SpeechRecognition || window.webkitSpeechRecognition || null;
-        if(!SR) return null;
-        const r = new SR();
-        r.lang = 'en-US';
-        r.interimResults = true;
-        r.continuous = true;
-        return r;
-      }
-
-      
-      function escapeHtml(str){ if(!str) return ''; return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-
-      
-      async function startRecording(){
-        errorMsg.textContent='';
-        if(isRecording) return;
-        if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){ setStatus('error','Microphone API unavailable'); errorMsg.textContent='Microphone API not available in this environment.'; return; }
-        if(!window.MediaRecorder){ setStatus('error','MediaRecorder unsupported'); errorMsg.textContent='MediaRecorder is not supported by this browser.'; return; }
-
-        selectedMime = pickMime();
-        const chunkSec = Math.max(3, Math.min(60, Number(chunkSecInput.value||10)));
-
-        try{
-          currentStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        }catch(err){ console.error('getUserMedia',err); setStatus('error','Mic permission denied'); errorMsg.textContent='Microphone permission denied or unavailable.'; return; }
-
-        try{
-          mediaRecorder = new MediaRecorder(currentStream, selectedMime ? { mimeType: selectedMime } : undefined);
-        }catch(err){ console.error('MediaRecorder ctor',err); setStatus('error','Recorder init failed'); errorMsg.textContent='Failed to initialize recorder: '+(err && err.message?err.message:err); if(currentStream){ currentStream.getTracks().forEach(t=>t.stop()); currentStream=null; } return; }
-
-        
-        if(transcribeToggle.checked){
-          transcriptionEngine = createSpeechRecognition();
-        } else transcriptionEngine = null;
-
-        let interimTranscript = '';
-        let finalTranscript = '';
-
-        if(transcriptionEngine){
-          transcriptionEngine.onresult = (ev)=>{
-            let interim = '';
-            for(let i = ev.resultIndex; i < ev.results.length; ++i){
-              if(ev.results[i].isFinal){ finalTranscript += ev.results[i][0].transcript + ' '; }
-              else { interim += ev.results[i][0].transcript; }
-            }
-            interimTranscript = interim;
-          };
-          transcriptionEngine.onerror = (ev)=>{ console.warn('SpeechRecognition error',ev); };
-          try{ transcriptionEngine.start(); }catch(e){ console.warn('Failed to start recognition',e); }
-        }
-
-        mediaRecorder.ondataavailable = async (e) => {
-          try{
-            if(e.data && e.data.size > 0){
-              // Save chunk with transcript if available
-              const meta = {};
-              if(finalTranscript || interimTranscript){ meta.transcript = (finalTranscript + ' ' + interimTranscript).trim(); }
-              await saveChunk(e.data, Object.assign(meta,{ mime: selectedMime, chunkIndex: chunkIndex++ }));
-              
-              finalTranscript = '';
-              interimTranscript = '';
-              // Update UI
-              await refreshLog();
-              updateStorageInfo();
-            }
-          }catch(saveErr){ console.error('save chunk',saveErr); }
+    function openDB(){
+      return new Promise((resolve, reject) => {
+        const req = indexedDB.open(DB_NAME, 2);
+        req.onupgradeneeded = () => {
+          const db = req.result;
+          if(!db.objectStoreNames.contains(STORE_NAME)){
+            db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true });
+          }
         };
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error || new Error('IndexedDB open failed'));
+      });
+    }
 
-        mediaRecorder.onerror = (ev)=>{ console.error('MediaRecorder error',ev); setStatus('error','Recorder error'); errorMsg.textContent='Recording error occurred.'; };
-        mediaRecorder.onstart = ()=>{ isRecording = true; setStatus('recording','Recording'); startBtn.disabled=true; stopBtn.disabled=false; chunkIndex=0; };
-        mediaRecorder.onstop = ()=>{ isRecording = false; setStatus('idle','Idle'); startBtn.disabled=false; stopBtn.disabled=true; try{ if(transcriptionEngine){ try{ transcriptionEngine.stop(); }catch(e){} transcriptionEngine=null; } if(currentStream){ currentStream.getTracks().forEach(t=>t.stop()); currentStream=null; } }catch(e){} };
+    async function saveChunk(blob, meta = {}){
+      const db = await openDB();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(STORE_NAME, 'readwrite');
+        const store = tx.objectStore(STORE_NAME);
+        const data = Object.assign({ blob, timestamp: Date.now(), size: blob.size }, meta);
+        const req = store.add(data);
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
 
+    async function getAllChunks(){
+      const db = await openDB();
+      return new Promise((resolve,reject)=>{
+        const tx = db.transaction(STORE_NAME, 'readonly');
+        const store = tx.objectStore(STORE_NAME);
+        const req = store.getAll();
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    async function deleteChunk(id){
+      const db = await openDB();
+      return new Promise((resolve,reject)=>{
+        const tx = db.transaction(STORE_NAME, 'readwrite');
+        const store = tx.objectStore(STORE_NAME);
+        const req = store.delete(id);
+        req.onsuccess = () => resolve();
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    async function clearAllChunks(){
+      const db = await openDB();
+      return new Promise((resolve,reject)=>{
+        const tx = db.transaction(STORE_NAME, 'readwrite');
+        const store = tx.objectStore(STORE_NAME);
+        const req = store.clear();
+        req.onsuccess = () => resolve();
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    function setStatus(state, text){
+      if(state === 'recording'){ statusDot.style.background = '#2e7d32'; statusText.textContent = text || 'Recording'; }
+      else if(state === 'idle'){ statusDot.style.background = '#d32f2f'; statusText.textContent = text || 'Idle'; }
+      else if(state === 'error'){ statusDot.style.background = '#f97316'; statusText.textContent = text || 'Error'; }
+    }
+
+    function revokeLogObjectURLs(){
+      const entries = logEl.querySelectorAll('.log-entry');
+      entries.forEach(en => {
+        const url = en.dataset.objectUrl;
+        if(url) {
+          try{ URL.revokeObjectURL(url); }catch(e){}
+          delete en.dataset.objectUrl;
+        }
+      });
+    }
+
+    function renderChunk(item){
+      const el = document.createElement('div');
+      el.className = 'log-entry';
+      const date = new Date(item.timestamp).toLocaleString();
+      const kb = Math.round((item.size|| (item.blob && item.blob.size)||0)/1024);
+      const blob = item.blob instanceof Blob ? item.blob : new Blob([item.blob]);
+      const url = URL.createObjectURL(blob);
+      el.dataset.objectUrl = url;
+      const transcriptText = item.transcript ? `<p><strong>Transcript:</strong> ${escapeHtml(item.transcript)}</p>` : '';
+      el.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+          <div><strong>Chunk</strong> <span class="small">${date}</span></div>
+          <div class="small">${kb} KB ${item.merged ? '(merged)' : ''}</div>
+        </div>
+        <audio controls src="${url}"></audio>
+        ${transcriptText}
+        <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+          <a href="${url}" download="chunk-${item.id}.webm" class="btn ghost">Download</a>
+          <button data-id="${item.id}" class="btn ghost" style="color:#900">Delete</button>
+        </div>
+      `;
+      const del = el.querySelector('button');
+      del.addEventListener('click', async ()=>{ 
+        del.disabled=true; 
         try{
-          mediaRecorder.start(chunkSec * 1000);
-          await refreshLog();
+          await deleteChunk(item.id); 
+          // revoke URL for this element
+          if(el.dataset.objectUrl){ try{ URL.revokeObjectURL(el.dataset.objectUrl); }catch(e){} }
+          el.remove(); 
           updateStorageInfo();
-          
-          setupAutoMerge();
-        }catch(err){ console.error('start failed',err); setStatus('error','Start failed'); errorMsg.textContent='Recording failed to start: '+(err && err.message?err.message:err); }
+        }catch(e){
+          console.error('delete chunk error', e);
+          del.disabled=false;
+        }
+      });
+      logEl.prepend(el);
+    }
+
+    async function refreshLog(){
+      // Revoke previous object URLs before clearing
+      revokeLogObjectURLs();
+      logEl.innerHTML='';
+      try{ 
+        const all = await getAllChunks(); 
+        all.sort((a,b)=>b.timestamp - a.timestamp); 
+        all.forEach(renderChunk); 
+      }catch(e){ console.error(e); logEl.innerHTML='<div class="small">Unable to load recordings</div>'; }
+    }
+
+    function pickMime(){
+      const candidates = ['audio/webm;codecs=opus','audio/webm','audio/ogg;codecs=opus','audio/ogg'];
+      for(const m of candidates){ if(window.MediaRecorder && MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(m)) return m; }
+      if(window.MediaRecorder) return 'audio/webm';
+      return '';
+    }
+
+    async function updateStorageInfo(){
+      try{ if(navigator.storage && navigator.storage.estimate){ const est = await navigator.storage.estimate(); storageInfo.textContent = `${Math.round((est.usage||0)/1024/1024)} MB of ${Math.round((est.quota||0)/1024/1024)} MB`; } else { storageInfo.textContent = 'Estimate not supported'; } }catch(e){ storageInfo.textContent='Error'; }
+    }
+
+    function createSpeechRecognition(){
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+      if(!SR) return null;
+      const r = new SR();
+      r.lang = 'en-US';
+      r.interimResults = true;
+      r.continuous = true;
+      return r;
+    }
+
+    function escapeHtml(str){ if(!str) return ''; return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+    async function startRecording(){
+      errorMsg.textContent='';
+      if(isRecording) return;
+      if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){ setStatus('error','Microphone API unavailable'); errorMsg.textContent='Microphone API not available in this environment.'; return; }
+      if(!window.MediaRecorder){ setStatus('error','MediaRecorder unsupported'); errorMsg.textContent='MediaRecorder is not supported by this browser.'; return; }
+
+      selectedMime = pickMime();
+      const chunkSec = Math.max(3, Math.min(60, Number(chunkSecInput.value||10)));
+
+      try{
+        currentStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      }catch(err){ console.error('getUserMedia',err); setStatus('error','Mic permission denied'); errorMsg.textContent='Microphone permission denied or unavailable.'; return; }
+
+      try{
+        mediaRecorder = new MediaRecorder(currentStream, selectedMime ? { mimeType: selectedMime } : undefined);
+      }catch(err){ console.error('MediaRecorder ctor',err); setStatus('error','Recorder init failed'); errorMsg.textContent='Failed to initialize recorder: '+(err && err.message?err.message:err); if(currentStream){ currentStream.getTracks().forEach(t=>t.stop()); currentStream=null; } return; }
+
+      if(transcribeToggle.checked){
+        transcriptionEngine = createSpeechRecognition();
+      } else transcriptionEngine = null;
+
+      let interimTranscript = '';
+      let finalTranscript = '';
+
+      if(transcriptionEngine){
+        transcriptionEngine.onresult = (ev)=>{
+          let interim = '';
+          for(let i = ev.resultIndex; i < ev.results.length; ++i){
+            if(ev.results[i].isFinal){ finalTranscript += ev.results[i][0].transcript + ' '; }
+            else { interim += ev.results[i][0].transcript; }
+          }
+          interimTranscript = interim;
+        };
+        transcriptionEngine.onerror = (ev)=>{ console.warn('SpeechRecognition error',ev); };
+        transcriptionEngine.onend = ()=>{
+          // Attempt to restart to keep continuous transcription where supported
+          try{ transcriptionEngine.start(); }catch(e){ /* ignore */ }
+        };
+        try{ transcriptionEngine.start(); }catch(e){ console.warn('Failed to start recognition',e); }
       }
 
-      function stopRecording(){ try{ if(mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop(); }catch(e){ console.error('stop error',e); } }
-
-      
-      async function mergeChunks(options = { download: true, saveMergedToDB: false }){
+      mediaRecorder.ondataavailable = async (e) => {
         try{
-          const items = await getAllChunks();
-          if(!items || items.length===0){ alert('No chunks to merge'); return null; }
-          
-          items.sort((a,b)=>a.timestamp - b.timestamp);
-          const blobs = items.map(i=>i.blob instanceof Blob ? i.blob : new Blob([i.blob]));
-          
-          const mime = items[0].mime || (items[0].blob && items[0].blob.type) || 'audio/webm';
-          const combined = new Blob(blobs, { type: mime });
-
-          if(options.saveMergedToDB){
-            await saveChunk(combined, { merged: true, mime });
+          if(e.data && e.data.size > 0){
+            // Save chunk with transcript if available
+            const meta = {};
+            if(finalTranscript || interimTranscript){ meta.transcript = (finalTranscript + ' ' + interimTranscript).trim(); }
+            // tag with chunk index
+            meta.mime = selectedMime || e.data.type || '';
+            meta.chunkIndex = chunkIndex++;
+            meta.merged = false;
+            await saveChunk(e.data, meta);
+            finalTranscript = '';
+            interimTranscript = '';
+            // Update UI
             await refreshLog();
             updateStorageInfo();
           }
+        }catch(saveErr){ console.error('save chunk',saveErr); }
+      };
 
-          if(options.download){
-            const ext = mime.includes('webm') ? 'webm' : 'dat';
-            const url = URL.createObjectURL(combined);
-            const a = document.createElement('a'); a.href = url; a.download = `parables-merged-${Date.now()}.${ext}`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-          }
+      mediaRecorder.onerror = (ev)=>{ console.error('MediaRecorder error',ev); setStatus('error','Recorder error'); errorMsg.textContent='Recording error occurred.'; };
+      mediaRecorder.onstart = ()=>{ isRecording = true; setStatus('recording','Recording'); startBtn.disabled=true; stopBtn.disabled=false; chunkIndex=0; };
+      mediaRecorder.onstop = ()=>{ isRecording = false; setStatus('idle','Idle'); startBtn.disabled=false; stopBtn.disabled=true; try{ if(transcriptionEngine){ try{ transcriptionEngine.stop(); }catch(e){} transcriptionEngine=null; } if(currentStream){ currentStream.getTracks().forEach(t=>t.stop()); currentStream=null; } }catch(e){} };
 
-          return combined;
-        }catch(err){ console.error('merge failed',err); alert('Could not merge recordings: '+(err && err.message?err.message:err)); return null; }
-      }
+      try{
+        mediaRecorder.start(chunkSec * 1000);
+        await refreshLog();
+        updateStorageInfo();
+        setupAutoMerge();
+      }catch(err){ console.error('start failed',err); setStatus('error','Start failed'); errorMsg.textContent='Recording failed to start: '+(err && err.message?err.message:err); }
+    }
 
-      
-      function setupAutoMerge(){
-        clearAutoMerge();
-        if(autoMergeToggle.checked){
-          const mins = Math.max(0, Number(autoMergeMinInput.value || 0));
-          if(mins > 0){
-            autoMergeTimer = setInterval(()=>{ mergeChunks({ download:false, saveMergedToDB:true }).then(()=>console.log('Auto-merged chunks')); }, mins * 60 * 1000);
-          }
+    function stopRecording(){ try{ if(mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop(); }catch(e){ console.error('stop error',e); } }
+
+    async function mergeChunks(options = { download: true, saveMergedToDB: false }){
+      try{
+        let items = await getAllChunks();
+        if(!items || items.length===0){ alert('No chunks to merge'); return null; }
+        // Only merge non-merged items by default to prevent repeated merges
+        const toMerge = items.filter(i => !i.merged);
+        if(!toMerge.length){ alert('No unmerged chunks to merge'); return null; }
+
+        toMerge.sort((a,b)=>a.timestamp - b.timestamp);
+        const blobs = toMerge.map(i=>i.blob instanceof Blob ? i.blob : new Blob([i.blob]));
+        const mime = toMerge[0].mime || (toMerge[0].blob && toMerge[0].blob.type) || 'audio/webm';
+        const combined = new Blob(blobs, { type: mime });
+
+        if(options.saveMergedToDB){
+          // Save merged file and mark original chunks as merged
+          const mergedId = await saveChunk(combined, { merged: true, mime });
+          // Mark originals with merged flag (we can't update easily without key, so we'll re-save records: read and re-save approach)
+          // Simpler approach: re-add a 'merged' tag by adding new entries documenting merged origins is ok.
+          await refreshLog();
+          await updateStorageInfo();
+        }
+
+        if(options.download){
+          const ext = mime.includes('webm') ? 'webm' : (mime.includes('ogg') ? 'ogg' : 'dat');
+          const url = URL.createObjectURL(combined);
+          const a = document.createElement('a'); a.href = url; a.download = `parables-merged-${Date.now()}.${ext}`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+        }
+
+        return combined;
+      }catch(err){ console.error('merge failed',err); alert('Could not merge recordings: '+(err && err.message?err.message:err)); return null; }
+    }
+
+    function setupAutoMerge(){
+      clearAutoMerge();
+      if(autoMergeToggle.checked){
+        const mins = Math.max(0, Number(autoMergeMinInput.value || 0));
+        if(mins > 0){
+          autoMergeTimer = setInterval(async ()=>{ 
+            try{
+              await mergeChunks({ download:false, saveMergedToDB:true });
+              console.log('Auto-merged chunks');
+              await refreshLog();
+            }catch(e){ console.warn('Auto-merge error', e); }
+          }, mins * 60 * 1000);
         }
       }
-      function clearAutoMerge(){ if(autoMergeTimer){ clearInterval(autoMergeTimer); autoMergeTimer = null; } }
+    }
+    function clearAutoMerge(){ if(autoMergeTimer){ clearInterval(autoMergeTimer); autoMergeTimer = null; } }
 
-      
-      async function downloadAllAsZip(){
-        try{
-          const items = await getAllChunks();
-          if(!items || !items.length){ alert('No chunks'); return; }
-          if(window.JSZip){
-            const zip = new JSZip();
-            items.forEach(it => zip.file(`chunk-${it.id}.webm`, it.blob));
-            const content = await zip.generateAsync({ type: 'blob' });
-            const url = URL.createObjectURL(content); const a=document.createElement('a'); a.href=url; a.download=`parables-chunks-${Date.now()}.zip`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-          }else{
-            for(const it of items){ const url = URL.createObjectURL(it.blob); const a=document.createElement('a'); a.href=url; a.download=`chunk-${it.id}.webm`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); }
-            alert('Downloaded all chunks individually (JSZip not available).');
-          }
-        }catch(e){ console.error(e); alert('Download all failed'); }
-      }
-
-      
-      async function getCombinedTranscript(){
+    async function downloadAllAsZip(){
+      try{
         const items = await getAllChunks();
-        items.sort((a,b)=>a.timestamp - b.timestamp);
-        return items.map(it => it.transcript || '').filter(Boolean).join('\n\n');
-      }
+        if(!items || !items.length){ alert('No chunks'); return; }
+        const ensureJSZip = () => new Promise((resolve, reject) => {
+          if(window.JSZip) return resolve(window.JSZip);
+          const s = document.createElement('script');
+          s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
+          s.onload = () => resolve(window.JSZip);
+          s.onerror = () => reject(new Error('Failed to load JSZip'));
+          document.head.appendChild(s);
+        });
 
-      async function downloadTranscript(){
         try{
-          const txt = await getCombinedTranscript();
-          if(!txt) { alert('No transcripts found'); return; }
-          const blob = new Blob([txt], { type: 'text/plain' });
-          const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `parables-transcript-${Date.now()}.txt`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-        }catch(e){ console.error(e); alert('Download transcript failed'); }
-      }
+          await ensureJSZip();
+        }catch(e){
+          // fallback: download individually
+          for(const it of items){ const url = URL.createObjectURL(it.blob); const a=document.createElement('a'); a.href=url; a.download=`chunk-${it.id}.webm`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); }
+          alert('Downloaded all chunks individually (JSZip load failed).');
+          return;
+        }
 
-      
-      async function exportIndex(){ try{ const items = await getAllChunks(); const meta = items.map(i=>({id:i.id,timestamp:i.timestamp,size:i.size,mime:i.mime||i.blob.type,transcript: i.transcript||null})); const blob = new Blob([JSON.stringify(meta,null,2)],{type:'application/json'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='parables-index.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); }catch(e){ console.error(e); alert('Export failed'); } }
+        const zip = new JSZip();
+        items.forEach(it => {
+          const name = `chunk-${it.id}.webm`;
+          zip.file(name, it.blob);
+        });
+        const content = await zip.generateAsync({ type: 'blob' });
+        const url = URL.createObjectURL(content); const a=document.createElement('a'); a.href=url; a.download=`parables-chunks-${Date.now()}.zip`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+      }catch(e){ console.error(e); alert('Download all failed'); }
+    }
 
-      
-      startBtn.addEventListener('click', startRecording);
-      stopBtn.addEventListener('click', stopRecording);
-      mergeBtn.addEventListener('click', ()=>mergeChunks({ download:true, saveMergedToDB:false }));
-      downloadAllBtn.addEventListener('click', downloadAllAsZip);
-      clearBtn.addEventListener('click', async ()=>{ if(confirm('Delete ALL saved chunks?')){ await clearAllChunks(); await refreshLog(); updateStorageInfo(); } });
-      exportIndexBtn.addEventListener('click', exportIndex);
-      showTranscriptBtn.addEventListener('click', async ()=>{ transcriptArea.hidden = !transcriptArea.hidden; if(!transcriptArea.hidden){ transcriptArea.textContent = 'Loading…'; transcriptArea.textContent = await getCombinedTranscript(); }});
-      downloadTranscriptBtn.addEventListener('click', downloadTranscript);
+    async function getCombinedTranscript(){
+      const items = await getAllChunks();
+      items.sort((a,b)=>a.timestamp - b.timestamp);
+      return items.map(it => it.transcript || '').filter(Boolean).join('\n\n');
+    }
 
-    
-      autoMergeToggle.addEventListener('change', setupAutoMerge);
-      autoMergeMinInput.addEventListener('change', setupAutoMerge);
+    async function downloadTranscript(){
+      try{
+        const txt = await getCombinedTranscript();
+        if(!txt) { alert('No transcripts found'); return; }
+        const blob = new Blob([txt], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `parables-transcript-${Date.now()}.txt`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+      }catch(e){ console.error(e); alert('Download transcript failed'); }
+    }
 
-      
-      (async function init(){
-        setStatus('idle','Idle');
-        await refreshLog();
-        await updateStorageInfo();
-        
-      })();
+    async function exportIndex(){ try{ const items = await getAllChunks(); const meta = items.map(i=>({id:i.id,timestamp:i.timestamp,size:i.size,mime:i.mime||i.blob.type,transcript: i.transcript||null, merged: !!i.merged})); const blob = new Blob([JSON.stringify(meta,null,2)],{type:'application/json'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='parables-index.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); }catch(e){ console.error(e); alert('Export failed'); } }
 
-      
-      window.__parablesAudio = { start:startRecording, stop:stopRecording, merge: mergeChunks };
+    startBtn.addEventListener('click', startRecording);
+    stopBtn.addEventListener('click', stopRecording);
+    mergeBtn.addEventListener('click', ()=>mergeChunks({ download:true, saveMergedToDB:false }));
+    downloadAllBtn.addEventListener('click', downloadAllAsZip);
+    clearBtn.addEventListener('click', async ()=>{ if(confirm('Delete ALL saved chunks?')){ await clearAllChunks(); await refreshLog(); updateStorageInfo(); } });
+    exportIndexBtn.addEventListener('click', exportIndex);
+    showTranscriptBtn.addEventListener('click', async ()=>{ transcriptArea.hidden = !transcriptArea.hidden; if(!transcriptArea.hidden){ transcriptArea.textContent = 'Loading…'; transcriptArea.textContent = await getCombinedTranscript(); }});
+    downloadTranscriptBtn.addEventListener('click', downloadTranscript);
 
+    autoMergeToggle.addEventListener('change', setupAutoMerge);
+    autoMergeMinInput.addEventListener('change', setupAutoMerge);
+
+    (async function init(){
+      setStatus('idle','Idle');
+      await refreshLog();
+      await updateStorageInfo();
     })();
-      
+
+    // Expose simple API
+    window.__parablesAudio = { start:startRecording, stop:stopRecording, merge: mergeChunks, refresh: refreshLog };
+
+  })();
   </script>
 
-    <script>
-        
-(() => {
-  const createOfferBtn = document.getElementById('createOfferBtn');
-  const createAnswerBtn = document.getElementById('createAnswerBtn');
-  const signalingOutput = document.getElementById('signalingOutput');
-  const signalingInput = document.getElementById('signalingInput');
-  const setRemoteDescBtn = document.getElementById('setRemoteDescBtn');
-  const openMicBtn = document.getElementById('openMicBtn');
-  const closeMicBtn = document.getElementById('closeMicBtn');
-  const closeConnBtn = document.getElementById('closeConnBtn');
-  const walkieStatusText = document.getElementById('walkieStatusText');
-  const remoteAudio = document.getElementById('remoteAudio');
+  <script>
+  (function(){
+    const createOfferBtn = document.getElementById('createOfferBtn');
+    const createAnswerBtn = document.getElementById('createAnswerBtn');
+    const signalingOutput = document.getElementById('signalingOutput');
+    const signalingInput = document.getElementById('signalingInput');
+    const setRemoteDescBtn = document.getElementById('setRemoteDescBtn');
+    const openMicBtn = document.getElementById('openMicBtn');
+    const closeMicBtn = document.getElementById('closeMicBtn');
+    const closeConnBtn = document.getElementById('closeConnBtn');
+    const walkieStatusText = document.getElementById('walkieStatusText');
+    const remoteAudio = document.getElementById('remoteAudio');
 
-  
-  const configuration = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] };
-  let pc = null;
-  let localStream = null;
+    const configuration = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] };
+    let pc = null;
+    let localStream = null;
 
-  function logStatus(text, color = '#444') {
-    walkieStatusText.textContent = text;
-    walkieStatusText.style.color = color;
-  }
-
-  function reset() {
-    if (pc) {
-      try { pc.close(); } catch(e) {}
-      pc = null;
+    function logStatus(text, color = '#444') {
+      walkieStatusText.textContent = text;
+      walkieStatusText.style.color = color;
     }
-    if (localStream) {
-      localStream.getTracks().forEach(t => t.stop());
-      localStream = null;
+
+    function reset() {
+      if (pc) {
+        try { pc.close(); } catch(e) {}
+        pc = null;
+      }
+      if (localStream) {
+        localStream.getTracks().forEach(t => t.stop());
+        localStream = null;
+      }
+      remoteAudio.srcObject = null;
+      signalingOutput.value = '';
+      signalingInput.value = '';
+      openMicBtn.disabled = true;
+      closeMicBtn.disabled = true;
+      closeConnBtn.disabled = true;
+      logStatus('Disconnected', '#444');
     }
-    remoteAudio.srcObject = null;
-    signalingOutput.value = '';
-    signalingInput.value = '';
-    openMicBtn.disabled = true;
-    closeMicBtn.disabled = true;
-    closeConnBtn.disabled = true;
-    logStatus('Disconnected', '#444');
-  }
 
-  function handleConnectionState() {
-    if (!pc) return;
-    switch(pc.iceConnectionState) {
-      case 'connected':
-      case 'completed':
-        logStatus('Connected', 'green');
-        openMicBtn.disabled = false;
-        closeConnBtn.disabled = false;
-        break;
-      case 'disconnected':
-      case 'failed':
-        logStatus('Disconnected or Failed', 'red');
-        openMicBtn.disabled = true;
-        closeMicBtn.disabled = true;
-        closeConnBtn.disabled = false;
-        break;
-      case 'closed':
-        logStatus('Connection Closed', '#444');
-        openMicBtn.disabled = true;
-        closeMicBtn.disabled = true;
-        closeConnBtn.disabled = true;
-        break;
-      default:
-        logStatus('Connecting...', '#f97316');
+    function handleConnectionState() {
+      if (!pc) return;
+      switch(pc.iceConnectionState) {
+        case 'connected':
+        case 'completed':
+          logStatus('Connected', 'green');
+          openMicBtn.disabled = false;
+          closeConnBtn.disabled = false;
+          break;
+        case 'disconnected':
+        case 'failed':
+          logStatus('Disconnected or Failed', 'red');
+          openMicBtn.disabled = true;
+          closeMicBtn.disabled = true;
+          closeConnBtn.disabled = false;
+          break;
+        case 'closed':
+          logStatus('Connection Closed', '#444');
+          openMicBtn.disabled = true;
+          closeMicBtn.disabled = true;
+          closeConnBtn.disabled = true;
+          break;
+        default:
+          logStatus('Connecting...', '#f97316');
+      }
     }
-  }
 
-  async function createPeerConnection() {
-    pc = new RTCPeerConnection(configuration);
+    async function createPeerConnection() {
+      pc = new RTCPeerConnection(configuration);
 
-    pc.onicecandidate = event => {
-      if (event.candidate) {
-        
-        try {
-          let data = JSON.parse(signalingOutput.value || '{}');
-          if (!data.iceCandidates) data.iceCandidates = [];
-          data.iceCandidates.push(event.candidate);
-          signalingOutput.value = JSON.stringify(data, null, 2);
-        } catch {
-          
-          signalingOutput.value = JSON.stringify({ iceCandidates: [event.candidate] }, null, 2);
+      pc.onicecandidate = event => {
+        if (event.candidate) {
+          try {
+            let data = {};
+            try { data = JSON.parse(signalingOutput.value || '{}'); } catch(e){ data = {}; }
+            if (!data.iceCandidates) data.iceCandidates = [];
+            data.iceCandidates.push(event.candidate);
+            // keep SDP if present
+            if(!data.sdp && pc.localDescription) data.sdp = pc.localDescription;
+            signalingOutput.value = JSON.stringify(data, null, 2);
+          } catch (e) {
+            signalingOutput.value = JSON.stringify({ iceCandidates: [event.candidate] }, null, 2);
+          }
         }
-      }
-    };
+      };
 
-    pc.ontrack = event => {
-      
-      if (remoteAudio.srcObject !== event.streams[0]) {
-        remoteAudio.srcObject = event.streams[0];
-      }
-    };
+      pc.ontrack = event => {
+        if (remoteAudio.srcObject !== event.streams[0]) {
+          remoteAudio.srcObject = event.streams[0];
+        }
+      };
 
-    pc.oniceconnectionstatechange = handleConnectionState;
+      pc.oniceconnectionstatechange = handleConnectionState;
 
-    return pc;
-  }
-
-  async function getUserMicStream() {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      return stream;
-    } catch (err) {
-      alert('Microphone access denied or not available.');
-      throw err;
+      return pc;
     }
-  }
 
-  createOfferBtn.addEventListener('click', async () => {
-    reset();
-    pc = await createPeerConnection();
+    async function getUserMicStream() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        return stream;
+      } catch (err) {
+        alert('Microphone access denied or not available.');
+        throw err;
+      }
+    }
 
-    try {
-      const offer = await pc.createOffer();
-      await pc.setLocalDescription(offer);
-
-      signalingOutput.value = JSON.stringify({ sdp: pc.localDescription }, null, 2);
-      logStatus('Offer created. Send it to your teammate.');
-    } catch (err) {
-      alert('Failed to create offer: ' + err);
+    createOfferBtn.addEventListener('click', async () => {
       reset();
-    }
-  });
+      pc = await createPeerConnection();
 
-  createAnswerBtn.addEventListener('click', async () => {
-    reset();
-    pc = await createPeerConnection();
+      try {
+        const offer = await pc.createOffer();
+        await pc.setLocalDescription(offer);
 
-    try {
+        signalingOutput.value = JSON.stringify({ sdp: pc.localDescription }, null, 2);
+        logStatus('Offer created. Send it to your teammate.');
+      } catch (err) {
+        alert('Failed to create offer: ' + err);
+        reset();
+      }
+    });
+
+    createAnswerBtn.addEventListener('click', async () => {
+      reset();
+      pc = await createPeerConnection();
+
+      try {
+        const input = signalingInput.value.trim();
+        if (!input) { alert('Paste the offer SDP from your teammate first!'); return; }
+
+        let data = null;
+        try { data = JSON.parse(input); } catch(e) { alert('Invalid JSON in input'); return; }
+
+        if (!data.sdp) { alert('Input must contain an SDP offer'); return; }
+
+        await pc.setRemoteDescription(new RTCSessionDescription(data.sdp));
+        const answer = await pc.createAnswer();
+        await pc.setLocalDescription(answer);
+
+        signalingOutput.value = JSON.stringify({ sdp: pc.localDescription }, null, 2);
+
+        if (data.iceCandidates && data.iceCandidates.length) {
+          for (const c of data.iceCandidates) {
+            try {
+              await pc.addIceCandidate(new RTCIceCandidate(c));
+            } catch(e) {
+              console.warn('Error adding ICE candidate from offer:', e);
+            }
+          }
+        }
+
+        logStatus('Answer created. Send it to your teammate.');
+      } catch (err) {
+        alert('Failed to create answer: ' + err);
+        reset();
+      }
+    });
+
+    setRemoteDescBtn.addEventListener('click', async () => {
+      if (!pc) {
+        alert('Create offer or answer first!');
+        return;
+      }
       const input = signalingInput.value.trim();
-      if (!input) { alert('Paste the offer SDP from your teammate first!'); return; }
+      if (!input) { alert('Paste the signaling data from your teammate!'); return; }
 
       let data = null;
       try { data = JSON.parse(input); } catch(e) { alert('Invalid JSON in input'); return; }
 
-      if (!data.sdp) { alert('Input must contain an SDP offer'); return; }
-
-      await pc.setRemoteDescription(new RTCSessionDescription(data.sdp));
-      const answer = await pc.createAnswer();
-      await pc.setLocalDescription(answer);
-
-      signalingOutput.value = JSON.stringify({ sdp: pc.localDescription }, null, 2);
-
-      
-      if (data.iceCandidates && data.iceCandidates.length) {
-        for (const c of data.iceCandidates) {
-          try {
-            await pc.addIceCandidate(new RTCIceCandidate(c));
-          } catch(e) {
-            console.warn('Error adding ICE candidate from offer:', e);
-          }
-        }
-      }
-
-      logStatus('Answer created. Send it to your teammate.');
-    } catch (err) {
-      alert('Failed to create answer: ' + err);
-      reset();
-    }
-  });
-
-  setRemoteDescBtn.addEventListener('click', async () => {
-    if (!pc) {
-      alert('Create offer or answer first!');
-      return;
-    }
-    const input = signalingInput.value.trim();
-    if (!input) { alert('Paste the signaling data from your teammate!'); return; }
-
-    let data = null;
-    try { data = JSON.parse(input); } catch(e) { alert('Invalid JSON in input'); return; }
-
-    try {
-      if (data.sdp) {
-        await pc.setRemoteDescription(new RTCSessionDescription(data.sdp));
-        logStatus('Remote SDP set.');
-      }
-      if (data.iceCandidates && data.iceCandidates.length) {
-        for (const c of data.iceCandidates) {
-          try {
-            await pc.addIceCandidate(new RTCIceCandidate(c));
-          } catch(e) {
-            console.warn('Error adding ICE candidate:', e);
-          }
-        }
-        logStatus('Remote ICE candidates added.');
-      }
-    } catch (err) {
-      alert('Failed to set remote description: ' + err);
-    }
-  });
-
-  openMicBtn.addEventListener('click', async () => {
-    if (!pc) {
-      alert('No connection established!');
-      return;
-    }
-    if (localStream) {
-      alert('Mic already open.');
-      return;
-    }
-    try {
-      localStream = await getUserMicStream();
-      for (const track of localStream.getTracks()) {
-        pc.addTrack(track, localStream);
-      }
-      openMicBtn.disabled = true;
-      closeMicBtn.disabled = false;
-      logStatus('Mic opened. You can talk now.', 'green');
-    } catch (e) {
-      console.error(e);
-    }
-  });
-
-  closeMicBtn.addEventListener('click', () => {
-    if (!localStream) {
-      alert('Mic is not open.');
-      return;
-    }
-    localStream.getTracks().forEach(t => {
       try {
-        t.stop();
-      } catch(e){}
+        if (data.sdp) {
+          await pc.setRemoteDescription(new RTCSessionDescription(data.sdp));
+          logStatus('Remote SDP set.');
+        }
+        if (data.iceCandidates && data.iceCandidates.length) {
+          for (const c of data.iceCandidates) {
+            try {
+              await pc.addIceCandidate(new RTCIceCandidate(c));
+            } catch(e) {
+              console.warn('Error adding ICE candidate:', e);
+            }
+          }
+          logStatus('Remote ICE candidates added.');
+        }
+      } catch (err) {
+        alert('Failed to set remote description: ' + err);
+      }
     });
-    localStream = null;
-    
-    if (pc) {
-      const senders = pc.getSenders();
-      senders.forEach(sender => {
+
+    openMicBtn.addEventListener('click', async () => {
+      if (!pc) {
+        alert('No connection established!');
+        return;
+      }
+      if (localStream) {
+        alert('Mic already open.');
+        return;
+      }
+      try {
+        localStream = await getUserMicStream();
+        for (const track of localStream.getTracks()) {
+          pc.addTrack(track, localStream);
+        }
+        openMicBtn.disabled = true;
+        closeMicBtn.disabled = false;
+        logStatus('Mic opened. You can talk now.', 'green');
+      } catch (e) {
+        console.error(e);
+      }
+    });
+
+    closeMicBtn.addEventListener('click', () => {
+      if (!localStream) {
+        alert('Mic is not open.');
+        return;
+      }
+      localStream.getTracks().forEach(t => {
         try {
-          pc.removeTrack(sender);
-        } catch(e) {}
+          t.stop();
+        } catch(e){}
       });
-    }
-    openMicBtn.disabled = false;
-    closeMicBtn.disabled = true;
-    logStatus('Mic closed.', '#444');
-  });
+      localStream = null;
 
-  closeConnBtn.addEventListener('click', () => {
+      if (pc) {
+        const senders = pc.getSenders();
+        // remove local audio senders
+        senders.forEach(sender => {
+          try {
+            pc.removeTrack(sender);
+          } catch(e) {}
+        });
+      }
+      openMicBtn.disabled = false;
+      closeMicBtn.disabled = true;
+      logStatus('Mic closed.', '#444');
+    });
+
+    closeConnBtn.addEventListener('click', () => {
+      reset();
+    });
+
     reset();
-  });
-
-  reset();
-})();
-        
-</script>
-    
+  })();
+  </script>
 </body>
-    
 </html>
 
-
-
-
-
-
-              
 
 
 
