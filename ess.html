@@ -1,433 +1,849 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="en">
-
 <head>
-
-  <meta charset="UTF-8" />
-
-  <title>E.S.S - Eden Soccer Sundays</title>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <title>E.S.S — Eden Soccer Sundays (Advanced Matchday Manager)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Advanced matchday schedule and results manager for Eden Soccer Sundays.">
 
   <style>
-    
-  :root {
-    --primary: #1f2937;
-    --secondary: #3b82f6;
-    --bg: #f9fafb;
-    --card: #ffffff;
-    --accent: #2563eb;
-    --text-dark: #111827;
-    --text-light: #6b7280;
-
-    --fs-lg: clamp(1.25rem, 5vw, 2rem);
-    --fs-md: clamp(1rem, 4vw, 1.25rem);
-    --fs-sm: clamp(0.85rem, 3vw, 1rem);
-  }
-
-  * {
-    
-    box-sizing: border-box;
-    
-  }
-
-  body {
-    
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: var(--bg);
-    color: var(--text-dark);
-    -webkit-text-size-adjust: 100%;
-  }
-
-  header, footer {
-    
-    background: var(--primary);
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    
-  }
-
-  header h1 {
-    
-    font-size: var(--fs-lg);
-    margin: 0;
-    
-  }
-
-  header h2, header p {
-    
-    font-size: var(--fs-sm);
-    margin: 0.25rem 0;
-    
-  }
-
-  .header-link {
-    
-    text-decoration: none;
-    color: inherit;
-    
-  }
-
-  .header-link:hover {
-    
-    opacity: 0.85;
-  }
-
-  main {
-    
-    padding: 1rem;
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: 1fr;
-  }
-
-  section {
-    
-    background: var(--card);
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    
-  }
-
-  h2 {
-    
-    margin-top: 0;
-    font-size: var(--fs-md);
-    color: var(--accent);
-    
-  }
-
-  table {
-    
-    width: 100%;
-    border-collapse: collapse;
-    font-size: var(--fs-sm);
-    
-  }
-
-  th, td {
-    
-    border: 1px solid #e5e7eb;
-    padding: 0.5rem;
-    text-align: center;
-    word-break: break-word;
-    
-  }
-
-  th {
-    
-    background: var(--secondary);
-    color: white;
-    
-  }
-
-  tr:nth-child(even) {
-    
-    background-color: #f3f4f6;
-  }
-
-  ul {
-    
-    padding-left: 1rem;
-    font-size: var(--fs-sm);
-  }
-
-  .countdown {
-    
-    font-size: var(--fs-sm);
-    font-weight: bold;
-    color: var(--accent);
-    margin-top: 0.5rem;
-    
-  }
-
-  footer {
-    
-    margin-top: 2rem;
-    font-size: var(--fs-sm);
-    
-  }
-
-  /* Handle wide tables gracefully on small screens */
-  .table-wrapper {
-    
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    
-  }
-
-  @media (max-width: 480px) {
-    
-    section {
-      
-      padding: 0.75rem;
-      
+    /* --------------------
+       THEME / LAYOUT
+       -------------------- */
+    :root{
+      --primary:#1f2937;
+      --accent:#2563eb;
+      --muted:#6b7280;
+      --bg:#f9fafb;
+      --card:#fff;
+      --success:#d1fae5;
+      --success-text:#065f46;
+      --danger:#fee2e2;
+      --danger-text:#991b1b;
+      --upcoming:#e5e7eb;
+      --upcoming-text:#374151;
+      --live:#dc2626;
+      --glass: rgba(255,255,255,0.6);
+      --radius:10px;
+      --shadow:0 6px 18px rgba(15,23,42,0.08);
+      font-family: "Segoe UI", Roboto, system-ui, -apple-system, "Helvetica Neue", Arial;
     }
-    
-    th, td {
-      
-      padding: 0.4rem;
-      
-    }
-    
-  }
-        
-</style>
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:var(--bg);color:var(--primary);-webkit-font-smoothing:antialiased}
+    header,footer{background:var(--primary);color:white;text-align:center;padding:1rem}
+    header h1{margin:0;font-size:clamp(1.25rem,4vw,2rem)}
+    main{max-width:1200px;margin:1.25rem auto;padding:1rem;display:grid;gap:1rem;grid-template-columns:1fr 380px}
+    @media (max-width:980px){ main{grid-template-columns:1fr} }
 
+    /* cards */
+    .card{background:var(--card);padding:1rem;border-radius:var(--radius);box-shadow:var(--shadow);}
+    h2{margin:0 0 .5rem;color:var(--accent)}
+
+    /* table / results styling */
+    .results-list, .matchday {list-style:none;padding:0;margin:0;max-height:420px;overflow:auto}
+    .results-list li, .matchday li {padding:.6rem;border-radius:8px;margin-bottom:.5rem;border:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .results-list li strong, .matchday li strong{margin-right:6px}
+    .muted{color:var(--muted);font-size:.95rem}
+
+    /* statuses */
+    .status-pill{font-weight:600;padding:6px 8px;border-radius:999px;font-size:.85rem}
+    .completed{background:var(--success);color:var(--success-text);border:1px solid rgba(6,95,70,0.08)}
+    .postponed{background:var(--danger);color:var(--danger-text);border:1px solid rgba(153,27,27,0.06)}
+    .upcoming{background:var(--upcoming);color:var(--upcoming-text);border:1px solid rgba(55,65,81,0.06)}
+    .live-now{background:var(--live);color:#fff;border:2px solid #7f1d1d;animation:pulse 1s infinite alternate}
+    @keyframes pulse{from{box-shadow:0 0 6px rgba(220,38,38,0.45)} to{box-shadow:0 0 18px rgba(220,38,38,0.9)}}
+
+    /* next match highlight */
+    .next-match{box-shadow:0 0 12px 2px rgba(37,99,235,0.35);border-left:4px solid var(--accent);}
+
+    /* legend */
+    .legend{display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:.75rem}
+    .legend-item{display:flex;align-items:center;gap:.5rem;padding:.25rem .5rem;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,0.4),transparent)}
+    .legend-box{width:14px;height:14px;border-radius:3px}
+
+    /* controls */
+    .controls{display:flex;gap:.5rem;flex-wrap:wrap}
+    .btn{border:0;padding:.5rem .7rem;border-radius:8px;cursor:pointer;background:var(--accent);color:#fff;font-weight:600}
+    .btn.ghost{background:transparent;border:1px solid #e6eefc;color:var(--primary)}
+    .btn.warn{background:#ef4444}
+    .btn.small{padding:.4rem .5rem;font-size:.85rem}
+    input[type=search], .select, textarea{padding:.55rem;border-radius:8px;border:1px solid #e6eefc;background:#fff;min-width:0}
+
+    /* detail modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.6);display:none;align-items:center;justify-content:center;z-index:60}
+    .modal{width:min(720px,95%);background:var(--card);padding:1rem;border-radius:12px;box-shadow:0 20px 50px rgba(2,6,23,0.6)}
+    .modal h3{margin-top:0}
+    .modal .row{display:flex;gap:.5rem}
+    .modal label{font-size:.85rem;color:var(--muted);display:block;margin-bottom:.25rem}
+    .modal .form-row{margin-bottom:.6rem}
+    .close-x{margin-left:auto;background:transparent;border:0;font-size:1.1rem;cursor:pointer;color:var(--muted)}
+
+    /* small utilities */
+    .flex{display:flex;gap:.5rem;align-items:center}
+    .spacer{height:8px}
+    .small{font-size:.9rem;color:var(--muted)}
+
+    /* printable */
+    @media print{
+      header,footer,.controls,.modal-backdrop{display:none!important}
+      main{grid-template-columns:1fr}
+      .matchday li{page-break-inside:avoid}
+    }
+  </style>
 </head>
 
 <body>
   <header>
-    <a href="menupage.html" class="header-link" title="Back to main menu"><h1>E.S.S ⚽</h1></a>
-    <h2>Eden Soccer Sundays — 2025 Season</h2>
-    <p><strong>League Duration:</strong> 6 July – 30 November 2025 | Sundays @ 14:00</p>
-    <div class="countdown" id="countdown">Loading next match countdown...</div>
+    <a href="menupage.html" style="color:inherit;text-decoration:none"><h1>E.S.S ⚽ — Eden Soccer Sundays (Advanced)</h1></a>
+    <p class="small">League: 6 July – 30 November 2025 | Kickoff Sundays @ 14:00 — <span id="countdownHeader" style="font-weight:700">Loading next match...</span></p>
   </header>
 
   <main>
-    <section class="lt">
-      <h2>🏆 League Table</h2>
-      <table class="tc">
-        <tr>
-          <th>Team</th>
-          <th>Played</th>
-          <th>Won</th>
-          <th>Lost</th>
-          <th>Draw</th>
-          <th>Points</th>
-        </tr>
-        <tr>
-          <td><strong>01. Eden Alpha</strong></td>
-          <td>13</td>
-          <td>6</td>
-          <td>6</td>
-          <td>1</td>
-          <td>19</td>
-        </tr>
-        <tr>
-          <td><strong>02. Eden Delta</strong></td>
-          <td>13</td>
-          <td>6</td>
-          <td>6</td>
-          <td>1</td>
-          <td>19</td>
-        
-        </tr>
-      </table>
-    </section>
+    <!-- LEFT: Core content -->
+    <section class="card" aria-labelledby="resultsHeading">
+      <h2 id="resultsHeading">⚔️ Match Results & Manager</h2>
 
-    <br>
+      <div class="controls" style="margin-bottom:.75rem">
+        <input id="searchResults" type="search" placeholder="Search results (game number, player, 'postponed')">
+        <select id="filterResults" class="select">
+          <option value="all">Show all</option>
+          <option value="completed">Completed</option>
+          <option value="postponed">Postponed</option>
+          <option value="upcoming">Upcoming</option>
+        </select>
+        <button id="addResultBtn" class="btn small">+ Add Result</button>
+        <button id="exportBtn" class="btn ghost small">Export JSON</button>
+        <label for="importFile" class="btn ghost small" style="display:inline-block;cursor:pointer">Import JSON</label>
+        <input id="importFile" type="file" accept="application/json" style="display:none">
+        <button id="printBtn" class="btn ghost small">Print</button>
+      </div>
 
-    <section>
-      <h2>⚔️ Match Results</h2>
-      <ul>
-        <li><strong>Game 1</strong> – Eden Alpha 4 : 2 Eden Delta | <em>Man of the Match:</em> Vuyo</li>
-        <br>
-        <li><strong>Game 2</strong> – Eden Alpha 4 : 3 Eden Delta | <em>Man of the Match:</em> Hoss</li>
-        <br>
-        <li><strong>Game 3</strong> – Eden Delta 3 : 2 Eden Alpha | <em>Man of the Match:</em> Junior</li>
-        <br>
-        <li><strong>Game 4</strong> – Eden Alpha 4 : 1 Eden Delta | <em>Man of the Match:</em> Vuyo</li>
-        <br>
-        <li><strong>Game 4.1</strong> – Eden Delta 4 : 2 Eden Alpha | <em>Man of the Match:</em> Junior</li>
-        <br>
-        <li><strong>Game 4.2</strong> – Eden Alpha 4 : 0 Eden Delta | <em>Man of the Match:</em> Xan</li>
-        <br>
-        <li><strong>Game 5</strong> – Eden Alpha 4 : 2 Eden Delta | <em>Man of the Match:</em> Queener</li>
-        <br>
-        <li><strong>Game 5.1</strong> – Eden Delta 2 : 0 Eden Alpha | <em>Man of the Match:</em> Junior</li>
-        <br>
-        <li><strong>Game 6</strong> – Eden Alpha 3 : 3 Eden Delta | <em>Man of the Match:</em> Junior</li>
-        <br>
-        <li><strong>Game 7</strong> – Eden Delta 4 : 2 Eden Alpha | <em>Man of the Match:</em> Junior</li>
-        <br>
-        <li><strong>Game 8</strong> – **postponed until further notice** | <em>Man of the Match:</em> N/A</li>
-        <br>
-        <li><strong>Game 9</strong> – Eden Delta 3 : 1 Eden Alpha | <em>Man of the Match:</em> S'phe(external player.)</li>
-        <br>
-        <li><strong>Game 10</strong> – Eden Alpha 3 : 1 Eden Delta | <em>Man of the Match:</em> Vuyo</li>
-        <br>
-        <li><strong>Game 11</strong> – **postponed until further notice** | <em>Man of the Match:</em> N/A</li>
-        <br>
-        <li><strong>Game 12</strong> – Eden Delta 2 : 1 Eden Alpha | <em>Man of the Match:</em> Junior</li>
-        <br>
+      <p class="small">Tip: Edit results here — schedule auto-updates. Changes saved locally.</p>
+      <div class="spacer"></div>
+
+      <ul id="resultsList" class="results-list" aria-live="polite" aria-label="Match results list">
+        <!-- populated by JS -->
       </ul>
     </section>
 
-    <section>
-      <h2>📅 Matchday Schedule</h2>
-      <ul id="matchday-schedule" class="matchday"></ul>
-    </section>
+    <!-- RIGHT: Matchday schedule + legend -->
+    <aside class="card" aria-labelledby="scheduleHeading">
+      <h2 id="scheduleHeading">📅 Matchday Schedule</h2>
 
-    <section>
-      <h2>🎯 Top Goal Scorers</h2>
-      <table>
-        <tr><th>Player</th><th>Goals</th></tr>
-        <tr><td>01. Vuyo</td><td>12</td></tr>
-        <tr><td>02. Junior</td><td>9</td></tr>
-        <tr><td>03. Frost</td><td>6</td></tr>
-        <tr><td>04. Joy</td><td>6</td></tr>     
-        <tr><td>05. Bayanda</td><td>6</td></tr>
-        <tr><td>06. Hoss</td><td>6</td></tr>
-        <tr><td>07. Xan</td><td>4</td></tr>
-        <tr><td>08. Olama</td><td>2</td></tr>
-      </table>
-    </section>
+      <div class="legend" role="list">
+        <div class="legend-item" role="listitem"><div class="legend-box" style="background:var(--success);border:1px solid var(--success-text)"></div> Completed</div>
+        <div class="legend-item" role="listitem"><div class="legend-box" style="background:var(--danger);border:1px solid var(--danger-text)"></div> Postponed</div>
+        <div class="legend-item" role="listitem"><div class="legend-box" style="background:var(--upcoming);border:1px solid #cbd5e1"></div> Upcoming</div>
+        <div class="legend-item" role="listitem"><div class="legend-box" style="background:var(--live);border:1px solid #7f1d1d"></div> LIVE Now</div>
+      </div>
 
-    <section>
-      <h2>🎖️ Man of the Matches</h2>
-      <table>
-        <tr><th>Game</th><th>Player</th></tr>
-        <tr><td>Game 1</td><td>Vuyo</td></tr>
-        <tr><td>Game 2</td><td>Hoss</td></tr>
-        <tr><td>Game 3</td><td>Junior</td></tr>
-        <tr><td>Game 4</td><td>Vuyo</td></tr>
-        <tr><td>Game 4.1</td><td>Junior</td></tr>
-        <tr><td>Game 4.2</td><td>Xan</td></tr>
-        <tr><td>Game 5</td><td>Queener</td></tr>
-        <tr><td>Game 5.1</td><td>Junior</td></tr>
-        <tr><td>Game 6</td><td>Junior</td></tr>
-        <tr><td>Game 7</td><td>Junior</td></tr>
-        <tr><td>Game 8</td><td>**postponed**</td></tr>
-        <tr><td>Game 9</td><td>S'phe(external player - with a hatrick ⚽️⚽️⚽️ for this game.)</td></tr>
-        <tr><td>Game 10</td><td>Vuyo</td></tr>
-        <tr><td>Game 11</td><td>**postponed**</td></tr>
-        <tr><td>Game 12</td><td>Junior</td></tr>
-      </table>
-    </section>
+      <div style="display:flex;gap:.5rem;margin-bottom:.5rem">
+        <select id="scheduleFilter" class="select" style="flex:1">
+          <option value="all">All games</option>
+          <option value="upcoming">Upcoming</option>
+          <option value="completed">Completed</option>
+          <option value="postponed">Postponed</option>
+        </select>
+        <input id="scheduleSearch" type="search" placeholder="Search schedule" style="flex:2">
+      </div>
 
-    <section>
-      <h2>🔒 Defender of the match</h2>
-      <table>
-        <tr><th>Game</th><th>Player</th></tr>
-        <tr><td>Game 1</td><td>N/A</td></tr>
-        <tr><td>Game 2</td><td>N/A</td></tr>
-        <tr><td>Game 3</td><td>N/A</td></tr>
-        <tr><td>Game 4</td><td>N/A</td></tr>
-        <tr><td>Game 4.1</td><td>N/A</td></tr>
-        <tr><td>Game 4.2</td><td>N/A</td></tr>
-        <tr><td>Game 5</td><td>N/A</td></tr>
-        <tr><td>Game 5.1</td><td>N/A</td></tr>
-        <tr><td>Game 6</td><td>N/A</td></tr>
-        <tr><td>Game 7</td><td>N/A</td></tr>
-        <tr><td>Game 8</td><td>**postponed**, and so N/A</td></tr>
-        <tr><td>Game 9</td><td>Bayanda(the most exceptional 🔥 defense ever witnessed.)</td></tr>
-        <tr><td>Game 10</td><td>Queener</td></tr>
-        <tr><td>Game 11</td><td>**postponed**, and so N/A</td></tr>
-        <tr><td>Game 12</td><td>Olama</td></tr>
-      </table>
-    </section>
-
-      <h2>🤝🏽 Top Assisters</h2>
-      <table>
-        <tr><td>01. Junior</td><td>1</td></tr>
-        <tr><td>02. Vuyo</td><td>1</td></tr>
-      </table>
-  </section>
-
-    <section>
-      <h2>👑 Teams</h2>
-      <h3>Eden Alpha</h3>
-      <ul>
-        <li>01. Hoss</li>
-        <li>02. Xan</li>
-        <li>03. Frost</li>
-        <li>04. Vuyo</li>
-        <li>05. Queener</li>
+      <ul id="matchday-schedule" class="matchday" aria-label="Matchday schedule">
+        <!-- populated by JS -->
       </ul>
-      <h3>Eden Delta</h3>
-      <ul>
-        <li>01. Olama</li>
-        <li>02. Joy</li>
-        <li>03. Junior</li>
-        <li>04. Bayanda</li>
-        <li>05. Masiya</li>
-      </ul>
-    </section>
 
-    <section>
-      <h2>🌍 Eden</h2>
-      <p><strong>Eden</strong> is an Empire — the core behind our ventures and collective identity. The E.S.S league reflects our strength, unity, and love for the game. A core 10, two elite squads. One legacy.</p>
+      <div style="margin-top:.6rem" class="small muted">Click a game to view details, edit, or link to results.</div>
+    </aside>
+
+    <!-- FULL WIDTH: Stats / teams / scorers / controls -->
+    <section class="card" style="grid-column:1 / -1">
+      <h2>League Overview & Controls</h2>
+
+      <div style="display:flex;gap:1rem;flex-wrap:wrap">
+        <div style="flex:1;min-width:240px">
+          <h3 style="margin:.25rem 0">🏆 Quick Standings (manual example)</h3>
+          <table style="width:100%;border-collapse:collapse;font-size:.95rem">
+            <thead><tr style="background:#eef6ff"><th style="text-align:left;padding:.4rem">Team</th><th style="padding:.4rem">P</th><th style="padding:.4rem">W</th><th style="padding:.4rem">D</th><th style="padding:.4rem">L</th><th style="padding:.4rem">Pts</th></tr></thead>
+            <tbody>
+              <tr><td style="padding:.4rem">Eden Alpha</td><td style="text-align:center">13</td><td style="text-align:center">6</td><td style="text-align:center">1</td><td style="text-align:center">6</td><td style="text-align:center">19</td></tr>
+              <tr><td style="padding:.4rem">Eden Delta</td><td style="text-align:center">13</td><td style="text-align:center">6</td><td style="text-align:center">1</td><td style="text-align:center">6</td><td style="text-align:center">19</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="flex:1;min-width:240px">
+          <h3 style="margin:.25rem 0">🎯 Top Scorers (live-updatable)</h3>
+          <ol id="topScorers">
+            <li>Vuyo — 12</li>
+            <li>Junior — 9</li>
+            <li>Frost — 6</li>
+          </ol>
+        </div>
+
+        <div style="min-width:240px">
+          <h3 style="margin:.25rem 0">Utility</h3>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <button id="resetDataBtn" class="btn ghost small">Reset Local Data</button>
+            <button id="clearResultsBtn" class="btn ghost small">Clear Results</button>
+            <button id="focusNextBtn" class="btn small">Focus Next Match</button>
+          </div>
+        </div>
+      </div>
+
+      <hr style="margin:.8rem 0">
+
+      <h3 style="margin:.25rem 0">Teams</h3>
+      <div style="display:flex;gap:2rem;flex-wrap:wrap">
+        <div><strong>Eden Alpha</strong><ul><li>Hoss</li><li>Xan</li><li>Frost</li><li>Vuyo</li><li>Queener</li></ul></div>
+        <div><strong>Eden Delta</strong><ul><li>Olama</li><li>Joy</li><li>Junior</li><li>Bayanda</li><li>Masiya</li></ul></div>
+      </div>
+
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Eden Soccer Sundays — Powered by the Eden Empire</p>
+    <div class="small">© 2025 Eden Soccer Sundays — Powered by the Eden Empire</div>
   </footer>
 
+  <!-- Modal: match details & edit -->
+  <div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document">
+      <div style="display:flex;align-items:center;gap:.5rem">
+        <h3 id="modalTitle">Game details</h3>
+        <button class="close-x" id="closeModal" aria-label="Close dialog">✕</button>
+      </div>
+      <div id="modalContent">
+        <!-- populated dynamically -->
+      </div>
+    </div>
+  </div>
+
   <script>
+    /****************************************************************
+     * E.S.S Advanced Matchday Manager
+     * Features:
+     * - Build schedule (weekly Sundays starting 2025-07-06)
+     * - Parse results list for status auto-detection (postponed/completed)
+     * - Colors: completed (green), postponed (red), upcoming (gray), live-now (pulsing red)
+     * - Next match highlight, countdown that switches to "LIVE NOW ⚽🔥"
+     * - Click schedule items to view/edit details in accessible modal
+     * - Persist results to localStorage, export/import JSON
+     * - Filters and search on results and schedule
+     *
+     * Note: This file is intentionally verbose and defensive for reliability.
+     ****************************************************************/
 
-    const matchDates = [];
-    let matchDate = new Date("2025-07-06T14:00:00");
+    (function(){
+      // ---------- Configuration ----------
+      const START_DATE_ISO = "2025-07-06T14:00:00"; // first match
+      const TOTAL_MATCHES = 22;
+      const MATCH_DURATION_MINUTES = 120; // assume 2 hours (14:00 - 16:00)
+      const LOCAL_KEY = "ess_matchdata_v1";
 
-    while (matchDates.length < 22) {
-      matchDates.push(new Date(matchDate));
-      matchDate.setDate(matchDate.getDate() + 7); // next Sunday
-    }
+      // ---------- DOM refs ----------
+      const resultsListEl = document.getElementById("resultsList");
+      const matchdayListEl = document.getElementById("matchday-schedule");
+      const countdownHeader = document.getElementById("countdownHeader");
+      const scheduleFilter = document.getElementById("scheduleFilter");
+      const scheduleSearch = document.getElementById("scheduleSearch");
+      const filterResults = document.getElementById("filterResults");
+      const searchResults = document.getElementById("searchResults");
 
-    const matchdayList = document.getElementById("matchday-schedule");
-    matchDates.forEach((date, index) => {
-      const li = document.createElement("li");
-      li.textContent = `Game ${index + 1}: ${date.toDateString()} @ 14:00`;
-      matchdayList.appendChild(li);
-    });
+      const modalBackdrop = document.getElementById("modalBackdrop");
+      const modalContent = document.getElementById("modalContent");
+      const modalTitle = document.getElementById("modalTitle");
+      const closeModalBtn = document.getElementById("closeModal");
+      const addResultBtn = document.getElementById("addResultBtn");
+      const exportBtn = document.getElementById("exportBtn");
+      const importFile = document.getElementById("importFile");
+      const importLabel = document.querySelector('label[for="importFile"]');
+      const printBtn = document.getElementById("printBtn");
+      const resetDataBtn = document.getElementById("resetDataBtn");
+      const clearResultsBtn = document.getElementById("clearResultsBtn");
+      const focusNextBtn = document.getElementById("focusNextBtn");
 
-    // Countdown to next match
-    function updateCountdown() {
-      const now = new Date();
-      const nextMatch = matchDates.find(d => d > now);
+      // ---------- in-memory state ----------
+      let matchDates = [];
+      let matches = {}; // keyed by gameNumber string, values: { game: "1", date: ISO, status, score, motm, notes }
+      // possible status: "completed", "postponed", "upcoming", "live"
 
-      if (!nextMatch) {
-        document.getElementById("countdown").textContent = "The 2025 season has ended.";
-        return;
+      // ---------- helpers ----------
+      function safeGameKey(n){ return String(n); } // keep as string to allow "4.1" later
+      function toDateISO(d){ return (new Date(d)).toISOString(); }
+      function formatDateShort(d){
+        const dt = new Date(d);
+        // Example: Sun Jul 06, 2025
+        return dt.toLocaleDateString(undefined,{weekday:"short",year:"numeric",month:"short",day:"numeric"});
+      }
+      function timeOnly(d){ return new Date(d).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) }
+      function parseGameNumberFromText(text){
+        // match Game 4.1, Game 4, etc
+        const m = text.match(/game\s+([\d.]+)/i);
+        return m ? m[1] : null;
+      }
+      function isPostponedText(text){
+        return /postponed/i.test(text);
       }
 
-      const diff = nextMatch - now;
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
+      // ---------- build schedule dates ----------
+      (function buildSchedule(){
+        const first = new Date(START_DATE_ISO);
+        let d = new Date(first);
+        for(let i=0;i<TOTAL_MATCHES;i++){
+          matchDates.push(new Date(d));
+          d.setDate(d.getDate()+7); // next Sunday
+        }
+      })();
 
-      document.getElementById("countdown").textContent =
-        `Next match in ${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
+      // ---------- load initial results from page HTML (the results <ul>) ----------
+      function loadInitialResultsFromDOM(){
+        // We expect the page to contain a results UL in the left card that may have initial items.
+        // Grab list items present in the DOM and convert to structured results.
+        const defaultResultNodes = document.querySelectorAll('section.card ul.results-list, section.card ul')[0];
+        // But to be defensive, we look at the first section's UL
+        const leftSection = document.querySelector('main section.card');
+        if(!leftSection) return;
+        const rawUL = leftSection.querySelector('ul');
+        if(!rawUL) return;
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+        const lis = Array.from(rawUL.querySelectorAll('li'));
+        for(const li of lis){
+          const text = li.textContent.trim();
+          const gameNum = parseGameNumberFromText(text);
+          if(!gameNum) continue;
+          // default object
+          const key = safeGameKey(gameNum);
+          if(!matches[key]) matches[key] = { game: key, date: matchDates[Number(key)-1] || null, status: 'completed', raw: text };
+          if(isPostponedText(text)) matches[key].status = 'postponed';
+          // try to capture simple score pattern e.g. "Eden Alpha 4 : 2 Eden Delta"
+          const scoreMatch = text.match(/(\d+)\s*[:]\s*(\d+)/);
+          if(scoreMatch){
+            matches[key].score = `${scoreMatch[1]}:${scoreMatch[2]}`;
+          }
+        }
+      }
 
+      // ---------- restore from localStorage ----------
+      function loadFromLocal(){
+        try{
+          const raw = localStorage.getItem(LOCAL_KEY);
+          if(!raw) return false;
+          const parsed = JSON.parse(raw);
+          if(parsed && parsed.matches){
+            matches = parsed.matches;
+            // ensure dates are attached for schedule
+            Object.values(matches).forEach(m=>{
+              if(!m.date){
+                const idx = Number(m.game)-1;
+                m.date = matchDates[idx] ? matchDates[idx].toISOString() : null;
+              }
+            });
+            console.info("Loaded saved match data from localStorage.");
+            return true;
+          }
+        }catch(e){ console.warn("Failed to load local data",e) }
+        return false;
+      }
+
+      // ---------- save to localStorage ----------
+      function saveToLocal(){
+        try{
+          const snapshot = { matches, savedAt: new Date().toISOString() };
+          localStorage.setItem(LOCAL_KEY, JSON.stringify(snapshot));
+          console.info("Saved match data.");
+        }catch(e){ console.warn("Failed to save local data",e) }
+      }
+
+      // ---------- Export / Import ----------
+      function exportJSON(){
+        const data = { matches, matchDates: matchDates.map(d=>d.toISOString()), exportedAt: new Date().toISOString() };
+        const blob = new Blob([JSON.stringify(data,null,2)], {type:"application/json"});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = "ess_matchdata_export.json";
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+      function importJSONFile(file){
+        const reader = new FileReader();
+        reader.onload = e => {
+          try{
+            const imported = JSON.parse(e.target.result);
+            // Basic validation
+            if(imported && imported.matches){
+              matches = imported.matches;
+              // attach dates if missing
+              Object.values(matches).forEach(m=>{
+                if(!m.date){
+                  const idx = Number(m.game)-1;
+                  m.date = matchDates[idx] ? matchDates[idx].toISOString() : null;
+                }
+              });
+              saveToLocal();
+              rebuildAll();
+              alert("Import successful.");
+            } else {
+              alert("Invalid import file.");
+            }
+          }catch(err){
+            alert("Error parsing file: " + err.message);
+          }
+        };
+        reader.readAsText(file);
+      }
+
+      // ---------- UI builders ----------
+      function buildResultsList(){
+        // Show results derived from matches object sorted by game number
+        resultsListEl.innerHTML = "";
+        const arr = Object.values(matches).slice().sort((a,b)=>{
+          // handle numeric and dotted values
+          const an = parseFloat(a.game);
+          const bn = parseFloat(b.game);
+          return an - bn;
+        });
+
+        // apply filter / search
+        const filterVal = filterResults.value;
+        const searchVal = (searchResults.value || "").toLowerCase().trim();
+
+        arr.forEach(m=>{
+          // derive status
+          const status = m.status || 'upcoming';
+          if(filterVal !== 'all' && filterVal !== '' && filterVal !== status) return;
+          const title = `Game ${m.game}`;
+          const li = document.createElement('li');
+          li.setAttribute('data-game', m.game);
+
+          // left side
+          const left = document.createElement('div');
+          left.style.display = 'flex';
+          left.style.flexDirection = 'column';
+          left.style.flex = '1';
+
+          const top = document.createElement('div');
+          top.style.display='flex';
+          top.style.justifyContent='space-between';
+          top.style.alignItems='center';
+          const primary = document.createElement('div');
+          primary.innerHTML = `<strong>${title}</strong> ${m.score ? ' – ' + escapeHtml(m.score) : ''}`;
+          const right = document.createElement('div');
+
+          // status pill
+          const pill = document.createElement('span');
+          pill.className = 'status-pill ' + (status === 'completed' ? 'completed' : (status === 'postponed' ? 'postponed' : 'upcoming'));
+          pill.textContent = status === 'completed' ? 'Completed' : (status === 'postponed' ? 'Postponed' : 'Upcoming');
+
+          right.appendChild(pill);
+          top.appendChild(primary);
+          top.appendChild(right);
+
+          left.appendChild(top);
+
+          const meta = document.createElement('div');
+          meta.className = 'muted';
+          meta.textContent = `${m.date ? formatDateShort(m.date) + ' @ ' + timeOnly(m.date) : 'TBA'} ${m.motm ? ' • MOTM: '+m.motm : ''}`;
+          left.appendChild(meta);
+
+          // right side buttons
+          const controls = document.createElement('div');
+          controls.style.display='flex';
+          controls.style.gap='6px';
+          controls.style.alignItems='center';
+
+          const viewBtn = document.createElement('button');
+          viewBtn.className='btn ghost small';
+          viewBtn.textContent = 'View';
+          viewBtn.addEventListener('click', ()=>openModalForGame(m.game));
+          controls.appendChild(viewBtn);
+
+          const editBtn = document.createElement('button');
+          editBtn.className='btn small';
+          editBtn.textContent='Edit';
+          editBtn.addEventListener('click', ()=>openModalForGame(m.game, true));
+          controls.appendChild(editBtn);
+
+          // delete result quick (mark upcoming)
+          const clearBtn = document.createElement('button');
+          clearBtn.className='btn ghost small';
+          clearBtn.textContent='Mark Upcoming';
+          clearBtn.title='Remove result -> mark as upcoming';
+          clearBtn.addEventListener('click', ()=>{
+            if(confirm(`Mark Game ${m.game} as upcoming (remove result)?`)){
+              m.status = 'upcoming'; delete m.score; delete m.motm; saveToLocal(); rebuildAll();
+            }
+          });
+          controls.appendChild(clearBtn);
+
+          // append
+          li.appendChild(left);
+          li.appendChild(controls);
+
+          // search filter
+          const combined = (m.game + ' ' + (m.score||'') + ' ' + (m.motm||'') + ' ' + (m.raw||'')).toLowerCase();
+          if(searchVal && combined.indexOf(searchVal) === -1) return;
+
+          resultsListEl.appendChild(li);
+        });
+
+        if(resultsListEl.children.length === 0){
+          const empty = document.createElement('div');
+          empty.className='small muted';
+          empty.textContent = 'No results match that filter / search.';
+          resultsListEl.appendChild(empty);
+        }
+      }
+
+      function buildScheduleList(){
+        matchdayListEl.innerHTML = "";
+        const filterVal = scheduleFilter.value;
+        const searchVal = (scheduleSearch.value || "").toLowerCase().trim();
+
+        // create entries in order
+        for(let i=0;i<matchDates.length;i++){
+          const gameNumber = safeGameKey(i+1);
+          const m = matches[gameNumber] || { game: gameNumber, date: matchDates[i].toISOString(), status:'upcoming' };
+          // ensure date
+          if(!m.date) m.date = matchDates[i].toISOString();
+          // compute status and live detection
+          let status = m.status || 'upcoming';
+
+          // live check: now between start and end
+          const start = new Date(m.date);
+          const end = new Date(m.date);
+          end.setMinutes(end.getMinutes() + MATCH_DURATION_MINUTES);
+          const now = new Date();
+          const isLive = (now >= start && now <= end);
+          if(isLive) status = 'live';
+
+          // filter
+          if(filterVal !== 'all' && filterVal !== status && !(filterVal === 'upcoming' && status === 'live')) continue;
+          // search by game number or date or "postponed" etc
+          const searchText = (`game ${m.game} ${m.score||''} ${m.motm||''} ${m.status||''} ${formatDateShort(m.date)} ${timeOnly(m.date)}`).toLowerCase();
+          if(searchVal && searchText.indexOf(searchVal) === -1) continue;
+
+          // li
+          const li = document.createElement('li');
+          li.setAttribute('data-game', m.game);
+          li.tabIndex = 0;
+          li.setAttribute('role','button');
+          li.setAttribute('aria-pressed','false');
+
+          // compose content
+          const left = document.createElement('div');
+          left.style.display='flex';
+          left.style.flexDirection='column';
+          left.style.flex='1';
+
+          const top = document.createElement('div');
+          top.style.display='flex';
+          top.style.justifyContent='space-between';
+          top.style.alignItems='center';
+
+          const title = document.createElement('div');
+          title.innerHTML = `<strong>Game ${m.game}</strong> — ${formatDateShort(m.date)}`;
+          const smallRight = document.createElement('div');
+          smallRight.className = 'muted';
+          smallRight.textContent = timeOnly(m.date);
+          top.appendChild(title);
+          top.appendChild(smallRight);
+          left.appendChild(top);
+
+          const bottom = document.createElement('div');
+          bottom.className = 'muted small';
+          bottom.textContent = m.score ? `Score: ${m.score}${m.motm ? ' • MOTM:'+m.motm : ''}` : (m.status==='postponed' ? 'Postponed' : 'Not played yet');
+          left.appendChild(bottom);
+
+          const right = document.createElement('div');
+          right.style.display='flex';
+          right.style.flexDirection='column';
+          right.style.alignItems='flex-end';
+          right.style.gap='6px';
+
+          const pill = document.createElement('span');
+          pill.className = 'status-pill ' + (status==='completed' ? 'completed' : (status==='postponed' ? 'postponed' : (status==='live' ? 'live-now' :'upcoming')));
+          pill.textContent = status === 'completed' ? 'Completed' : (status === 'postponed' ? 'Postponed' : (status==='live' ? 'LIVE NOW' : 'Upcoming'));
+          right.appendChild(pill);
+
+          // clickable: open modal on click
+          li.addEventListener('click', ()=> openModalForGame(m.game));
+          // keyboard support
+          li.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModalForGame(m.game); } });
+
+          li.appendChild(left);
+          li.appendChild(right);
+
+          // highlight next match if appropriate
+          const nextMatchDate = matchDates.find(d => d > new Date());
+          if(nextMatchDate){
+            const nextIndex = matchDates.indexOf(nextMatchDate);
+            if(nextIndex === i && status !== 'live') {
+              li.classList.add('next-match');
+            }
+          }
+
+          matchdayListEl.appendChild(li);
+        }
+
+        if(matchdayListEl.children.length === 0){
+          const empty = document.createElement('div');
+          empty.className='small muted';
+          empty.textContent = 'No scheduled matches match your filter/search.';
+          matchdayListEl.appendChild(empty);
+        }
+      }
+
+      // ---------- Modal: display and edit game ----------
+      function openModalForGame(gameKey, editing=false){
+        const m = matches[gameKey] || { game: gameKey, date: (matchDates[Number(gameKey)-1] ? matchDates[Number(gameKey)-1].toISOString() : null), status:'upcoming' };
+        modalTitle.textContent = `Game ${m.game} — Details`;
+        modalContent.innerHTML = '';
+
+        // build detail HTML
+        const outer = document.createElement('div');
+
+        // info block
+        const info = document.createElement('div');
+        info.innerHTML = `<div style="display:flex;gap:1rem;align-items:center"><div style="font-size:1.05rem"><strong>${formatDateShort(m.date||'TBA')}</strong></div><div class="muted">${timeOnly(m.date||new Date())}</div></div>`;
+        info.style.marginBottom='8px';
+        outer.appendChild(info);
+
+        // form fields
+        const form = document.createElement('div');
+
+        form.innerHTML = `
+          <div class="form-row"><label>Score (format: 4:2)</label><input id="modalScore" type="text" value="${escapeHtml(m.score||'')}" style="width:100%"></div>
+          <div class="form-row"><label>Man of the Match</label><input id="modalMOTM" type="text" value="${escapeHtml(m.motm||'')}" style="width:100%"></div>
+          <div class="form-row"><label>Status</label>
+            <select id="modalStatus" class="select" style="width:100%">
+              <option value="completed">Completed</option>
+              <option value="postponed">Postponed</option>
+              <option value="upcoming">Upcoming</option>
+            </select>
+          </div>
+          <div class="form-row"><label>Notes</label><textarea id="modalNotes" rows="3" style="width:100%">${escapeHtml(m.notes||'')}</textarea></div>
+          <div style="display:flex;gap:.5rem;margin-top:.5rem">
+            <button id="saveModalBtn" class="btn">Save</button>
+            <button id="cancelModalBtn" class="btn ghost">Cancel</button>
+            <button id="deleteModalBtn" class="btn ghost">Delete Result</button>
+          </div>
+        `;
+        outer.appendChild(form);
+        modalContent.appendChild(outer);
+
+        // set status default
+        document.getElementById('modalStatus').value = m.status || 'upcoming';
+
+        // show modal
+        showModal();
+
+        // handlers
+        document.getElementById('cancelModalBtn').addEventListener('click', closeModal);
+        document.getElementById('deleteModalBtn').addEventListener('click', ()=>{
+          if(confirm('Delete this result (mark as upcoming)?')){
+            delete matches[gameKey].score;
+            delete matches[gameKey].motm;
+            matches[gameKey].status = 'upcoming';
+            saveToLocal();
+            rebuildAll();
+            closeModal();
+          }
+        });
+        document.getElementById('saveModalBtn').addEventListener('click', ()=>{
+          const s = document.getElementById('modalScore').value.trim();
+          const motm = document.getElementById('modalMOTM').value.trim();
+          const status = document.getElementById('modalStatus').value;
+          const notes = document.getElementById('modalNotes').value.trim();
+          // assign into matches
+          matches[gameKey] = matches[gameKey] || { game: gameKey };
+          matches[gameKey].score = s || undefined;
+          matches[gameKey].motm = motm || undefined;
+          matches[gameKey].status = status;
+          matches[gameKey].notes = notes || undefined;
+          // ensure date present
+          if(!matches[gameKey].date){
+            const idx = Number(gameKey)-1;
+            matches[gameKey].date = matchDates[idx] ? matchDates[idx].toISOString() : null;
+          }
+          saveToLocal();
+          rebuildAll();
+          closeModal();
+        });
+      }
+
+      function showModal(){
+        modalBackdrop.style.display = 'flex';
+        modalBackdrop.setAttribute('aria-hidden','false');
+        // trap focus simple
+        const focusable = modalBackdrop.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if(focusable.length) focusable[0].focus();
+      }
+      function closeModal(){
+        modalBackdrop.style.display = 'none';
+        modalBackdrop.setAttribute('aria-hidden','true');
+      }
+
+      // close modal handlers
+      closeModalBtn.addEventListener('click', closeModal);
+      modalBackdrop.addEventListener('click', (e)=>{ if(e.target === modalBackdrop) closeModal(); });
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+
+      // utility escape for safe HTML injection
+      function escapeHtml(s){ return (s||'').toString().replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;'); }
+
+      // ---------- Rebuild everything ----------
+      function rebuildAll(){
+        buildResultsList();
+        buildScheduleList();
+        updateCountdownHeader();
+      }
+
+      // ---------- Auto-detect status from initial Results DOM if local not present ----------
+      function autoDetectFromInitialPage(){
+        // attempt to parse textual results from the original results UL (if any)
+        const pageResultsUL = document.querySelector('main section.card ul');
+        if(!pageResultsUL) return;
+        const lis = Array.from(pageResultsUL.querySelectorAll('li'));
+        lis.forEach(li=>{
+          const text = li.textContent.trim();
+          const gameNum = parseGameNumberFromText(text);
+          if(!gameNum) return;
+          matches[gameNum] = matches[gameNum] || { game: gameNum, date: matchDates[Number(gameNum)-1] ? matchDates[Number(gameNum)-1].toISOString() : null };
+          if(isPostponedText(text)) matches[gameNum].status = 'postponed';
+          else matches[gameNum].status = 'completed';
+          const scoreMatch = text.match(/(\d+)\s*[:]\s*(\d+)/);
+          if(scoreMatch) matches[gameNum].score = `${scoreMatch[1]}:${scoreMatch[2]}`;
+        });
+      }
+
+      // ---------- Countdown / Live detection ----------
+      function updateCountdownHeader(){
+        const now = new Date();
+        // check if any live
+        let liveGame = null;
+        matchDates.forEach((d,i)=>{
+          const start = new Date(d);
+          const end = new Date(d);
+          end.setMinutes(end.getMinutes() + MATCH_DURATION_MINUTES);
+          if(now >= start && now <= end){
+            liveGame = i+1;
+          }
+        });
+        if(liveGame !== null){
+          countdownHeader.textContent = `LIVE NOW — Game ${liveGame} ⚽🔥`;
+          return;
+        }
+        // next match
+        const next = matchDates.find(d => d > now);
+        if(!next){
+          countdownHeader.textContent = "The 2025 season has ended.";
+          return;
+        }
+        const diff = next - now;
+        const days = Math.floor(diff / (1000*60*60*24));
+        const hours = Math.floor((diff / (1000*60*60)) % 24);
+        const minutes = Math.floor((diff / (1000*60)) % 60);
+        const nextIdx = matchDates.indexOf(next)+1;
+        countdownHeader.textContent = `Next match (Game ${nextIdx}) in ${days}d ${hours}h ${minutes}m`;
+      }
+
+      // ---------- Button wiring ----------
+      addResultBtn.addEventListener('click', ()=> {
+        // open modal with a new game number defaulting to next upcoming index
+        const next = matchDates.findIndex(d=>d > new Date());
+        const defaultGame = next === -1 ? matchDates.length : next+1;
+        const gameKey = safeGameKey(defaultGame);
+        matches[gameKey] = matches[gameKey] || { game: gameKey, date: matchDates[defaultGame-1] ? matchDates[defaultGame-1].toISOString() : null, status:'completed' };
+        saveToLocal();
+        openModalForGame(gameKey, true);
+      });
+
+      exportBtn.addEventListener('click', exportJSON);
+      importFile.addEventListener('change', (e)=>{
+        const f = e.target.files[0];
+        if(f) importJSONFile(f);
+      });
+
+      printBtn.addEventListener('click', ()=> window.print());
+      resetDataBtn.addEventListener('click', ()=>{
+        if(confirm("Reset local saved data? This will remove any edits you've made locally.")){
+          localStorage.removeItem(LOCAL_KEY);
+          matches = {};
+          loadInitialResultsFromDOM();
+          rebuildAll();
+          alert("Local data reset. Original page data (if any) restored.");
+        }
+      });
+      clearResultsBtn.addEventListener('click', ()=>{
+        if(confirm("Clear all results (mark all as upcoming)?")){
+          Object.keys(matches).forEach(k=>{
+            matches[k].status = 'upcoming';
+            delete matches[k].score; delete matches[k].motm; delete matches[k].notes;
+          });
+          saveToLocal(); rebuildAll();
+        }
+      });
+
+      focusNextBtn.addEventListener('click', ()=>{
+        // find next match li and scroll into view
+        const now = new Date();
+        const next = matchDates.find(d => d > now);
+        if(!next) return alert("No upcoming match (season ended).");
+        const idx = matchDates.indexOf(next);
+        const li = matchdayListEl.querySelectorAll('li')[idx];
+        if(li){
+          li.scrollIntoView({behavior:'smooth',block:'center'});
+          li.classList.add('next-match');
+          setTimeout(()=> li.classList.remove('next-match'), 2500);
+        }
+      });
+
+      // filters/search
+      scheduleFilter.addEventListener('change', buildScheduleList);
+      scheduleSearch.addEventListener('input', buildScheduleList);
+      filterResults.addEventListener('change', buildResultsList);
+      searchResults.addEventListener('input', buildResultsList);
+
+      // periodic updates
+      setInterval(()=>{
+        updateCountdownHeader();
+        rebuildAll();
+      }, 60000); // every 60s
+
+      // ---------- init flow ----------
+      (function init(){
+        // 1) try load from local
+        const hasLocal = loadFromLocal();
+        if(!hasLocal){
+          // 2) parse initial results present in page and seed matches
+          loadInitialResultsFromDOM();
+          autoDetectFromInitialPage();
+          saveToLocal();
+        } else {
+          // ensure matches have date fields
+          Object.keys(matches).forEach(k=>{
+            if(!matches[k].date){
+              const idx = Number(k)-1;
+              matches[k].date = matchDates[idx] ? matchDates[idx].toISOString() : null;
+            }
+          });
+        }
+
+        // ensure all match keys exist as upcoming by default
+        for(let i=1;i<=matchDates.length;i++){
+          const key = safeGameKey(i);
+          matches[key] = matches[key] || { game: key, date: matchDates[i-1] ? matchDates[i-1].toISOString() : null, status:'upcoming' };
+        }
+
+        rebuildAll();
+        updateCountdownHeader();
+      })();
+
+      // ---------- small defensive utilities ----------
+      // sanitize text to avoid XSS when inserting innerHTML earlier
+      // already used escapeHtml above.
+
+    })();
   </script>
-
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
