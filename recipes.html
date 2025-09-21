@@ -1,23 +1,14 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8" />
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <title>Recipes</title>
-
+  <title>Recipes & Message Board</title>
   <link rel="icon" href="01. images/jesuslogo_enef.png" type="image/x-icon">
-
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-
   <style>
-
     :root {
-
       --bg-color: #fff;
       --text-color: #000;
       --accent: #e3c5a3;
@@ -25,11 +16,8 @@
       --button-hover: #ff4927;
       --toast-bg: #333;
       --toast-text: #fff;
-
     }
-
     [data-theme="dark"] {
-
       --bg-color: #121212;
       --text-color: #f0f0f0;
       --accent: #3e2f1c;
@@ -37,11 +25,8 @@
       --button-hover: #e76f51;
       --toast-bg: #eee;
       --toast-text: #000;
-
     }
-
     body {
-
       font-family: 'Roboto', sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
@@ -49,175 +34,106 @@
       padding: 0;
       min-height: 100vh;
       transition: background 0.3s, color 0.3s;
-
     }
-
     header, footer {
-
       background: var(--accent);
       padding: 20px;
       text-align: center;
       position: fixed;
       width: 100%;
       z-index: 1000;
-
     }
-
-    header {
-
-      top: 0;
-
-    }
-
-    footer {
-
-      bottom: 0;
-
-    }
-
-    .header-link {
-
-      text-decoration: none;
-      color: inherit;
-
-    }
-
+    header { top: 0; }
+    footer { bottom: 0; }
+    .header-link { text-decoration: none; color: inherit; }
     .theme-toggle {
-
-      position: absolute;
-      right: 20px;
-      top: 25px;
-      background: transparent;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      margin-right: 30px;
-
+      position: absolute; right: 20px; top: 25px;
+      background: transparent; border: none;
+      font-size: 24px; cursor: pointer; margin-right: 30px;
     }
-
     .main {
-
-      margin-top: 120px;
-      margin-bottom: 60px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
+      margin-top: 120px; margin-bottom: 80px;
+      display: flex; flex-direction: column; align-items: center;
     }
-
+    h2 { margin-top: 40px; }
     input, textarea {
-
-      width: 90%;
-      max-width: 500px;
-      padding: 10px;
-      margin: 8px 0;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-
+      width: 90%; max-width: 500px;
+      padding: 10px; margin: 8px 0;
+      border-radius: 6px; border: 1px solid #ccc;
     }
-
     button {
-
       background-color: var(--button-bg);
-      color: black;
-      border: none;
-      padding: 10px 15px;
-      font-size: 14px;
-      border-radius: 5px;
-      cursor: pointer;
-
+      color: black; border: none;
+      padding: 10px 15px; font-size: 14px;
+      border-radius: 5px; cursor: pointer;
     }
-
-    button:hover {
-
-      background-color: var(--button-hover);
-
-    }
-
+    button:hover { background-color: var(--button-hover); }
     #recipesContainer {
-
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      width: 90%;
-      max-width: 1200px;
-      margin: 30px auto;
-
+      gap: 20px; width: 90%; max-width: 1200px; margin: 30px auto;
     }
-
-    .recipe-drawer {
-
+    .recipe-card {
       background-color: var(--accent);
-      border-radius: 8px;
+      border-radius: 10px;
       padding: 15px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       transition: transform 0.2s ease;
-
     }
-
-    .recipe-drawer:hover {
-
-      transform: scale(1.01);
-
+    .recipe-card:hover { transform: translateY(-3px); }
+    .recipe-header {
+      display: flex; justify-content: space-between; align-items: center;
+      cursor: pointer;
     }
-
     .recipe-content {
-
       background: var(--bg-color);
       padding: 10px;
       margin-top: 10px;
       border-radius: 6px;
-      display: none;
-
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
     }
-
     .recipe-content.active {
-
-      display: block;
-
+      max-height: 500px; /* enough for text */
+      padding: 10px;
     }
-
     #toast {
-
-      position: fixed;
-      bottom: 80px;
-      background-color: var(--toast-bg);
-      color: var(--toast-text);
-      padding: 12px 20px;
-      border-radius: 6px;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      left: 50%;
-      transform: translateX(-50%);
+      position: fixed; bottom: 80px;
+      background-color: var(--toast-bg); color: var(--toast-text);
+      padding: 12px 20px; border-radius: 6px;
+      opacity: 0; transition: opacity 0.4s ease;
+      left: 50%; transform: translateX(-50%);
       z-index: 1001;
-
     }
-
+    /* Message Board */
+    #messageBoard {
+      width: 90%; max-width: 800px;
+      margin: 20px auto; display: flex; flex-direction: column;
+    }
+    .message {
+      background: var(--accent);
+      border-radius: 8px; padding: 12px;
+      margin: 8px 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .message strong { font-size: 16px; }
+    .message p { margin: 6px 0; }
+    .message small { font-size: 12px; color: gray; }
     @media (max-width: 600px) {
-
-      header h1 {
-
-        font-size: 1.5rem;
-        text-align: center;
-        margin-right: 40px;
-
-      }
-
+      header h1 { font-size: 1.5rem; text-align: center; margin-right: 40px; }
     }
-
   </style>
-
 </head>
 
 <body data-theme="light">
-
   <header>
-    <a href="menupage.html" class="header-link" title="Back to main menu"><h1>Recipes</h1></a>
+    <a href="menupage.html" class="header-link" title="Back to main menu"><h1>Recipes & Messages</h1></a>
     <button class="theme-toggle" onclick="toggleTheme()" id="themeIcon" title="theme">🌙</button>
   </header>
 
   <main class="main" role="main">
-
+    <!-- Recipes -->
     <h2>Add New Recipe</h2>
     <input type="text" id="newTitle" placeholder="Recipe Title" aria-label="Recipe Title"/>
     <textarea id="newInstructions" placeholder="One instruction per line..." aria-label="Instructions"></textarea>
@@ -229,6 +145,15 @@
       <p id="loadingMessage">Loading recipes...</p>
     </div>
 
+    <!-- Message Board -->
+    <h2>Team Message Board</h2>
+    <input type="text" id="codenameInput" placeholder="Enter your codename..." aria-label="Codename"/>
+    <textarea id="messageInput" placeholder="Type your message here..." aria-label="Message"></textarea>
+    <button id="postMessageBtn">Post Message</button>
+
+    <div id="messageBoard">
+      <p id="loadingMessages">Loading messages...</p>
+    </div>
   </main>
 
   <footer>
@@ -240,7 +165,7 @@
   <!-- Firebase Setup -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, onSnapshot, orderBy, query } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyBoc_mvc4WpduIYYUvLnA3iu46NvweFiLQ",
@@ -253,6 +178,8 @@
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+
+    // ----------- RECIPES -----------
     const recipesRef = collection(db, "recipes");
 
     async function addRecipe() {
@@ -262,40 +189,41 @@
         showToast("Please complete all fields.");
         return;
       }
-
-      await addDoc(recipesRef, { title, instructions });
+      await addDoc(recipesRef, { title, instructions, timestamp: new Date() });
       document.getElementById("newTitle").value = "";
       document.getElementById("newInstructions").value = "";
       showToast("Recipe added successfully!");
-      loadRecipes();
     }
 
-    async function loadRecipes() {
+    function loadRecipes() {
       const container = document.getElementById("recipesContainer");
-      const querySnapshot = await getDocs(recipesRef);
-      container.innerHTML = "";
+      const q = query(recipesRef, orderBy("timestamp", "desc"));
+      onSnapshot(q, snapshot => {
+        container.innerHTML = "";
+        if (snapshot.empty) {
+          container.innerHTML = "<p>No recipes found.</p>";
+          return;
+        }
+        snapshot.forEach(docSnap => {
+          const { title, instructions } = docSnap.data();
+          const id = docSnap.id;
 
-      if (querySnapshot.empty) {
-        container.innerHTML = "<p>No recipes found.</p>";
-        return;
-      }
-
-      querySnapshot.forEach(docSnap => {
-        const { title, instructions } = docSnap.data();
-        const id = docSnap.id;
-
-        const drawer = document.createElement("div");
-        drawer.className = "recipe-drawer";
-        drawer.dataset.title = title.toLowerCase();
-        drawer.innerHTML = `
-          <h3 onclick="toggleContent('${id}')">${title}</h3>
-          <button onclick="startEdit('${id}', '${title.replace(/'/g, "\\'")}')">Edit</button>
-          <button onclick="deleteRecipe('${id}')">Delete</button>
-          <div class="recipe-content" id="content-${id}">
-            <ul>${instructions.map(step => `<li>${step}</li>`).join("")}</ul>
-          </div>
-        `;
-        container.appendChild(drawer);
+          const card = document.createElement("div");
+          card.className = "recipe-card";
+          card.dataset.title = title.toLowerCase();
+          card.innerHTML = `
+            <div class="recipe-header" onclick="toggleContent('${id}')">
+              <h3>${title}</h3>
+              <span>▼</span>
+            </div>
+            <div class="recipe-content" id="content-${id}">
+              <ul>${instructions.map(step => `<li>${step}</li>`).join("")}</ul>
+              <button onclick="startEdit('${id}', '${title.replace(/'/g, "\\'")}')">Edit</button>
+              <button onclick="deleteRecipe('${id}')">Delete</button>
+            </div>
+          `;
+          container.appendChild(card);
+        });
       });
     }
 
@@ -303,7 +231,6 @@
       if (confirm("Are you sure you want to delete this recipe?")) {
         await deleteDoc(doc(db, "recipes", id));
         showToast("Recipe deleted.");
-        loadRecipes();
       }
     };
 
@@ -324,26 +251,65 @@
       if (!title || !instructions.length) return showToast("Please complete all fields.");
       await updateDoc(doc(db, "recipes", id), { title, instructions });
       showToast("Recipe updated.");
-      loadRecipes();
     };
 
     window.filterRecipes = () => {
       const search = document.getElementById("searchBox").value.toLowerCase();
-      const drawers = document.querySelectorAll(".recipe-drawer");
-      drawers.forEach(drawer => {
-        drawer.style.display = drawer.dataset.title.includes(search) ? "block" : "none";
+      const cards = document.querySelectorAll(".recipe-card");
+      cards.forEach(card => {
+        card.style.display = card.dataset.title.includes(search) ? "block" : "none";
       });
-    };
-
-    window.toggleTheme = () => {
-      const isLight = document.body.getAttribute("data-theme") === "light";
-      document.body.setAttribute("data-theme", isLight ? "dark" : "light");
-      document.getElementById("themeIcon").textContent = isLight ? "☀️" : "🌙";
     };
 
     window.toggleContent = id => {
       const content = document.getElementById(`content-${id}`);
       content.classList.toggle("active");
+    };
+
+    // ----------- MESSAGES -----------
+    const messagesRef = collection(db, "messages");
+
+    async function postMessage() {
+      const codename = document.getElementById("codenameInput").value.trim();
+      const message = document.getElementById("messageInput").value.trim();
+      if (!codename || !message) {
+        showToast("Please enter both codename and message.");
+        return;
+      }
+      await addDoc(messagesRef, { codename, message, timestamp: new Date() });
+      document.getElementById("codenameInput").value = "";
+      document.getElementById("messageInput").value = "";
+      showToast("Message posted!");
+    }
+
+    function loadMessages() {
+      const container = document.getElementById("messageBoard");
+      const q = query(messagesRef, orderBy("timestamp", "desc"));
+      onSnapshot(q, snapshot => {
+        container.innerHTML = "";
+        if (snapshot.empty) {
+          container.innerHTML = "<p>No messages yet.</p>";
+          return;
+        }
+        snapshot.forEach(docSnap => {
+          const { codename, message, timestamp } = docSnap.data();
+          const div = document.createElement("div");
+          div.className = "message";
+          div.innerHTML = `
+            <strong>${codename}</strong><br>
+            <p>${message}</p>
+            <small>${timestamp?.toDate ? timestamp.toDate().toLocaleString() : ""}</small>
+          `;
+          container.appendChild(div);
+        });
+      });
+    }
+
+    // ----------- UTILITIES -----------
+    window.toggleTheme = () => {
+      const isLight = document.body.getAttribute("data-theme") === "light";
+      document.body.setAttribute("data-theme", isLight ? "dark" : "light");
+      document.getElementById("themeIcon").textContent = isLight ? "☀️" : "🌙";
     };
 
     function showToast(message) {
@@ -353,15 +319,17 @@
       setTimeout(() => (toast.style.opacity = "0"), 3000);
     }
 
+    // Init
     window.addEventListener("DOMContentLoaded", () => {
       document.getElementById("addRecipeBtn").addEventListener("click", addRecipe);
+      document.getElementById("postMessageBtn").addEventListener("click", postMessage);
       loadRecipes();
+      loadMessages();
     });
   </script>
-
 </body>
-
 </html>
+
 
 
 
