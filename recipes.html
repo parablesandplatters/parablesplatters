@@ -3,188 +3,150 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Recipes & Message Board — Updated</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Recipes & Message Board — Pro Mobile</title>
   <link rel="icon" href="01. images/jesuslogo_enef.png" type="image/x-icon">
+  <meta name="description" content="Mobile-optimized Recipes and Team Message Board with realtime Firestore backend" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg-color: #fff;
-      --text-color: #000;
-      --accent: #e3c5a3;
-      --button-bg: #ff7b4b;
-      --button-hover: #ff4927;
-      --toast-bg: #333;
-      --toast-text: #fff;
+    /* Mobile-first responsive design, accessible sizes and reduced motion supported */
+    :root{
+      --bg:#ffffff; --text:#0b0b0b; --muted:#666; --card:#f7efe6; --accent:#e3c5a3;
+      --primary:#ff7b4b; --primary-hover:#ff4927; --radius:12px; --gap:12px; --shadow:0 6px 18px rgba(8,8,8,0.08);
     }
-    [data-theme="dark"] {
-      --bg-color: #121212;
-      --text-color: #f0f0f0;
-      --accent: #3e2f1c;
-      --button-bg: #ffa07a;
-      --button-hover: #e76f51;
-      --toast-bg: #eee;
-      --toast-text: #000;
+    [data-theme="dark"]{ --bg:#0b0b0b; --text:#f2f2f2; --muted:#a8a8a8; --card:#221d18; --accent:#3e2f1c; --primary:#ffa07a; --primary-hover:#e76f51; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Roboto, system-ui, -apple-system, 'Segoe UI', Arial; background:var(--bg); color:var(--text);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; padding-bottom:96px; transition:background .25s, color .25s;
     }
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      transition: background 0.3s, color 0.3s;
-    }
-    header, footer {
-      background: var(--accent);
-      padding: 20px;
-      text-align: center;
-      position: fixed;
-      width: 100%;
-      z-index: 1000;
-    }
-    header { top: 0; }
-    footer { bottom: 0; }
-    .header-link { text-decoration: none; color: inherit; }
-    .theme-toggle {
-      position: absolute; right: 20px; top: 25px;
-      background: transparent; border: none;
-      font-size: 24px; cursor: pointer; margin-right: 30px;
-    }
-    .main {
-      margin-top: 120px; margin-bottom: 80px;
-      display: flex; flex-direction: column; align-items: center;
-    }
-    h2 { margin-top: 40px; }
-    input, textarea, select {
-      width: 90%; max-width: 500px;
-      padding: 10px; margin: 8px 0;
-      border-radius: 6px; border: 1px solid #ccc;
-      background: var(--bg-color);
-      color: var(--text-color);
-    }
-    button {
-      background-color: var(--button-bg);
-      color: black; border: none;
-      padding: 10px 15px; font-size: 14px;
-      border-radius: 5px; cursor: pointer;
-    }
-    button:hover { background-color: var(--button-hover); }
-    #recipesControls { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; align-items:center; width:90%; max-width:1200px }
-    #recipesContainer {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px; width: 90%; max-width: 1200px; margin: 30px auto;
-    }
-    .recipe-card {
-      background-color: var(--accent);
-      border-radius: 10px;
-      padding: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
-    }
-    .recipe-card:hover { transform: translateY(-3px); }
-    .recipe-header {
-      display: flex; justify-content: space-between; align-items: center;
-      cursor: pointer;
-    }
-    .recipe-arrow { transition: transform 0.25s ease; }
-    .expanded .recipe-arrow { transform: rotate(180deg); }
-    .recipe-content {
-      background: var(--bg-color);
-      padding: 0 10px;
-      margin-top: 10px;
-      border-radius: 6px;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s ease, padding 0.35s ease;
-    }
-    .recipe-content.active {
-      max-height: 800px; /* enough for text */
-      padding: 10px;
-    }
-    #toast {
-      position: fixed; bottom: 80px;
-      background-color: var(--toast-bg); color: var(--toast-text);
-      padding: 12px 20px; border-radius: 6px;
-      opacity: 0; transition: opacity 0.4s ease;
-      left: 50%; transform: translateX(-50%);
-      z-index: 1001;
-    }
-    /* Message Board */
-    #messageBoard {
-      width: 90%; max-width: 800px;
-      margin: 20px auto; display: flex; flex-direction: column;
-    }
-    .message {
-      background: var(--accent);
-      border-radius: 8px; padding: 12px;
-      margin: 8px 0;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    .message:nth-child(even) { opacity: 0.95 }
-    .message strong { font-size: 16px; }
-    .message p { margin: 6px 0; white-space: pre-wrap }
-    .message small { font-size: 12px; color: gray; }
-    @media (max-width: 600px) {
-      header h1 { font-size: 1.5rem; text-align: center; margin-right: 40px; }
-    }
+    header{position:sticky; top:0; background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85)); backdrop-filter: blur(6px); z-index:1200; border-bottom:1px solid rgba(0,0,0,0.06)}
+    header .wrap{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; max-width:1100px; margin:0 auto}
+    h1{font-size:18px; margin:0}
+    .controls{display:flex; gap:8px; align-items:center}
+    .theme-toggle{background:transparent; border:none; font-size:20px; line-height:1; padding:8px; border-radius:8px}
+    main{max-width:1100px; margin:18px auto; padding:0 16px}
+
+    /* form + controls */
+    .card{background:var(--card); border-radius:var(--radius); padding:14px; box-shadow:var(--shadow); margin-bottom:var(--gap)}
+    label{font-size:13px; color:var(--muted); display:block; margin-bottom:6px}
+    input[type=text], textarea, select{width:100%; padding:12px 14px; border-radius:10px; border:1px solid rgba(0,0,0,0.08); background:transparent; color:var(--text); font-size:15px}
+    textarea{min-height:96px; resize:vertical}
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:12px 14px; border-radius:12px; background:var(--primary); color:#000; border:none; font-weight:600; font-size:15px}
+    .btn:active{transform:translateY(1px)}
+    .btn.secondary{background:transparent; border:1px solid rgba(0,0,0,0.08); color:var(--text)}
+
+    /* recipes grid */
+    #recipesControls{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:8px 0 0}
+    #recipesContainer{display:grid; grid-template-columns:1fr; gap:12px; margin-top:12px}
+    @media(min-width:720px){ #recipesContainer{grid-template-columns:repeat(2, 1fr)} }
+    @media(min-width:1000px){ #recipesContainer{grid-template-columns:repeat(3, 1fr)} }
+
+    .recipe-card{background:var(--bg); border-radius:12px; padding:12px; box-shadow:0 6px 18px rgba(2,2,2,0.06); border:1px solid rgba(0,0,0,0.04); display:flex; flex-direction:column}
+    .recipe-header{display:flex; align-items:center; justify-content:space-between; gap:8px}
+    .recipe-title{font-size:16px; font-weight:700}
+    .recipe-meta{font-size:12px; color:var(--muted)}
+    .recipe-preview{margin-top:8px; font-size:14px; color:var(--muted); white-space:pre-wrap}
+
+    .recipe-content{overflow:hidden; max-height:0; transition:max-height .35s ease}
+    .recipe-content.open{max-height:720px}
+    .steps{margin:8px 0 0; padding-left:18px}
+    .card-actions{display:flex; gap:8px; margin-top:10px; flex-wrap:wrap}
+
+    /* message board */
+    #messageBoard{display:flex; flex-direction:column; gap:8px}
+    .message{background:var(--card); padding:10px; border-radius:10px; box-shadow:var(--shadow)}
+    .message strong{display:block}
+    .message small{color:var(--muted); display:block; margin-top:8px; font-size:12px}
+
+    /* toast */
+    #toast{position:fixed; left:50%; transform:translateX(-50%); bottom:96px; background:rgba(0,0,0,0.85); color:#fff; padding:12px 16px; border-radius:12px; opacity:0; pointer-events:none; transition:opacity .25s}
+
+    /* usability */
+    button, .btn, input, textarea, select{touch-action:manipulation}
+    .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+
+    /* accessibility: respect prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce){ *{transition:none!important} }
   </style>
 </head>
 
 <body data-theme="light">
   <header>
-    <a href="menupage.html" class="header-link" title="Back to main menu"><h1>Recipes & Messages</h1></a>
-    <button class="theme-toggle" onclick="toggleTheme()" id="themeIcon" title="theme">🌙</button>
+    <div class="wrap">
+      <h1>Recipes & Message Board — Pro Mobile</h1>
+      <div class="controls">
+        <button class="theme-toggle" id="themeBtn" aria-label="Toggle theme">🌙</button>
+      </div>
+    </div>
   </header>
 
-  <main class="main" role="main">
-    <!-- Recipes -->
-    <h2>Add New Recipe</h2>
-    <input type="text" id="recipeCodename" placeholder="Your codename (optional) — will be saved locally" aria-label="Recipe Codename" />
-    <input type="text" id="newTitle" placeholder="Recipe Title" aria-label="Recipe Title" />
-    <textarea id="newInstructions" placeholder="One instruction per line..." aria-label="Instructions"></textarea>
-    <button id="addRecipeBtn">Add Recipe</button>
+  <main>
+    <!-- Recipes Card -->
+    <section class="card" aria-labelledby="recipesHeading">
+      <h2 id="recipesHeading" style="margin:0 0 8px;font-size:16px">Add / Manage Recipes</h2>
 
-    <div id="recipesControls">
-      <input type="text" id="searchBox" placeholder="Search recipes (title or instructions)..." aria-label="Search Recipes" />
-      <select id="sortSelect" aria-label="Sort recipes">
-        <option value="newest">Sort: Newest</option>
-        <option value="oldest">Sort: Oldest</option>
-        <option value="az">Title: A → Z</option>
-        <option value="za">Title: Z → A</option>
-      </select>
-      <label style="display:flex;align-items:center;gap:6px"><input type="checkbox" id="showMine" /> Show only my recipes</label>
-      <button id="refreshBtn">Refresh</button>
-    </div>
+      <label for="recipeCodename">Your codename (saved locally)</label>
+      <input id="recipeCodename" type="text" inputmode="text" placeholder="e.g. AirCav" autocomplete="name" />
 
-    <div id="recipesContainer">
-      <p id="loadingMessage">Loading recipes...</p>
-    </div>
+      <label for="newTitle">Recipe Title</label>
+      <input id="newTitle" type="text" placeholder="Chicken Stew" />
 
-    <!-- Message Board -->
-    <h2>Team Message Board</h2>
-    <input type="text" id="codenameInput" placeholder="Enter your codename..." aria-label="Codename" />
-    <textarea id="messageInput" placeholder="Type your message here..." aria-label="Message"></textarea>
-    <button id="postMessageBtn">Post Message</button>
+      <label for="newInstructions">Instructions — one step per line</label>
+      <textarea id="newInstructions" placeholder="1. Chop onions
+2. ..."></textarea>
 
-    <div id="messageBoard">
-      <p id="loadingMessages">Loading messages...</p>
-    </div>
+      <div style="display:flex;gap:8px; margin-top:10px">
+        <button class="btn" id="addRecipeBtn">Add Recipe</button>
+        <button class="btn secondary" id="clearFormBtn">Clear</button>
+      </div>
+
+      <div id="recipesControls" style="margin-top:12px">
+        <input id="searchBox" type="text" placeholder="Search title or instructions" aria-label="Search recipes" style="min-width:140px;flex:1" />
+        <select id="sortSelect" aria-label="Sort recipes">
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+          <option value="az">Title A→Z</option>
+          <option value="za">Title Z→A</option>
+        </select>
+        <label style="display:flex;align-items:center;gap:6px"><input id="showMine" type="checkbox" /> My recipes</label>
+        <button class="btn secondary" id="refreshBtn">Refresh</button>
+      </div>
+
+    </section>
+
+    <!-- Recipes list -->
+    <section id="recipesContainer" aria-live="polite" aria-label="Recipes list" class="card" style="padding:12px">
+      <p id="loadingMessage">Loading recipes…</p>
+    </section>
+
+    <!-- Message Board Card -->
+    <section class="card" aria-labelledby="messagesHeading">
+      <h2 id="messagesHeading" style="margin:0 0 8px;font-size:16px">Team Message Board</h2>
+      <label for="codenameInput">Codename</label>
+      <input id="codenameInput" type="text" placeholder="Your codename" />
+      <label for="messageInput">Message</label>
+      <textarea id="messageInput" placeholder="Write a friendly message…"></textarea>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button class="btn" id="postMessageBtn">Post Message</button>
+        <button class="btn secondary" id="clearMsgBtn">Clear</button>
+      </div>
+    </section>
+
+    <section id="messageBoard" aria-live="polite" class="card" style="padding:12px">
+      <p id="loadingMessages">Loading messages…</p>
+    </section>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Parables & Platters (Pty) Ltd. All rights reserved.</p>
-  </footer>
+  <div id="toast" role="status" aria-live="polite"></div>
 
-  <div id="toast"></div>
-
-  <!-- Firebase Setup -->
+  <!-- Firebase (modular) -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js';
     import {
       getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp
-    } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+    } from 'https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js';
 
     const firebaseConfig = {
       apiKey: "AIzaSyBoc_mvc4WpduIYYUvLnA3iu46NvweFiLQ",
@@ -195,282 +157,207 @@
       appId: "1:15200297908:web:45cdc1cdee6ce211d788e1"
     };
 
+    // Initialize
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // Helper: escape HTML to avoid injection in innerHTML
-    function escapeHtml(str) {
-      if (!str && str !== 0) return '';
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
+    // Utilities
+    const $ = id => document.getElementById(id);
+    function escapeHtml(s){ if(s===null||s===undefined) return ''; return String(s).replace(/[&<>"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#039;" })[c]); }
+    function showToast(msg, ms=2500){ const t=$('toast'); t.textContent=msg; t.style.opacity=1; setTimeout(()=>t.style.opacity=0, ms); }
+
+    // Save codename locally
+    const recipeCodename = $('recipeCodename'); const saved = localStorage.getItem('my_codename'); if(saved) recipeCodename.value = saved;
+    recipeCodename.addEventListener('change', ()=>localStorage.setItem('my_codename', recipeCodename.value.trim()));
+
+    // ---------------- RECIPES ----------------
+    const recipesRef = collection(db, 'recipes');
+
+    async function addRecipe(){
+      const title = $('newTitle').value.trim();
+      const instructions = $('newInstructions').value.trim().split('
+').map(s=>s.trim()).filter(Boolean);
+      const owner = recipeCodename.value.trim() || null;
+      if(!title || !instructions.length) return showToast('Please enter title and at least one step.');
+      try{
+        await addDoc(recipesRef, { title, instructions, owner, createdAt: serverTimestamp() });
+        $('newTitle').value=''; $('newInstructions').value=''; showToast('Recipe added');
+      }catch(e){ console.error(e); showToast('Could not add recipe'); }
     }
 
-    // Save codename locally so "My recipes" works without auth
-    const recipeCodenameInput = document.getElementById('recipeCodename');
-    const savedCodename = localStorage.getItem('my_codename');
-    if (savedCodename) recipeCodenameInput.value = savedCodename;
-    recipeCodenameInput.addEventListener('change', () => {
-      localStorage.setItem('my_codename', recipeCodenameInput.value.trim());
-    });
+    // Lightweight in-memory cache for docs to avoid re-render thrash on mobile
+    let recipesCache = []; // [{id, data}]
 
-    // ----------- RECIPES -----------
-    const recipesRef = collection(db, "recipes");
-
-    async function addRecipe() {
-      const title = document.getElementById("newTitle").value.trim();
-      const instructions = document.getElementById("newInstructions").value.trim().split("\n").map(i => i.trim()).filter(Boolean);
-      const owner = document.getElementById('recipeCodename').value.trim() || null;
-      if (!title || !instructions.length) {
-        showToast("Please complete all fields.");
-        return;
-      }
-      try {
-        const payload = { title, instructions, owner, createdAt: serverTimestamp() };
-        await addDoc(recipesRef, payload);
-        document.getElementById("newTitle").value = "";
-        document.getElementById("newInstructions").value = "";
-        showToast("Recipe added successfully!");
-      } catch (err) {
-        console.error('Add recipe failed', err);
-        showToast('Failed to add recipe. Check console for details.');
-      }
-    }
-
-    // Rendering helpers
-    function buildRecipeCard(id, data) {
+    // Render helpers
+    function makeRecipeElement(docId, data){
+      const el = document.createElement('article'); el.className='recipe-card'; el.tabIndex=0; el.setAttribute('role','article');
       const title = escapeHtml(data.title || 'Untitled');
-      const instructions = Array.isArray(data.instructions) ? data.instructions : [];
       const owner = escapeHtml(data.owner || '');
+      const steps = Array.isArray(data.instructions) ? data.instructions : [];
+      const created = data.createdAt && typeof data.createdAt.toDate==='function' ? data.createdAt.toDate().toLocaleString() : '';
 
-      const card = document.createElement('div');
-      card.className = 'recipe-card';
-      card.dataset.title = (data.title || '').toLowerCase();
-      card.dataset.instructions = instructions.join('\n').toLowerCase();
-      card.dataset.owner = (data.owner || '').toLowerCase();
-      card.innerHTML = `
-        <div class="recipe-header" data-id="${id}">
-          <h3>${title}</h3>
-          <span class="recipe-arrow">▼</span>
+      el.innerHTML = `
+        <div class="recipe-header">
+          <div>
+            <div class="recipe-title">${title}</div>
+            <div class="recipe-meta">${owner ? 'by '+owner+' • ' : ''}${created}</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
+            <button class="btn secondary" data-action="toggle">Expand</button>
+            <div style="font-size:12px;color:var(--muted)">${steps.length} step${steps.length===1?'':'s'}</div>
+          </div>
         </div>
-        <div class="recipe-content" id="content-${id}">
-          <ul>${instructions.map(step => `<li>${escapeHtml(step)}</li>`).join('')}</ul>
-          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
-            <button data-action="edit" data-id="${id}">Edit</button>
-            <button data-action="delete" data-id="${id}">Delete</button>
+        <div class="recipe-content" aria-hidden="true">
+          <ol class="steps">${steps.map(s=>`<li>${escapeHtml(s)}</li>`).join('')}</ol>
+          <div class="card-actions">
+            <button class="btn" data-action="edit">Edit</button>
+            <button class="btn secondary" data-action="delete">Delete</button>
           </div>
         </div>
       `;
 
-      // header click toggles
-      const header = card.querySelector('.recipe-header');
-      const content = card.querySelector('.recipe-content');
-      header.addEventListener('click', (e) => {
-        card.classList.toggle('expanded');
-        content.classList.toggle('active');
-      });
-
-      // buttons (stop propagation so they don't toggle)
-      const editBtn = card.querySelector('button[data-action="edit"]');
-      const delBtn = card.querySelector('button[data-action="delete"]');
-      editBtn.addEventListener('click', (e) => { e.stopPropagation(); startEdit(id, data); });
-      delBtn.addEventListener('click', (e) => { e.stopPropagation(); deleteRecipe(id); });
-
-      return card;
-    }
-
-    async function deleteRecipe(id) {
-      if (!confirm("Are you sure you want to delete this recipe?")) return;
-      try {
-        await deleteDoc(doc(db, "recipes", id));
-        showToast('Recipe deleted.');
-      } catch (err) {
-        console.error('Delete failed', err);
-        showToast('Failed to delete recipe.');
-      }
-    }
-
-    function startEdit(id, data) {
-      const content = document.getElementById(`content-${id}`);
-      const instructionsText = (Array.isArray(data.instructions) ? data.instructions : []).join('\n');
-      content.innerHTML = `` +
-        `<input type="text" id="editTitle-${id}" value="${escapeHtml(data.title || '')}" />` +
-        `<textarea id="editInstructions-${id}" style="min-height:120px">${escapeHtml(instructionsText)}</textarea>` +
-        `<input type="text" id="editOwner-${id}" placeholder="Owner (optional)" value="${escapeHtml(data.owner || '')}" />` +
-        `<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">` +
-        `<button id="saveEdit-${id}">Save</button>` +
-        `<button id="cancelEdit-${id}">Cancel</button>` +
-        `</div>`;
-
-      // stop parent toggling while editing
-      const card = content.closest('.recipe-card');
-      card.classList.add('expanded');
-      content.classList.add('active');
-
-      document.getElementById(`saveEdit-${id}`).addEventListener('click', async (e) => {
-        const title = document.getElementById(`editTitle-${id}`).value.trim();
-        const instructions = document.getElementById(`editInstructions-${id}`).value.trim().split('\n').map(s=>s.trim()).filter(Boolean);
-        const owner = document.getElementById(`editOwner-${id}`).value.trim() || null;
-        if (!title || !instructions.length) return showToast('Please complete all fields.');
-        try {
-          await updateDoc(doc(db, 'recipes', id), { title, instructions, owner });
-          showToast('Recipe updated.');
-        } catch (err) {
-          console.error('Update failed', err);
-          showToast('Failed to update recipe.');
+      // event delegation for card
+      el.addEventListener('click', (ev)=>{
+        const btn = ev.target.closest('button');
+        if(btn){
+          const action = btn.getAttribute('data-action');
+          if(action==='toggle') toggleCard(el);
+          else if(action==='edit') { ev.stopPropagation(); startEdit(docId, data, el); }
+          else if(action==='delete') { ev.stopPropagation(); removeRecipe(docId); }
+        }else{
+          // toggle on card tap
+          toggleCard(el);
         }
       });
+      return el;
+    }
 
-      document.getElementById(`cancelEdit-${id}`).addEventListener('click', (e) => {
-        // reload recipes to restore original view without a heavy refresh
-        loadRecipes();
+    function toggleCard(el){ const content = el.querySelector('.recipe-content'); const open = content.classList.toggle('open'); content.setAttribute('aria-hidden', !open); }
+
+    async function removeRecipe(id){ if(!confirm('Delete recipe?')) return; try{ await deleteDoc(doc(db,'recipes',id)); showToast('Deleted'); }catch(e){console.error(e); showToast('Could not delete');} }
+
+    function startEdit(id, data, el){
+      const content = el.querySelector('.recipe-content'); content.classList.add('open'); content.setAttribute('aria-hidden', 'false');
+      const stepsText = (Array.isArray(data.instructions)?data.instructions:[]).join('
+');
+      content.innerHTML = `
+        <label class="visually-hidden">Edit title</label>
+        <input type="text" id="editTitle-${id}" value="${escapeHtml(data.title||'')}" />
+        <label class="visually-hidden">Edit steps</label>
+        <textarea id="editInstructions-${id}" style="margin-top:8px">${escapeHtml(stepsText)}</textarea>
+        <label class="visually-hidden">Edit owner</label>
+        <input type="text" id="editOwner-${id}" placeholder="Owner (optional)" value="${escapeHtml(data.owner||'')}" />
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="btn" id="save-${id}">Save</button>
+          <button class="btn secondary" id="cancel-${id}">Cancel</button>
+        </div>
+      `;
+      content.querySelector(`#save-${id}`).addEventListener('click', async ()=>{
+        const title = $(`editTitle-${id}`).value.trim();
+        const instructions = $(`editInstructions-${id}`).value.trim().split('
+').map(s=>s.trim()).filter(Boolean);
+        const owner = $(`editOwner-${id}`).value.trim() || null;
+        if(!title || !instructions.length) return showToast('Please complete fields');
+        try{ await updateDoc(doc(db,'recipes',id), { title, instructions, owner }); showToast('Saved'); }
+        catch(e){ console.error(e); showToast('Could not save'); }
       });
+      content.querySelector(`#cancel-${id}`).addEventListener('click', ()=>{ renderRecipesFromCache(); });
     }
 
-    // We'll attempt to query by createdAt (serverTimestamp). If that fails (older docs missing the field), fallback.
-    function loadRecipes() {
-      const container = document.getElementById('recipesContainer');
-      container.innerHTML = '<p>Loading recipes...</p>';
+    // Render from recipesCache with pagination (mobile friendly): show initial N items
+    let PAGE_SIZE = 12; let currentPage = 1;
+    function renderRecipesFromCache(){
+      const container = $('recipesContainer'); container.innerHTML='';
+      const start = 0; const end = PAGE_SIZE * currentPage;
+      const filtered = applyClientFilters(recipesCache);
+      const slice = filtered.slice(start, end);
+      if(!slice.length) container.innerHTML = '<p>No recipes found.</p>';
+      else slice.forEach(d=>container.appendChild(makeRecipeElement(d.id, d.data)));
 
-      let q;
-      try {
-        q = query(recipesRef, orderBy('createdAt', 'desc'));
-      } catch (err) {
-        console.warn('Could not build ordered query, falling back to unordered', err);
-        q = null;
-      }
-
-      if (q) {
-        onSnapshot(q, snapshot => renderRecipeSnapshot(snapshot, container), err => {
-          console.error('Snapshot error (ordered), falling back', err);
-          onSnapshot(recipesRef, snapshot => renderRecipeSnapshot(snapshot, container));
-        });
-      } else {
-        onSnapshot(recipesRef, snapshot => renderRecipeSnapshot(snapshot, container));
+      // show load more if more
+      const total = filtered.length;
+      if(end < total){
+        const more = document.createElement('div'); more.style.textAlign='center'; more.style.marginTop='8px';
+        const btn = document.createElement('button'); btn.className='btn'; btn.textContent='Load more';
+        btn.addEventListener('click', ()=>{ currentPage++; renderRecipesFromCache(); window.scrollBy({top:200, behavior:'smooth'}); });
+        more.appendChild(btn); container.appendChild(more);
       }
     }
 
-    function renderRecipeSnapshot(snapshot, container) {
-      container.innerHTML = '';
-      if (snapshot.empty) {
-        container.innerHTML = '<p>No recipes found.</p>';
-        return;
-      }
-      const docs = [];
-      snapshot.forEach(docSnap => docs.push({ id: docSnap.id, data: docSnap.data() }));
-
-      // apply sorting client-side to support all cases
-      const sortVal = document.getElementById('sortSelect')?.value || 'newest';
-      docs.sort((a,b) => {
-        if (sortVal === 'az') return (a.data.title||'').localeCompare(b.data.title||'');
-        if (sortVal === 'za') return (b.data.title||'').localeCompare(a.data.title||'');
-        const aTime = a.data.createdAt?.toMillis ? a.data.createdAt.toMillis() : 0;
-        const bTime = b.data.createdAt?.toMillis ? b.data.createdAt.toMillis() : 0;
-        return sortVal === 'oldest' ? (aTime - bTime) : (bTime - aTime);
+    function applyClientFilters(list){
+      const q = $('searchBox').value.trim().toLowerCase(); const showMine = $('showMine').checked; const my = (localStorage.getItem('my_codename')||'').toLowerCase();
+      let filtered = list.filter(d=>{
+        const title = (d.data.title||'').toLowerCase(); const ins = (Array.isArray(d.data.instructions)?d.data.instructions.join(' '):'').toLowerCase();
+        return (!q || title.includes(q) || ins.includes(q)) && (!showMine || ((d.data.owner||'').toLowerCase() === my));
       });
-
-      docs.forEach(d => container.appendChild(buildRecipeCard(d.id, d.data)));
-      applyFilters();
-    }
-
-    // Filter (search + "my recipes")
-    function applyFilters() {
-      const search = document.getElementById('searchBox').value.toLowerCase();
-      const showMine = document.getElementById('showMine').checked;
-      const myCodename = (localStorage.getItem('my_codename') || '').toLowerCase();
-      const cards = document.querySelectorAll('.recipe-card');
-      cards.forEach(card => {
-        const matchesSearch = (card.dataset.title + ' ' + card.dataset.instructions).includes(search);
-        const matchesOwner = !showMine || (card.dataset.owner && card.dataset.owner === myCodename);
-        card.style.display = (matchesSearch && matchesOwner) ? 'block' : 'none';
+      const sortVal = $('sortSelect').value;
+      filtered.sort((a,b)=>{
+        if(sortVal==='az') return (a.data.title||'').localeCompare(b.data.title||'');
+        if(sortVal==='za') return (b.data.title||'').localeCompare(a.data.title||'');
+        const aT = a.data.createdAt && a.data.createdAt.toMillis ? a.data.createdAt.toMillis() : 0;
+        const bT = b.data.createdAt && b.data.createdAt.toMillis ? b.data.createdAt.toMillis() : 0;
+        return sortVal==='oldest' ? aT - bT : bT - aT;
       });
+      return filtered;
     }
 
-    // ----------- MESSAGES -----------
-    const messagesRef = collection(db, "messages");
+    // Debounce helper for search
+    function debounce(fn, wait=300){ let t; return (...args)=>{ clearTimeout(t); t=setTimeout(()=>fn(...args), wait); }; }
 
-    async function postMessage() {
-      const codename = document.getElementById("codenameInput").value.trim();
-      const message = document.getElementById("messageInput").value.trim();
-      if (!codename || !message) {
-        showToast("Please enter both codename and message.");
-        return;
-      }
-      try {
-        await addDoc(messagesRef, { codename, message, timestamp: serverTimestamp() });
-        document.getElementById("codenameInput").value = "";
-        document.getElementById("messageInput").value = "";
-        showToast("Message posted!");
-      } catch (err) {
-        console.error('Post message failed', err);
-        showToast('Failed to post message.');
-      }
+    // Firestore listener -- keep cache up to date, but throttle UI renders for mobile
+    function subscribeRecipes(){
+      try{
+        const q = query(recipesRef, orderBy('createdAt','desc'));
+        onSnapshot(q, snap=>{ const docs=[]; snap.forEach(s=>docs.push({id:s.id,data:s.data()})); recipesCache = docs; currentPage=1; renderRecipesFromCache(); }, err=>{ console.warn('ordered snapshot failed',err); onSnapshot(recipesRef, snap=>{ const docs=[]; snap.forEach(s=>docs.push({id:s.id,data:s.data()})); recipesCache = docs; currentPage=1; renderRecipesFromCache(); }); });
+      }catch(e){ console.warn('subscribe fallback', e); onSnapshot(recipesRef, snap=>{ const docs=[]; snap.forEach(s=>docs.push({id:s.id,data:s.data()})); recipesCache = docs; currentPage=1; renderRecipesFromCache(); }); }
     }
 
-    function loadMessages() {
-      const container = document.getElementById('messageBoard');
-      container.innerHTML = '<p>Loading messages...</p>';
-      let q;
-      try { q = query(messagesRef, orderBy('timestamp', 'desc')); } catch (err) { q = null; }
-      if (q) {
-        onSnapshot(q, snapshot => renderMessages(snapshot, container), err => onSnapshot(messagesRef, snapshot => renderMessages(snapshot, container)));
-      } else {
-        onSnapshot(messagesRef, snapshot => renderMessages(snapshot, container));
-      }
+    // ---------------- MESSAGES ----------------
+    const messagesRef = collection(db, 'messages');
+
+    async function postMessage(){
+      const codename = $('codenameInput').value.trim(); const message = $('messageInput').value.trim();
+      if(!codename || !message) return showToast('Please enter codename & message');
+      try{ await addDoc(messagesRef, { codename, message, timestamp: serverTimestamp() }); $('messageInput').value=''; showToast('Posted'); }
+      catch(e){ console.error(e); showToast('Could not post'); }
     }
 
-    function renderMessages(snapshot, container) {
-      container.innerHTML = '';
-      if (snapshot.empty) { container.innerHTML = '<p>No messages yet.</p>'; return; }
-      snapshot.forEach(docSnap => {
-        const { codename, message, timestamp } = docSnap.data();
-        const div = document.createElement('div');
-        div.className = 'message';
-        const ts = timestamp?.toDate ? timestamp.toDate().toLocaleString() : '';
-        div.innerHTML = `\n          <strong>${escapeHtml(codename || 'Anon')}</strong><br>\n          <p>${escapeHtml(message || '')}</p>\n          <small>${escapeHtml(ts)}</small>\n        `;
-        container.appendChild(div);
-      });
-      // auto-scroll to top (newest first) or bottom depending on order
-      container.scrollTop = 0;
-    }
+    function renderMessages(snapshot){ const container = $('messageBoard'); container.innerHTML=''; if(snapshot.empty){ container.innerHTML='<p>No messages yet.</p>'; return;} snapshot.forEach(s=>{ const d=s.data(); const div=document.createElement('div'); div.className='message'; const ts = d.timestamp && d.timestamp.toDate ? d.timestamp.toDate().toLocaleString():''; div.innerHTML=`<strong>${escapeHtml(d.codename||'Anon')}</strong><div style="white-space:pre-wrap">${escapeHtml(d.message||'')}</div><small>${escapeHtml(ts)}</small>`; container.appendChild(div); }); container.scrollTop = 0; }
 
-    // ----------- UTILITIES -----------
-    window.toggleTheme = () => {
-      const isLight = document.body.getAttribute('data-theme') === 'light';
-      document.body.setAttribute('data-theme', isLight ? 'dark' : 'light');
-      document.getElementById('themeIcon').textContent = isLight ? '☀️' : '🌙';
-    };
+    function subscribeMessages(){ try{ const q = query(messagesRef, orderBy('timestamp','desc')); onSnapshot(q, snap=>renderMessages(snap)); }catch(e){ onSnapshot(messagesRef, snap=>renderMessages(snap)); } }
 
-    function showToast(message) {
-      const toast = document.getElementById('toast');
-      toast.textContent = message;
-      toast.style.opacity = '1';
-      setTimeout(() => (toast.style.opacity = '0'), 3000);
-    }
+    // ---------------- Init & events ----------------
+    window.addEventListener('DOMContentLoaded', ()=>{
+      $('addRecipeBtn').addEventListener('click', addRecipe);
+      $('postMessageBtn').addEventListener('click', postMessage);
+      $('clearFormBtn').addEventListener('click', ()=>{ $('newTitle').value=''; $('newInstructions').value=''; });
+      $('clearMsgBtn').addEventListener('click', ()=>{ $('codenameInput').value=''; $('messageInput').value=''; });
+      $('refreshBtn').addEventListener('click', ()=>{ renderRecipesFromCache(); showToast('Refreshed'); });
+      $('searchBox').addEventListener('input', debounce(()=>{ currentPage=1; renderRecipesFromCache(); }, 250));
+      $('sortSelect').addEventListener('change', debounce(()=>{ currentPage=1; renderRecipesFromCache(); }, 150));
+      $('showMine').addEventListener('change', debounce(()=>{ currentPage=1; renderRecipesFromCache(); }, 150));
 
-    // Events & init
-    window.addEventListener('DOMContentLoaded', () => {
-      document.getElementById("addRecipeBtn").addEventListener("click", addRecipe);
-      document.getElementById("postMessageBtn").addEventListener("click", postMessage);
-      document.getElementById("searchBox").addEventListener('input', applyFilters);
-      document.getElementById('sortSelect').addEventListener('change', loadRecipes);
-      document.getElementById('showMine').addEventListener('change', applyFilters);
-      document.getElementById('refreshBtn').addEventListener('click', loadRecipes);
+      // theme toggle persisted
+      const themeBtn = $('themeBtn'); const savedTheme = localStorage.getItem('theme'); if(savedTheme) document.body.setAttribute('data-theme', savedTheme);
+      themeBtn.addEventListener('click', ()=>{ const cur = document.body.getAttribute('data-theme')==='light' ? 'dark' : 'light'; document.body.setAttribute('data-theme', cur); localStorage.setItem('theme', cur); themeBtn.textContent = cur==='light' ? '🌙' : '☀️'; });
 
-      // prefill message codename from local storage if available
-      const saved = localStorage.getItem('my_codename');
-      if (saved) document.getElementById('codenameInput').value = saved;
-      document.getElementById('codenameInput').addEventListener('change', (e) => localStorage.setItem('my_codename', e.target.value.trim()));
+      // prefill message codename
+      const s = localStorage.getItem('my_codename'); if(s) $('codenameInput').value = s;
+      $('codenameInput').addEventListener('change', (e)=>localStorage.setItem('my_codename', e.target.value.trim()));
 
-      loadRecipes();
-      loadMessages();
+      // subscribe
+      subscribeRecipes(); subscribeMessages();
+
+      // accessibility: focus outlines
+      document.body.addEventListener('keyup', (e)=>{ if(e.key==='Tab') document.body.classList.add('show-focus'); });
     });
+
+    // small helper for getElement by id with backticks in startEdit
+    function $(id){ return document.getElementById(id); }
   </script>
 </body>
 </html>
+
 
 
 
