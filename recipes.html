@@ -1,148 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Recipes & Message Board — Pro Mobile</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Recipes & Message Board — Pro</title>
+  <meta name="description" content="Mobile-first Recipes & Team Message Board with Firestore realtime backend" />
   <link rel="icon" href="01. images/jesuslogo_enef.png" type="image/x-icon">
-  <meta name="description" content="Mobile-optimized Recipes and Team Message Board with realtime Firestore backend" />
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
   <style>
-    /* Mobile-first responsive design, accessible sizes and reduced motion supported */
+    /* ===========================
+       THEME & LAYOUT (mobile-first)
+       =========================== */
     :root{
-      --bg:#ffffff; --text:#0b0b0b; --muted:#666; --card:#f7efe6; --accent:#e3c5a3;
-      --primary:#ff7b4b; --primary-hover:#ff4927; --radius:12px; --gap:12px; --shadow:0 6px 18px rgba(8,8,8,0.08);
+      --bg:#ffffff; --text:#0b0b0b; --muted:#6b6b6b;
+      --card:#fbf7ef; --accent:#e3c5a3; --primary:#ff7b4b; --primary-hover:#ff4927;
+      --radius:12px; --gap:12px; --shadow:0 8px 22px rgba(10,10,10,0.06);
     }
-    [data-theme="dark"]{ --bg:#0b0b0b; --text:#f2f2f2; --muted:#a8a8a8; --card:#221d18; --accent:#3e2f1c; --primary:#ffa07a; --primary-hover:#e76f51; }
+    [data-theme="dark"]{
+      --bg:#0b0b0b; --text:#f3f3f3; --muted:#9b9b9b; --card:#201b16;
+      --accent:#3e2f1c; --primary:#ffa07a; --primary-hover:#e76f51;
+    }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; font-family:Roboto, system-ui, -apple-system, 'Segoe UI', Arial; background:var(--bg); color:var(--text);
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; padding-bottom:96px; transition:background .25s, color .25s;
+      margin:0; font-family:Roboto, system-ui, -apple-system, "Segoe UI", Arial;
+      color:var(--text); background:var(--bg); -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale; padding-bottom:100px;
+      transition:background .2s, color .2s;
     }
-    header{position:sticky; top:0; background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85)); backdrop-filter: blur(6px); z-index:1200; border-bottom:1px solid rgba(0,0,0,0.06)}
-    header .wrap{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; max-width:1100px; margin:0 auto}
-    h1{font-size:18px; margin:0}
-    .controls{display:flex; gap:8px; align-items:center}
-    .theme-toggle{background:transparent; border:none; font-size:20px; line-height:1; padding:8px; border-radius:8px}
-    main{max-width:1100px; margin:18px auto; padding:0 16px}
-
-    /* form + controls */
-    .card{background:var(--card); border-radius:var(--radius); padding:14px; box-shadow:var(--shadow); margin-bottom:var(--gap)}
-    label{font-size:13px; color:var(--muted); display:block; margin-bottom:6px}
-    input[type=text], textarea, select{width:100%; padding:12px 14px; border-radius:10px; border:1px solid rgba(0,0,0,0.08); background:transparent; color:var(--text); font-size:15px}
-    textarea{min-height:96px; resize:vertical}
-    .btn{display:inline-flex; align-items:center; gap:8px; padding:12px 14px; border-radius:12px; background:var(--primary); color:#000; border:none; font-weight:600; font-size:15px}
-    .btn:active{transform:translateY(1px)}
-    .btn.secondary{background:transparent; border:1px solid rgba(0,0,0,0.08); color:var(--text)}
-
-    /* recipes grid */
-    #recipesControls{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:8px 0 0}
-    #recipesContainer{display:grid; grid-template-columns:1fr; gap:12px; margin-top:12px}
-    @media(min-width:720px){ #recipesContainer{grid-template-columns:repeat(2, 1fr)} }
-    @media(min-width:1000px){ #recipesContainer{grid-template-columns:repeat(3, 1fr)} }
-
-    .recipe-card{background:var(--bg); border-radius:12px; padding:12px; box-shadow:0 6px 18px rgba(2,2,2,0.06); border:1px solid rgba(0,0,0,0.04); display:flex; flex-direction:column}
-    .recipe-header{display:flex; align-items:center; justify-content:space-between; gap:8px}
-    .recipe-title{font-size:16px; font-weight:700}
-    .recipe-meta{font-size:12px; color:var(--muted)}
-    .recipe-preview{margin-top:8px; font-size:14px; color:var(--muted); white-space:pre-wrap}
-
-    .recipe-content{overflow:hidden; max-height:0; transition:max-height .35s ease}
-    .recipe-content.open{max-height:720px}
-    .steps{margin:8px 0 0; padding-left:18px}
-    .card-actions{display:flex; gap:8px; margin-top:10px; flex-wrap:wrap}
-
+    header{position:sticky; top:0; z-index:1200; backdrop-filter: blur(6px);
+      padding:10px 16px; background:linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.85)); border-bottom:1px solid rgba(0,0,0,0.04)}
+    [data-theme="dark"] header{ background: linear-gradient(180deg, rgba(8,8,8,0.88), rgba(8,8,8,0.94)); border-bottom:1px solid rgba(255,255,255,0.03); }
+    header .wrap{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    header h1{font-size:16px;margin:0}
+    .controls{display:flex;gap:8px;align-items:center}
+    button.theme-btn{border:0;background:transparent;font-size:20px;padding:8px;border-radius:8px;cursor:pointer}
+    main{max-width:1100px;margin:16px auto;padding:0 16px}
+    .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:12px;margin-bottom:12px}
+    label{display:block;font-size:13px;color:var(--muted);margin:6px 0}
+    input[type="text"], textarea, select{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.06);background:transparent;color:var(--text);font-size:15px}
+    textarea{min-height:100px;resize:vertical}
+    .row{display:flex;gap:8px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;border:0;background:var(--primary);color:#000;font-weight:700;cursor:pointer}
+    .btn.secondary{background:transparent;border:1px solid rgba(0,0,0,0.06);color:var(--text)}
+    .controls-sm{display:flex;gap:8px;align-items:center;margin-top:8px}
+    /* Recipes grid responsive */
+    #recipesContainer{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
+    @media(min-width:720px){ #recipesContainer{grid-template-columns:repeat(2,1fr)} }
+    @media(min-width:1000px){ #recipesContainer{grid-template-columns:repeat(3,1fr)} }
+    .recipe-card{background:var(--bg);border-radius:10px;padding:12px;border:1px solid rgba(0,0,0,0.04);box-shadow:0 8px 20px rgba(5,5,5,0.04);display:flex;flex-direction:column;gap:8px}
+    .recipe-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+    .recipe-title{font-weight:700;font-size:16px}
+    .recipe-meta{font-size:12px;color:var(--muted)}
+    .recipe-preview{color:var(--muted);white-space:pre-wrap;font-size:14px}
+    .recipe-content{overflow:hidden;max-height:0;transition:max-height .32s ease}
+    .recipe-content.open{max-height:980px}
+    .steps{padding-left:18px;margin:8px 0}
+    .card-actions{display:flex;gap:8px;flex-wrap:wrap}
     /* message board */
-    #messageBoard{display:flex; flex-direction:column; gap:8px}
-    .message{background:var(--card); padding:10px; border-radius:10px; box-shadow:var(--shadow)}
+    #messageBoard{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+    .message{background:var(--card);padding:10px;border-radius:10px;box-shadow:var(--shadow)}
     .message strong{display:block}
-    .message small{color:var(--muted); display:block; margin-top:8px; font-size:12px}
-
+    .message small{color:var(--muted);font-size:12px;margin-top:8px}
     /* toast */
-    #toast{position:fixed; left:50%; transform:translateX(-50%); bottom:96px; background:rgba(0,0,0,0.85); color:#fff; padding:12px 16px; border-radius:12px; opacity:0; pointer-events:none; transition:opacity .25s}
-
-    /* usability */
-    button, .btn, input, textarea, select{touch-action:manipulation}
+    #toast{position:fixed;left:50%;transform:translateX(-50%);bottom:96px;background:rgba(0,0,0,0.88);color:white;padding:10px 14px;border-radius:10px;opacity:0;transition:opacity .24s;z-index:1300}
+    /* connection badge */
+    #connBadge{position:fixed;right:12px;bottom:12px;background:var(--card);padding:8px 10px;border-radius:999px;box-shadow:var(--shadow);font-size:13px}
+    /* accessibility */
     .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
-
-    /* accessibility: respect prefers-reduced-motion */
-    @media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
   </style>
 </head>
-
 <body data-theme="light">
   <header>
     <div class="wrap">
-      <h1>Recipes & Message Board — Pro Mobile</h1>
+      <h1>Recipes & Message Board — Pro</h1>
       <div class="controls">
-        <button class="theme-toggle" id="themeBtn" aria-label="Toggle theme">🌙</button>
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">🌙</button>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- Recipes Card -->
+    <!-- Recipe input -->
     <section class="card" aria-labelledby="recipesHeading">
       <h2 id="recipesHeading" style="margin:0 0 8px;font-size:16px">Add / Manage Recipes</h2>
 
       <label for="recipeCodename">Your codename (saved locally)</label>
-      <input id="recipeCodename" type="text" inputmode="text" placeholder="e.g. AirCav" autocomplete="name" />
+      <input id="recipeCodename" type="text" placeholder="e.g. AirCav" autocomplete="name" inputmode="text"/>
 
-      <label for="newTitle">Recipe Title</label>
+      <label for="newTitle">Recipe title</label>
       <input id="newTitle" type="text" placeholder="Chicken Stew" />
 
       <label for="newInstructions">Instructions — one step per line</label>
-      <textarea id="newInstructions" placeholder="1. Chop onions
-2. ..."></textarea>
+      <textarea id="newInstructions" placeholder="1. Chop onions\n2. ..."></textarea>
 
-      <div style="display:flex;gap:8px; margin-top:10px">
+      <div class="row" style="margin-top:10px">
         <button class="btn" id="addRecipeBtn">Add Recipe</button>
         <button class="btn secondary" id="clearFormBtn">Clear</button>
       </div>
 
-      <div id="recipesControls" style="margin-top:12px">
-        <input id="searchBox" type="text" placeholder="Search title or instructions" aria-label="Search recipes" style="min-width:140px;flex:1" />
+      <div class="controls-sm" style="margin-top:12px">
+        <input id="searchBox" type="text" placeholder="Search title or instructions" style="flex:1;min-width:140px"/>
         <select id="sortSelect" aria-label="Sort recipes">
           <option value="newest">Newest</option>
           <option value="oldest">Oldest</option>
           <option value="az">Title A→Z</option>
           <option value="za">Title Z→A</option>
         </select>
-        <label style="display:flex;align-items:center;gap:6px"><input id="showMine" type="checkbox" /> My recipes</label>
+        <label style="display:flex;align-items:center;gap:6px"><input id="showMine" type="checkbox"/> My recipes</label>
         <button class="btn secondary" id="refreshBtn">Refresh</button>
       </div>
-
     </section>
 
-    <!-- Recipes list -->
-    <section id="recipesContainer" aria-live="polite" aria-label="Recipes list" class="card" style="padding:12px">
+    <!-- recipes list -->
+    <section id="recipesContainer" class="card" aria-live="polite" aria-label="Recipes list">
       <p id="loadingMessage">Loading recipes…</p>
     </section>
 
-    <!-- Message Board Card -->
+    <!-- Message board input -->
     <section class="card" aria-labelledby="messagesHeading">
       <h2 id="messagesHeading" style="margin:0 0 8px;font-size:16px">Team Message Board</h2>
+
       <label for="codenameInput">Codename</label>
       <input id="codenameInput" type="text" placeholder="Your codename" />
+
       <label for="messageInput">Message</label>
       <textarea id="messageInput" placeholder="Write a friendly message…"></textarea>
-      <div style="display:flex;gap:8px;margin-top:8px">
+
+      <div class="row" style="margin-top:8px">
         <button class="btn" id="postMessageBtn">Post Message</button>
         <button class="btn secondary" id="clearMsgBtn">Clear</button>
       </div>
     </section>
 
-    <section id="messageBoard" aria-live="polite" class="card" style="padding:12px">
+    <!-- messages list -->
+    <section id="messageBoard" class="card" aria-live="polite">
       <p id="loadingMessages">Loading messages…</p>
     </section>
   </main>
 
   <div id="toast" role="status" aria-live="polite"></div>
+  <div id="connBadge" aria-hidden="true">Status: checking…</div>
 
   <!-- Firebase (modular) -->
   <script type="module">
+    // ----------------------------
+    // Imports & config
+    // ----------------------------
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js';
     import {
       getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp
@@ -157,58 +165,250 @@
       appId: "1:15200297908:web:45cdc1cdee6ce211d788e1"
     };
 
-    // Initialize
+    // ----------------------------
+    // Initialize Firebase + Firestore
+    // ----------------------------
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-
-    // Utilities
-    const $ = id => document.getElementById(id);
-    function escapeHtml(s){ if(s===null||s===undefined) return ''; return String(s).replace(/[&<>"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#039;" })[c]); }
-    function showToast(msg, ms=2500){ const t=$('toast'); t.textContent=msg; t.style.opacity=1; setTimeout(()=>t.style.opacity=0, ms); }
-
-    // Save codename locally
-    const recipeCodename = $('recipeCodename'); const saved = localStorage.getItem('my_codename'); if(saved) recipeCodename.value = saved;
-    recipeCodename.addEventListener('change', ()=>localStorage.setItem('my_codename', recipeCodename.value.trim()));
-
-    // ---------------- RECIPES ----------------
     const recipesRef = collection(db, 'recipes');
+    const messagesRef = collection(db, 'messages');
 
-    async function addRecipe(){
-      const title = $('newTitle').value.trim();
-      const instructions = $('newInstructions').value.trim().split('
-').map(s=>s.trim()).filter(Boolean);
-      const owner = recipeCodename.value.trim() || null;
-      if(!title || !instructions.length) return showToast('Please enter title and at least one step.');
-      try{
-        await addDoc(recipesRef, { title, instructions, owner, createdAt: serverTimestamp() });
-        $('newTitle').value=''; $('newInstructions').value=''; showToast('Recipe added');
-      }catch(e){ console.error(e); showToast('Could not add recipe'); }
+    // ----------------------------
+    // Utilities
+    // ----------------------------
+    // Single DOM helper (no duplicates). Returns element or null.
+    const $id = (id) => document.getElementById(id);
+
+    // Safe escape to avoid innerHTML injection
+    function escapeHtml(str){
+      if (str === null || str === undefined) return '';
+      return String(str)
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#039;');
     }
 
-    // Lightweight in-memory cache for docs to avoid re-render thrash on mobile
-    let recipesCache = []; // [{id, data}]
+    function showToast(message, ms = 2600){
+      try {
+        const t = $id('toast');
+        t.textContent = message;
+        t.style.opacity = '1';
+        clearTimeout(t.__toastTimer);
+        t.__toastTimer = setTimeout(()=>{ t.style.opacity = '0'; }, ms);
+      } catch (e) { console.warn('toast failed', e); }
+    }
 
-    // Render helpers
-    function makeRecipeElement(docId, data){
-      const el = document.createElement('article'); el.className='recipe-card'; el.tabIndex=0; el.setAttribute('role','article');
+    // Connectivity indicator
+    function updateConnectionBadge(online){
+      const b = $id('connBadge');
+      if (!b) return;
+      b.textContent = online ? 'Status: online' : 'Status: offline — changes will sync when back online';
+      b.style.opacity = online ? '1' : '0.95';
+      b.style.background = online ? 'var(--card)' : '#ffefef';
+    }
+    window.addEventListener('online', () => updateConnectionBadge(true));
+    window.addEventListener('offline', () => updateConnectionBadge(false));
+
+    // Debounce helper
+    function debounce(fn, wait=300){
+      let timer;
+      return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(()=>fn(...args), wait);
+      };
+    }
+
+    // ----------------------------
+    // Local persistence helpers
+    // ----------------------------
+    function saveLocal(key, value){
+      try { localStorage.setItem(key, value); } catch(e){ /* ignore */ }
+    }
+    function readLocal(key, fallback=''){
+      try { return localStorage.getItem(key) || fallback; } catch(e){ return fallback; }
+    }
+
+    // ----------------------------
+    // Application state
+    // ----------------------------
+    let recipesCache = []; // [{id, data}] kept up-to-date by snapshot listener
+    let currentPage = 1;
+    const PAGE_SIZE = 12;
+
+    // ----------------------------
+    // FIRESTORE SUBSCRIPTION: RECIPES
+    // ----------------------------
+    function subscribeRecipes(){
+      // Prefer ordered query by createdAt (serverTimestamp). If older documents didn't include field, fallback to unordered snapshot.
+      try {
+        const q = query(recipesRef, orderBy('createdAt', 'desc'));
+        onSnapshot(q, snap => {
+          const docs = [];
+          snap.forEach(s => docs.push({ id: s.id, data: s.data() }));
+          recipesCache = docs;
+          currentPage = 1;
+          renderRecipesFromCache();
+        }, err => {
+          console.warn('Ordered snapshot failed, falling back to unordered:', err);
+          onSnapshot(recipesRef, snap => {
+            const docs = [];
+            snap.forEach(s => docs.push({ id: s.id, data: s.data() }));
+            recipesCache = docs;
+            currentPage = 1;
+            renderRecipesFromCache();
+          }, fallbackErr => {
+            console.error('Fallback snapshot error:', fallbackErr);
+            showToast('Realtime error: check console');
+          });
+        });
+      } catch (err) {
+        console.warn('subscribeRecipes fallback path (caught):', err);
+        onSnapshot(recipesRef, snap => {
+          const docs = [];
+          snap.forEach(s => docs.push({ id: s.id, data: s.data() }));
+          recipesCache = docs;
+          currentPage = 1;
+          renderRecipesFromCache();
+        }, fallbackErr => {
+          console.error('Fallback snapshot error:', fallbackErr);
+          showToast('Realtime error: check console');
+        });
+      }
+    }
+
+    // ----------------------------
+    // FIRESTORE SUBSCRIPTION: MESSAGES
+    // ----------------------------
+    function subscribeMessages(){
+      try {
+        const q = query(messagesRef, orderBy('timestamp', 'desc'));
+        onSnapshot(q, snap => renderMessages(snap), err => {
+          console.warn('Messages ordered snapshot failed, fallback to unordered', err);
+          onSnapshot(messagesRef, snap => renderMessages(snap));
+        });
+      } catch (err) {
+        console.warn('subscribeMessages fallback (caught):', err);
+        onSnapshot(messagesRef, snap => renderMessages(snap));
+      }
+    }
+
+    // ----------------------------
+    // RENDERING: MESSAGES
+    // ----------------------------
+    function renderMessages(snapshot){
+      const container = $id('messageBoard');
+      if (!container) return;
+      container.innerHTML = '';
+      if (snapshot.empty) {
+        container.innerHTML = '<p>No messages yet.</p>';
+        return;
+      }
+      snapshot.forEach(s => {
+        const d = s.data();
+        const div = document.createElement('div');
+        div.className = 'message';
+        const ts = d.timestamp && typeof d.timestamp.toDate === 'function' ? d.timestamp.toDate().toLocaleString() : '';
+        div.innerHTML = `<strong>${escapeHtml(d.codename || 'Anon')}</strong><div style="white-space:pre-wrap">${escapeHtml(d.message||'')}</div><small>${escapeHtml(ts)}</small>`;
+        container.appendChild(div);
+      });
+      // keep newest at top
+      container.scrollTop = 0;
+    }
+
+    // ----------------------------
+    // CRUD: ADD / EDIT / DELETE RECIPES
+    // ----------------------------
+    async function addRecipe(){
+      const title = ($id('newTitle')?.value || '').trim();
+      const instructionsText = ($id('newInstructions')?.value || '').trim();
+      const owner = ($id('recipeCodename')?.value || '').trim() || null;
+      const instructions = instructionsText ? instructionsText.split('\n').map(s => s.trim()).filter(Boolean) : [];
+      if (!title || !instructions.length) { showToast('Please enter a title and at least one step.'); return; }
+
+      try {
+        await addDoc(recipesRef, { title, instructions, owner, createdAt: serverTimestamp() });
+        $id('newTitle').value = '';
+        $id('newInstructions').value = '';
+        showToast('Recipe added');
+      } catch (err) {
+        console.error('addRecipe failed', err);
+        showToast('Could not add recipe — check console');
+      }
+    }
+
+    async function updateRecipe(id, payload){
+      try {
+        await updateDoc(doc(db, 'recipes', id), payload);
+        showToast('Saved');
+      } catch (err) {
+        console.error('updateRecipe failed', err);
+        showToast('Save failed — check console');
+      }
+    }
+
+    async function deleteRecipe(id){
+      if (!confirm('Delete this recipe?')) return;
+      try {
+        await deleteDoc(doc(db, 'recipes', id));
+        showToast('Deleted');
+      } catch (err) {
+        console.error('deleteRecipe failed', err);
+        showToast('Delete failed — check console');
+      }
+    }
+
+    // ----------------------------
+    // RENDERING: RECIPES (client-side filtering + paging)
+    // ----------------------------
+    function applyClientFilters(list){
+      const q = ($id('searchBox')?.value || '').trim().toLowerCase();
+      const showMine = $id('showMine')?.checked;
+      const my = readLocal('my_codename', '').toLowerCase();
+      let filtered = list.filter(d => {
+        const title = (d.data.title || '').toLowerCase();
+        const ins = (Array.isArray(d.data.instructions) ? d.data.instructions.join(' ') : '').toLowerCase();
+        const owner = (d.data.owner || '').toLowerCase();
+        const matchesSearch = !q || title.includes(q) || ins.includes(q);
+        const matchesOwner = !showMine || (owner && owner === my);
+        return matchesSearch && matchesOwner;
+      });
+
+      const sortVal = $id('sortSelect')?.value || 'newest';
+      filtered.sort((a,b) => {
+        if (sortVal === 'az') return (a.data.title || '').localeCompare(b.data.title || '');
+        if (sortVal === 'za') return (b.data.title || '').localeCompare(a.data.title || '');
+        const aTime = a.data.createdAt && typeof a.data.createdAt.toMillis === 'function' ? a.data.createdAt.toMillis() : 0;
+        const bTime = b.data.createdAt && typeof b.data.createdAt.toMillis === 'function' ? b.data.createdAt.toMillis() : 0;
+        return sortVal === 'oldest' ? (aTime - bTime) : (bTime - aTime);
+      });
+
+      return filtered;
+    }
+
+    function createRecipeCard(docId, data){
+      const article = document.createElement('article');
+      article.className = 'recipe-card';
+      // build inner
       const title = escapeHtml(data.title || 'Untitled');
       const owner = escapeHtml(data.owner || '');
       const steps = Array.isArray(data.instructions) ? data.instructions : [];
-      const created = data.createdAt && typeof data.createdAt.toDate==='function' ? data.createdAt.toDate().toLocaleString() : '';
+      const created = data.createdAt && typeof data.createdAt.toDate === 'function' ? data.createdAt.toDate().toLocaleString() : '';
 
-      el.innerHTML = `
+      article.innerHTML = `
         <div class="recipe-header">
           <div>
             <div class="recipe-title">${title}</div>
             <div class="recipe-meta">${owner ? 'by '+owner+' • ' : ''}${created}</div>
           </div>
-          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
-            <button class="btn secondary" data-action="toggle">Expand</button>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+            <button class="btn secondary" data-action="toggle" aria-expanded="false">Expand</button>
             <div style="font-size:12px;color:var(--muted)">${steps.length} step${steps.length===1?'':'s'}</div>
           </div>
         </div>
         <div class="recipe-content" aria-hidden="true">
-          <ol class="steps">${steps.map(s=>`<li>${escapeHtml(s)}</li>`).join('')}</ol>
+          <ol class="steps">${steps.map(s => `<li>${escapeHtml(s)}</li>`).join('')}</ol>
           <div class="card-actions">
             <button class="btn" data-action="edit">Edit</button>
             <button class="btn secondary" data-action="delete">Delete</button>
@@ -216,147 +416,223 @@
         </div>
       `;
 
-      // event delegation for card
-      el.addEventListener('click', (ev)=>{
+      // attach event delegation for this card
+      article.addEventListener('click', (ev) => {
         const btn = ev.target.closest('button');
-        if(btn){
+        if (btn) {
           const action = btn.getAttribute('data-action');
-          if(action==='toggle') toggleCard(el);
-          else if(action==='edit') { ev.stopPropagation(); startEdit(docId, data, el); }
-          else if(action==='delete') { ev.stopPropagation(); removeRecipe(docId); }
-        }else{
-          // toggle on card tap
-          toggleCard(el);
+          if (action === 'toggle') return toggleCard(article);
+          if (action === 'edit') { ev.stopPropagation(); startEdit(docId, data, article); return; }
+          if (action === 'delete') { ev.stopPropagation(); deleteRecipe(docId); return; }
+        } else {
+          // tap the card area -> toggle
+          toggleCard(article);
         }
       });
-      return el;
+
+      return article;
     }
 
-    function toggleCard(el){ const content = el.querySelector('.recipe-content'); const open = content.classList.toggle('open'); content.setAttribute('aria-hidden', !open); }
-
-    async function removeRecipe(id){ if(!confirm('Delete recipe?')) return; try{ await deleteDoc(doc(db,'recipes',id)); showToast('Deleted'); }catch(e){console.error(e); showToast('Could not delete');} }
-
-    function startEdit(id, data, el){
-      const content = el.querySelector('.recipe-content'); content.classList.add('open'); content.setAttribute('aria-hidden', 'false');
-      const stepsText = (Array.isArray(data.instructions)?data.instructions:[]).join('
-');
-      content.innerHTML = `
-        <label class="visually-hidden">Edit title</label>
-        <input type="text" id="editTitle-${id}" value="${escapeHtml(data.title||'')}" />
-        <label class="visually-hidden">Edit steps</label>
-        <textarea id="editInstructions-${id}" style="margin-top:8px">${escapeHtml(stepsText)}</textarea>
-        <label class="visually-hidden">Edit owner</label>
-        <input type="text" id="editOwner-${id}" placeholder="Owner (optional)" value="${escapeHtml(data.owner||'')}" />
-        <div style="display:flex;gap:8px;margin-top:8px">
-          <button class="btn" id="save-${id}">Save</button>
-          <button class="btn secondary" id="cancel-${id}">Cancel</button>
-        </div>
-      `;
-      content.querySelector(`#save-${id}`).addEventListener('click', async ()=>{
-        const title = $(`editTitle-${id}`).value.trim();
-        const instructions = $(`editInstructions-${id}`).value.trim().split('
-').map(s=>s.trim()).filter(Boolean);
-        const owner = $(`editOwner-${id}`).value.trim() || null;
-        if(!title || !instructions.length) return showToast('Please complete fields');
-        try{ await updateDoc(doc(db,'recipes',id), { title, instructions, owner }); showToast('Saved'); }
-        catch(e){ console.error(e); showToast('Could not save'); }
-      });
-      content.querySelector(`#cancel-${id}`).addEventListener('click', ()=>{ renderRecipesFromCache(); });
+    function toggleCard(article){
+      try {
+        const content = article.querySelector('.recipe-content');
+        if (!content) return;
+        const open = content.classList.toggle('open');
+        content.setAttribute('aria-hidden', open ? 'false' : 'true');
+        const toggleBtn = article.querySelector('button[data-action="toggle"]');
+        if (toggleBtn) toggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      } catch (e) { console.warn('toggleCard failed', e); }
     }
 
-    // Render from recipesCache with pagination (mobile friendly): show initial N items
-    let PAGE_SIZE = 12; let currentPage = 1;
-    function renderRecipesFromCache(){
-      const container = $('recipesContainer'); container.innerHTML='';
-      const start = 0; const end = PAGE_SIZE * currentPage;
-      const filtered = applyClientFilters(recipesCache);
-      const slice = filtered.slice(start, end);
-      if(!slice.length) container.innerHTML = '<p>No recipes found.</p>';
-      else slice.forEach(d=>container.appendChild(makeRecipeElement(d.id, d.data)));
+    // start inline edit: replaces recipe-content with editor
+    function startEdit(docId, data, articleEl){
+      try {
+        const content = articleEl.querySelector('.recipe-content');
+        if (!content) return;
+        content.classList.add('open');
+        content.setAttribute('aria-hidden', 'false');
 
-      // show load more if more
-      const total = filtered.length;
-      if(end < total){
-        const more = document.createElement('div'); more.style.textAlign='center'; more.style.marginTop='8px';
-        const btn = document.createElement('button'); btn.className='btn'; btn.textContent='Load more';
-        btn.addEventListener('click', ()=>{ currentPage++; renderRecipesFromCache(); window.scrollBy({top:200, behavior:'smooth'}); });
-        more.appendChild(btn); container.appendChild(more);
+        const stepsText = (Array.isArray(data.instructions) ? data.instructions : []).join('\n');
+
+        content.innerHTML = `
+          <label class="visually-hidden" for="editTitle-${docId}">Edit title</label>
+          <input type="text" id="editTitle-${docId}" value="${escapeHtml(data.title || '')}" />
+          <label class="visually-hidden" for="editInstructions-${docId}">Edit instructions</label>
+          <textarea id="editInstructions-${docId}" style="margin-top:8px">${escapeHtml(stepsText)}</textarea>
+          <label class="visually-hidden" for="editOwner-${docId}">Edit owner</label>
+          <input type="text" id="editOwner-${docId}" placeholder="Owner (optional)" value="${escapeHtml(data.owner || '')}" style="margin-top:8px"/>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button class="btn" id="save-${docId}">Save</button>
+            <button class="btn secondary" id="cancel-${docId}">Cancel</button>
+          </div>
+        `;
+
+        const saveBtn = $id(`save-${docId}`);
+        const cancelBtn = $id(`cancel-${docId}`);
+
+        const cleanup = () => {
+          // re-render from cache to restore original view
+          renderRecipesFromCache();
+        };
+
+        saveBtn?.addEventListener('click', async () => {
+          const title = ($id(`editTitle-${docId}`)?.value || '').trim();
+          const instText = ($id(`editInstructions-${docId}`)?.value || '').trim();
+          const owner = ($id(`editOwner-${docId}`)?.value || '').trim() || null;
+          const instructions = instText ? instText.split('\n').map(s => s.trim()).filter(Boolean) : [];
+          if (!title || !instructions.length) { showToast('Please complete fields'); return; }
+          // optimistic UI: update the cache immediately
+          const idx = recipesCache.findIndex(x => x.id === docId);
+          if (idx > -1) {
+            recipesCache[idx].data.title = title;
+            recipesCache[idx].data.instructions = instructions;
+            recipesCache[idx].data.owner = owner;
+            renderRecipesFromCache();
+          }
+          await updateRecipe(docId, { title, instructions, owner });
+        });
+
+        cancelBtn?.addEventListener('click', cleanup);
+      } catch (e) {
+        console.error('startEdit failed', e);
+        showToast('Edit failed — see console');
       }
     }
 
-    function applyClientFilters(list){
-      const q = $('searchBox').value.trim().toLowerCase(); const showMine = $('showMine').checked; const my = (localStorage.getItem('my_codename')||'').toLowerCase();
-      let filtered = list.filter(d=>{
-        const title = (d.data.title||'').toLowerCase(); const ins = (Array.isArray(d.data.instructions)?d.data.instructions.join(' '):'').toLowerCase();
-        return (!q || title.includes(q) || ins.includes(q)) && (!showMine || ((d.data.owner||'').toLowerCase() === my));
+    // render recipes from cache with filters and paging
+    function renderRecipesFromCache(){
+      const container = $id('recipesContainer');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const filtered = applyClientFilters(recipesCache);
+      if (!filtered.length) {
+        container.innerHTML = '<p>No recipes found.</p>';
+        return;
+      }
+
+      // ensure page size and currentPage boundaries
+      const end = PAGE_SIZE * currentPage;
+      const slice = filtered.slice(0, end);
+
+      slice.forEach(d => {
+        try {
+          container.appendChild(createRecipeCard(d.id, d.data));
+        } catch (e) {
+          console.warn('render single recipe failed', e);
+        }
       });
-      const sortVal = $('sortSelect').value;
-      filtered.sort((a,b)=>{
-        if(sortVal==='az') return (a.data.title||'').localeCompare(b.data.title||'');
-        if(sortVal==='za') return (b.data.title||'').localeCompare(a.data.title||'');
-        const aT = a.data.createdAt && a.data.createdAt.toMillis ? a.data.createdAt.toMillis() : 0;
-        const bT = b.data.createdAt && b.data.createdAt.toMillis ? b.data.createdAt.toMillis() : 0;
-        return sortVal==='oldest' ? aT - bT : bT - aT;
-      });
-      return filtered;
+
+      if (end < filtered.length) {
+        const moreWrap = document.createElement('div');
+        moreWrap.style.textAlign = 'center';
+        moreWrap.style.marginTop = '8px';
+        const loadMore = document.createElement('button');
+        loadMore.className = 'btn';
+        loadMore.textContent = 'Load more';
+        loadMore.addEventListener('click', () => {
+          currentPage++;
+          renderRecipesFromCache();
+          // smooth scroll to show newly loaded content (mobile friendly)
+          setTimeout(()=> window.scrollBy({top:200, behavior:'smooth'}), 80);
+        });
+        moreWrap.appendChild(loadMore);
+        container.appendChild(moreWrap);
+      }
     }
 
-    // Debounce helper for search
-    function debounce(fn, wait=300){ let t; return (...args)=>{ clearTimeout(t); t=setTimeout(()=>fn(...args), wait); }; }
-
-    // Firestore listener -- keep cache up to date, but throttle UI renders for mobile
-    function subscribeRecipes(){
-      try{
-        const q = query(recipesRef, orderBy('createdAt','desc'));
-        onSnapshot(q, snap=>{ const docs=[]; snap.forEach(s=>docs.push({id:s.id,data:s.data()})); recipesCache = docs; currentPage=1; renderRecipesFromCache(); }, err=>{ console.warn('ordered snapshot failed',err); onSnapshot(recipesRef, snap=>{ const docs=[]; snap.forEach(s=>docs.push({id:s.id,data:s.data()})); recipesCache = docs; currentPage=1; renderRecipesFromCache(); }); });
-      }catch(e){ console.warn('subscribe fallback', e); onSnapshot(recipesRef, snap=>{ const docs=[]; snap.forEach(s=>docs.push({id:s.id,data:s.data()})); recipesCache = docs; currentPage=1; renderRecipesFromCache(); }); }
-    }
-
-    // ---------------- MESSAGES ----------------
-    const messagesRef = collection(db, 'messages');
-
+    // ----------------------------
+    // MESSAGES: posting
+    // ----------------------------
     async function postMessage(){
-      const codename = $('codenameInput').value.trim(); const message = $('messageInput').value.trim();
-      if(!codename || !message) return showToast('Please enter codename & message');
-      try{ await addDoc(messagesRef, { codename, message, timestamp: serverTimestamp() }); $('messageInput').value=''; showToast('Posted'); }
-      catch(e){ console.error(e); showToast('Could not post'); }
+      const codename = ($id('codenameInput')?.value || '').trim();
+      const message = ($id('messageInput')?.value || '').trim();
+      if (!codename || !message) { showToast('Please enter codename & message'); return; }
+      try {
+        await addDoc(messagesRef, { codename, message, timestamp: serverTimestamp() });
+        $id('messageInput').value = '';
+        showToast('Message posted');
+      } catch (err) {
+        console.error('postMessage failed', err);
+        showToast('Could not post message');
+      }
     }
 
-    function renderMessages(snapshot){ const container = $('messageBoard'); container.innerHTML=''; if(snapshot.empty){ container.innerHTML='<p>No messages yet.</p>'; return;} snapshot.forEach(s=>{ const d=s.data(); const div=document.createElement('div'); div.className='message'; const ts = d.timestamp && d.timestamp.toDate ? d.timestamp.toDate().toLocaleString():''; div.innerHTML=`<strong>${escapeHtml(d.codename||'Anon')}</strong><div style="white-space:pre-wrap">${escapeHtml(d.message||'')}</div><small>${escapeHtml(ts)}</small>`; container.appendChild(div); }); container.scrollTop = 0; }
+    // ----------------------------
+    // Bootstrap: wire events
+    // ----------------------------
+    function wireUI(){
+      // Add recipe
+      $id('addRecipeBtn')?.addEventListener('click', addRecipe);
+      $id('clearFormBtn')?.addEventListener('click', () => { if ($id('newTitle')) $id('newTitle').value = ''; if ($id('newInstructions')) $id('newInstructions').value = ''; });
 
-    function subscribeMessages(){ try{ const q = query(messagesRef, orderBy('timestamp','desc')); onSnapshot(q, snap=>renderMessages(snap)); }catch(e){ onSnapshot(messagesRef, snap=>renderMessages(snap)); } }
+      // Message
+      $id('postMessageBtn')?.addEventListener('click', postMessage);
+      $id('clearMsgBtn')?.addEventListener('click', () => { if ($id('codenameInput')) $id('codenameInput').value = ''; if ($id('messageInput')) $id('messageInput').value = ''; });
 
-    // ---------------- Init & events ----------------
-    window.addEventListener('DOMContentLoaded', ()=>{
-      $('addRecipeBtn').addEventListener('click', addRecipe);
-      $('postMessageBtn').addEventListener('click', postMessage);
-      $('clearFormBtn').addEventListener('click', ()=>{ $('newTitle').value=''; $('newInstructions').value=''; });
-      $('clearMsgBtn').addEventListener('click', ()=>{ $('codenameInput').value=''; $('messageInput').value=''; });
-      $('refreshBtn').addEventListener('click', ()=>{ renderRecipesFromCache(); showToast('Refreshed'); });
-      $('searchBox').addEventListener('input', debounce(()=>{ currentPage=1; renderRecipesFromCache(); }, 250));
-      $('sortSelect').addEventListener('change', debounce(()=>{ currentPage=1; renderRecipesFromCache(); }, 150));
-      $('showMine').addEventListener('change', debounce(()=>{ currentPage=1; renderRecipesFromCache(); }, 150));
+      // Search, sort, showMine, refresh
+      $id('searchBox')?.addEventListener('input', debounce(() => { currentPage = 1; renderRecipesFromCache(); }, 220));
+      $id('sortSelect')?.addEventListener('change', debounce(() => { currentPage = 1; renderRecipesFromCache(); }, 150));
+      $id('showMine')?.addEventListener('change', debounce(() => { currentPage = 1; renderRecipesFromCache(); }, 150));
+      $id('refreshBtn')?.addEventListener('click', () => { renderRecipesFromCache(); showToast('Refreshed'); });
 
-      // theme toggle persisted
-      const themeBtn = $('themeBtn'); const savedTheme = localStorage.getItem('theme'); if(savedTheme) document.body.setAttribute('data-theme', savedTheme);
-      themeBtn.addEventListener('click', ()=>{ const cur = document.body.getAttribute('data-theme')==='light' ? 'dark' : 'light'; document.body.setAttribute('data-theme', cur); localStorage.setItem('theme', cur); themeBtn.textContent = cur==='light' ? '🌙' : '☀️'; });
+      // Theme toggle + persisted
+      const themeBtn = $id('themeBtn');
+      const savedTheme = readLocal('theme', '');
+      if (savedTheme) document.body.setAttribute('data-theme', savedTheme);
+      themeBtn?.addEventListener('click', () => {
+        const cur = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        document.body.setAttribute('data-theme', cur);
+        saveLocal('theme', cur);
+        themeBtn.textContent = cur === 'light' ? '🌙' : '☀️';
+      });
 
-      // prefill message codename
-      const s = localStorage.getItem('my_codename'); if(s) $('codenameInput').value = s;
-      $('codenameInput').addEventListener('change', (e)=>localStorage.setItem('my_codename', e.target.value.trim()));
+      // Persist codename locally (recipes area)
+      const rc = $id('recipeCodename');
+      if (rc) {
+        const saved = readLocal('my_codename', '');
+        if (saved) rc.value = saved;
+        rc.addEventListener('change', (e) => saveLocal('my_codename', (e.target.value || '').trim()));
+      }
 
-      // subscribe
-      subscribeRecipes(); subscribeMessages();
+      // Prefill message codename
+      const mc = $id('codenameInput');
+      if (mc) {
+        const saved = readLocal('my_codename', '');
+        if (saved) mc.value = saved;
+        mc.addEventListener('change', (e) => saveLocal('my_codename', (e.target.value || '').trim()));
+      }
 
-      // accessibility: focus outlines
-      document.body.addEventListener('keyup', (e)=>{ if(e.key==='Tab') document.body.classList.add('show-focus'); });
-    });
+      // connection badge initial
+      updateConnectionBadge(navigator.onLine);
+    }
 
-    // small helper for getElement by id with backticks in startEdit
-    function $(id){ return document.getElementById(id); }
+    // ----------------------------
+    // Initialize app
+    // ----------------------------
+    async function init(){
+      try {
+        wireUI();
+        subscribeRecipes();
+        subscribeMessages();
+        // accessible focus outlines once user tabs
+        document.body.addEventListener('keyup', (e) => { if (e.key === 'Tab') document.body.classList.add('show-focus'); });
+      } catch (err) {
+        console.error('init failed', err);
+        showToast('Initialization error — check console');
+      }
+    }
+
+    // run on DOM ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
   </script>
 </body>
 </html>
+
 
 
 
