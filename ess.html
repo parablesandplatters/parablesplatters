@@ -439,7 +439,7 @@
     }
 
     // Postponed games
-  //  const postponed = [8, 11];
+    const postponed = [null, null];
 
     // Completed games (so far up to Game 12)
     const completed = Array.from({ length: 13 }, (_, i) => i+1).filter(n => !postponed.includes(n));
