@@ -321,7 +321,7 @@
       <h2>🎯 Top Goal Scorers</h2>
       <table>
         <tr><th>Player</th><th>Goals</th></tr>
-        <tr><td>01. Vuyo</td><td>21</td></tr>
+        <tr><td>01. Vuyo</td><td>22</td></tr>
         <tr><td>02. Hoss</td><td>11</td></tr>
         <tr><td>03. Bayanda</td><td>10</td></tr>
         <tr><td>04. Junior</td><td>9</td></tr>
@@ -380,7 +380,9 @@
         <tr><td>01. Junior</td><td>1</td></tr>
         <tr><td>02. Vuyo</td><td>1</td></tr>
         <tr><td>03. Bayanda</td><td>2</td></tr>
-        <tr><td>04. Frost</td><td>1</td></tr>
+        <tr><td>04. Frost</td><td>5</td></tr>
+        <tr><td>05. Olama</td><td>2</td></tr>
+        <tr><td>06. Queener</td><td>1</td></tr>
       </table>
     </section>
 
@@ -437,10 +439,10 @@
     }
 
     // Postponed games
-    const postponed = [8, 11];
+  //  const postponed = [8, 11];
 
     // Completed games (so far up to Game 12)
-    const completed = Array.from({ length: 12 }, (_, i) => i+1).filter(n => !postponed.includes(n));
+    const completed = Array.from({ length: 13 }, (_, i) => i+1).filter(n => !postponed.includes(n));
 
     // Populate schedule
     const scheduleEl = document.getElementById("matchday-schedule");
