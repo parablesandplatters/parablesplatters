@@ -1,1 +1,0 @@
-for t&l, add list of primary sectors, where we get our stock from... and info about those primary sectors. 
