@@ -614,9 +614,6 @@
 
     <div class="menu">
 
-        Performing site maintenance. We will be back shortly!
-        <br>
-
         <div class="menu-item">
 
             <img id="slideshowImage" class="fade-image" src="01. images/pap_wors_beans.jpg" alt="Pap, Wors & Beans Curry" title="hmmm... yummy!">
@@ -729,7 +726,6 @@
         }
 
         // Function to handle form submission
-
         document.getElementById('orderDetails').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
 
@@ -760,7 +756,6 @@
             });
         });
 
-
         // Function to show success and failure popups
         function showPopup(message, isFailure, orderNum = '') {
             const popup = document.getElementById('popupMessage');
@@ -781,7 +776,6 @@
         function copyOrderNumber() {
             const orderNumElement = document.getElementById('copyOrderNum');
             const text = orderNumElement.innerText;
-
             navigator.clipboard.writeText(text).then(() => {
                 alert("Order number copied to clipboard: " + text);
             }).catch(err => {
@@ -798,14 +792,12 @@
             backToTopButton.style.display = "none";
             }
         });
-
         backToTopButton.addEventListener("click", () => {
             window.scrollTo({
             top: 0,
             behavior: "smooth",
             });
         });
-
 
         const slideshowImages = [
             "01. images/pap_wors_beans.jpg",
