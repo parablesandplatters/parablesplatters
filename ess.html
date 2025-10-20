@@ -379,6 +379,8 @@
         <tr><td>Game 13.1</td><td>Hoss</td></tr>
         <tr><td>Game 14</td><td>Vuyo</td></tr>
         <tr><td>Game 15</td><td>Vuyo</td></tr>
+        <tr><td>Game 16</td><td>Jonathan Kofi</td></tr>
+        <tr><td>Game 16.1</td><td>Hoss</td></tr>
       </table>
     </section>
 
@@ -396,7 +398,9 @@
         <tr><td>Game 13</td><td>Hoss</td></tr>
         <tr><td>Game 13.1</td><td>Hoss</td></tr>
         <tr><td>Game 14</td><td>Hoss</td></tr>
-        <tr><td>Game 15</td><td>Hoss</td></tr> <tr><td>Game 15</td><td>Hoss</td></tr>
+        <tr><td>Game 15</td><td>Hoss</td></tr> 
+        <tr><td>Game 16</td><td>Masiya</td></tr>
+        <tr><td>Game 16.1</td><td>Hoss</td></tr>
       </table>
     </section>
 
@@ -473,7 +477,7 @@
     const postponed = [null, null];
 
     // Completed games (so far up to Game 12)
-    const completed = Array.from({ length: 15 }, (_, i) => i+1).filter(n => !postponed.includes(n));
+    const completed = Array.from({ length: 16 }, (_, i) => i+1).filter(n => !postponed.includes(n));
 
     // Populate schedule
     const scheduleEl = document.getElementById("matchday-schedule");
