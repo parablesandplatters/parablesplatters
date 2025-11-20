@@ -274,8 +274,8 @@
       <h2>🏆 League Table</h2>
       <table>
         <tr><th>Team</th><th>Played</th><th>Won</th><th>Lost</th><th>Draw</th><th>Points</th></tr>
-        <tr><td><strong>01. Eden Alpha</strong></td><td>24</td><td>14</td><td>9</td><td>1</td><td>43</td></tr>
-        <tr><td><strong>02. Eden Delta</strong></td><td>24</td><td>9</td><td>14</td><td>1</td><td>28</td></tr>
+        <tr><td><strong>01. Eden Alpha</strong></td><td>25</td><td>15</td><td>9</td><td>1</td><td>46</td></tr>
+        <tr><td><strong>02. Eden Delta</strong></td><td>25</td><td>9</td><td>15</td><td>1</td><td>28</td></tr>
       </table>
     </section>
     
@@ -330,6 +330,8 @@
         <li><strong>Game 18</strong> – Eden Alpha 2 : 1 Eden Delta | <em>Man of the Match:</em> Junior</li>  
         <br>
         <li><strong>Game 19</strong> – Eden Alpha 4 : 0 Eden Delta | <em>Man of the Match:</em> Hoss</li>
+        <br>
+        <li><strong>Game 19</strong> – Eden Alpha 8 : 6 Eden Delta | <em>Man of the Match:</em> Hoss</li>
     </ul>
     </section>
 
@@ -350,16 +352,16 @@
       <h2>🎯 Top Goal Scorers</h2>
       <table>
         <tr><th>Player</th><th>Goals</th></tr>
-        <tr><td>01. Vuyo</td><td>34</td></tr>
-        <tr><td>02. Hoss</td><td>23</td></tr>
+        <tr><td>01. Vuyo</td><td>37</td></tr>
+        <tr><td>02. Hoss</td><td>26</td></tr>
         <tr><td>03. Junior</td><td>15</td></tr>
-        <tr><td>04. Bayanda</td><td>12</td></tr>
-        <tr><td>05. Frost</td><td>8</td></tr>
+        <tr><td>04. Bayanda</td><td>13</td></tr>
+        <tr><td>05. S'phe</td><td>11</td></tr>
+        <tr><td>05. Frost</td><td>9</td></tr>
         <tr><td>06. Joy</td><td>7</td></tr>
-        <tr><td>07. S'phe</td><td>7</td></tr>
-        <tr><td>08. Xan</td><td>4</td></tr>
-        <tr><td>09. Olama</td><td>2</td></tr>
-        <tr><td>10. Masiya</td><td>2</td></tr>
+        <tr><td>07. Xan</td><td>4</td></tr>
+        <tr><td>08. Olama</td><td>3</td></tr>
+        <tr><td>09. Masiya</td><td>2</td></tr>
       </table>
     </section>
 
@@ -392,7 +394,7 @@
         <tr><td>Game 17</td><td>S'phe</td></tr>
         <tr><td>Game 18</td><td>Junior</td></tr>
         <tr><td>Game 19</td><td>Hoss</td></tr>
-        
+        <tr><td>Game 20</td><td>Hoss</td></tr>
       </table>
     </section>
 
@@ -416,6 +418,7 @@
         <tr><td>Game 17</td><td>Joy</td></tr>
         <tr><td>Game 18</td><td>Queener</td></tr>
         <tr><td>Game 19</td><td>Hoss</td></tr>
+        <tr><td>Game 20</td><td>Hoss</td></tr>
       </table>
     </section>
 
@@ -423,13 +426,14 @@
     <section>
       <h2>🤝🏽 Top Assisters</h2>
       <table>
-        <tr><td>01. Frost</td><td>7</td></tr>
+        <tr><td>01. Frost</td><td>9</td></tr>
         <tr><td>02. Vuyo</td><td>6</td></tr>
         <tr><td>03. Bayanda</td><td>5</td></tr>
         <tr><td>04. Junior</td><td>5</td></tr>
-        <tr><td>05. Olama</td><td>2</td></tr>
-        <tr><td>06. Queener</td><td>2</td></tr>
-        <tr><td>07. S'phe</td><td>2</td></tr>
+        <tr><td>05. S'phe</td><td>3</td></tr>
+        <tr><td>06. Olama</td><td>2</td></tr>
+        <tr><td>07. Queener</td><td>2</td></tr>
+        <tr><td>08. Hoss</td><td>2</td></tr>
       </table>
     </section>
     
@@ -492,7 +496,7 @@
     const postponed = [null, null];
 
     // Completed games (so far up to Game 12)
-    const completed = Array.from({ length: 19 }, (_, i) => i+1).filter(n => !postponed.includes(n));
+    const completed = Array.from({ length: 20 }, (_, i) => i+1).filter(n => !postponed.includes(n));
 
     // Populate schedule
     const scheduleEl = document.getElementById("matchday-schedule");
